@@ -47,25 +47,25 @@ export function StatCard({
 	const change24h = currentPrice.close - (referencePrice?.close ?? 0)
 	const absoluteChange = currentPrice.close - currentPrice.open
 	const relativeChange = (absoluteChange / currentPrice.open) * 100
-	
 
 	return (
 		<Card className={cn(className)}>
-
 			<CardHeader className="w-full flex flex-row h-fit">
-
-				
-				
 				<CardTitle className="w-full flex flex-row gap-4 h-fit items-center">
-				<URLIcon className="size-[4lh] rounded-lg shadow" size={100} iconURL={getIconURL(stock, 100)} />
+					<URLIcon
+						className="size-[4lh] rounded-lg shadow"
+						size={100}
+						iconURL={getIconURL(stock, 100)}
+					/>
 					<div className="">
-					<span className="text-3xl font-extrabold mr-4">{stock.symbol}</span>
-					<span>{stock.name}</span>
-					<br/>
-					<span className="text-muted-foreground font-normal w-fit mt-2">{stock.description}</span>
+						<span className="text-3xl font-extrabold mr-4">{stock.symbol}</span>
+						<span>{stock.name}</span>
+						<br />
+						<span className="text-muted-foreground font-normal w-fit mt-2">
+							{stock.description}
+						</span>
 					</div>
 				</CardTitle>
-				
 			</CardHeader>
 
 			<CardContent className="flex flex-col gap-3 pb-0 h-auto">

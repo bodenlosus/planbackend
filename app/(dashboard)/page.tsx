@@ -17,24 +17,37 @@ import {
 	getDateCertainDaysAgo,
 	toISODateOnly,
 } from "@/lib/date_utils"
-import { LineChart as LinechartIcon, TableCellsMerge, TreePalm, Trees } from "lucide-react"
+import {
+	LineChart as LinechartIcon,
+	TableCellsMerge,
+	TreePalm,
+	Trees,
+} from "lucide-react"
 import { redirect } from "next/navigation"
 import { cache } from "react"
 import TreeChart from "@/components/charts/tree"
 import PositionTabView from "@/components/displays/tab_view"
+
+
 // export const revalidate = 3600
 export default async function Page() {
+
 	const { depots, positions, depotValues, error } = await dataFetcher()
 	if (error) {
 		return <ErrorCard error={error} />
 	}
-	const posRestruc = restructure(positions);
-	const treeData = posRestruc.map(position => {
-
-		const possesedValue = position.position.amount * position.currentPrice[0].close
-		const profit = position.position.profit - position.position.expenses + possesedValue
-		return {value: possesedValue, name: position.stock.symbol, relProf: profit/possesedValue}
-	}) 
+	const posRestruc = restructure(positions)
+	const treeData = posRestruc.map((position) => {
+		const possesedValue =
+			position.position.amount * position.currentPrice[0].close
+		const profit =
+			position.position.profit - position.position.expenses + possesedValue
+		return {
+			value: possesedValue,
+			name: position.stock.symbol,
+			relProf: profit / possesedValue,
+		}
+	})
 
 	// const treeData = positions.map(position => ({value: position.amount * position.})
 	const areaData = []
@@ -58,7 +71,7 @@ export default async function Page() {
 						<HeaderStat
 							className="justify-start"
 							displays={{
-								"Depotwert": today.value,
+								Depotwert: today.value,
 								"Heutiger Profit": today.profit,
 								"Gesamter Profit": start.profit,
 								"Liquides Geld": depots[0].liquid_assets,
@@ -78,10 +91,13 @@ export default async function Page() {
 								xKey="timestamp"
 								yKey="totalAssets"
 							/>
-							
 						</Chart>
 						<Chart name="tree">
-							<TreeChart className="max-h-[500px] w-full" data={treeData} dataKey="value"/>
+							<TreeChart
+								className="max-h-[500px] w-full"
+								data={treeData}
+								dataKey="value"
+							/>
 						</Chart>
 						<ChartIcon name="line">
 							<LinechartIcon className="size-7 md:size-5 stroke-muted-foreground" />

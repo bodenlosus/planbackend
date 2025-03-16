@@ -35,21 +35,37 @@ export function PositionRow({
 	const possesedValue = position.amount * currentPrice[0].close
 	const profit = currentPrice[0].close - currentPrice[1].close
 
-	const indicatorClass = profit > 0 ? "bg-gradient-to-r from-win/60 via-win/25 to-transparent to-[100px] bg-no-repeat" : "bg-gradient-to-r from-loss/35 to-transparent to-[100px] bg-no-repeat"
+	const indicatorClass =
+		profit > 0
+			? "bg-gradient-to-r from-win/60 via-win/25 to-transparent to-[100px] bg-no-repeat"
+			: "bg-gradient-to-r from-loss/35 to-transparent to-[100px] bg-no-repeat"
 
 	const iconURL = getIconURL(stock, 40)
 
 	return (
 		<>
-			<Card className={cn("flex flex-row flex-wrap rounded-xl max-w-[800px]", indicatorClass)}>
+			<Card
+				className={cn(
+					"flex flex-row flex-wrap rounded-xl max-w-[800px]",
+					indicatorClass,
+				)}
+			>
 				<Link
 					href={getStockPagePath(stock.id)}
 					className="flex flex-col p-6 pb-3 gap-[0.125rem]"
 				>
 					<div className="flex flex-row gap-x-2 flex-wrap">
-						<URLIcon className="h-[1.2lh] aspect-square w-auto self-center rounded" size={100} iconURL={iconURL} />
-						<span className="text-2xl self-end font-bold hover:underline-offset-4 transition-all no-underline hover:underline" >{stock.symbol}</span>
-						<span className="self-end mb-[.1lh] text-foreground">{stock.name}</span>
+						<URLIcon
+							className="h-[1.2lh] aspect-square w-auto self-center rounded"
+							size={100}
+							iconURL={iconURL}
+						/>
+						<span className="text-2xl self-end font-bold hover:underline-offset-4 transition-all no-underline hover:underline">
+							{stock.symbol}
+						</span>
+						<span className="self-end mb-[.1lh] text-foreground">
+							{stock.name}
+						</span>
 					</div>
 					<div className="text-muted-foreground text-sm hidden md:block">
 						{stock.description}
@@ -73,11 +89,7 @@ export function PositionRow({
 						}}
 					/>
 				</div>
-
 			</Card>
-
-
 		</>
 	)
 }
-

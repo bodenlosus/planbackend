@@ -10,7 +10,7 @@ export async function createClient() {
 	if (!url || !key) {
 		throw new Error("Missing Supabase credentials")
 	}
-	
+
 	return createServerClient(url, key, {
 		cookies: {
 			getAll() {

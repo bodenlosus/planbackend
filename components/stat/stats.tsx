@@ -22,9 +22,9 @@ export default function StockStats<TStructure extends Record<string, string>>({
 		reference: reference ? reference[key] : undefined,
 		labels: labels ? labels[key] : undefined,
 	}))
-	return (stats.map((stat) => (
-				<>
-					<StockStat key={stat.name} {...stat} />
-				</>
-			)))
+	return stats.map((stat) => (
+		<>
+			<StockStat key={stat.name} {...stat} />
+		</>
+	))
 }

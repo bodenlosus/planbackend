@@ -25,14 +25,13 @@ export default function HeaderStat({
 		>
 			{Object.entries(displays).map(([name, value]) => (
 				<div key={name} className="">
-				<Template
-					className={subClassName}
-					headerClassName={headerClassName}
-					signClassName={signClassName}
-					name={name}
-					value={value}
-				
-				/>
+					<Template
+						className={subClassName}
+						headerClassName={headerClassName}
+						signClassName={signClassName}
+						name={name}
+						value={value}
+					/>
 				</div>
 			))}
 		</div>

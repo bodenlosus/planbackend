@@ -1,55 +1,58 @@
 "use client"
-import type { StockType } from "@/database/custom_types";
-import type { ReturnT } from "@/database/restructure_depot_position_data";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import PositionList from "./position_list";
-import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
-import IntervalControls from "./interval_controls";
+import type { StockType } from "@/database/custom_types"
+import type { ReturnT } from "@/database/restructure_depot_position_data"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
+import PositionList from "./position_list"
+import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group"
+import IntervalControls from "./interval_controls"
 
 export default function PositionTabView({
-    positions,
+	positions,
 }: { positions: Array<ReturnT> }) {
+	const displays: Map<string, string> = new Map([
+		["stock", "Aktien"],
+		["etf", "ETFs"],
+		["crypto", "Krypto"],
+		["currency", "Währungen"],
+	])
 
-    const displays: Map<string, string> = new Map([
-        ["stock", "Aktien"],
-        ["etf", "ETFs"],
-        ["crypto", "Krypto"],
-        ["currency", "Währungen"],
-    ])
+	const sortedStocks: Partial<Record<StockType, Array<ReturnT>>> = {}
+	const counts: Map<Partial<StockType>, number> = new Map()
 
-    const sortedStocks: Partial<Record<StockType, Array<ReturnT>>> = {
-    }
-    const counts: Map<Partial<StockType>, number> = new Map()
+	for (const position of positions) {
+		if (!sortedStocks[position.stock.type]) {
+			sortedStocks[position.stock.type] = []
+		}
+		;(sortedStocks[position.stock.type] as ReturnT[]).push(position)
+		counts.set(position.stock.type, (counts.get(position.stock.type) ?? 0) + 1)
+	}
 
+	const types = Object.keys(sortedStocks)
+	const triggers = types.map((stockType) => {
+		const count = counts.get(stockType as StockType) ?? 0
+		const name = displays.get(stockType) ?? stockType
+		return (
+			<TabsTrigger key={stockType} value={stockType}>
+				{name} {count}
+			</TabsTrigger>
+		)
+	})
+	const contents = Object.entries(sortedStocks).map(
+		([stockType, positions]) => {
+			return (
+				<TabsContent key={stockType} value={stockType}>
+					<PositionList positions={positions} />
+				</TabsContent>
+			)
+		},
+	)
 
-    for (const position of positions) {
-        if (!sortedStocks[position.stock.type]) {
-            sortedStocks[position.stock.type] = []
-        }
-        (sortedStocks[position.stock.type] as ReturnT[]).push(position)
-        counts.set(position.stock.type, (counts.get(position.stock.type) ?? 0) + 1)
-    }
-
-    const types = Object.keys(sortedStocks)
-    const triggers = types.map((stockType) => {
-        const count = counts.get(stockType as StockType) ?? 0
-        const name = displays.get(stockType) ?? stockType
-        return <TabsTrigger key={stockType} value={stockType}>{name}  {count}</TabsTrigger>
-    })
-    const contents = Object.entries(sortedStocks).map(([stockType, positions]) => {
-        return <TabsContent key={stockType} value={stockType}>
-            <PositionList positions={positions} />
-        </TabsContent>
-    })
-    
-
-    return (
-        <Tabs defaultValue={types[0]}>
-            <div className="flex flex-row gap-2 w-full">
-                <TabsList>{triggers}</TabsList>
-            </div>
-            {contents}
-
-        </Tabs>)
+	return (
+		<Tabs defaultValue={types[0]}>
+			<div className="flex flex-row gap-2 w-full">
+				<TabsList>{triggers}</TabsList>
+			</div>
+			{contents}
+		</Tabs>
+	)
 }
-

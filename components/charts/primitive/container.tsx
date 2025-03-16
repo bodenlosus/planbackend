@@ -50,11 +50,9 @@ export default function ChartContainer({
 
 	return (
 		<Suspense fallback={<PageLoader />}>
-			
 			<Tabs defaultValue={defaultName} className={cn(className)}>
 				{tabsContent}
 				<div className="w-full h-fit p-2 bg-background border-t md:p-0 flex flex-row">
-					
 					<TabsList className="bg-transparent flex flex-row gap-2 justify-around justify-items-stretch md:justify-start">
 						{tabsTrigger}
 					</TabsList>

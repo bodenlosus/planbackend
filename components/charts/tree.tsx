@@ -1,17 +1,10 @@
 "use client"
-import {
-	type ChartConfig,
-	ChartContainer
-} from "@/components/ui/chart"
+import { type ChartConfig, ChartContainer } from "@/components/ui/chart"
 import { to_display_string } from "@/lib/cash_display_string"
-import {
-	toAbsoluteTimeString
-} from "@/lib/date_utils"
+import { toAbsoluteTimeString } from "@/lib/date_utils"
 import { cn } from "@/lib/utils"
 import type React from "react"
-import {
-	Treemap, type Tooltip
-} from "recharts"
+import { Treemap, type Tooltip } from "recharts"
 import { Separator } from "../ui/separator"
 import type { TreemapNode } from "recharts/types/util/types"
 import { getIconURL, getIconURLStock } from "@/lib/icon_url"
@@ -28,48 +21,52 @@ interface ContentProps extends TreemapNode {
 	key: string
 }
 function CustomContent(props: ContentProps) {
-	const {depth, x, y, width, height, index, data, name, value } = props;
+	const { depth, x, y, width, height, index, data, name, value } = props
 	const position = data.at(index)
 	let prof = 0
 	let color = ""
 
 	if (position) {
 		prof = position.relProf as number
-		color = prof > 0 ? 'hsl(var(--win))' : 'hsl(var(--loss))'
+		color = prof > 0 ? "hsl(var(--win))" : "hsl(var(--loss))"
 	}
 
-
-
-    return (
-      <g>
-		<rect x={x} y={y} width={width} height={height} fill="#00000000"/>
-        <rect
-          x={x}
-          y={y}
-		  rx={10}
-          width={width - 10}
-          height={height- 10}
-          style={{
-            fill: color,
-            stroke: color,
-			fillOpacity: depth > 0 ? Math.min(1, Math.abs(prof*10)): 0,
-			borderRadius: 10,
-            strokeWidth: 1,
-            strokeOpacity: depth > 0 ? 1 : 0,
-          }}
-        />
-        {depth === 1 ? (
-          <text x={x + width / 2} y={y + height / 2 + 7} textAnchor="middle" fill="#fff" fontSize={14}>
-            {name}
-          </text>
-        ) : null}
-        {depth === 1 ? (
-          <text x={x + 6} y={y + 20} fill="#fff" fontSize={16} fillOpacity={0.9}>
-            {to_display_string(value as number)}
-          </text>
-        ) : null}
-      </g>
-    );
+	return (
+		<g>
+			<rect x={x} y={y} width={width} height={height} fill="#00000000" />
+			<rect
+				x={x}
+				y={y}
+				rx={10}
+				width={width - 10}
+				height={height - 10}
+				style={{
+					fill: color,
+					stroke: color,
+					fillOpacity: depth > 0 ? Math.min(1, Math.abs(prof * 10)) : 0,
+					borderRadius: 10,
+					strokeWidth: 1,
+					strokeOpacity: depth > 0 ? 1 : 0,
+				}}
+			/>
+			{depth === 1 ? (
+				<text
+					x={x + width / 2}
+					y={y + height / 2 + 7}
+					textAnchor="middle"
+					fill="#fff"
+					fontSize={14}
+				>
+					{name}
+				</text>
+			) : null}
+			{depth === 1 ? (
+				<text x={x + 6} y={y + 20} fill="#fff" fontSize={16} fillOpacity={0.9}>
+					{to_display_string(value as number)}
+				</text>
+			) : null}
+		</g>
+	)
 }
 
 export default function TreeChart<T extends Record<string, number | string>>({
@@ -91,7 +88,25 @@ export default function TreeChart<T extends Record<string, number | string>>({
 			config={chartConfig}
 			className={cn("min-h[200px] pl-3 pt-0.5", className)}
 		>
-			<Treemap isAnimationActive={false} data={data} dataKey={dataKey} content={<CustomContent data={data} key="relProf" x={0} y={0} width={0} height={0} depth={0} index={0} name={""} value={0}/>}/>
+			<Treemap
+				isAnimationActive={false}
+				data={data}
+				dataKey={dataKey}
+				content={
+					<CustomContent
+						data={data}
+						key="relProf"
+						x={0}
+						y={0}
+						width={0}
+						height={0}
+						depth={0}
+						index={0}
+						name={""}
+						value={0}
+					/>
+				}
+			/>
 		</ChartContainer>
 	)
 }
