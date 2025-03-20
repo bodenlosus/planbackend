@@ -1321,7 +1321,7 @@ export type ProfilesUpdateResponse = {
 }
 
 export type GetDepotsQueryVariables = Exact<{
-	user?: InputMaybe<Scalars["UUID"]["input"]>
+	user: Scalars["UUID"]["input"]
 }>
 
 export type GetDepotsQuery = {
@@ -1334,9 +1334,9 @@ export type GetDepotsQuery = {
 				__typename: "profiles"
 				depots?: {
 					__typename: "Depots"
-					id: string
 					name?: string | null
 					created_at: string
+					id: string
 				} | null
 			}
 		}>
@@ -1355,27 +1355,62 @@ export type GetPositionsQuery = {
 			__typename: "DepotPositionsEdge"
 			node: {
 				__typename: "DepotPositions"
+				amount: number
 				stockInfo?: {
 					__typename: "StockInfo"
 					symbol: string
 					name: string
 					description: string
+					id: string
 					type: StockType
+					transactionsCollection?: {
+						__typename: "TransactionsConnection"
+						edges: Array<{
+							__typename: "TransactionsEdge"
+							node: {
+								__typename: "Transactions"
+								amount: number
+								price: number
+								timestamp: string
+							}
+						}>
+					} | null
 					stockPricesCollection?: {
 						__typename: "StockPricesConnection"
 						edges: Array<{
 							__typename: "StockPricesEdge"
 							node: {
 								__typename: "StockPrices"
-								high: number
-								low: number
+								timestamp: string
 								open: number
 								close: number
-								timestamp: string
+								high: number
+								low: number
+								volume: string
 							}
 						}>
 					} | null
 				} | null
+			}
+		}>
+	} | null
+}
+
+export type GetDepotValuesQueryVariables = Exact<{
+	depot: Scalars["BigInt"]["input"]
+}>
+
+export type GetDepotValuesQuery = {
+	__typename: "Query"
+	depotValuesCollection?: {
+		__typename: "DepotValuesConnection"
+		edges: Array<{
+			__typename: "DepotValuesEdge"
+			node: {
+				__typename: "DepotValues"
+				timestamp: string
+				stock_assets: number
+				liquid_assets: number
 			}
 		}>
 	} | null

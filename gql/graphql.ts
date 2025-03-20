@@ -1332,7 +1332,7 @@ export type ProfilesUpdateResponse = {
 }
 
 export type GetDepotsQueryVariables = Exact<{
-	user?: InputMaybe<Scalars["UUID"]["input"]>
+	user: Scalars["UUID"]["input"]
 }>
 
 export type GetDepotsQuery = {
@@ -1345,9 +1345,9 @@ export type GetDepotsQuery = {
 				__typename: "profiles"
 				depots?: {
 					__typename: "Depots"
-					id: string
 					name?: string | null
 					created_at: string
+					id: string
 				} | null
 			}
 		}>
@@ -1366,27 +1366,62 @@ export type GetPositionsQuery = {
 			__typename: "DepotPositionsEdge"
 			node: {
 				__typename: "DepotPositions"
+				amount: number
 				stockInfo?: {
 					__typename: "StockInfo"
 					symbol: string
 					name: string
 					description: string
+					id: string
 					type: StockType
+					transactionsCollection?: {
+						__typename: "TransactionsConnection"
+						edges: Array<{
+							__typename: "TransactionsEdge"
+							node: {
+								__typename: "Transactions"
+								amount: number
+								price: number
+								timestamp: string
+							}
+						}>
+					} | null
 					stockPricesCollection?: {
 						__typename: "StockPricesConnection"
 						edges: Array<{
 							__typename: "StockPricesEdge"
 							node: {
 								__typename: "StockPrices"
-								high: number
-								low: number
+								timestamp: string
 								open: number
 								close: number
-								timestamp: string
+								high: number
+								low: number
+								volume: string
 							}
 						}>
 					} | null
 				} | null
+			}
+		}>
+	} | null
+}
+
+export type GetDepotValuesQueryVariables = Exact<{
+	depot: Scalars["BigInt"]["input"]
+}>
+
+export type GetDepotValuesQuery = {
+	__typename: "Query"
+	depotValuesCollection?: {
+		__typename: "DepotValuesConnection"
+		edges: Array<{
+			__typename: "DepotValuesEdge"
+			node: {
+				__typename: "DepotValues"
+				timestamp: string
+				stock_assets: number
+				liquid_assets: number
 			}
 		}>
 	} | null
@@ -1403,7 +1438,10 @@ export const GetDepotsDocument = {
 				{
 					kind: "VariableDefinition",
 					variable: { kind: "Variable", name: { kind: "Name", value: "user" } },
-					type: { kind: "NamedType", name: { kind: "Name", value: "UUID" } },
+					type: {
+						kind: "NonNullType",
+						type: { kind: "NamedType", name: { kind: "Name", value: "UUID" } },
+					},
 				},
 			],
 			selectionSet: {
@@ -1477,15 +1515,15 @@ export const GetDepotsDocument = {
 																	},
 																	{
 																		kind: "Field",
-																		name: { kind: "Name", value: "id" },
-																	},
-																	{
-																		kind: "Field",
 																		name: { kind: "Name", value: "name" },
 																	},
 																	{
 																		kind: "Field",
 																		name: { kind: "Name", value: "created_at" },
+																	},
+																	{
+																		kind: "Field",
+																		name: { kind: "Name", value: "id" },
 																	},
 																],
 															},
@@ -1588,6 +1626,10 @@ export const GetPositionsDocument = {
 														},
 														{
 															kind: "Field",
+															name: { kind: "Name", value: "amount" },
+														},
+														{
+															kind: "Field",
 															name: { kind: "Name", value: "stockInfo" },
 															selectionSet: {
 																kind: "SelectionSet",
@@ -1613,21 +1655,52 @@ export const GetPositionsDocument = {
 																	},
 																	{
 																		kind: "Field",
+																		name: { kind: "Name", value: "id" },
+																	},
+																	{
+																		kind: "Field",
 																		name: { kind: "Name", value: "type" },
 																	},
 																	{
 																		kind: "Field",
 																		name: {
 																			kind: "Name",
-																			value: "stockPricesCollection",
+																			value: "transactionsCollection",
 																		},
 																		arguments: [
 																			{
 																				kind: "Argument",
-																				name: { kind: "Name", value: "first" },
+																				name: { kind: "Name", value: "filter" },
 																				value: {
-																					kind: "IntValue",
-																					value: "30",
+																					kind: "ObjectValue",
+																					fields: [
+																						{
+																							kind: "ObjectField",
+																							name: {
+																								kind: "Name",
+																								value: "depot_id",
+																							},
+																							value: {
+																								kind: "ObjectValue",
+																								fields: [
+																									{
+																										kind: "ObjectField",
+																										name: {
+																											kind: "Name",
+																											value: "eq",
+																										},
+																										value: {
+																											kind: "Variable",
+																											name: {
+																												kind: "Name",
+																												value: "depot",
+																											},
+																										},
+																									},
+																								],
+																							},
+																						},
+																					],
 																				},
 																			},
 																		],
@@ -1677,14 +1750,92 @@ export const GetPositionsDocument = {
 																											kind: "Field",
 																											name: {
 																												kind: "Name",
-																												value: "high",
+																												value: "amount",
 																											},
 																										},
 																										{
 																											kind: "Field",
 																											name: {
 																												kind: "Name",
-																												value: "low",
+																												value: "price",
+																											},
+																										},
+																										{
+																											kind: "Field",
+																											name: {
+																												kind: "Name",
+																												value: "timestamp",
+																											},
+																										},
+																									],
+																								},
+																							},
+																						],
+																					},
+																				},
+																			],
+																		},
+																	},
+																	{
+																		kind: "Field",
+																		name: {
+																			kind: "Name",
+																			value: "stockPricesCollection",
+																		},
+																		arguments: [
+																			{
+																				kind: "Argument",
+																				name: { kind: "Name", value: "last" },
+																				value: { kind: "IntValue", value: "1" },
+																			},
+																		],
+																		selectionSet: {
+																			kind: "SelectionSet",
+																			selections: [
+																				{
+																					kind: "Field",
+																					name: {
+																						kind: "Name",
+																						value: "__typename",
+																					},
+																				},
+																				{
+																					kind: "Field",
+																					name: {
+																						kind: "Name",
+																						value: "edges",
+																					},
+																					selectionSet: {
+																						kind: "SelectionSet",
+																						selections: [
+																							{
+																								kind: "Field",
+																								name: {
+																									kind: "Name",
+																									value: "__typename",
+																								},
+																							},
+																							{
+																								kind: "Field",
+																								name: {
+																									kind: "Name",
+																									value: "node",
+																								},
+																								selectionSet: {
+																									kind: "SelectionSet",
+																									selections: [
+																										{
+																											kind: "Field",
+																											name: {
+																												kind: "Name",
+																												value: "__typename",
+																											},
+																										},
+																										{
+																											kind: "Field",
+																											name: {
+																												kind: "Name",
+																												value: "timestamp",
 																											},
 																										},
 																										{
@@ -1705,7 +1856,21 @@ export const GetPositionsDocument = {
 																											kind: "Field",
 																											name: {
 																												kind: "Name",
-																												value: "timestamp",
+																												value: "high",
+																											},
+																										},
+																										{
+																											kind: "Field",
+																											name: {
+																												kind: "Name",
+																												value: "low",
+																											},
+																										},
+																										{
+																											kind: "Field",
+																											name: {
+																												kind: "Name",
+																												value: "volume",
 																											},
 																										},
 																									],
@@ -1734,3 +1899,111 @@ export const GetPositionsDocument = {
 		},
 	],
 } as unknown as DocumentNode<GetPositionsQuery, GetPositionsQueryVariables>
+export const GetDepotValuesDocument = {
+	kind: "Document",
+	definitions: [
+		{
+			kind: "OperationDefinition",
+			operation: "query",
+			name: { kind: "Name", value: "GetDepotValues" },
+			variableDefinitions: [
+				{
+					kind: "VariableDefinition",
+					variable: {
+						kind: "Variable",
+						name: { kind: "Name", value: "depot" },
+					},
+					type: {
+						kind: "NonNullType",
+						type: {
+							kind: "NamedType",
+							name: { kind: "Name", value: "BigInt" },
+						},
+					},
+				},
+			],
+			selectionSet: {
+				kind: "SelectionSet",
+				selections: [
+					{ kind: "Field", name: { kind: "Name", value: "__typename" } },
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "depotValuesCollection" },
+						arguments: [
+							{
+								kind: "Argument",
+								name: { kind: "Name", value: "filter" },
+								value: {
+									kind: "ObjectValue",
+									fields: [
+										{
+											kind: "ObjectField",
+											name: { kind: "Name", value: "depot_id" },
+											value: {
+												kind: "ObjectValue",
+												fields: [
+													{
+														kind: "ObjectField",
+														name: { kind: "Name", value: "eq" },
+														value: {
+															kind: "Variable",
+															name: { kind: "Name", value: "depot" },
+														},
+													},
+												],
+											},
+										},
+									],
+								},
+							},
+						],
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [
+								{ kind: "Field", name: { kind: "Name", value: "__typename" } },
+								{
+									kind: "Field",
+									name: { kind: "Name", value: "edges" },
+									selectionSet: {
+										kind: "SelectionSet",
+										selections: [
+											{
+												kind: "Field",
+												name: { kind: "Name", value: "__typename" },
+											},
+											{
+												kind: "Field",
+												name: { kind: "Name", value: "node" },
+												selectionSet: {
+													kind: "SelectionSet",
+													selections: [
+														{
+															kind: "Field",
+															name: { kind: "Name", value: "__typename" },
+														},
+														{
+															kind: "Field",
+															name: { kind: "Name", value: "timestamp" },
+														},
+														{
+															kind: "Field",
+															name: { kind: "Name", value: "stock_assets" },
+														},
+														{
+															kind: "Field",
+															name: { kind: "Name", value: "liquid_assets" },
+														},
+													],
+												},
+											},
+										],
+									},
+								},
+							],
+						},
+					},
+				],
+			},
+		},
+	],
+} as unknown as DocumentNode<GetDepotValuesQuery, GetDepotValuesQueryVariables>

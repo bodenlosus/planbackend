@@ -7,7 +7,7 @@ import ChartContainer from "@/components/charts/primitive/container"
 import AreaChart from "@/components/charts/area"
 import HeaderStat from "@/components/stat/header_stat"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import type { Depot, DepotValue } from "@/database/custom_types"
+import type { Depot, DepotValue, StockPosition } from "@/database/custom_types"
 import { fetchRpc } from "@/database/fetch_rpc"
 import { getUser } from "@/database/get_user_server"
 import { restructure } from "@/database/restructure_depot_position_data"
@@ -28,40 +28,35 @@ import { cache } from "react"
 import TreeChart from "@/components/charts/tree"
 import PositionTabView from "@/components/displays/tab_view"
 
+import { apolloClient } from "@/lib/apollo"
+import { createClient } from "@/utils/supabase/server"
+import { gql } from "@/gql/gql"
+import type { ApolloClient, ApolloError } from "@apollo/client"
+import type { User } from "@supabase/supabase-js"
+import { getDepots, getDepotValues, getPositions, processDepotPositions, processDepotValues } from "./a"
+
+
+
+
 
 // export const revalidate = 3600
 export default async function Page() {
 
-	const { depots, positions, depotValues, error } = await dataFetcher()
-	if (error) {
-		return <ErrorCard error={error} />
-	}
-	const posRestruc = restructure(positions)
-	const treeData = posRestruc.map((position) => {
-		const possesedValue =
-			position.position.amount * position.currentPrice[0].close
-		const profit =
-			position.position.profit - position.position.expenses + possesedValue
-		return {
-			value: possesedValue,
-			name: position.stock.symbol,
-			relProf: profit / possesedValue,
-		}
-	})
+	const fres = await dataFetcher()
 
-	// const treeData = positions.map(position => ({value: position.amount * position.})
-	const areaData = []
-
-	for (const value of depotValues) {
-		areaData.push({
-			totalAssets: value.stock_assets + value.liquid_assets,
-			timestamp: value.timestamp,
-		})
+	if (fres.error) {
+		return <ErrorCard error={fres.error} />
 	}
 
-	const { startValue, offset } = calculateOffset(areaData, "totalAssets")
+	const areaData = processDepotValues(fres.depotValues)
 
-	const { today, start } = calculateProfits(depotValues, depots[0])
+	const start = areaData.data[0]
+	const yesterday = areaData.data.at(-2)
+	const today = areaData.data.at(-1)
+
+	const treeData = processDepotPositions(fres.positions, 10)
+
+	console.log(treeData)
 
 	return (
 		<main className="grid grid-cols-1 gap-3">
@@ -71,10 +66,10 @@ export default async function Page() {
 						<HeaderStat
 							className="justify-start"
 							displays={{
-								Depotwert: today.value,
-								"Heutiger Profit": today.profit,
-								"Gesamter Profit": start.profit,
-								"Liquides Geld": depots[0].liquid_assets,
+								"Depotwert": today?.total_assets ?? 0,
+								"Heutiger Profit": (today?.total_assets ?? 0) - (yesterday?.total_assets ?? 0 ),
+								"Gesamter Profit": (today?.total_assets ?? 0) - start.total_assets,
+								"Liquides Geld": (today?.liquid_assets ?? 0),
 							}}
 						/>
 					</CardTitle>
@@ -84,12 +79,12 @@ export default async function Page() {
 						<Chart name="line">
 							<AreaChart
 								className="aspect-[4/3] md:aspect-[20/9] lg:aspect-[6/2] xl:aspect-[8/2]"
-								startValue={startValue}
-								offset={offset}
-								data={areaData}
-								dataKey="totalAssets"
+								startValue={areaData.start}
+								offset={areaData.offset}
+								data={areaData.data}
+								dataKey="total_assets"
 								xKey="timestamp"
-								yKey="totalAssets"
+								yKey="total_assets"
 							/>
 						</Chart>
 						<Chart name="tree">
@@ -108,71 +103,57 @@ export default async function Page() {
 					</ChartContainer>
 				</CardContent>
 			</Card>
-			<PositionTabView positions={posRestruc} />
+			{/* <PositionTabView positions={posRestruc} /> */}
 		</main>
 	)
 }
 
 const dataFetcher = cache(async () => {
+	const empty = (error: Error) => ({
+		depot: null,
+		error: error,
+		positions: null,
+		depotValues: null,
+	})
+	const clientResponse = apolloClient(await createClient())
+
+	if(!clientResponse.client) {
+		return empty(clientResponse.error)
+	}
+
+	const client = clientResponse.client
+
 	const user = await getUser()
 
 	if (!user) {
 		redirect("/auth/login")
 	}
 
-	const depotResponse = await fetchRpc("get_depots_of_user", {
-		user_id: user.id,
-	})
+	const depotResponse = await getDepots(client, user)
 
 	if (depotResponse.error) {
-		return {
-			depots: null,
-			error: depotResponse.error,
-			positions: null,
-			depotValues: null,
-		}
+		return empty(depotResponse.error)
 	}
-	if (depotResponse.count === 0) {
-		return {
-			depots: null,
-			error: new Error(`no depots present for user ${user.id}`),
-			positions: null,
-			depotValues: null,
-		}
+	const depot = depotResponse.data?.edges.at(0)?.node.depots
+	if (!depot) {
+		return empty(new Error(`no depots present for user ${user.id}`))
 	}
 
-	const depots = depotResponse.data
+	const [positionResponse, valueResponse] = await Promise.all([getPositions(client, depot.id),getDepotValues(client, depot.id)])
 
-	const positionRequest = fetchRpc("get_depot_positions", {
-		depot_id_param: depots[0].id,
-		price_count_param: 2,
-	})
 
-	const endDate = toISODateOnly(getCurrentDate())
-	const startDate = toISODateOnly(getDateCertainDaysAgo(30))
-	const valueRequest = fetchRpc("get_depot_values", {
-		p_depot_id: depots[0].id,
-		p_interval_start: startDate,
-		p_interval_end: endDate,
-	})
-
-	const [positionResponse, valueResponse] = await Promise.all([
-		positionRequest,
-		valueRequest,
-	])
-
-	if (positionResponse.error) {
+	if (positionResponse.error || !positionResponse.data) {
 		return {
-			depots: depots,
+			depot: depot,
 			error: positionResponse.error,
 			positions: null,
 			depotValues: null,
 		}
 	}
 
-	if (valueResponse.error) {
+	if (valueResponse.error || !valueResponse.data) {
 		return {
-			depots: depots,
+			depot: depot,
 			error: valueResponse.error,
 			positions: null,
 			depotValues: null,
@@ -180,7 +161,7 @@ const dataFetcher = cache(async () => {
 	}
 
 	return {
-		depots: depots,
+		depot: depot,
 		error: null,
 		positions: positionResponse.data,
 		depotValues: valueResponse.data,
@@ -230,3 +211,4 @@ function calculateProfits(
 function relativeDeviation(value1: number, value2: number): number {
 	return (value1 - value2) / value2
 }
+

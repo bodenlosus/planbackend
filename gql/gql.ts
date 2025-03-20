@@ -14,14 +14,17 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-	"\n\tquery GetDepots($user: UUID) {\n  profilesCollection(filter: {id: {eq: $user}}) {\n    edges {\n      node {\n        depots {\n\t\t  id\n          name\n          created_at\n        }\n      }\n    }\n  }\n}\n": typeof types.GetDepotsDocument
-	"\nquery GetPositions($depot: BigInt!) {\n\tdepotPositionsCollection (filter: {depot_id: {eq: $depot}}, ) {\n\tedges {\n\t\tnode {\n\t\tstockInfo {\n\t\t\tsymbol\n\t\t\tname\n\t\t\tdescription\n\t\t\ttype\n\t\t\tstockPricesCollection(first: 30) {\n\t\t\tedges {\n\t\t\t\tnode {\n\t\t\t\thigh\n\t\t\t\tlow\n\t\t\t\topen\n\t\t\t\tclose\n\t\t\t\ttimestamp\n\t\t\t\t}\n\t\t\t}\n\t\t\t}\n\t\t}\n\t\t}\n\t}\n\t}\n}\n": typeof types.GetPositionsDocument
+	"\n\tquery GetDepots($user: UUID!) {\n\t\tprofilesCollection(filter: {id: {eq: $user}}) {\n\t\tedges {\n\t\t\tnode {\n\t\t\tdepots {\n\t\t\t\tname\n\t\t\t\tcreated_at\n\t\t\t\tid\n\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}\n": typeof types.GetDepotsDocument
+	"\nquery GetPositions($depot: BigInt!) {\n  depotPositionsCollection (filter: {depot_id: {eq:$depot}}) {\n    edges {\n    \tnode {\n\t\tamount\n        stockInfo {\n          symbol\n          name\n          description\n          id\n          type\n          transactionsCollection (filter: {depot_id: {eq: $depot}}) {\n            edges {\n              node {\n                amount\n                price\n                timestamp\n              }\n            }\n          }\n          stockPricesCollection (last: 1, ) {\n            edges {\n              node {\n                timestamp\n                open\n                close\n                high\n                low\n                volume\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}\n": typeof types.GetPositionsDocument
+	"\n\tquery GetDepotValues($depot: BigInt!) {\n  depotValuesCollection (filter: {depot_id: {eq: $depot}} ) {\n    edges {\n      node {\n        timestamp\n        stock_assets\n        liquid_assets\n      }\n    }\n  }\n}\n\t": typeof types.GetDepotValuesDocument
 }
 const documents: Documents = {
-	"\n\tquery GetDepots($user: UUID) {\n  profilesCollection(filter: {id: {eq: $user}}) {\n    edges {\n      node {\n        depots {\n\t\t  id\n          name\n          created_at\n        }\n      }\n    }\n  }\n}\n":
+	"\n\tquery GetDepots($user: UUID!) {\n\t\tprofilesCollection(filter: {id: {eq: $user}}) {\n\t\tedges {\n\t\t\tnode {\n\t\t\tdepots {\n\t\t\t\tname\n\t\t\t\tcreated_at\n\t\t\t\tid\n\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}\n":
 		types.GetDepotsDocument,
-	"\nquery GetPositions($depot: BigInt!) {\n\tdepotPositionsCollection (filter: {depot_id: {eq: $depot}}, ) {\n\tedges {\n\t\tnode {\n\t\tstockInfo {\n\t\t\tsymbol\n\t\t\tname\n\t\t\tdescription\n\t\t\ttype\n\t\t\tstockPricesCollection(first: 30) {\n\t\t\tedges {\n\t\t\t\tnode {\n\t\t\t\thigh\n\t\t\t\tlow\n\t\t\t\topen\n\t\t\t\tclose\n\t\t\t\ttimestamp\n\t\t\t\t}\n\t\t\t}\n\t\t\t}\n\t\t}\n\t\t}\n\t}\n\t}\n}\n":
+	"\nquery GetPositions($depot: BigInt!) {\n  depotPositionsCollection (filter: {depot_id: {eq:$depot}}) {\n    edges {\n    \tnode {\n\t\tamount\n        stockInfo {\n          symbol\n          name\n          description\n          id\n          type\n          transactionsCollection (filter: {depot_id: {eq: $depot}}) {\n            edges {\n              node {\n                amount\n                price\n                timestamp\n              }\n            }\n          }\n          stockPricesCollection (last: 1, ) {\n            edges {\n              node {\n                timestamp\n                open\n                close\n                high\n                low\n                volume\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}\n":
 		types.GetPositionsDocument,
+	"\n\tquery GetDepotValues($depot: BigInt!) {\n  depotValuesCollection (filter: {depot_id: {eq: $depot}} ) {\n    edges {\n      node {\n        timestamp\n        stock_assets\n        liquid_assets\n      }\n    }\n  }\n}\n\t":
+		types.GetDepotValuesDocument,
 }
 
 /**
@@ -42,14 +45,20 @@ export function gql(source: string): unknown
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
-	source: "\n\tquery GetDepots($user: UUID) {\n  profilesCollection(filter: {id: {eq: $user}}) {\n    edges {\n      node {\n        depots {\n\t\t  id\n          name\n          created_at\n        }\n      }\n    }\n  }\n}\n",
-): (typeof documents)["\n\tquery GetDepots($user: UUID) {\n  profilesCollection(filter: {id: {eq: $user}}) {\n    edges {\n      node {\n        depots {\n\t\t  id\n          name\n          created_at\n        }\n      }\n    }\n  }\n}\n"]
+	source: "\n\tquery GetDepots($user: UUID!) {\n\t\tprofilesCollection(filter: {id: {eq: $user}}) {\n\t\tedges {\n\t\t\tnode {\n\t\t\tdepots {\n\t\t\t\tname\n\t\t\t\tcreated_at\n\t\t\t\tid\n\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}\n",
+): (typeof documents)["\n\tquery GetDepots($user: UUID!) {\n\t\tprofilesCollection(filter: {id: {eq: $user}}) {\n\t\tedges {\n\t\t\tnode {\n\t\t\tdepots {\n\t\t\t\tname\n\t\t\t\tcreated_at\n\t\t\t\tid\n\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}\n"]
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
-	source: "\nquery GetPositions($depot: BigInt!) {\n\tdepotPositionsCollection (filter: {depot_id: {eq: $depot}}, ) {\n\tedges {\n\t\tnode {\n\t\tstockInfo {\n\t\t\tsymbol\n\t\t\tname\n\t\t\tdescription\n\t\t\ttype\n\t\t\tstockPricesCollection(first: 30) {\n\t\t\tedges {\n\t\t\t\tnode {\n\t\t\t\thigh\n\t\t\t\tlow\n\t\t\t\topen\n\t\t\t\tclose\n\t\t\t\ttimestamp\n\t\t\t\t}\n\t\t\t}\n\t\t\t}\n\t\t}\n\t\t}\n\t}\n\t}\n}\n",
-): (typeof documents)["\nquery GetPositions($depot: BigInt!) {\n\tdepotPositionsCollection (filter: {depot_id: {eq: $depot}}, ) {\n\tedges {\n\t\tnode {\n\t\tstockInfo {\n\t\t\tsymbol\n\t\t\tname\n\t\t\tdescription\n\t\t\ttype\n\t\t\tstockPricesCollection(first: 30) {\n\t\t\tedges {\n\t\t\t\tnode {\n\t\t\t\thigh\n\t\t\t\tlow\n\t\t\t\topen\n\t\t\t\tclose\n\t\t\t\ttimestamp\n\t\t\t\t}\n\t\t\t}\n\t\t\t}\n\t\t}\n\t\t}\n\t}\n\t}\n}\n"]
+	source: "\nquery GetPositions($depot: BigInt!) {\n  depotPositionsCollection (filter: {depot_id: {eq:$depot}}) {\n    edges {\n    \tnode {\n\t\tamount\n        stockInfo {\n          symbol\n          name\n          description\n          id\n          type\n          transactionsCollection (filter: {depot_id: {eq: $depot}}) {\n            edges {\n              node {\n                amount\n                price\n                timestamp\n              }\n            }\n          }\n          stockPricesCollection (last: 1, ) {\n            edges {\n              node {\n                timestamp\n                open\n                close\n                high\n                low\n                volume\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}\n",
+): (typeof documents)["\nquery GetPositions($depot: BigInt!) {\n  depotPositionsCollection (filter: {depot_id: {eq:$depot}}) {\n    edges {\n    \tnode {\n\t\tamount\n        stockInfo {\n          symbol\n          name\n          description\n          id\n          type\n          transactionsCollection (filter: {depot_id: {eq: $depot}}) {\n            edges {\n              node {\n                amount\n                price\n                timestamp\n              }\n            }\n          }\n          stockPricesCollection (last: 1, ) {\n            edges {\n              node {\n                timestamp\n                open\n                close\n                high\n                low\n                volume\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}\n"]
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+	source: "\n\tquery GetDepotValues($depot: BigInt!) {\n  depotValuesCollection (filter: {depot_id: {eq: $depot}} ) {\n    edges {\n      node {\n        timestamp\n        stock_assets\n        liquid_assets\n      }\n    }\n  }\n}\n\t",
+): (typeof documents)["\n\tquery GetDepotValues($depot: BigInt!) {\n  depotValuesCollection (filter: {depot_id: {eq: $depot}} ) {\n    edges {\n      node {\n        timestamp\n        stock_assets\n        liquid_assets\n      }\n    }\n  }\n}\n\t"]
 
 export function gql(source: string) {
 	return (documents as any)[source] ?? {}
