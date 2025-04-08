@@ -17,17 +17,17 @@ import type {
 } from "@/database/custom_types"
 import { to_display_string } from "@/lib/cash_display_string"
 import { toAbsoluteTimeString } from "@/lib/date_utils"
+import { getIconURL } from "@/lib/icon_url"
 import { cn } from "@/lib/utils"
 import { X } from "lucide-react"
 import type React from "react"
 import type { ComponentPropsWithoutRef } from "react"
 import AdditionalContent from "../additional_display"
 import StockChartContainer from "../charts/container"
+import URLIcon from "../icon"
 import HeaderStat from "../stat/header_stat"
 import BuyStockDialog from "../transaction_dialogs/buy_stock_dialog"
 import SellStockDialog from "../transaction_dialogs/sell_stock_dialog"
-import { getIconURL } from "@/lib/icon_url"
-import URLIcon from "../icon"
 
 type CardProps = ComponentPropsWithoutRef<"div">
 

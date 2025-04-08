@@ -7,8 +7,6 @@ import React, { Suspense } from "react"
 import PageLoader from "../../loaders/page_loader"
 import Chart from "./chart"
 import ChartIcon from "./chart_icon"
-import IntervalControls from "@/components/displays/interval_controls"
-import { Intervals } from "@/lib/intervals"
 
 interface ChartContainerT extends React.ComponentPropsWithoutRef<"div"> {
 	defaultName?: string

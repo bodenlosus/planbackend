@@ -8,6 +8,7 @@
 	"files": {
 		"ignoreUnknown": false,
 		"ignore": [
+			"gql/*",
 			".direnv/*",
 			"components/ui/*",
 			"hooks/use-mobile.tsx",

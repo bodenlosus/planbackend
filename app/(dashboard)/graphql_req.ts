@@ -1,12 +1,13 @@
-import { apolloClient } from "@/lib/apollo";
-import type { ApolloClient, ApolloError, DocumentNode, TypedDocumentNode } from "@apollo/client";
+import type { ApolloClient, ApolloError } from "@apollo/client"
 
 type ResponeType<K> = ReturnType<ApolloClient<K>["query"]>
 
-export async function handleQLRequest<T extends ResponeType<K> , K>(response: T, ): Promise<
+export async function handleQLRequest<T extends ResponeType<K>, K>(
+	response: T,
+): Promise<
 	| { data: null; error: ApolloError | Error }
 	| { data: Awaited<T>["data"]; error: null }
->{
+> {
 	const { data, error } = await response
 
 	if (error) {

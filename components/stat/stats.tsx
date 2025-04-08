@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils"
 import { StockStat } from "./stat"
 
 type StockStatsProps<TStructure extends Record<string, string>> = {
