@@ -2,7 +2,7 @@ import type { Stock, StockPosition } from "@/database/custom_types";
 import { gql as gqlq } from "@/gql/gql";
 import { gql } from "@apollo/client";
 import type { GetPositionsQuery } from "@/gql/graphql";
-import { getDateCertainDaysAgo } from "@/lib/date_utils";
+import { getDateCertainDaysAgo, toISODateOnly } from "@/lib/date_utils";
 import type { ApolloClient } from "@apollo/client";
 import type { User } from "@supabase/supabase-js";
 
@@ -55,6 +55,12 @@ export function processDepotPositions(
   const res: Array<StockPosition> = [];
 
   for (const position of edges) {
+    console.log(
+      "name",
+      position.node.stockInfo?.name,
+      "trans",
+      position.node.stockInfo?.transactionsCollection?.edges,
+    );
     const comp_date = getDateCertainDaysAgo(days);
 
     const stockInfo = position.node.stockInfo;
@@ -81,33 +87,35 @@ export function processDepotPositions(
       start_liquid_assets -= transaction.node.price * transaction.node.amount;
     }
 
-    const start_price =
-      prices.findLast((price) => {
-        const date = new Date(price.node.timestamp).getTime();
-        return date < comp_date.getTime();
-      })?.node.close ?? 0;
+    const start_p = prices.findLast((price) => {
+      const date = new Date(price.node.timestamp).getTime();
+      return date < comp_date.getTime();
+    })?.node;
+    prices.at(0)?.node;
 
+    const start_price = start_p?.close ?? 0;
     const start_stock_value = start_price * start_amount;
-
-    const start_value = start_stock_value + start_liquid_assets;
 
     const current_price = prices.at(-1)?.node.close ?? 0;
     const current_stock_value = position.node.amount * current_price;
 
-    const profit = current_stock_value + current_liquid_assets - start_value;
+    const profit =
+      current_stock_value -
+      start_stock_value +
+      current_liquid_assets -
+      start_liquid_assets;
 
     res.push({
       amount: position.node.amount,
       value: current_stock_value,
       name: stockInfo.symbol,
       absolute_profit: profit,
-      relative_profit: profit / start_value,
+      relative_profit: profit / start_stock_value,
       stock: stockInfo as unknown as Stock,
       price: current_price,
     });
   }
 
-  console.table(res);
   return res;
 }
 
@@ -148,7 +156,7 @@ export const GET_POSITIONS = gql(/* GraphQL */ `
                 }
               }
             }
-            stockPricesCollection(last: 1) {
+            stockPricesCollection(last: 30) {
               edges {
                 node {
                   timestamp
@@ -168,8 +176,10 @@ export const GET_POSITIONS = gql(/* GraphQL */ `
 `);
 
 export const GET_VALUES = gql(/* GraphQL */ `
-  query GetDepotValues($depot: BigInt!) {
-    depotValuesCollection(filter: { depot_id: { eq: $depot } }) {
+  query GetDepotValues($depot: BigInt!, $start: Date!) {
+    depotValuesCollection(
+      filter: { depot_id: { eq: $depot }, timestamp: { gte: $start } }
+    ) {
       edges {
         node {
           timestamp
@@ -227,10 +237,11 @@ export async function getPositions<T>(
 export async function getDepotValues<T>(
   client: ApolloClient<T>,
   depotID: string,
+  start_date: Date,
 ) {
   const { data, error } = await client.query({
     query: GET_VALUES,
-    variables: { depot: depotID },
+    variables: { depot: depotID, start: toISODateOnly(start_date) },
   });
 
   if (error) {

@@ -10,7 +10,11 @@ import HeaderStat from "@/components/stat/header_stat";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Depot, DepotValue, StockPosition } from "@/database/custom_types";
 import { getUser } from "@/database/get_user_server";
-import { getCurrentDate, toISODateOnly } from "@/lib/date_utils";
+import {
+  getCurrentDate,
+  getDateCertainDaysAgo,
+  toISODateOnly,
+} from "@/lib/date_utils";
 import { LineChart as LinechartIcon, TableCellsMerge } from "lucide-react";
 import { redirect } from "next/navigation";
 import { cache } from "react";
@@ -40,9 +44,7 @@ export default async function Page() {
   const yesterday = areaData.data.at(-2);
   const today = areaData.data.at(-1);
 
-  const treeData = processDepotPositions(fres.positions, 10);
-
-  console.log(treeData);
+  const treeData = processDepotPositions(fres.positions, 30);
 
   return (
     <main className="grid grid-cols-1 gap-3">
@@ -91,7 +93,7 @@ export default async function Page() {
           </ChartContainer>
         </CardContent>
       </Card>
-      <PositionTabView positions={treeData} />
+      <PositionTabView positions_raw={fres.positions} />
     </main>
   );
 }
@@ -129,7 +131,7 @@ const dataFetcher = cache(async () => {
 
   const [positionResponse, valueResponse] = await Promise.all([
     getPositions(client, depot.id),
-    getDepotValues(client, depot.id),
+    getDepotValues(client, depot.id, getDateCertainDaysAgo(30)),
   ]);
 
   if (positionResponse.error || !positionResponse.data) {

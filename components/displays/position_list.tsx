@@ -34,11 +34,14 @@ export function PositionRow({
 }: PositionRowProps) {
   // "p-3 flex flex-row gap-3 border-b w-max"
 
-  const indicatorClass =
+  let indicatorClass =
     absolute_profit > 0
       ? "bg-gradient-to-r from-win/60 via-win/25 to-transparent to-[100px] bg-no-repeat"
       : "bg-gradient-to-r from-loss/35 to-transparent to-[100px] bg-no-repeat";
-
+  if (absolute_profit === 0) {
+    indicatorClass =
+      "bg-gradient-to-r from-accent-foreground/60 via-accent-foreground/25 to-transparent to-[100px] bg-no-repeat";
+  }
   const iconURL = getIconURL(stock, 40);
 
   return (
