@@ -87,11 +87,11 @@ export function processDepotPositions(
       start_liquid_assets -= transaction.node.price * transaction.node.amount;
     }
 
-    const start_p = prices.findLast((price) => {
-      const date = new Date(price.node.timestamp).getTime();
-      return date < comp_date.getTime();
-    })?.node;
-    prices.at(0)?.node;
+    const start_p =
+      prices.findLast((price) => {
+        const date = new Date(price.node.timestamp).getTime();
+        return date < comp_date.getTime();
+      })?.node ?? prices.at(0)?.node;
 
     const start_price = start_p?.close ?? 0;
     const start_stock_value = start_price * start_amount;
