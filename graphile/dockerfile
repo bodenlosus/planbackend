@@ -1,0 +1,7 @@
+FROM node:22-alpine
+WORKDIR /app
+
+RUN npm init -y && npm install postgraphile@beta @graphile-contrib/pg-many-to-many@beta @graphile/pg-aggregates@beta @graphile/simplify-inflection@beta graphile@beta postgraphile@beta postgraphile-plugin-connection-filter@beta @grafserv/persisted@beta @graphile-contrib/pg-omit-archived@beta
+
+EXPOSE 5678
+CMD ["npx", "--no-install", "postgraphile", "-n", "0.0.0.0", "--connection", "$DATABASE_URL" ]

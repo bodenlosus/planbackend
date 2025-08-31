@@ -1,0 +1,6 @@
+FROM rust:alpine
+WORKDIR /usr/workdir/src/updater
+COPY . .
+RUN apk update && apk add --no-cache --purge openssl-dev openssl-libs-static musl-dev libc-dev
+RUN cargo install --profile release --target x86_64-unknown-linux-musl --path .
+CMD [ "updater" ]
