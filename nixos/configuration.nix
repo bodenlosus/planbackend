@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
   imports = [
     ./nixos/auto-upgrade.nix
     ./nixos/home-manager.nix
@@ -11,6 +11,7 @@
     ./nixos/ssh.nix
     ./nixos/variables-config.nix
     ./hardware-configuration.nix
+    ./nixos/docker.nix
     ./variables.nix
   ];
 
@@ -19,6 +20,26 @@
     trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 5432 8080 ];
+  };
+
+  systemd.services."docker-compose-myapp" = {
+    description = "Planbackend";
+    after = [ "docker.service" ];
+    wantedBy = [ "multi-user.target" ];
+  
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      WorkingDirectory = "/home/planuser/planbackend";
+      ExecStart = "${pkgs.docker-compose}/bin/docker-compose up -d";
+      ExecStop = "${pkgs.docker-compose}/bin/docker-compose down";
+    };
+  
+    path = [ pkgs.docker-compose ];
+  };
   home-manager.users."${config.var.username}" = import ./home.nix;
   home-manager.backupFileExtension = "backup";
   # Don't touch this

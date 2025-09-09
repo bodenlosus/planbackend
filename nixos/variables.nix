@@ -1,11 +1,11 @@
 { config, ... }: {
-  imports = [ ../../nixos/variables-config.nix ];
+  imports = [ ./nixos/variables-config.nix ];
 
   config.var = {
     hostname = "planserver";
     username = "planuser";
     configDirectory = "/home/" + config.var.username
-      + "/.config/nixos"; # The path of the nixos configuration directory
+      + "/planbackend/nixos"; # The path of the nixos configuration directory
 
     keyboardLayout = "de";
 

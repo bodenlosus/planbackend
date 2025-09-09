@@ -48,8 +48,6 @@
             clang
             docker
             docker-compose
-            surrealist
-            surrealdb
             mold
             
             docker-compose-language-service

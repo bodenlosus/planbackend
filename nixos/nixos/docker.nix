@@ -2,7 +2,7 @@
 {
   environment.defaultPackages = with pkgs; [ docker docker-compose ];
   virtualisation.docker = {
-    enable = false;
+    enable = true;
 
     rootless = {
       enable = true;

@@ -5,11 +5,19 @@
 
   ];
 
+
+
   home = {
     inherit (config.var) username;
     homeDirectory = "/home/" + config.var.username;
     # Import my profile picture, used by the hyprpanel dashboard
-
+    packages = with pkgs; [
+      helix
+      git
+      curl
+      vim
+      gh
+    ];
     # Don't touch this
     stateVersion = "25.05";
   };

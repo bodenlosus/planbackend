@@ -13,7 +13,7 @@ services:
       - ./dbinit/functions.sql:/docker-entrypoint-initdb.d/functions.sql
       - ./dbinit/stocks.sql:/docker-entrypoint-initdb.d/stocks.sql
     ports:
-      - 5432:5432
+      - 0.0.0.0:5432:5432
     networks:
       - postgres
     restart: unless-stopped
@@ -104,30 +104,12 @@ services:
       - rest
     networks:
       - postgres
-  # service_rest:
-  #   container_name: service_rest
-  #   image: postgrest/postgrest:v13.0.4
-  #   ports:
-  #     - 3001:3000
-  #   depends_on:
-  #     db:
-  #       condition: service_healthy
-  #   environment:
-  #     PGRST_DB_ANON_ROLE: service_worker
-  #     PGRST_DB_SCHEMAS: api
-  #     PGRST_DB_URI: postgres://service_worker:service@db_pooler:6432/postgres
-  #     PGRST_OPENAPI_SERVER_PROXY_URI: http://127.0.0.1:3000
-  #   restart: unless-stopped
-  #   networks:
-  #     - postgres
   updater:
     container_name: updater
     build:
       context: ./updater
       dockerfile: ./dockerfile
       network: "host"
-
-    image: updater:latest
 
     depends_on:
       db:
