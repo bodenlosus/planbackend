@@ -1,0 +1,9 @@
+# [[language]]
+# name = "sql"
+# language-servers = [ "sqruff", "-config", "./sqruf.yaml"]
+# formatter = { command = "sqruff", args = ["fix", "-"] }
+# auto-format = false
+# injection-regex = "sql"
+# [language-server.sqruff]
+# command = "sqruff"
+# args = ["lsp"]
