@@ -16,7 +16,7 @@ services:
       - 0.0.0.0:5432:5432
     networks:
       - postgres
-    restart: unless-stopped
+    restart: always
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -35,7 +35,7 @@ services:
       PORT: 9999
       DB_NAMESPACE: auth
       # DB_MAX_POOL_SIZE: 1
-      GOTRUE_LOG_LEVEL: warn
+      GOTRUE_LOG_LEVEL: debug
       GOTRUE_DB_DRIVER: postgres
       DATABASE_URL: postgresql://auth_admin:auth@db:5432/postgres?sslmode=disable # TODO: REMOVE FOR PROD
       GOTRUE_JWT_SECRET: ${JWT}37c304f8-51aa-419a-a1af-06154e63707a
@@ -52,7 +52,7 @@ services:
       timeout: 5s
       retries: 5
 
-    restart: unless-stopped
+    restart: always
     networks:
       - postgres
   db_pooler:
@@ -72,7 +72,7 @@ services:
       PGBOUNCER_POOL_MODE: transaction
       PGBOUNCER_DEFAULT_POOL_SIZE: 20
       PGBOUNCER_USERLIST_FILE: /bitnami/pgbouncer/userlist.txt
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./userlist.txt:/bitnami/pgbouncer/userlist.txt:ro
     networks:
@@ -88,13 +88,13 @@ services:
       PGRST_DB_URI: postgres://authenticator:auth@db_pooler:6432/postgres
       PGRST_OPENAPI_SERVER_PROXY_URI: http://127.0.0.1:3000
       PGRST_JWT_SECRET: 37c304f8-51aa-419a-a1af-06154e63707a
-      restart: unless-stopped
+      restart: always
     networks:
       - postgres
   gateway:
     container_name: gateway
     image: nginx:1.29.0-alpine
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
@@ -119,7 +119,7 @@ services:
       DATABASE_URL: postgresql://service_worker:service@db_pooler:6432/postgres
       YF_TIMEOUT: 0.2
       # UPDATE_IMMEDIATE: true
-    restart: unless-stopped
+    restart: always
     networks:
       - postgres
 
