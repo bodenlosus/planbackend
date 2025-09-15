@@ -38,7 +38,7 @@ services:
       GOTRUE_LOG_LEVEL: debug
       GOTRUE_DB_DRIVER: postgres
       DATABASE_URL: postgresql://auth_admin:auth@db:5432/postgres?sslmode=disable # TODO: REMOVE FOR PROD
-      GOTRUE_JWT_SECRET: ${JWT}37c304f8-51aa-419a-a1af-06154e63707a
+      GOTRUE_JWT_SECRET: 37c304f8-51aa-419a-a1af-06154e63707a
       GOTRUE_JWT_AUD: authenticated
       GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
       GOTRUE_MAILER_AUTOCONFIRM: true # TODO: SMTP
