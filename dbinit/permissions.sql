@@ -1,7 +1,7 @@
 -- Grant permissions for api schema
 GRANT USAGE ON SCHEMA api TO anon;
-GRANT SELECT ON api.assets TO anon;
-GRANT SELECT ON api.asset_prices TO anon;
+GRANT SELECT ON api.assets TO anon, authenticated;
+GRANT SELECT ON api.asset_prices TO anon, authenticated;
  
 -- Grant schema usage for authenticated users
 GRANT USAGE ON SCHEMA api TO authenticated;

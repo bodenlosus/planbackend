@@ -249,4 +249,4 @@ GRANT USAGE ON SEQUENCE depots.transactions_id_seq TO service_worker ;
 GRANT USAGE ON SEQUENCE depots.values_id_seq TO service_worker ;
 
 CREATE ROLE authenticated NOINHERIT NOLOGIN ;
-GRANT ROLE authenticated TO auth_admin ;
+GRANT authenticated TO authenticator ;
