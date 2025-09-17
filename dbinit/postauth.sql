@@ -10,17 +10,9 @@ USING (
       AND auth.uid() = ANY(d.users)
   )
 );
-CREATE POLICY "read_access_for_owners"
-ON depots.positions
-FOR SELECT
-USING (
-  EXISTS (
-    SELECT 1
-    FROM depots.depots d
-    WHERE d.id = positions.depot_id
-      AND auth.uid() = ANY(d.users)
-  )
-);
+
+GRANT SELECT ON depots.position_profits TO authenticated;
+GRANT SELECT ON depots.aggregated_values TO authenticated;
 
 CREATE POLICY "auth_admin_insert" ON depots.depots TO auth_admin USING (TRUE);
 GRANT USAGE ON schema depots TO auth_admin;
