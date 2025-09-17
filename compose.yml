@@ -59,7 +59,7 @@ services:
     container_name: db_pooler
     image: bitnami/pgbouncer:1.24.1
     healthcheck:
-      test: ["CMD", "pg_isready", "-h", "localhost", "-p", "6432"]
+      test: ["CMD-SHELL", "timeout 3 bash -c '</dev/tcp/localhost/6432' || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
