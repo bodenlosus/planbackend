@@ -45,9 +45,17 @@ services:
       GOTRUE_DISABLE_SIGNUP: false
       GOTRUE_EXTERNAL_EMAIL_ENABLED: true
       GOTRUE_EXTERNAL_PHONE_ENABLED: false
-    
+
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9999/health"]
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:9999/health",
+        ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -59,7 +67,8 @@ services:
     container_name: db_pooler
     image: bitnami/pgbouncer:1.24.1
     healthcheck:
-      test: ["CMD-SHELL", "timeout 3 bash -c '</dev/tcp/localhost/6432' || exit 1"]
+      test:
+        ["CMD-SHELL", "timeout 3 bash -c '</dev/tcp/localhost/6432' || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -123,13 +132,12 @@ services:
         condition: service_healthy
 
     environment:
-      DATABASE_URL: postgresql://service_worker:service@db_pooler:5432/postgres
+      DATABASE_URL: postgresql://service_worker:service@db:5432/postgres
       YF_TIMEOUT: 0.2
-      # UPDATE_IMMEDIATE: true
+      UPDATE_IMMEDIATE: true
     restart: unless-stopped
     networks:
       - postgres
-
 
   db-init:
     image: postgres:17-alpine
@@ -138,18 +146,18 @@ services:
         condition: service_healthy
 
     environment:
-      PGHOST: postgres      # Connect to the 'postgres' service
-      PGPORT: 5432         # Standard PostgreSQL port
-      PGUSER: postgres     # Database username
+      PGHOST: postgres # Connect to the 'postgres' service
+      PGPORT: 5432 # Standard PostgreSQL port
+      PGUSER: postgres # Database username
       PGPASSWORD: postgres # Database password
-      PGDATABASE: postgres     # Which database to connect tonetworks:
+      PGDATABASE: postgres # Which database to connect tonetworks:
 
     volumes:
       - ./dbinit/permissions.sql:/permissions.sql
 
     networks:
       - postgres
-  
+
     command: >
       sh -c "
         echo 'Waiting for GoTrue to be ready...'
@@ -157,8 +165,8 @@ services:
         echo 'Running post-GoTrue initialization...'
         psql -f /permissions.sql
         echo 'Post-GoTrue initialization complete!'
-      "      
-    
+      "
+
 networks:
   postgres:
     driver: bridge

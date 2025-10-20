@@ -13,14 +13,15 @@ GRANT SELECT ON depots.depots TO anon;
 GRANT SELECT ON depots.values TO anon;
 
 -- Grant permissions for service worker (additional ones not in init.sql)
-GRANT SELECT, INSERT, UPDATE, DELETE ON depots.values TO service_worker;
 
 
 -- Grant permissions for depots schema to authenticated users
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.depots TO authenticated;
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.positions TO authenticated;
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.transactions TO authenticated;
-GRANT SELECT, INSERT, UPDATE, DELETE ON depots.values TO authenticated;
+GRANT SELECT ON depots.aggregated_transactions TO authenticated;
+GRANT SELECT ON depots.values TO authenticated;
+GRANT SELECT ON depots.position_profits TO authenticated;
 
 -- Enable Row Level Security on all tables
 ALTER TABLE api.assets ENABLE row LEVEL SECURITY ;
@@ -115,3 +116,18 @@ ALTER ROLE authenticated SET row_security = on ;
 ALTER ROLE anon SET row_security = on ;
 ALTER ROLE service_worker SET row_security = on ;
 
+CREATE ROLE view_refresher NOINHERIT;
+GRANT USAGE ON SCHEMA depots TO view_refresher;
+GRANT view_refresher TO authenticated, service_worker, postgres;
+GRANT USAGE ON SCHEMA api TO view_refresher;
+
+
+-- setup for materialized views - maybe later
+-- ALTER TABLE depots.aggregated_transactions OWNER TO view_refresher;
+-- ALTER TABLE depots.position_profits OWNER TO view_refresher;
+-- ALTER TABLE depots."values" OWNER TO view_refresher;
+
+-- GRANT SELECT ON depots.depots TO view_refresher;
+-- GRANT SELECT ON depots.positions TO view_refresher;
+-- GRANT SELECT ON depots.transactions TO view_refresher;
+-- GRANT SELECT ON depots.values TO view_refresher;

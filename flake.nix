@@ -35,7 +35,9 @@
 
           '';
           packages = with pkgs; [
-            sqruff
+
+            pgformatter
+            postgres-lsp
             postgresql
             rustToolchain
             openssl
@@ -49,9 +51,10 @@
             docker
             docker-compose
             mold
-            
+
             docker-compose-language-service
-            dockerfile-language-server-nodejs            docker-language-server            
+            dockerfile-language-server-nodejs
+            docker-language-server
             docker-buildx
             # ffmpeg
             rustPlatform.bindgenHook

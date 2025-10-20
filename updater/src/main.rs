@@ -195,18 +195,15 @@ impl Updater {
         if let Err(e) = self.inserter().await {
             eprintln!("Error inserting assets: {e}")
         }
-
-        println!("updating depots...");
-
-        if let Err(e) = self.update_depots().await {
-            eprintln!("Error updating depots: {e}")
-        }
     }
-    async fn update_depots(&self) -> Result<PgQueryResult, sqlx::Error> {
+    async fn update_depot_positions(&self) -> Result<PgQueryResult, sqlx::Error> {
         sqlx::query!("CALL update_depot_positions()",)
             .execute(&self.conn)
             .await
     }
+    // async fn update_depot_values(&self) -> Result<PgQueryResult, sqlx::Error> {
+    //     sqlx::query!("CALL ")
+    // }
 }
 
 fn sleep_till_time(time: time::Time) -> Sleep {
@@ -246,5 +243,11 @@ async fn main() {
         sleep_till_time(time!(1:00)).await;
         println!("Starting Update");
         updater.update().await;
+
+        println!("updating depots...");
+
+        if let Err(e) = updater.update_depot_positions().await {
+            eprintln!("Error updating depots: {e}")
+        }
     }
 }

@@ -182,3 +182,31 @@ BEGIN
     CALL log_transaction (p_asset_id, p_depot_id, asset_amount, price, commission);
 END;
 $$ ;
+
+-- CREATE OR REPLACE MATERIALIZED VIEW depots.values
+
+-- WITH daily_totals AS (
+--     SELECT
+--         depot_id,
+--         asset_id,
+--         DATE(tstamp) as date,
+--         SUM(amount) as daily_amount,
+--         SUM(commission) as daily_commission
+--     FROM depots.transactions
+--     GROUP BY depot_id, asset_id, DATE(tstamp)
+-- ),
+-- daily_holdings AS (SELECT
+--     depot_id,
+--     asset_id,
+--     date,
+--     daily_amount,
+--     daily_commission,
+--     SUM(daily_amount) OVER(
+--         PARTITION BY depot_id, asset_id
+--         ORDER BY date
+--     ) as running_amount,
+--     SUM(daily_commission) OVER(
+--         PARTITION BY depot_id, asset_id
+--         ORDER BY date
+--     ) as running_commission
+-- FROM daily_totals)

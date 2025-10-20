@@ -1,9 +1,31 @@
-# [[language]]
-# name = "sql"
-# language-servers = [ "sqruff", "-config", "./sqruf.yaml"]
-# formatter = { command = "sqruff", args = ["fix", "-"] }
-# auto-format = false
-# injection-regex = "sql"
-# [language-server.sqruff]
-# command = "sqruff"
-# args = ["lsp"]
+# ==============================
+# Helix Language Configuration
+# SQL + PostgreSQL (via sqls)
+# ==============================
+
+[[language]]
+name = "sql"
+auto-format = true
+language-servers = ["postgrestools"]
+
+# Optional: Associate .pgsql or .psql files as SQL too
+file-types = ["sql", "pgsql", "psql"]
+
+
+[language-server.postgrestools]
+command = "postgrestools"
+args = ["lsp-proxy"]
+# Language servelanguage-serverr configuration
+
+# [language-server.sqls.config.sqls]
+# # No DB connections — just static keyword/syntax completion
+# connections = []
+
+# [language-server.sqls.config.lint]
+# enable = true
+
+# [language-server.sqls.config.formatter]
+# # Indentation settings (2 or 4 are common)
+# indent = 2
+# # Optional: keyword capitalization mode ("upper" or "lower")
+# uppercase = true
