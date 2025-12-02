@@ -1,4 +1,3 @@
-import type { ReturnT } from "@/database/restructure_depot_position_data";
 import { getStockPagePath } from "@/lib/get_stock_path";
 import Link from "next/link";
 import type React from "react";

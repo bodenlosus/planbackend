@@ -18,7 +18,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import type { z } from "zod"
-import { signup } from "../actions"
+import { signup, createDepot } from "../actions"
 import { formSchema } from "./form_schema"
 
 export default function SignUpForm() {
@@ -52,9 +52,9 @@ export default function SignUpForm() {
 		if (!success) {
 			return
 		}
-
+		
 		toast.toast({
-			description: `A verification email has been sent to ${data.email}`,
+			// description: `A verification email has been sent to ${data.email}`,
 			title: "Signed up successfully",
 			variant: "default",
 		})
