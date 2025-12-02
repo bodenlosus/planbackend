@@ -10,7 +10,7 @@ GRANT USAGE ON SCHEMA depots TO authenticated;
 -- Grant permissions for depots schema to anon role (read-only for depots and values)
 GRANT USAGE ON SCHEMA depots TO anon;
 GRANT SELECT ON depots.depots TO anon;
-GRANT SELECT ON depots.values TO anon;
+-- GRANT SELECT ON depots.values TO anon;
 
 -- Grant permissions for service worker (additional ones not in init.sql)
 
@@ -20,7 +20,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON depots.depots TO authenticated;
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.positions TO authenticated;
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.transactions TO authenticated;
 GRANT SELECT ON depots.aggregated_transactions TO authenticated;
-GRANT SELECT ON depots.values TO authenticated;
+-- GRANT SELECT ON depots.values TO authenticated;
 GRANT SELECT ON depots.position_profits TO authenticated;
 
 -- Enable Row Level Security on all tables
@@ -29,7 +29,7 @@ ALTER TABLE api.asset_prices ENABLE ROW LEVEL SECURITY ;
 ALTER TABLE depots.depots ENABLE ROW LEVEL SECURITY ;
 ALTER TABLE depots.positions ENABLE ROW LEVEL SECURITY ;
 ALTER TABLE depots.transactions ENABLE ROW LEVEL SECURITY ;
-ALTER TABLE depots.values ENABLE ROW LEVEL SECURITY ;
+-- ALTER TABLE depots.values ENABLE ROW LEVEL SECURITY ;
 
 -- API table policies
 CREATE POLICY "Anyone can read assets" ON api.assets
@@ -98,15 +98,15 @@ CREATE POLICY "Users can delete their depot transactions" ON depots.transactions
 FOR DELETE TO authenticated
 USING (depots.is_depot_member (depot_id)) ;
 
--- Values table policies
-CREATE POLICY "Anyone can read depot values" ON depots.values
-FOR SELECT TO public
-USING (true) ;
+-- -- Values table policies
+-- CREATE POLICY "Anyone can read depot values" ON depots.values
+-- FOR SELECT TO public
+-- USING (true) ;
 
-CREATE POLICY "Users can manage their depot values" ON depots.values
-FOR ALL TO authenticated
-USING (depots.is_depot_member (depot_id))
-WITH CHECK (depots.is_depot_member (depot_id)) ;
+-- CREATE POLICY "Users can manage their depot values" ON depots.values
+-- FOR ALL TO authenticated
+-- USING (depots.is_depot_member (depot_id))
+-- WITH CHECK (depots.is_depot_member (depot_id)) ;
 
 -- Grant sequence usage to authenticated role
 GRANT USAGE ON ALL SEQUENCES IN SCHEMA depots TO authenticated ;

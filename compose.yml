@@ -154,6 +154,7 @@ services:
 
     volumes:
       - ./dbinit/permissions.sql:/permissions.sql
+      - ./dbinit/postauth.sql:/postauth.sql
 
     networks:
       - postgres
@@ -164,6 +165,7 @@ services:
         sleep 10
         echo 'Running post-GoTrue initialization...'
         psql -f /permissions.sql
+        psql -f /postauth.sql
         echo 'Post-GoTrue initialization complete!'
       "
 

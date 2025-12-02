@@ -18,16 +18,14 @@ CREATE POLICY "auth_admin_insert" ON depots.depots TO auth_admin USING (TRUE);
 GRANT USAGE ON schema depots TO auth_admin;
 GRANT INSERT ON depots.depots TO auth_admin;
 
-
-CREATE OR REPLACE FUNCTION new_depot_for_user() RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION depots.new_depot_for_user(p_user_id UUID) RETURNS void AS $$
     BEGIN
-        INSERT INTO depots.depots (created, cash, users)
-        VALUES (NOW(), 50000, ARRAY[NEW.id]);
-
-        RETURN NEW;
+        INSERT INTO depots.depots (created, cash, cash_start, users)
+        VALUES (NOW(), 50000, 50000,  ARRAY[p_user_id]);
     END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE TRIGGER new_user
-    AFTER INSERT ON auth.users
-    FOR EACH ROW EXECUTE FUNCTION new_depot_for_user();
+
+GRANT EXECUTE ON FUNCTION depots.new_depot_for_user(UUID) TO anon, authenticated;
+GRANT INSERT ON depots.depots TO authenticated;
+CREATE POLICY "authenticated_insert" ON depots.depots FOR INSERT TO authenticated WITH CHECK (auth.uid()::uuid = ANY(users));
