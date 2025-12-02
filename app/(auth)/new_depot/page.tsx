@@ -8,9 +8,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { createDepotAction } from "@/app/(auth)/actions";
-import { to } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 export default async function Page() {
+  "use server";
   return (
     <main className="grow flex justify-center items-center">
       <Card className="min-w-[350px] w-fit max-w-[33%] shadow-2xl">
@@ -27,11 +28,4 @@ export default async function Page() {
       </Card>
     </main>
   );
-}
-
-function Inner() {
-  async function onClick() {
-    const error = await createDepotAction();
-  }
-  return <Button onClick={onClick}>Eröffnen</Button>;
 }
