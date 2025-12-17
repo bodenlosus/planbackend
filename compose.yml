@@ -99,12 +99,15 @@ services:
         condition: service_healthy
       db:
         condition: service_healthy
+      db-init:
+        condition: service_completed_successfully
     environment:
-      PGRST_DB_SCHEMAS: "api, depots"
+      PGRST_DB_SCHEMAS: "api,depots"
       PGRST_DB_URI: postgres://authenticator:auth@db_pooler:6432/postgres
       PGRST_OPENAPI_SERVER_PROXY_URI: http://127.0.0.1:3000
       PGRST_JWT_SECRET: 37c304f8-51aa-419a-a1af-06154e63707a
-      restart: unless-stopped
+      PGRST_SERVER_CORS_ALLOWED_ORIGINS: ""
+    restart: unless-stopped
     networks:
       - postgres
   gateway:

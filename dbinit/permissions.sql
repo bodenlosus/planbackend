@@ -1,4 +1,4 @@
--- Grant permissions for api schema
+-- Grant permissions fovaluesvaluesr api schema
 GRANT USAGE ON SCHEMA api TO anon;
 GRANT SELECT ON api.assets TO anon, authenticated;
 GRANT SELECT ON api.asset_prices TO anon, authenticated;
@@ -19,6 +19,7 @@ GRANT SELECT ON depots.depots TO anon;
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.depots TO authenticated;
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.positions TO authenticated;
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.transactions TO authenticated;
+GRANT SELECT ON depots.values TO authenticated;
 GRANT SELECT ON depots.aggregated_transactions TO authenticated;
 -- GRANT SELECT ON depots.values TO authenticated;
 GRANT SELECT ON depots.position_profits TO authenticated;

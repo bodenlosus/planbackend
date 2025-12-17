@@ -1,3 +1,5 @@
+
+
 -- Auth
 CREATE USER auth_admin NOINHERIT CREATEROLE LOGIN NOREPLICATION PASSWORD 'auth';
 CREATE SCHEMA IF NOT EXISTS auth AUTHORIZATION auth_admin;
@@ -23,7 +25,7 @@ CREATE TABLE IF NOT EXISTS api.assets (
   name text NOT NULL,
   description text,
   asset_type AssetType NOT NULL,
-  lastdepotsdepotsdedepot_idpotsdepots_updated date,
+  last_updated date,
   CONSTRAINT AssetInfo_pkey PRIMARY KEY (id),
   CONSTRAINT AssetInfo_unique_symbol UNIQUE (symbol)
 );
@@ -295,6 +297,9 @@ GRANT CONNECT ON DATABASE postgres TO authenticator;
 
 GRANT anon TO authenticator;
 
+
+GRANT USAGE ON SCHEMA depots TO authenticator;
+GRANT SELECT ON depots.depots TO authenticator;
 -- Service Rest
 CREATE ROLE service_worker NOINHERIT BYPASSRLS LOGIN PASSWORD 'service';
 
@@ -332,3 +337,80 @@ GRANT USAGE ON SEQUENCE depots.transactions_id_seq
 CREATE ROLE authenticated NOINHERIT NOLOGIN;
 
 GRANT authenticated TO authenticator;
+
+
+-- Enable pg_trgm extension if not already enabled
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
+-- Create indexes for better performance
+CREATE INDEX IF NOT EXISTS assets_symbol_trgm_idx ON api.assets USING GIN (symbol gin_trgm_ops);
+CREATE INDEX IF NOT EXISTS assets_name_trgm_idx ON api.assets USING GIN (name gin_trgm_ops);
+CREATE INDEX IF NOT EXISTS assets_description_trgm_idx ON api.assets USING GIN (description gin_trgm_ops);
+
+-- Fuzzy search function
+CREATE OR REPLACE FUNCTION api.search_assets(
+  search_query text,
+  asset_type_filter text DEFAULT NULL,
+  result_limit integer DEFAULT 20
+)
+RETURNS TABLE (
+  id bigint,
+  symbol text,
+  name text,
+  description text,
+  asset_type text,
+  last_updated date,
+  relevance_score numeric
+) AS $$
+BEGIN
+  RETURN QUERY
+  SELECT 
+    a.id,
+    a.symbol,
+    a.name,
+    a.description,
+    a.asset_type::text,
+    a.last_updated,
+    -- Calculate relevance score (higher = better match)
+    ROUND(
+      CAST(
+        -- Exact matches get highest score
+        CASE WHEN LOWER(a.symbol) = LOWER(search_query) THEN 100
+             WHEN LOWER(a.name) = LOWER(search_query) THEN 95
+             ELSE 0 
+        END +
+        -- Starts-with matches get high score
+        CASE WHEN LOWER(a.symbol) LIKE LOWER(search_query) || '%' THEN 50
+             WHEN LOWER(a.name) LIKE LOWER(search_query) || '%' THEN 45
+             ELSE 0
+        END +
+        -- Trigram similarity scores (0-1 range, multiply for weighting)
+        similarity(a.symbol, search_query) * 40 +
+        similarity(a.name, search_query) * 35 +
+        COALESCE(similarity(a.description, search_query) * 15, 0) +
+        -- Contains match bonus
+        CASE WHEN LOWER(a.symbol) LIKE '%' || LOWER(search_query) || '%' THEN 10
+             WHEN LOWER(a.name) LIKE '%' || LOWER(search_query) || '%' THEN 8
+             ELSE 0
+        END
+      AS numeric), 2
+    ) as relevance_score
+  FROM api.assets a
+  WHERE 
+    -- Fuzzy match using trigram similarity OR contains
+    (
+      a.symbol % search_query OR
+      a.name % search_query OR
+      a.description % search_query OR
+      LOWER(a.symbol) LIKE '%' || LOWER(search_query) || '%' OR
+      LOWER(a.name) LIKE '%' || LOWER(search_query) || '%' OR
+      LOWER(a.description) LIKE '%' || LOWER(search_query) || '%'
+    )
+    -- Optional asset type filter
+    AND (asset_type_filter IS NULL OR a.asset_type::text = asset_type_filter)
+  ORDER BY relevance_score DESC, a.name ASC
+  LIMIT result_limit;
+END;
+$$ LANGUAGE plpgsql STABLE;
+
+GRANT EXECUTE ON FUNCTION api.search_assets(text, text, integer) TO anon, authenticated;

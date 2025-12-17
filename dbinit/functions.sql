@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE update_depot_positions ()
+CREATE OR REPLACE FUNCTION depots.update_depot_positions () RETURNS VOID
 LANGUAGE plpgsql -- Changed from SQL to plpgsql
 AS $$
 BEGIN
@@ -19,29 +19,28 @@ BEGIN
     WHERE
         dp.last <= latest_prices.tstamp -- Changed comma to proper condition
         AND dp.asset_id = latest_prices.asset_id;  -- Use AND, not comma
-
 END;
 $$ ;
 
-CREATE OR REPLACE PROCEDURE log_transaction (p_asset_id BIGINT,
+CREATE OR REPLACE FUNCTION depots.log_transaction (p_asset_id BIGINT,
 p_depot_id BIGINT,
 p_amount REAL,
 p_price REAL,
-p_commission REAL)
+p_commission REAL) RETURNS VOID
 LANGUAGE plpgsql AS $$
     BEGIN
         INSERT INTO depots.transactions (asset_id, depot_id, amount, price, tstamp, commission )
-        VALUES (p_asset_id, p_depot_id, p_amount, p_price, NOW(), p_commision);
+        VALUES (p_asset_id, p_depot_id, p_amount, p_price, NOW(), p_commission);
     END;
 $$ ;
 -- Set the commission configuration
 ALTER DATABASE postgres SET config.commission = '10' ;
 
-CREATE OR REPLACE PROCEDURE buy_asset (
+CREATE OR REPLACE FUNCTION depots.buy_asset (
 p_asset_id BIGINT,
 p_depot_id BIGINT,
 p_worth REAL
-)
+) RETURNS VOID
 LANGUAGE plpgsql
 AS $$
 DECLARE
@@ -104,17 +103,16 @@ BEGIN
         price = EXCLUDED.price,
         last = EXCLUDED.last;
 
-    COMMIT;
 
-    CALL log_transaction (p_asset_id, p_depot_id, asset_amount, price, commission);
+    PERFORM log_transaction (p_asset_id, p_depot_id, asset_amount, price, commission);
 END;
 $$ ;
 
-CREATE OR REPLACE PROCEDURE sell_asset (
+CREATE OR REPLACE FUNCTION depots.sell_asset (
 p_asset_id BIGINT,
 p_depot_id BIGINT,
 p_worth REAL
-)
+) RETURNS VOID
 LANGUAGE plpgsql
 AS $$
 DECLARE
@@ -179,10 +177,19 @@ BEGIN
     END IF;
 
 
-    CALL log_transaction (p_asset_id, p_depot_id, asset_amount, price, commission);
+    PERFORM log_transaction (p_asset_id, p_depot_id, asset_amount, price, commission);
 END;
 $$ ;
 
+CREATE OR REPLACE FUNCTION depots.get_commission() RETURNS REAL LANGUAGE sql AS $$
+    SELECT current_setting('config.commission')::REAL AS result;
+$$;
+
+GRANT EXECUTE ON FUNCTION depots.get_commission() TO authenticated;
+GRANT EXECUTE ON FUNCTION depots.buy_asset(BIGINT, BIGINT, REAL) TO authenticated;
+GRANT EXECUTE ON FUNCTION depots.sell_asset(BIGINT, BIGINT, REAL) TO authenticated;
+GRANT EXECUTE ON FUNCTION depots.log_transaction(BIGINT, BIGINT, REAL, REAL, REAL) TO authenticated;
+GRANT EXECUTE ON FUNCTION depots.update_depot_positions() TO authenticated;
 -- CREATE OR REPLACE MATERIALIZED VIEW depots.values
 
 -- WITH daily_totals AS (
