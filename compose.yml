@@ -65,7 +65,7 @@ services:
       - postgres
   db_pooler:
     container_name: db_pooler
-    image: bitnami/pgbouncer:1.24.1
+    image: edoburu/pgbouncer:v1.24.1-p1
     healthcheck:
       test:
         ["CMD-SHELL", "timeout 3 bash -c '</dev/tcp/localhost/6432' || exit 1"]
@@ -76,19 +76,15 @@ services:
       db:
         condition: service_healthy
     environment:
-      PGBOUNCER_PORT: 6432
-      PGBOUNCER_DATABASE: postgres
-      POSTGRESQL_PORT: 5432
-      POSTGRESQL_HOST: db
-      POSTGRESQL_USERNAME: authenticator
-      POSTGRESQL_PASSWORD: auth
-      PGBOUNCER_MAX_CLIENT_CONN: 120
-      PGBOUNCER_POOL_MODE: transaction
-      PGBOUNCER_DEFAULT_POOL_SIZE: 20
-      PGBOUNCER_USERLIST_FILE: /bitnami/pgbouncer/userlist.txt
+      DATABASE_URL: postgres://authenticator:auth@db:5432/database
+      LISTEN_PORT: 6432
+      MAX_CLIENT_CONN: 120
+      POOL_MODE: transaction
+      DEFAULT_POOL_SIZE: 20
+      AUTH_FILE: /etc/pgbouncer/userlist.txt
     restart: unless-stopped
     volumes:
-      - ./userlist.txt:/bitnami/pgbouncer/userlist.txt:ro
+      - ./userlist.txt:/etc/pgbouncer/userlist.txt:ro
     networks:
       - postgres
   rest:
