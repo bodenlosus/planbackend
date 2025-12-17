@@ -1,85 +1,95 @@
-"use client"
-import "./container.css"
+"use client";
+import "./container.css";
 import {
-	CandlestickChart as CandleStickIcon,
-	LineChart as LinechartIcon,
-} from "lucide-react"
+  CandlestickChart as CandleStickIcon,
+  LineChart as LinechartIcon,
+} from "lucide-react";
 
 import toRelativeValues, {
-	calculateOffset,
-	flattenOpenClose,
-} from "@/lib/data/data_utils"
+  calculateOffset,
+  flattenOpenClose,
+} from "@/lib/data/data_utils";
 
 import type {
-	CleanedStockPrice,
-	NullableRow,
-	StockPrice,
-} from "@/database/custom_types"
-import { type ComponentPropsWithoutRef, useMemo } from "react"
-import AreaChart from "./area"
-import CandleStickChart from "./candle_stick"
-import Chart from "./primitive/chart"
-import ChartIcon from "./primitive/chart_icon"
-import ChartContainer from "./primitive/container"
+  CleanedStockPrice,
+  NullableRow,
+  PlainPrice,
+  StockPrice,
+} from "@/database/custom_types";
+import { type ComponentPropsWithoutRef, useMemo } from "react";
+import AreaChart from "./area";
+import CandleStickChart from "./candle_stick";
+import ChartContainer from "./primitive/container";
+import { getTimeBetweenDates, parseDate } from "@/lib/date_utils";
+import { time } from "node:console";
 
 export interface props extends ComponentPropsWithoutRef<"div"> {
-	data: Array<CleanedStockPrice | NullableRow<StockPrice>>
-	timeframe?: { start: string; end: string }
+  data: Array<PlainPrice>;
+  percision: number;
+  flattenOpenClose?: boolean;
 }
-export default function StockChartContainer({ data }: props) {
-	const areaData = useMemo(() => flattenOpenClose(data), [data])
-	const area = useMemo(() => calculateOffset(areaData, "value"), [areaData])
+export default function StockChartContainer({
+  data,
+  flattenOpenClose: foc,
+  percision,
+}: props) {
+  const areaData = useMemo(() => {
+    if (foc) {
+      return flattenOpenClose(data);
+    }
+    if (percision == 1) {
+      return data;
+    }
+    const reduced = [];
+    for (let i = 0; i < data.length; i += percision) {
+      reduced.push(data[i]);
+    }
+    return reduced;
+  }, [data]);
 
-	const area2 = useMemo(() => calculateOffset(data, "close"), [data])
+  const area = useMemo(() => calculateOffset(areaData, "close"), [areaData]);
 
-	const candleData = toRelativeValues(data)
-	return (
-		<ChartContainer
-			defaultName="line"
-			className="w-full border rounded-md bg-muted/25 shadow overflow-hidden"
-		>
-			<Chart name="candlestick">
-				<CandleStickChart
-					className="aspect-[4/3] md:aspect-[20/9] lg:aspect-[6/2] xl:aspect-[8/2]"
-					data={candleData}
-					xKey="date"
-					barKey="open_close"
-					errorKey="high_low"
-					winKey="closeLargerOpen"
-					lineKey="absClose"
-				/>
-			</Chart>
-			<Chart name="line">
-				<AreaChart
-					className="aspect-[4/3] md:aspect-[20/9] lg:aspect-[6/2] xl:aspect-[8/2]"
-					data={areaData}
-					dataKey="value"
-					xKey="date"
-					yKey="value"
-					offset={area.offset}
-					startValue={area.startValue}
-				/>
-			</Chart>
-			<Chart name="line2">
-				<AreaChart
-					className="aspect-[4/3] md:aspect-[20/9] lg:aspect-[6/2] xl:aspect-[8/2]"
-					data={data}
-					dataKey="close"
-					xKey="timestamp"
-					yKey="close"
-					offset={area2.offset}
-					startValue={area2.startValue}
-				/>
-			</Chart>
-			<ChartIcon name="candlestick">
-				<CandleStickIcon className="size-7 md:size-5 stroke-muted-foreground" />
-			</ChartIcon>
-			<ChartIcon name="line">
-				<LinechartIcon className="size-7 md:size-5 stroke-muted-foreground" />
-			</ChartIcon>
-			<ChartIcon name="line2">
-				<LinechartIcon className="size-7 md:size-5 stroke-muted-foreground" />
-			</ChartIcon>
-		</ChartContainer>
-	)
+  const candleData = toRelativeValues(data);
+  return (
+    <ChartContainer
+      defaultTab="line"
+      className="w-full border rounded-md bg-muted/25 shadow overflow-hidden"
+      tabs={[
+        {
+          name: "candlestick",
+          icon: (
+            <CandleStickIcon className="size-7 md:size-5 stroke-muted-foreground" />
+          ),
+          content: (
+            <CandleStickChart
+              className="aspect-[4/3] md:aspect-[20/9] lg:aspect-[6/2] xl:aspect-[8/2]"
+              data={candleData}
+              xKey="date"
+              barKey="open_close"
+              errorKey="high_low"
+              winKey="closeLargerOpen"
+              lineKey="absClose"
+            />
+          ),
+        },
+        {
+          name: "line",
+          icon: (
+            <LinechartIcon className="size-7 md:size-5 stroke-muted-foreground" />
+          ),
+          content: (
+            <AreaChart
+              className="aspect-[4/3] md:aspect-[20/9] lg:aspect-[6/2] xl:aspect-[8/2]"
+              data={areaData}
+              dataKey="close"
+              xKey="tstamp"
+              yKey="close"
+              offset={area.offset}
+              startValue={area.startValue}
+            />
+          ),
+        },
+      ]}
+    />
+  );
 }

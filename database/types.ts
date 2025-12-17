@@ -55,7 +55,7 @@ export type Database = {
           asset_type: "commodity" | "crypto" | "fund" | "stock"
           description: string | null
           id: number
-          lastdepotsdepotsdedepot_idpotsdepots_updated: string | null
+          last_updated: string | null
           name: string
           symbol: string
         }
@@ -63,7 +63,7 @@ export type Database = {
           asset_type: "commodity" | "crypto" | "fund" | "stock"
           description?: string | null
           id?: number
-          lastdepotsdepotsdedepot_idpotsdepots_updated?: string | null
+          last_updated?: string | null
           name: string
           symbol: string
         }
@@ -71,7 +71,7 @@ export type Database = {
           asset_type?: "commodity" | "crypto" | "fund" | "stock"
           description?: string | null
           id?: number
-          lastdepotsdepotsdedepot_idpotsdepots_updated?: string | null
+          last_updated?: string | null
           name?: string
           symbol?: string
         }
@@ -82,7 +82,22 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      search_assets: {
+        Args: {
+          asset_type_filter?: string
+          result_limit?: number
+          search_query: string
+        }
+        Returns: {
+          asset_type: string
+          description: string
+          id: number
+          last_updated: string
+          name: string
+          relevance_score: number
+          symbol: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
@@ -993,12 +1008,38 @@ export type Database = {
       }
     }
     Functions: {
+      buy_asset: {
+        Args: { p_asset_id: number; p_depot_id: number; p_worth: number }
+        Returns: undefined
+      }
+      get_commission: {
+        Args: Record<PropertyKey, never>
+        Returns: number
+      }
       is_depot_member: {
         Args: { depot_id: number }
         Returns: boolean
       }
+      log_transaction: {
+        Args: {
+          p_amount: number
+          p_asset_id: number
+          p_commission: number
+          p_depot_id: number
+          p_price: number
+        }
+        Returns: undefined
+      }
       new_depot_for_user: {
         Args: { p_user_id: string }
+        Returns: undefined
+      }
+      sell_asset: {
+        Args: { p_asset_id: number; p_depot_id: number; p_worth: number }
+        Returns: undefined
+      }
+      update_depot_positions: {
+        Args: Record<PropertyKey, never>
         Returns: undefined
       }
     }

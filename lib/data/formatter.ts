@@ -1,49 +1,59 @@
 import type {
-	CleanedStockPrice,
-	NullableRow,
-	StockPrice,
-} from "@/database/custom_types"
-import { getTimeBetweenDates, msPerDay, toISODateOnly } from "../date_utils"
+  CleanedStockPrice,
+  NonNullableRow,
+  NullableRow,
+  StockPrice,
+} from "@/database/custom_types";
+import { getTimeBetweenDates, msPerDay, toISODateOnly } from "../date_utils";
+type Price = Omit<StockPrice, "id" | "asset_id">;
 
 export function formatter(data: Array<StockPrice>) {
-	const dataWithEmptyDays: Array<CleanedStockPrice | NullableRow<StockPrice>> =
-		[]
-	for (let index = 0; index < data.length; index++) {
-		const previousTimeStamp = data[index - 1]?.timestamp
-		const price = data[index]
-		if (!previousTimeStamp) {
-			dataWithEmptyDays.push(price)
-			continue
-		}
+  const dataWithEmptyDays: Array<Price> = [];
+  for (let index = 0; index < data.length; index++) {
+    const previousTimeStamp = data[index - 1]?.tstamp;
+    const price = data[index];
+    if (!previousTimeStamp) {
+      dataWithEmptyDays.push(price);
+      continue;
+    }
 
-		const tDiff = getTimeBetweenDates(
-			new Date(previousTimeStamp),
-			new Date(price.timestamp),
-		)
+    const tDiff = getTimeBetweenDates(
+      new Date(previousTimeStamp),
+      new Date(price.tstamp),
+    )!;
 
-		if (tDiff > 1) {
-			for (let i = 1; i < tDiff; i++) {
-				const timestamp = toISODateOnly(
-					new Date(i * msPerDay + new Date(previousTimeStamp).getTime()),
-				)
-				dataWithEmptyDays.push({
-					close: null,
-					high: null,
-					low: null,
-					open: null,
-					timestamp: timestamp,
-					volume: null,
-				})
-			}
-		}
+    if (tDiff > 1) {
+      for (let i = 1; i < tDiff; i++) {
+        const tstamp = toISODateOnly(
+          new Date(i * msPerDay + new Date(previousTimeStamp).getTime()),
+        );
+        dataWithEmptyDays.push({
+          close: null,
+          high: null,
+          low: null,
+          open: null,
+          tstamp,
+          volume: null,
+        });
+      }
+    }
 
-		dataWithEmptyDays.push({
-			...price,
-			timestamp: price.timestamp,
-		} as CleanedStockPrice)
-	}
+    dataWithEmptyDays.push({
+      ...price,
+      tstamp: price.tstamp,
+    } as CleanedStockPrice);
+  }
 
-	return { dataWithEmptyDays: dataWithEmptyDays, data: data }
+  const filtered = dataWithEmptyDays.filter(
+    (price) =>
+      price.close !== null ||
+      price.open !== null ||
+      price.high !== null ||
+      price.low !== null ||
+      price.volume !== null,
+  ) as NonNullableRow<Price>[];
+
+  return { dataWithEmptyDays: dataWithEmptyDays, data: filtered };
 }
 
 // function isNullishRow<T extends Record<string, unknown>>(
@@ -74,8 +84,8 @@ export function formatter(data: Array<StockPrice>) {
 // };
 
 export const formatFloatingPointString = (
-	value: number,
-	digits: number,
+  value: number,
+  digits: number,
 ): string => {
-	return value.toFixed(digits)
-}
+  return value.toFixed(digits);
+};

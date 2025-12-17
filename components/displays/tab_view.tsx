@@ -1,5 +1,5 @@
 "use client";
-import type { StockPosition, StockType } from "@/database/custom_types";
+import type { StockPosition, AssetType } from "@/database/custom_types";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import PositionList from "./position_list";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
@@ -134,8 +134,8 @@ export default function PositionTabView({
     ["currency", "Währungen"],
   ]);
 
-  const sortedStocks: Partial<Record<StockType, StockPosition[]>> = {};
-  const counts: Map<Partial<StockType>, number> = new Map();
+  const sortedStocks: Partial<Record<AssetType, StockPosition[]>> = {};
+  const counts: Map<Partial<AssetType>, number> = new Map();
 
   for (const position of positions) {
     if (!sortedStocks[position.stock.type]) {
@@ -147,7 +147,7 @@ export default function PositionTabView({
 
   const types = Object.keys(sortedStocks);
   const triggers = types.map((stockType) => {
-    const count = counts.get(stockType as StockType) ?? 0;
+    const count = counts.get(stockType as AssetType) ?? 0;
     const name = displays.get(stockType) ?? stockType;
     return (
       <TabsTrigger className="h-full" key={stockType} value={stockType}>

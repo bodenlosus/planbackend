@@ -102,7 +102,7 @@ export default function AreaChart<T extends Record<string, number | string>>({
         <XAxis
           className="number"
           dataKey={xKey}
-          interval={7}
+          interval="preserveStart"
           tickFormatter={(timestamp) =>
             relativeDateStringCompact(new Date(timestamp))
           }

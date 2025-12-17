@@ -1,49 +1,61 @@
-import type { Stock, StockPrice } from "./custom_types"
-import { fetchRpc } from "./fetch_rpc"
+import { SupabaseClient } from "@supabase/supabase-js";
+import type { Asset, StockPrice } from "./custom_types";
+import { Database } from "@/database/types";
+import { createClient } from "@/utils/supabase/server";
 
 export interface TfetchStockData {
-	info: Array<Stock>
-	prices: Array<StockPrice>
-	error?: Error
+  info: Array<Asset>;
+  prices: Array<StockPrice> | null;
+  error?: Error;
 }
-export async function fetchStockData(args: {
-	id: number
-	start: string
-	end: string
-}): Promise<TfetchStockData> {
-	// Handle responses and errors individually
-	try {
-		const [infoResponse, priceResponse] = await Promise.all([
-			fetchRpc("get_stock_info_by_id", {
-				p_stock_id: args.id,
-			}),
-			fetchRpc("get_stock_prices_by_interval", {
-				p_stock_id: args.id,
-				p_interval_start: args.start,
-				p_interval_end: args.end,
-			}),
-		])
+export async function fetchStockData(
+  id: number,
+  restclient?: SupabaseClient<Database>,
+): Promise<TfetchStockData> {
+  // Handle responses and errors individually
+  const client = restclient ?? (await createClient());
+  const [
+    { data: prices, error: priceError },
+    { data: info, error: infoError },
+  ] = await Promise.all([
+    client
+      .schema("api")
+      .from("asset_prices")
+      .select("*")
+      .eq("asset_id", id)
+      .order("tstamp", { ascending: true }),
+    client.schema("api").from("assets").select("*").eq("id", id),
+  ]);
 
-		// Check if the responses have data
-		if (!infoResponse.count || !priceResponse.count) {
-			console.error("No data found in the database")
-			return {
-				info: [],
-				prices: [],
-				error: new Error(`No data present for ${args.start} - ${args.end}`),
-			}
-		}
+  if (infoError) {
+    return {
+      info: [],
+      prices: [],
+      error: new Error(`Failed to fetch asset info for id ${id}`, {
+        cause: infoError,
+      }),
+    };
+  }
 
-		return {
-			info: infoResponse.data,
-			prices: priceResponse.data,
-		}
-	} catch (error) {
-		console.error("Error:", error)
-		return {
-			info: [],
-			prices: [],
-			error: new Error("Failed to fetch data", { cause: error }),
-		}
-	}
+  if (priceError) {
+    return {
+      info,
+      prices: [],
+      error: new Error(`Failed to fetch asset prices for id ${id}`, {
+        cause: priceError,
+      }),
+    };
+  }
+
+  if (!prices || prices.length === 0) {
+    return {
+      info,
+      prices: [],
+    };
+  }
+
+  return {
+    info,
+    prices,
+  };
 }

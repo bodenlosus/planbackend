@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/card";
 import { createDepotAction } from "@/app/(auth)/actions";
 import { toast } from "sonner";
+import Inner from "./form";
 
 export default async function Page() {
-  "use server";
   return (
     <main className="grow flex justify-center items-center">
       <Card className="min-w-[350px] w-fit max-w-[33%] shadow-2xl">

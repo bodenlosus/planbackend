@@ -1,62 +1,59 @@
-import "../container.css"
+import "../container.css";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { cn } from "@/lib/utils"
-import React, { Suspense } from "react"
-import PageLoader from "../../loaders/page_loader"
-import Chart from "./chart"
-import ChartIcon from "./chart_icon"
+import { cn } from "@/lib/utils";
+import React, { Suspense } from "react";
+import PageLoader from "../../loaders/page_loader";
+import Chart from "./chart";
+import Tooltip from "@/components/tooltip";
 
-interface ChartContainerT extends React.ComponentPropsWithoutRef<"div"> {
-	defaultName?: string
+interface TabConfig {
+  name: string;
+  icon: React.ReactNode;
+  key?: string;
+  content: React.ReactNode;
+}
+
+interface ChartContainerProps extends React.ComponentPropsWithoutRef<"div"> {
+  defaultTab?: string;
+  tabs: TabConfig[];
 }
 
 export default function ChartContainer({
-	defaultName,
-	children,
-	className,
-}: ChartContainerT) {
-	const tabsContent: React.ReactNode[] = []
-	const tabsTrigger: React.ReactNode[] = []
+  defaultTab: defaultName,
+  tabs,
+  className,
+}: ChartContainerProps) {
+  const tabsContent: React.ReactNode[] = tabs.map((tab) => (
+    <TabsContent key={tab.key ?? tab.name} value={tab.name}>
+      {tab.content}
+    </TabsContent>
+  ));
 
-	if (!children) return null
+  const tabsTrigger = tabs.map((tab) => (
+    <TabsTrigger
+      className="grow-0 p-0 data-[state=active]:bg-secondary *:data-[state=active]:stroke-foreground *:hover:stroke-foreground hover:bg-secondary/50 transition-colors *:transition-colors"
+      key={tab.key ?? tab.name}
+      value={tab.name}
+    >
+      <Tooltip className="w-full h-full px-2 py-1 box-content" name={tab.name}>
+        {tab.icon}
+      </Tooltip>
+    </TabsTrigger>
+  ));
 
-	React.Children.forEach(children, (child) => {
-		if (!React.isValidElement(child)) {
-			return
-		}
-
-		if (child.type === Chart) {
-			tabsContent.push(
-				<TabsContent key={child.key} value={child.props.name}>
-					{React.cloneElement(child)}
-				</TabsContent>,
-			)
-		} else if (child.type === ChartIcon) {
-			tabsTrigger.push(
-				<TabsTrigger
-					className="grow-0 p-0 data-[state=active]:bg-secondary *:data-[state=active]:stroke-foreground *:hover:stroke-foreground hover:bg-secondary/50 transition-colors *:transition-colors"
-					key={child.key}
-					value={child.props.name}
-				>
-					{React.cloneElement(child)}
-				</TabsTrigger>,
-			)
-		}
-	})
-
-	return (
-		<Suspense fallback={<PageLoader />}>
-			<Tabs defaultValue={defaultName} className={cn(className)}>
-				{tabsContent}
-				<div className="w-full h-fit p-2 bg-background border-t md:p-0 flex flex-row">
-					<TabsList className="bg-transparent flex flex-row gap-2 justify-around justify-items-stretch md:justify-start">
-						{tabsTrigger}
-					</TabsList>
-					{/* <IntervalControls className="grow justify-end p-2" intervals={Intervals} /> */}
-				</div>
-			</Tabs>
-		</Suspense>
-	)
+  return (
+    <Suspense fallback={<PageLoader />}>
+      <Tabs defaultValue={defaultName} className={cn(className)}>
+        {tabsContent}
+        <div className="w-full h-fit p-2 bg-background border-t md:p-0 flex flex-row">
+          <TabsList className="bg-transparent flex flex-row gap-2 justify-around justify-items-stretch md:justify-start">
+            {tabsTrigger}
+          </TabsList>
+          {/* <IntervalControls className="grow justify-end p-2" intervals={Intervals} /> */}
+        </div>
+      </Tabs>
+    </Suspense>
+  );
 }

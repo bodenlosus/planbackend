@@ -1,4 +1,4 @@
-import type { Stock, StockPosition } from "@/database/custom_types";
+import type { Asset, StockPosition } from "@/database/custom_types";
 import { gql as gqlq } from "@/gql/gql";
 import { gql } from "@apollo/client";
 import type { GetPositionsQuery } from "@/gql/graphql";
@@ -21,7 +21,7 @@ export function processDepotValues(edges: DepotValue[]) {
   if (edges.length == 0) {
     return null;
   }
-  
+
   const total = edges[0].assets + edges[0].cash;
 
   let maxValue = total;
