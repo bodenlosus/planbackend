@@ -166,12 +166,10 @@ impl Updater {
         Ok(())
     }
 
-    pub async fn update(&mut self) {
+    pub async fn update(&mut self) -> Result<(), Box<dyn Error>> {
+        self.client = yf::client()?;
         self.update_date();
-        if let Err(e) = self.fetch_assets().await {
-            eprintln!("Error fetching assets {e}");
-            return;
-        };
+        self.fetch_assets().await?;
 
         while let Some(asset) = self.assets.pop() {
             print!("{}", asset.symbol);
@@ -195,6 +193,10 @@ impl Updater {
         if let Err(e) = self.inserter().await {
             eprintln!("Error inserting assets: {e}")
         }
+
+        self.assets.clear();
+        self.prices.clear();
+        Ok(())
     }
     async fn update_depot_positions(&self) -> Result<PgQueryResult, sqlx::Error> {
         sqlx::query!("CALL update_depot_positions()",)
@@ -236,13 +238,17 @@ async fn main() {
         .map(|s| !s.is_empty())
         .unwrap_or(false);
     if immediate {
-        updater.update().await;
+        if let Err(e) = updater.update().await {
+            eprintln!("{e}");
+        };
     }
 
     loop {
         sleep_till_time(time!(1:00)).await;
         println!("Starting Update");
-        updater.update().await;
+        if let Err(e) = updater.update().await {
+            eprintln!("{e}");
+        };
 
         println!("updating depots...");
 
