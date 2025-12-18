@@ -17,6 +17,7 @@ import { cache } from "react";
 
 import { createClient } from "@/utils/supabase/server";
 import { processDepotValues } from "@/database/depots";
+import PositionTabView from "@/components/displays/tab_view";
 
 // export const revalidate = 3600
 export default async function Page() {
@@ -92,7 +93,7 @@ export default async function Page() {
           />{" "}
         </CardContent>
       </Card>
-      {/* <PositionTabView positions_raw={fres.positions} /> */}
+      <PositionTabView positions_raw={fres.positions} />
     </main>
   );
 }

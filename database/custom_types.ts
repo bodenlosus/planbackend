@@ -16,6 +16,9 @@ export type CleanedStock = NonNullableRow<Asset>;
 export type PlainPrice = Omit<StockPrice, "id" | "asset_id">;
 export type CleanedPlainPrice = NonNullableRow<PlainPrice>;
 
+export type PositionSummary =
+  Database["depots"]["Views"]["position_profits"]["Row"];
+
 export type StockPosition = {
   stock: Asset;
   value: number;

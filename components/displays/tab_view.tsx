@@ -1,5 +1,9 @@
 "use client";
-import type { StockPosition, AssetType } from "@/database/custom_types";
+import type {
+  StockPosition,
+  AssetType,
+  PositionSummary,
+} from "@/database/custom_types";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import PositionList from "./position_list";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
@@ -14,8 +18,6 @@ import {
 } from "../ui/select";
 import { ArrowDownAZ, Euro, SortAsc, SortDesc } from "lucide-react";
 import { Separator } from "../ui/separator";
-import type { GetPositionsQuery } from "@/gql/graphql";
-import { processDepotPositions, processDepotValues } from "@/database/depots";
 
 interface returnT {
   interval: 1 | 5 | 30;
@@ -86,23 +88,22 @@ function ToolBar(props: {
   );
 }
 type SortMode = "profit" | "alphabetical";
-type RawPositions = NonNullable<
-  GetPositionsQuery["depotPositionsCollection"]
->["edges"];
 
 function sortProcessedPositions(
-  positions: StockPosition[],
+  positions: PositionSummary[],
   mode: SortMode,
   descending: boolean,
 ) {
   const sort_funcs: Record<
     SortMode,
-    (a: StockPosition, b: StockPosition) => number
+    (a: PositionSummary, b: PositionSummary) => number
   > = {
-    profit: (a, b) =>
-      (descending ? -1 : 1) * (a.absolute_profit - b.absolute_profit),
+    profit: (a, b) => {
+      const profitDiff = (a.total_profit ?? 0) - (b.total_profit ?? 0);
+      return descending ? -profitDiff : profitDiff;
+    },
     alphabetical: (a, b) =>
-      (descending ? -1 : 1) * a.stock.name.localeCompare(b.stock.name),
+      (descending ? -1 : 1) * (a.symbol ?? "").localeCompare(b.symbol ?? ""),
   };
 
   return positions.sort(sort_funcs[mode] ?? sort_funcs.profit);
@@ -111,7 +112,7 @@ function sortProcessedPositions(
 export default function PositionTabView({
   positions_raw,
 }: {
-  positions_raw: RawPositions;
+  positions_raw: PositionSummary;
 }) {
   const [modes, setModes] = useState<returnT>({
     descending: true,
