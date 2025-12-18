@@ -9,9 +9,9 @@ services:
       POSTGRES_DB: postgres
     volumes:
       - postgres:/data/postgres
-      - ./dbinit/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./dbinit/functions.sql:/docker-entrypoint-initdb.d/functions.sql
-      - ./dbinit/stocks.sql:/docker-entrypoint-initdb.d/stocks.sql
+      - ./dbinit/init.sql:/docker-entrypoint-initdb.d/01_init.sql
+      - ./dbinit/functions.sql:/docker-entrypoint-initdb.d/02_functions.sql
+      - ./dbinit/stocks.sql:/docker-entrypoint-initdb.d/03_stocks.sql
     ports:
       - 0.0.0.0:5432:5432
     networks:
