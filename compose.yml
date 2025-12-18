@@ -67,8 +67,7 @@ services:
     container_name: db_pooler
     image: edoburu/pgbouncer:v1.24.1-p1
     healthcheck:
-      test:
-        ["CMD-SHELL", "timeout 3 bash -c '</dev/tcp/localhost/6432' || exit 1"]
+      test: ["CMD-SHELL", "pidof pgbouncer || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -76,7 +75,7 @@ services:
       db:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgres://authenticator:auth@db:5432/database
+      DATABASE_URL: postgres://authenticator:auth@db:5432/postgres
       LISTEN_PORT: 6432
       MAX_CLIENT_CONN: 120
       POOL_MODE: transaction

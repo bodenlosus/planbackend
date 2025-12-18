@@ -260,6 +260,7 @@ SELECT
   ps.total_sold,
   lp.current_price,
   ps.current_amount * lp.current_price AS market_value,
+
   -- Total profit
   ps.total_sold + (ps.current_amount * lp.current_price) - ps.total_invested AS total_profit
 FROM
