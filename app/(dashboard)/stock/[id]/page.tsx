@@ -116,7 +116,8 @@ const dataFetcher = cache(async (stockId: number) => {
     .schema("depots")
     .from("positions")
     .select("*")
-    .eq("depot_id", depot.id);
+    .eq("depot_id", depot.id)
+    .eq("asset_id", stockId);
 
   if (positionError) {
     return {

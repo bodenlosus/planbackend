@@ -19,7 +19,6 @@ import { createClient } from "@/utils/supabase/server";
 import { processDepotValues } from "@/database/depots";
 import PositionTabView from "@/components/displays/tab_view";
 
-// export const revalidate = 3600
 export default async function Page() {
   const fres = await dataFetcher();
   console.log(fres);
@@ -67,7 +66,7 @@ export default async function Page() {
                 content: (
                   <AreaChart
                     className="aspect-[4/3] md:aspect-[20/9] lg:aspect-[6/2] xl:aspect-[8/2]"
-                    startValue={areaData?.start ?? 0}
+                    startValue={50000}
                     offset={areaData?.offset ?? 0}
                     data={areaData?.data ?? []}
                     dataKey="total"
@@ -93,12 +92,12 @@ export default async function Page() {
           />{" "}
         </CardContent>
       </Card>
-      <PositionTabView positions_raw={fres.positions} />
+      {/*<PositionTabView positions_raw={fres.positions} />*/}
     </main>
   );
 }
 
-const dataFetcher = cache(async () => {
+const dataFetcher  = async () => {
   const client = await createClient();
 
   const { user } = (await client.auth.getUser()).data;
