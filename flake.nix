@@ -37,7 +37,10 @@
         {
           default = pkgs.mkShell {
             packages = with pkgs; [
+              typescript-go
+              typescript-language-server
               typescript
+              tailwindcss-language-server
               node2nix
               nodejs
               nodePackages.pnpm

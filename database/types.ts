@@ -14,7 +14,6 @@ export type Database = {
           asset_id: number
           close: number | null
           high: number | null
-          id: number
           low: number | null
           open: number | null
           tstamp: string
@@ -24,7 +23,6 @@ export type Database = {
           asset_id: number
           close?: number | null
           high?: number | null
-          id?: number
           low?: number | null
           open?: number | null
           tstamp: string
@@ -34,7 +32,6 @@ export type Database = {
           asset_id?: number
           close?: number | null
           high?: number | null
-          id?: number
           low?: number | null
           open?: number | null
           tstamp?: string
@@ -79,7 +76,44 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      asset_prices_weekly: {
+        Row: {
+          asset_id: number | null
+          close: number | null
+          high: number | null
+          low: number | null
+          open: number | null
+          tstamp: string | null
+          volume: number | null
+        }
+        Insert: {
+          asset_id?: number | null
+          close?: number | null
+          high?: number | null
+          low?: number | null
+          open?: number | null
+          tstamp?: string | null
+          volume?: number | null
+        }
+        Update: {
+          asset_id?: number | null
+          close?: number | null
+          high?: number | null
+          low?: number | null
+          open?: number | null
+          tstamp?: string | null
+          volume?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assetprices_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       search_assets: {
@@ -968,10 +1002,13 @@ export type Database = {
       position_profits: {
         Row: {
           asset_id: number | null
+          asset_type: "commodity" | "crypto" | "fund" | "stock" | null
           current_amount: number | null
           current_price: number | null
           depot_id: number | null
+          description: string | null
           market_value: number | null
+          name: string | null
           symbol: string | null
           total_invested: number | null
           total_profit: number | null

@@ -16,15 +16,18 @@ import {
   getCurrentDate,
   getDateCertainDaysAgo,
   getTimeBetweenDates,
+  toISODateOnly,
 } from "@/lib/date_utils";
+import { flattenOpenClose } from "@/lib/data/data_utils";
 
 type CardProps = ComponentPropsWithoutRef<"div">;
 
 interface ChartCardProps extends CardProps {
-  prices: Array<PlainPrice>;
+  prices: PlainPrice[];
+  pricesWeekly: PlainPrice[];
 }
 
-export function ChartCard({ prices, className }: ChartCardProps) {
+export function ChartCard({ prices, pricesWeekly, className }: ChartCardProps) {
   "use client";
   const [selectedIntervall, setSelectedIntervall] = useState<number>(7);
   const timeFrame = useMemo(() => {
@@ -35,22 +38,18 @@ export function ChartCard({ prices, className }: ChartCardProps) {
 
   const timeDiff = getTimeBetweenDates(timeFrame.start, timeFrame.end);
 
-  const filteredPrices = useMemo(() => {
-    const p = [];
-    for (let i = prices.length - 1; i >= 0; i--) {
-      if (new Date(prices[i].tstamp) < timeFrame.start) {
-        break;
+  const data = useMemo(() => {
+    const data = [];
+    let src = selectedIntervall < 360 ? prices : pricesWeekly;
+    const start = timeFrame.start ? toISODateOnly(timeFrame.start) : undefined;
+
+    for (const price of src) {
+      if (start && price.tstamp >= start) {
+        data.push(price);
       }
-      p.unshift(prices[i]);
     }
-    for (let i = 0; i < p.length; i++) {
-      if (p[i].close) {
-        break;
-      }
-      p.splice(i, 1);
-    }
-    return p;
-  }, [prices, timeFrame]);
+    return data;
+  }, [prices, pricesWeekly, timeFrame]);
 
   return (
     <Card className={cn(className)}>
@@ -66,11 +65,7 @@ export function ChartCard({ prices, className }: ChartCardProps) {
           onValueChange={setSelectedIntervall}
           value={selectedIntervall ?? 7}
         />
-        <StockChartContainer
-          flattenOpenClose={timeDiff ? timeDiff <= 100 : false}
-          percision={(timeDiff ?? 0 > 100) ? 4 : 1}
-          data={filteredPrices}
-        />
+        <StockChartContainer data={data} />
       </CardContent>
     </Card>
   );

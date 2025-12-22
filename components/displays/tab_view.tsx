@@ -1,9 +1,5 @@
 "use client";
-import type {
-  StockPosition,
-  AssetType,
-  PositionSummary,
-} from "@/database/custom_types";
+import type { AssetType, PositionSummary } from "@/database/custom_types";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import PositionList from "./position_list";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
@@ -112,46 +108,46 @@ function sortProcessedPositions(
 export default function PositionTabView({
   positions_raw,
 }: {
-  positions_raw: PositionSummary;
+  positions_raw: PositionSummary[];
 }) {
   const [modes, setModes] = useState<returnT>({
     descending: true,
     interval: 1,
     order: "profit",
   });
-  const positions_unsorted = useMemo(
-    () => processDepotPositions(positions_raw, modes.interval),
-    [positions_raw, modes.interval],
-  );
+
   const positions = useMemo(
-    () =>
-      sortProcessedPositions(positions_unsorted, modes.order, modes.descending),
-    [positions_unsorted, modes.order, modes.descending],
+    () => sortProcessedPositions(positions_raw, modes.order, modes.descending),
+    [positions_raw, modes.order, modes.descending],
   );
-  const displays: Map<string, string> = new Map([
+  type AssetTypeWithOther = AssetType | "other";
+  const displays: Map<AssetType | "other", string> = new Map([
     ["stock", "Aktien"],
-    ["etf", "ETFs"],
+    ["fund", "ETFs"],
     ["crypto", "Krypto"],
-    ["currency", "Währungen"],
+    ["commodity", "Kommoditäten"],
+    ["other", "Andere"],
   ]);
 
-  const sortedStocks: Partial<Record<AssetType, StockPosition[]>> = {};
-  const counts: Map<Partial<AssetType>, number> = new Map();
+  const sortedStocks: Partial<Record<AssetTypeWithOther, PositionSummary[]>> =
+    {};
+  const counts: Map<AssetTypeWithOther, number> = new Map();
 
   for (const position of positions) {
-    if (!sortedStocks[position.stock.type]) {
-      sortedStocks[position.stock.type] = [];
+    const asset_type = position.asset_type ?? "other";
+    if (!sortedStocks[asset_type]) {
+      sortedStocks[asset_type] = [];
     }
-    (sortedStocks[position.stock.type] as StockPosition[]).push(position);
-    counts.set(position.stock.type, (counts.get(position.stock.type) ?? 0) + 1);
+    (sortedStocks[asset_type] as PositionSummary[]).push(position);
+    counts.set(asset_type, (counts.get(asset_type) ?? 0) + 1);
   }
 
   const types = Object.keys(sortedStocks);
-  const triggers = types.map((stockType) => {
-    const count = counts.get(stockType as AssetType) ?? 0;
-    const name = displays.get(stockType) ?? stockType;
+  const triggers = types.map((asset_type) => {
+    const count = counts.get(asset_type as AssetTypeWithOther) ?? 0;
+    const name = displays.get(asset_type as AssetTypeWithOther) ?? asset_type;
     return (
-      <TabsTrigger className="h-full" key={stockType} value={stockType}>
+      <TabsTrigger className="h-full" key={asset_type} value={asset_type}>
         {name} {count}
       </TabsTrigger>
     );

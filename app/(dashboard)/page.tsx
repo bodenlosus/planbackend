@@ -55,7 +55,7 @@ export default async function Page() {
         </CardHeader>
         <CardContent className="m-0 px-0 pb-0">
           <ChartContainer
-            className="rounded-xl border"
+            className="rounded-xl border overflow-hidden"
             defaultTab="line"
             tabs={[
               {
@@ -92,12 +92,12 @@ export default async function Page() {
           />{" "}
         </CardContent>
       </Card>
-      {/*<PositionTabView positions_raw={fres.positions} />*/}
+      <PositionTabView positions_raw={fres.positions} />
     </main>
   );
 }
 
-const dataFetcher  = async () => {
+const dataFetcher = async () => {
   const client = await createClient();
 
   const { user } = (await client.auth.getUser()).data;
@@ -148,48 +148,4 @@ const dataFetcher  = async () => {
     depotValues: valueResponse.data,
     depotAggValues: valueAggResponse.data,
   };
-});
-
-function calculateProfits(
-  depotValues: Omit<DepotValue, "id" | "depot_id">[],
-  depot: Omit<Depot, "user_id">,
-) {
-  const defaultValue = {
-    liquid_assets: depot.liquid_assets,
-    stock_assets: 0,
-    timestamp: toISODateOnly(getCurrentDate()),
-  };
-  const today: (typeof depotValues)[0] =
-    depotValues.at(-1) ?? depotValues[0] ?? defaultValue;
-  const yesterday = depotValues.at(-2) ?? depotValues[0] ?? defaultValue;
-  const start = depotValues[0] ?? defaultValue;
-
-  const valueToday = today.stock_assets + today.liquid_assets;
-  const valueYesterday = yesterday.stock_assets + yesterday.liquid_assets;
-  const valueStart = start.stock_assets + start.liquid_assets;
-
-  const profitToday = valueToday - valueYesterday;
-
-  const profitAllTime = valueToday - valueStart;
-
-  return {
-    today: {
-      value: valueToday,
-      profit: profitToday,
-      row: today,
-    },
-    start: {
-      value: valueToday,
-      profit: profitAllTime,
-      row: start,
-    },
-    yesterday: {
-      value: valueYesterday,
-      row: yesterday,
-    },
-  };
-}
-
-function relativeDeviation(value1: number, value2: number): number {
-  return (value1 - value2) / value2;
-}
+};

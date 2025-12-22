@@ -7,7 +7,7 @@ import type {
 import { getTimeBetweenDates, msPerDay, toISODateOnly } from "../date_utils";
 type Price = Omit<StockPrice, "id" | "asset_id">;
 
-export function formatter(data: Array<StockPrice>) {
+export function formatter(data: Array<StockPrice>, treshold = 1) {
   const dataWithEmptyDays: Array<Price> = [];
   for (let index = 0; index < data.length; index++) {
     const previousTimeStamp = data[index - 1]?.tstamp;
@@ -22,8 +22,8 @@ export function formatter(data: Array<StockPrice>) {
       new Date(price.tstamp),
     )!;
 
-    if (tDiff > 1) {
-      for (let i = 1; i < tDiff; i++) {
+    if (tDiff > treshold) {
+      for (let i = 1; i < tDiff; i += treshold) {
         const tstamp = toISODateOnly(
           new Date(i * msPerDay + new Date(previousTimeStamp).getTime()),
         );

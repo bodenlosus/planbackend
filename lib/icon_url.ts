@@ -1,18 +1,22 @@
-import type { Asset } from "@/database/custom_types";
+import type { AssetType } from "@/database/custom_types";
 
-export function getIconURL(stock: Asset, iconSize: number): string | null {
+export function getIconURL(
+  symbol: string,
+  asset_type: AssetType,
+  iconSize: number,
+): string | null {
   const pre = "https://assets.parqet.com/logos";
   const query = `?format=webp&size=${iconSize}`;
-  switch (stock.type) {
+  switch (asset_type) {
     case "stock":
-      return `${pre}/symbol/${stock.symbol}${query}`;
+      return `${pre}/symbol/${symbol}${query}`;
 
     case "crypto": {
-      if (!stock.symbol.match(/\w+-USD/)) {
-        return `${pre}/crypto/${stock.symbol}${query}`;
+      if (!symbol.match(/\w+-USD/)) {
+        return `${pre}/crypto/${symbol}${query}`;
       }
-      const symbol = stock.symbol.replace(/-USD$/, "");
-      return `${pre}/crypto/${symbol}${query}`;
+      const new_symbol = symbol.replace(/-USD$/, "");
+      return `${pre}/crypto/${new_symbol}${query}`;
     }
     default:
       return null;

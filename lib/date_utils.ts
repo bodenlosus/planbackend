@@ -41,22 +41,22 @@ export function relativeDateString(
   const diff = getTimeBetweenDates(new Date(), date);
 
   if (diff <= 1) {
-    return "today";
+    return "heute";
   }
 
   if (diff === 2) {
-    return "yesterday";
+    return "gestern";
   }
 
   if (diff < 7) {
     const days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
+      "Sonntag",
+      "Montag",
+      "Dienstag",
+      "Mittwoch",
+      "Donnerstag",
+      "Freitag",
+      "Samstag",
     ];
     return days[date.getDay()];
   }
@@ -75,15 +75,15 @@ export function relativeDateStringCompact(
   const diff = getTimeBetweenDates(new Date(), date);
 
   if (diff <= 1) {
-    return "td";
+    return "heu";
   }
 
   if (diff === 2) {
-    return "yd";
+    return "ges";
   }
 
   if (diff < 7) {
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const days = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
     return days[date.getDay()];
   }
 

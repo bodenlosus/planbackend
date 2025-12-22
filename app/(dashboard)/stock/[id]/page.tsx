@@ -13,6 +13,7 @@ import { formatter as formatPrices } from "@/lib/data/formatter";
 import { redirect } from "next/navigation";
 import { cache } from "react";
 import { createClient } from "@/utils/supabase/server";
+import { getDateCertainDaysAgo } from "@/lib/date_utils";
 
 export const revalidate = 3600;
 // export async function generateStaticParams() {
@@ -33,7 +34,17 @@ export default async function Page(props: {
   const { depots, error, positions, commission } = await dataFetcher(id);
   const depot = depots ? depots[0] : null;
 
-  const { info, prices, error: fetchError } = await fetchStockData(id);
+  const {
+    info,
+    prices,
+    pricesWeekly,
+    error: fetchError,
+  } = await fetchStockData(
+    id,
+    undefined,
+    getDateCertainDaysAgo(365),
+    getDateCertainDaysAgo(5 * 365),
+  );
 
   if (error || fetchError) {
     return (
@@ -47,6 +58,11 @@ export default async function Page(props: {
   }
   const { dataWithEmptyDays: pricesWithEmptyDays, data: pricesFiltered } =
     formatPrices(prices ?? []);
+
+  const {
+    dataWithEmptyDays: pricesWeeklyWithEmptyDays,
+    data: pricesWeeklyFiltered,
+  } = formatPrices(pricesWeekly ?? [], 7);
 
   return (
     <main className="w-full h-full overflow-hidden grid sm:grid-cols-2 md:grid-cols-[repeat(3,fit-content)] gap-5">
@@ -72,6 +88,7 @@ export default async function Page(props: {
       <ChartCard
         className="col-span-3 row-span-2 md:row-start-2"
         prices={pricesWithEmptyDays}
+        pricesWeekly={pricesWeeklyWithEmptyDays}
       />
       <Card className="col-span-3 row-span-2 h-min">
         <ScrollArea className="w-full h-[400px] rounded-md border pr-3">

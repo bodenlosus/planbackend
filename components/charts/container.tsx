@@ -25,29 +25,9 @@ import { time } from "node:console";
 
 export interface props extends ComponentPropsWithoutRef<"div"> {
   data: Array<PlainPrice>;
-  percision: number;
-  flattenOpenClose?: boolean;
 }
-export default function StockChartContainer({
-  data,
-  flattenOpenClose: foc,
-  percision,
-}: props) {
-  const areaData = useMemo(() => {
-    if (foc) {
-      return flattenOpenClose(data);
-    }
-    if (percision == 1) {
-      return data;
-    }
-    const reduced = [];
-    for (let i = 0; i < data.length; i += percision) {
-      reduced.push(data[i]);
-    }
-    return reduced;
-  }, [data]);
-
-  const area = useMemo(() => calculateOffset(areaData, "close"), [areaData]);
+export default function StockChartContainer({ data }: props) {
+  const area = useMemo(() => calculateOffset(data, "close"), [data]);
 
   const candleData = toRelativeValues(data);
   return (
@@ -80,7 +60,7 @@ export default function StockChartContainer({
           content: (
             <AreaChart
               className="aspect-[4/3] md:aspect-[20/9] lg:aspect-[6/2] xl:aspect-[8/2]"
-              data={areaData}
+              data={data}
               dataKey="close"
               xKey="tstamp"
               yKey="close"
