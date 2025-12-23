@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
-import { ChevronsUpDown, LogOut } from "lucide-react"
-
-import { logout } from "@/app/(auth)/actions"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import type { UserResponse } from "@supabase/supabase-js";
+import { ChevronsUpDown, LogOut } from "lucide-react";
+import { useEffect, useState } from "react";
+import { logout } from "@/app/(auth)/actions";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -11,33 +12,31 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
 	useSidebar,
-} from "@/components/ui/sidebar"
-import { createClient } from "@/utils/supabase/client"
-import type { UserResponse } from "@supabase/supabase-js"
-import { useEffect, useState } from "react"
+} from "@/components/ui/sidebar";
+import { createClient } from "@/utils/supabase/client";
 
 export function NavUser() {
-	const { isMobile } = useSidebar()
+	const { isMobile } = useSidebar();
 
-	const [user, setUser] = useState<UserResponse | null>(null)
-	const supabase = createClient()
+	const [user, setUser] = useState<UserResponse | null>(null);
+	const supabase = createClient();
 
-	const userName = user?.data.user?.user_metadata?.name as string | undefined
-	const userEmail = user?.data.user?.email
+	const userName = user?.data.user?.user_metadata?.name as string | undefined;
+	const userEmail = user?.data.user?.email;
 
 	useEffect(() => {
 		const getUser = async () => {
-			const u = await supabase.auth.getUser()
-			setUser(u)
-		}
-		getUser().catch(() => {})
-	}, [supabase])
+			const u = await supabase.auth.getUser();
+			setUser(u);
+		};
+		getUser().catch(() => {});
+	}, [supabase]);
 
 	return (
 		<SidebarMenu>
@@ -110,5 +109,5 @@ export function NavUser() {
 				</DropdownMenu>
 			</SidebarMenuItem>
 		</SidebarMenu>
-	)
+	);
 }

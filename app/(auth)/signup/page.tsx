@@ -4,9 +4,9 @@ import {
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
-import SignUpForm from "./form"
+import SignUpForm from "./form";
 
 export default function Page() {
 	return (
@@ -21,5 +21,5 @@ export default function Page() {
 				</CardContent>
 			</Card>
 		</main>
-	)
+	);
 }

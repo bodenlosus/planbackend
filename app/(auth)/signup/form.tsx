@@ -1,5 +1,12 @@
-"use client"
+"use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import type { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
 	Form,
 	FormControl,
@@ -7,23 +14,15 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/components/ui/form"
-
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Input } from "@/components/ui/input"
-import { useToast } from "@/hooks/use-toast"
-import { zodResolver } from "@hookform/resolvers/zod"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useForm } from "react-hook-form"
-import type { z } from "zod"
-import { signup, createDepot } from "../actions"
-import { formSchema } from "./form_schema"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
+import { createDepot, signup } from "../actions";
+import { formSchema } from "./form_schema";
 
 export default function SignUpForm() {
-	const router = useRouter()
-	const toast = useToast()
+	const router = useRouter();
+	const toast = useToast();
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -32,34 +31,34 @@ export default function SignUpForm() {
 			password: "",
 			confirmPassword: "",
 		},
-	})
+	});
 
 	async function onSubmit(data: z.infer<typeof formSchema>) {
 		const { error, success } = await signup(
 			data.fullName,
 			data.email,
 			data.password,
-		)
+		);
 
 		if (error) {
 			toast.toast({
 				title: "Failed to log in",
 				variant: "destructive",
 				description: error,
-			})
-			return
+			});
+			return;
 		}
 		if (!success) {
-			return
+			return;
 		}
-		
+
 		toast.toast({
 			// description: `A verification email has been sent to ${data.email}`,
 			title: "Signed up successfully",
 			variant: "default",
-		})
-		router.refresh()
-		router.push("/")
+		});
+		router.refresh();
+		router.push("/");
 	}
 
 	return (
@@ -160,5 +159,5 @@ export default function SignUpForm() {
 				</Button>
 			</form>
 		</Form>
-	)
+	);
 }

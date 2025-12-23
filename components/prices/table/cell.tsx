@@ -1,18 +1,17 @@
-import { WinLossIndicator } from "@/components/stat/indicator"
-import { TableCell } from "@/components/ui/table"
-import { formatFloatingPointString } from "@/lib/data/formatter"
-import get_sign from "@/lib/data/get_sign"
-import { cn } from "@/lib/utils"
-import type { PriceColumnOptions } from "./table"
+import type React from "react";
+import { WinLossIndicator } from "@/components/stat/indicator";
+import { TableCell } from "@/components/ui/table";
+import { formatFloatingPointString } from "@/lib/data/formatter";
+import get_sign from "@/lib/data/get_sign";
+import { cn } from "@/lib/utils";
+import type { PriceColumnOptions } from "./table";
 
-import type React from "react"
-
-export type CellValueTypes = "int" | "float" | "string"
+export type CellValueTypes = "int" | "float" | "string";
 
 interface PriceCellProps extends React.ComponentPropsWithoutRef<"div"> {
-	value: React.ReactNode
-	columnIndex: number
-	options: PriceColumnOptions
+	value: React.ReactNode;
+	columnIndex: number;
+	options: PriceColumnOptions;
 }
 
 export default function PriceCell({
@@ -21,7 +20,7 @@ export default function PriceCell({
 	className,
 	options,
 }: PriceCellProps) {
-	const isNumber = options.type === "int" || options.type === "float"
+	const isNumber = options.type === "int" || options.type === "float";
 	if (options.indicator && isNumber) {
 		return (
 			<TableCell
@@ -41,7 +40,7 @@ export default function PriceCell({
 						: value}
 				</span>
 			</TableCell>
-		)
+		);
 	}
 
 	return (
@@ -58,5 +57,5 @@ export default function PriceCell({
 				? formatFloatingPointString(value as number, 2)
 				: value}
 		</TableCell>
-	)
+	);
 }

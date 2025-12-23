@@ -1,26 +1,26 @@
-import {
-  Tooltip as TooltipComponent,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import type React from "react";
+import {
+	Tooltip as TooltipComponent,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface IconT extends React.ComponentPropsWithoutRef<"div"> {
-  name: string;
+	name: string;
 }
 
 export default function Tooltip({ name, children, className }: IconT) {
-  return (
-    <TooltipProvider>
-      <TooltipComponent>
-        <TooltipTrigger className={className} asChild>
-          {children}
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>{name}</p>
-        </TooltipContent>
-      </TooltipComponent>
-    </TooltipProvider>
-  );
+	return (
+		<TooltipProvider>
+			<TooltipComponent>
+				<TooltipTrigger className={className} asChild>
+					{children}
+				</TooltipTrigger>
+				<TooltipContent>
+					<p>{name}</p>
+				</TooltipContent>
+			</TooltipComponent>
+		</TooltipProvider>
+	);
 }

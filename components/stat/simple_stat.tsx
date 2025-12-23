@@ -1,13 +1,13 @@
-import get_sign from "@/lib/data/get_sign"
-import { cn } from "@/lib/utils"
-import type { ComponentPropsWithoutRef } from "react"
-import { WinLossIndicator } from "./indicator"
+import type { ComponentPropsWithoutRef } from "react";
+import get_sign from "@/lib/data/get_sign";
+import { cn } from "@/lib/utils";
+import { WinLossIndicator } from "./indicator";
 
 interface props extends ComponentPropsWithoutRef<"div"> {
-	sign: number
-	signClassName?: string
-	mode?: "indicator" | "textcolor"
-	indicatorClassName?: string
+	sign: number;
+	signClassName?: string;
+	mode?: "indicator" | "textcolor";
+	indicatorClassName?: string;
 }
 export default function WinLossDisplay({
 	children,
@@ -17,13 +17,13 @@ export default function WinLossDisplay({
 	signClassName,
 	indicatorClassName,
 }: props) {
-	const signString = get_sign(sign)
-	let colorClass = ""
+	const signString = get_sign(sign);
+	let colorClass = "";
 
 	if (sign > 0) {
-		colorClass = "text-win"
+		colorClass = "text-win";
 	} else if (sign < 0) {
-		colorClass = "text-loss"
+		colorClass = "text-loss";
 	}
 
 	return (
@@ -40,5 +40,5 @@ export default function WinLossDisplay({
 				<></>
 			)}
 		</span>
-	)
+	);
 }

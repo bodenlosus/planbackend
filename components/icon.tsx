@@ -1,12 +1,16 @@
-import Image from "next/image"
+import Image from "next/image";
 
 export default function URLIcon({
 	iconURL,
 	size,
 	className,
-}: { iconURL?: string | null; size: number; className?: string }) {
+}: {
+	iconURL?: string | null;
+	size: number;
+	className?: string;
+}) {
 	if (!iconURL) {
-		return null
+		return null;
 	}
 	return (
 		<Image
@@ -18,5 +22,5 @@ export default function URLIcon({
 			src={iconURL}
 			alt=" "
 		/>
-	)
+	);
 }

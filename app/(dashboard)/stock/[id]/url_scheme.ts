@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export function urlSchema(defaults: { start: string; end: string }) {
 	return z.object({
@@ -16,5 +16,5 @@ export function urlSchema(defaults: { start: string; end: string }) {
 			(val) => (val === undefined ? defaults.end : val),
 			z.string().date("End date must be a valid date string"),
 		),
-	})
+	});
 }

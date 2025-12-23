@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import type { ComponentPropsWithoutRef } from "react";
 import {
 	Sheet,
 	SheetContent,
@@ -6,14 +7,13 @@ import {
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger,
-} from "@/components/ui/sheet"
-import { cn } from "@/lib/utils"
-import type { ComponentPropsWithoutRef } from "react"
-import { Button } from "../ui/button"
+} from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 
 interface props extends ComponentPropsWithoutRef<"div"> {
-	depotID: number
-	stockID: number
+	depotID: number;
+	stockID: number;
 }
 export function PositionSheet({ className }: props) {
 	return (
@@ -33,5 +33,5 @@ export function PositionSheet({ className }: props) {
 				</SheetHeader>
 			</SheetContent>
 		</Sheet>
-	)
+	);
 }

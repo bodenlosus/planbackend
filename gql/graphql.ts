@@ -1,449 +1,449 @@
 /* eslint-disable */
-import type { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core"
-export type Maybe<T> = T | null
-export type InputMaybe<T> = Maybe<T>
+import type { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
-	[K in keyof T]: T[K]
-}
+	[K in keyof T]: T[K];
+};
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-	[SubKey in K]?: Maybe<T[SubKey]>
-}
+	[SubKey in K]?: Maybe<T[SubKey]>;
+};
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-	[SubKey in K]: Maybe<T[SubKey]>
-}
+	[SubKey in K]: Maybe<T[SubKey]>;
+};
 export type MakeEmpty<
 	T extends { [key: string]: unknown },
 	K extends keyof T,
-> = { [_ in K]?: never }
+> = { [_ in K]?: never };
 export type Incremental<T> =
 	| T
 	| {
-			[P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never
-	  }
+			[P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never;
+	  };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-	ID: { input: string; output: string }
-	String: { input: string; output: string }
-	Boolean: { input: boolean; output: boolean }
-	Int: { input: number; output: number }
-	Float: { input: number; output: number }
+	ID: { input: string; output: string };
+	String: { input: string; output: string };
+	Boolean: { input: boolean; output: boolean };
+	Int: { input: number; output: number };
+	Float: { input: number; output: number };
 	/** A high precision floating point value represented as a string */
-	BigFloat: { input: string; output: string }
+	BigFloat: { input: string; output: string };
 	/** An arbitrary size integer represented as a string */
-	BigInt: { input: string; output: string }
+	BigInt: { input: string; output: string };
 	/** An opaque string using for tracking a position in results during pagination */
-	Cursor: { input: any; output: any }
+	Cursor: { input: any; output: any };
 	/** A date wihout time information */
-	Date: { input: string; output: string }
+	Date: { input: string; output: string };
 	/** A date and time */
-	Datetime: { input: string; output: string }
+	Datetime: { input: string; output: string };
 	/** A Javascript Object Notation value serialized as a string */
-	JSON: { input: string; output: string }
+	JSON: { input: string; output: string };
 	/** Any type not handled by the type system */
-	Opaque: { input: any; output: any }
+	Opaque: { input: any; output: any };
 	/** A time without date information */
-	Time: { input: string; output: string }
+	Time: { input: string; output: string };
 	/** A universally unique identifier */
-	UUID: { input: string; output: string }
-}
+	UUID: { input: string; output: string };
+};
 
 /** Boolean expression comparing fields on type "BigFloat" */
 export type BigFloatFilter = {
-	eq?: InputMaybe<Scalars["BigFloat"]["input"]>
-	gt?: InputMaybe<Scalars["BigFloat"]["input"]>
-	gte?: InputMaybe<Scalars["BigFloat"]["input"]>
-	in?: InputMaybe<Array<Scalars["BigFloat"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	lt?: InputMaybe<Scalars["BigFloat"]["input"]>
-	lte?: InputMaybe<Scalars["BigFloat"]["input"]>
-	neq?: InputMaybe<Scalars["BigFloat"]["input"]>
-}
+	eq?: InputMaybe<Scalars["BigFloat"]["input"]>;
+	gt?: InputMaybe<Scalars["BigFloat"]["input"]>;
+	gte?: InputMaybe<Scalars["BigFloat"]["input"]>;
+	in?: InputMaybe<Array<Scalars["BigFloat"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	lt?: InputMaybe<Scalars["BigFloat"]["input"]>;
+	lte?: InputMaybe<Scalars["BigFloat"]["input"]>;
+	neq?: InputMaybe<Scalars["BigFloat"]["input"]>;
+};
 
 /** Boolean expression comparing fields on type "BigFloatList" */
 export type BigFloatListFilter = {
-	containedBy?: InputMaybe<Array<Scalars["BigFloat"]["input"]>>
-	contains?: InputMaybe<Array<Scalars["BigFloat"]["input"]>>
-	eq?: InputMaybe<Array<Scalars["BigFloat"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	overlaps?: InputMaybe<Array<Scalars["BigFloat"]["input"]>>
-}
+	containedBy?: InputMaybe<Array<Scalars["BigFloat"]["input"]>>;
+	contains?: InputMaybe<Array<Scalars["BigFloat"]["input"]>>;
+	eq?: InputMaybe<Array<Scalars["BigFloat"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	overlaps?: InputMaybe<Array<Scalars["BigFloat"]["input"]>>;
+};
 
 /** Boolean expression comparing fields on type "BigInt" */
 export type BigIntFilter = {
-	eq?: InputMaybe<Scalars["BigInt"]["input"]>
-	gt?: InputMaybe<Scalars["BigInt"]["input"]>
-	gte?: InputMaybe<Scalars["BigInt"]["input"]>
-	in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	lt?: InputMaybe<Scalars["BigInt"]["input"]>
-	lte?: InputMaybe<Scalars["BigInt"]["input"]>
-	neq?: InputMaybe<Scalars["BigInt"]["input"]>
-}
+	eq?: InputMaybe<Scalars["BigInt"]["input"]>;
+	gt?: InputMaybe<Scalars["BigInt"]["input"]>;
+	gte?: InputMaybe<Scalars["BigInt"]["input"]>;
+	in?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	lt?: InputMaybe<Scalars["BigInt"]["input"]>;
+	lte?: InputMaybe<Scalars["BigInt"]["input"]>;
+	neq?: InputMaybe<Scalars["BigInt"]["input"]>;
+};
 
 /** Boolean expression comparing fields on type "BigIntList" */
 export type BigIntListFilter = {
-	containedBy?: InputMaybe<Array<Scalars["BigInt"]["input"]>>
-	contains?: InputMaybe<Array<Scalars["BigInt"]["input"]>>
-	eq?: InputMaybe<Array<Scalars["BigInt"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	overlaps?: InputMaybe<Array<Scalars["BigInt"]["input"]>>
-}
+	containedBy?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+	contains?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+	eq?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	overlaps?: InputMaybe<Array<Scalars["BigInt"]["input"]>>;
+};
 
 /** Boolean expression comparing fields on type "Boolean" */
 export type BooleanFilter = {
-	eq?: InputMaybe<Scalars["Boolean"]["input"]>
-	is?: InputMaybe<FilterIs>
-}
+	eq?: InputMaybe<Scalars["Boolean"]["input"]>;
+	is?: InputMaybe<FilterIs>;
+};
 
 /** Boolean expression comparing fields on type "BooleanList" */
 export type BooleanListFilter = {
-	containedBy?: InputMaybe<Array<Scalars["Boolean"]["input"]>>
-	contains?: InputMaybe<Array<Scalars["Boolean"]["input"]>>
-	eq?: InputMaybe<Array<Scalars["Boolean"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	overlaps?: InputMaybe<Array<Scalars["Boolean"]["input"]>>
-}
+	containedBy?: InputMaybe<Array<Scalars["Boolean"]["input"]>>;
+	contains?: InputMaybe<Array<Scalars["Boolean"]["input"]>>;
+	eq?: InputMaybe<Array<Scalars["Boolean"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	overlaps?: InputMaybe<Array<Scalars["Boolean"]["input"]>>;
+};
 
 /** Boolean expression comparing fields on type "Date" */
 export type DateFilter = {
-	eq?: InputMaybe<Scalars["Date"]["input"]>
-	gt?: InputMaybe<Scalars["Date"]["input"]>
-	gte?: InputMaybe<Scalars["Date"]["input"]>
-	in?: InputMaybe<Array<Scalars["Date"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	lt?: InputMaybe<Scalars["Date"]["input"]>
-	lte?: InputMaybe<Scalars["Date"]["input"]>
-	neq?: InputMaybe<Scalars["Date"]["input"]>
-}
+	eq?: InputMaybe<Scalars["Date"]["input"]>;
+	gt?: InputMaybe<Scalars["Date"]["input"]>;
+	gte?: InputMaybe<Scalars["Date"]["input"]>;
+	in?: InputMaybe<Array<Scalars["Date"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	lt?: InputMaybe<Scalars["Date"]["input"]>;
+	lte?: InputMaybe<Scalars["Date"]["input"]>;
+	neq?: InputMaybe<Scalars["Date"]["input"]>;
+};
 
 /** Boolean expression comparing fields on type "DateList" */
 export type DateListFilter = {
-	containedBy?: InputMaybe<Array<Scalars["Date"]["input"]>>
-	contains?: InputMaybe<Array<Scalars["Date"]["input"]>>
-	eq?: InputMaybe<Array<Scalars["Date"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	overlaps?: InputMaybe<Array<Scalars["Date"]["input"]>>
-}
+	containedBy?: InputMaybe<Array<Scalars["Date"]["input"]>>;
+	contains?: InputMaybe<Array<Scalars["Date"]["input"]>>;
+	eq?: InputMaybe<Array<Scalars["Date"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	overlaps?: InputMaybe<Array<Scalars["Date"]["input"]>>;
+};
 
 /** Boolean expression comparing fields on type "Datetime" */
 export type DatetimeFilter = {
-	eq?: InputMaybe<Scalars["Datetime"]["input"]>
-	gt?: InputMaybe<Scalars["Datetime"]["input"]>
-	gte?: InputMaybe<Scalars["Datetime"]["input"]>
-	in?: InputMaybe<Array<Scalars["Datetime"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	lt?: InputMaybe<Scalars["Datetime"]["input"]>
-	lte?: InputMaybe<Scalars["Datetime"]["input"]>
-	neq?: InputMaybe<Scalars["Datetime"]["input"]>
-}
+	eq?: InputMaybe<Scalars["Datetime"]["input"]>;
+	gt?: InputMaybe<Scalars["Datetime"]["input"]>;
+	gte?: InputMaybe<Scalars["Datetime"]["input"]>;
+	in?: InputMaybe<Array<Scalars["Datetime"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	lt?: InputMaybe<Scalars["Datetime"]["input"]>;
+	lte?: InputMaybe<Scalars["Datetime"]["input"]>;
+	neq?: InputMaybe<Scalars["Datetime"]["input"]>;
+};
 
 /** Boolean expression comparing fields on type "DatetimeList" */
 export type DatetimeListFilter = {
-	containedBy?: InputMaybe<Array<Scalars["Datetime"]["input"]>>
-	contains?: InputMaybe<Array<Scalars["Datetime"]["input"]>>
-	eq?: InputMaybe<Array<Scalars["Datetime"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	overlaps?: InputMaybe<Array<Scalars["Datetime"]["input"]>>
-}
+	containedBy?: InputMaybe<Array<Scalars["Datetime"]["input"]>>;
+	contains?: InputMaybe<Array<Scalars["Datetime"]["input"]>>;
+	eq?: InputMaybe<Array<Scalars["Datetime"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	overlaps?: InputMaybe<Array<Scalars["Datetime"]["input"]>>;
+};
 
 export type DepotPositions = Node & {
-	__typename?: "DepotPositions"
-	amount: Scalars["Int"]["output"]
-	date: Scalars["Date"]["output"]
-	depot_id: Scalars["BigInt"]["output"]
-	depots?: Maybe<Depots>
-	expenses: Scalars["Float"]["output"]
-	id: Scalars["BigInt"]["output"]
+	__typename?: "DepotPositions";
+	amount: Scalars["Int"]["output"];
+	date: Scalars["Date"]["output"];
+	depot_id: Scalars["BigInt"]["output"];
+	depots?: Maybe<Depots>;
+	expenses: Scalars["Float"]["output"];
+	id: Scalars["BigInt"]["output"];
 	/** Globally Unique Record Identifier */
-	nodeId: Scalars["ID"]["output"]
-	profit: Scalars["Float"]["output"]
-	stockInfo?: Maybe<StockInfo>
-	stock_id: Scalars["BigInt"]["output"]
-}
+	nodeId: Scalars["ID"]["output"];
+	profit: Scalars["Float"]["output"];
+	stockInfo?: Maybe<StockInfo>;
+	stock_id: Scalars["BigInt"]["output"];
+};
 
 export type DepotPositionsConnection = {
-	__typename?: "DepotPositionsConnection"
-	edges: Array<DepotPositionsEdge>
-	pageInfo: PageInfo
-}
+	__typename?: "DepotPositionsConnection";
+	edges: Array<DepotPositionsEdge>;
+	pageInfo: PageInfo;
+};
 
 export type DepotPositionsDeleteResponse = {
-	__typename?: "DepotPositionsDeleteResponse"
+	__typename?: "DepotPositionsDeleteResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<DepotPositions>
-}
+	records: Array<DepotPositions>;
+};
 
 export type DepotPositionsEdge = {
-	__typename?: "DepotPositionsEdge"
-	cursor: Scalars["String"]["output"]
-	node: DepotPositions
-}
+	__typename?: "DepotPositionsEdge";
+	cursor: Scalars["String"]["output"];
+	node: DepotPositions;
+};
 
 export type DepotPositionsFilter = {
-	amount?: InputMaybe<IntFilter>
+	amount?: InputMaybe<IntFilter>;
 	/** Returns true only if all its inner filters are true, otherwise returns false */
-	and?: InputMaybe<Array<DepotPositionsFilter>>
-	date?: InputMaybe<DateFilter>
-	depot_id?: InputMaybe<BigIntFilter>
-	expenses?: InputMaybe<FloatFilter>
-	id?: InputMaybe<BigIntFilter>
-	nodeId?: InputMaybe<IdFilter>
+	and?: InputMaybe<Array<DepotPositionsFilter>>;
+	date?: InputMaybe<DateFilter>;
+	depot_id?: InputMaybe<BigIntFilter>;
+	expenses?: InputMaybe<FloatFilter>;
+	id?: InputMaybe<BigIntFilter>;
+	nodeId?: InputMaybe<IdFilter>;
 	/** Negates a filter */
-	not?: InputMaybe<DepotPositionsFilter>
+	not?: InputMaybe<DepotPositionsFilter>;
 	/** Returns true if at least one of its inner filters is true, otherwise returns false */
-	or?: InputMaybe<Array<DepotPositionsFilter>>
-	profit?: InputMaybe<FloatFilter>
-	stock_id?: InputMaybe<BigIntFilter>
-}
+	or?: InputMaybe<Array<DepotPositionsFilter>>;
+	profit?: InputMaybe<FloatFilter>;
+	stock_id?: InputMaybe<BigIntFilter>;
+};
 
 export type DepotPositionsInsertInput = {
-	amount?: InputMaybe<Scalars["Int"]["input"]>
-	date?: InputMaybe<Scalars["Date"]["input"]>
-	depot_id?: InputMaybe<Scalars["BigInt"]["input"]>
-	expenses?: InputMaybe<Scalars["Float"]["input"]>
-	profit?: InputMaybe<Scalars["Float"]["input"]>
-	stock_id?: InputMaybe<Scalars["BigInt"]["input"]>
-}
+	amount?: InputMaybe<Scalars["Int"]["input"]>;
+	date?: InputMaybe<Scalars["Date"]["input"]>;
+	depot_id?: InputMaybe<Scalars["BigInt"]["input"]>;
+	expenses?: InputMaybe<Scalars["Float"]["input"]>;
+	profit?: InputMaybe<Scalars["Float"]["input"]>;
+	stock_id?: InputMaybe<Scalars["BigInt"]["input"]>;
+};
 
 export type DepotPositionsInsertResponse = {
-	__typename?: "DepotPositionsInsertResponse"
+	__typename?: "DepotPositionsInsertResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<DepotPositions>
-}
+	records: Array<DepotPositions>;
+};
 
 export type DepotPositionsOrderBy = {
-	amount?: InputMaybe<OrderByDirection>
-	date?: InputMaybe<OrderByDirection>
-	depot_id?: InputMaybe<OrderByDirection>
-	expenses?: InputMaybe<OrderByDirection>
-	id?: InputMaybe<OrderByDirection>
-	profit?: InputMaybe<OrderByDirection>
-	stock_id?: InputMaybe<OrderByDirection>
-}
+	amount?: InputMaybe<OrderByDirection>;
+	date?: InputMaybe<OrderByDirection>;
+	depot_id?: InputMaybe<OrderByDirection>;
+	expenses?: InputMaybe<OrderByDirection>;
+	id?: InputMaybe<OrderByDirection>;
+	profit?: InputMaybe<OrderByDirection>;
+	stock_id?: InputMaybe<OrderByDirection>;
+};
 
 export type DepotPositionsUpdateInput = {
-	amount?: InputMaybe<Scalars["Int"]["input"]>
-	date?: InputMaybe<Scalars["Date"]["input"]>
-	depot_id?: InputMaybe<Scalars["BigInt"]["input"]>
-	expenses?: InputMaybe<Scalars["Float"]["input"]>
-	profit?: InputMaybe<Scalars["Float"]["input"]>
-	stock_id?: InputMaybe<Scalars["BigInt"]["input"]>
-}
+	amount?: InputMaybe<Scalars["Int"]["input"]>;
+	date?: InputMaybe<Scalars["Date"]["input"]>;
+	depot_id?: InputMaybe<Scalars["BigInt"]["input"]>;
+	expenses?: InputMaybe<Scalars["Float"]["input"]>;
+	profit?: InputMaybe<Scalars["Float"]["input"]>;
+	stock_id?: InputMaybe<Scalars["BigInt"]["input"]>;
+};
 
 export type DepotPositionsUpdateResponse = {
-	__typename?: "DepotPositionsUpdateResponse"
+	__typename?: "DepotPositionsUpdateResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<DepotPositions>
-}
+	records: Array<DepotPositions>;
+};
 
 export type DepotValues = Node & {
-	__typename?: "DepotValues"
-	depot_id: Scalars["BigInt"]["output"]
-	depots?: Maybe<Depots>
-	id: Scalars["BigInt"]["output"]
-	liquid_assets: Scalars["Int"]["output"]
+	__typename?: "DepotValues";
+	depot_id: Scalars["BigInt"]["output"];
+	depots?: Maybe<Depots>;
+	id: Scalars["BigInt"]["output"];
+	liquid_assets: Scalars["Int"]["output"];
 	/** Globally Unique Record Identifier */
-	nodeId: Scalars["ID"]["output"]
-	stock_assets: Scalars["Int"]["output"]
-	timestamp: Scalars["Date"]["output"]
-}
+	nodeId: Scalars["ID"]["output"];
+	stock_assets: Scalars["Int"]["output"];
+	timestamp: Scalars["Date"]["output"];
+};
 
 export type DepotValuesConnection = {
-	__typename?: "DepotValuesConnection"
-	edges: Array<DepotValuesEdge>
-	pageInfo: PageInfo
-}
+	__typename?: "DepotValuesConnection";
+	edges: Array<DepotValuesEdge>;
+	pageInfo: PageInfo;
+};
 
 export type DepotValuesDeleteResponse = {
-	__typename?: "DepotValuesDeleteResponse"
+	__typename?: "DepotValuesDeleteResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<DepotValues>
-}
+	records: Array<DepotValues>;
+};
 
 export type DepotValuesEdge = {
-	__typename?: "DepotValuesEdge"
-	cursor: Scalars["String"]["output"]
-	node: DepotValues
-}
+	__typename?: "DepotValuesEdge";
+	cursor: Scalars["String"]["output"];
+	node: DepotValues;
+};
 
 export type DepotValuesFilter = {
 	/** Returns true only if all its inner filters are true, otherwise returns false */
-	and?: InputMaybe<Array<DepotValuesFilter>>
-	depot_id?: InputMaybe<BigIntFilter>
-	id?: InputMaybe<BigIntFilter>
-	liquid_assets?: InputMaybe<IntFilter>
-	nodeId?: InputMaybe<IdFilter>
+	and?: InputMaybe<Array<DepotValuesFilter>>;
+	depot_id?: InputMaybe<BigIntFilter>;
+	id?: InputMaybe<BigIntFilter>;
+	liquid_assets?: InputMaybe<IntFilter>;
+	nodeId?: InputMaybe<IdFilter>;
 	/** Negates a filter */
-	not?: InputMaybe<DepotValuesFilter>
+	not?: InputMaybe<DepotValuesFilter>;
 	/** Returns true if at least one of its inner filters is true, otherwise returns false */
-	or?: InputMaybe<Array<DepotValuesFilter>>
-	stock_assets?: InputMaybe<IntFilter>
-	timestamp?: InputMaybe<DateFilter>
-}
+	or?: InputMaybe<Array<DepotValuesFilter>>;
+	stock_assets?: InputMaybe<IntFilter>;
+	timestamp?: InputMaybe<DateFilter>;
+};
 
 export type DepotValuesInsertInput = {
-	depot_id?: InputMaybe<Scalars["BigInt"]["input"]>
-	liquid_assets?: InputMaybe<Scalars["Int"]["input"]>
-	stock_assets?: InputMaybe<Scalars["Int"]["input"]>
-	timestamp?: InputMaybe<Scalars["Date"]["input"]>
-}
+	depot_id?: InputMaybe<Scalars["BigInt"]["input"]>;
+	liquid_assets?: InputMaybe<Scalars["Int"]["input"]>;
+	stock_assets?: InputMaybe<Scalars["Int"]["input"]>;
+	timestamp?: InputMaybe<Scalars["Date"]["input"]>;
+};
 
 export type DepotValuesInsertResponse = {
-	__typename?: "DepotValuesInsertResponse"
+	__typename?: "DepotValuesInsertResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<DepotValues>
-}
+	records: Array<DepotValues>;
+};
 
 export type DepotValuesOrderBy = {
-	depot_id?: InputMaybe<OrderByDirection>
-	id?: InputMaybe<OrderByDirection>
-	liquid_assets?: InputMaybe<OrderByDirection>
-	stock_assets?: InputMaybe<OrderByDirection>
-	timestamp?: InputMaybe<OrderByDirection>
-}
+	depot_id?: InputMaybe<OrderByDirection>;
+	id?: InputMaybe<OrderByDirection>;
+	liquid_assets?: InputMaybe<OrderByDirection>;
+	stock_assets?: InputMaybe<OrderByDirection>;
+	timestamp?: InputMaybe<OrderByDirection>;
+};
 
 export type DepotValuesUpdateInput = {
-	depot_id?: InputMaybe<Scalars["BigInt"]["input"]>
-	liquid_assets?: InputMaybe<Scalars["Int"]["input"]>
-	stock_assets?: InputMaybe<Scalars["Int"]["input"]>
-	timestamp?: InputMaybe<Scalars["Date"]["input"]>
-}
+	depot_id?: InputMaybe<Scalars["BigInt"]["input"]>;
+	liquid_assets?: InputMaybe<Scalars["Int"]["input"]>;
+	stock_assets?: InputMaybe<Scalars["Int"]["input"]>;
+	timestamp?: InputMaybe<Scalars["Date"]["input"]>;
+};
 
 export type DepotValuesUpdateResponse = {
-	__typename?: "DepotValuesUpdateResponse"
+	__typename?: "DepotValuesUpdateResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<DepotValues>
-}
+	records: Array<DepotValues>;
+};
 
 export type Depots = Node & {
-	__typename?: "Depots"
-	created_at: Scalars["Date"]["output"]
-	depotPositionsCollection?: Maybe<DepotPositionsConnection>
-	depotValuesCollection?: Maybe<DepotValuesConnection>
-	id: Scalars["BigInt"]["output"]
-	liquid_assets: Scalars["Int"]["output"]
-	name?: Maybe<Scalars["String"]["output"]>
+	__typename?: "Depots";
+	created_at: Scalars["Date"]["output"];
+	depotPositionsCollection?: Maybe<DepotPositionsConnection>;
+	depotValuesCollection?: Maybe<DepotValuesConnection>;
+	id: Scalars["BigInt"]["output"];
+	liquid_assets: Scalars["Int"]["output"];
+	name?: Maybe<Scalars["String"]["output"]>;
 	/** Globally Unique Record Identifier */
-	nodeId: Scalars["ID"]["output"]
-	profiles?: Maybe<Profiles>
-	transactionsCollection?: Maybe<TransactionsConnection>
-	user_id: Scalars["UUID"]["output"]
-}
+	nodeId: Scalars["ID"]["output"];
+	profiles?: Maybe<Profiles>;
+	transactionsCollection?: Maybe<TransactionsConnection>;
+	user_id: Scalars["UUID"]["output"];
+};
 
 export type DepotsDepotPositionsCollectionArgs = {
-	after?: InputMaybe<Scalars["Cursor"]["input"]>
-	before?: InputMaybe<Scalars["Cursor"]["input"]>
-	filter?: InputMaybe<DepotPositionsFilter>
-	first?: InputMaybe<Scalars["Int"]["input"]>
-	last?: InputMaybe<Scalars["Int"]["input"]>
-	offset?: InputMaybe<Scalars["Int"]["input"]>
-	orderBy?: InputMaybe<Array<DepotPositionsOrderBy>>
-}
+	after?: InputMaybe<Scalars["Cursor"]["input"]>;
+	before?: InputMaybe<Scalars["Cursor"]["input"]>;
+	filter?: InputMaybe<DepotPositionsFilter>;
+	first?: InputMaybe<Scalars["Int"]["input"]>;
+	last?: InputMaybe<Scalars["Int"]["input"]>;
+	offset?: InputMaybe<Scalars["Int"]["input"]>;
+	orderBy?: InputMaybe<Array<DepotPositionsOrderBy>>;
+};
 
 export type DepotsDepotValuesCollectionArgs = {
-	after?: InputMaybe<Scalars["Cursor"]["input"]>
-	before?: InputMaybe<Scalars["Cursor"]["input"]>
-	filter?: InputMaybe<DepotValuesFilter>
-	first?: InputMaybe<Scalars["Int"]["input"]>
-	last?: InputMaybe<Scalars["Int"]["input"]>
-	offset?: InputMaybe<Scalars["Int"]["input"]>
-	orderBy?: InputMaybe<Array<DepotValuesOrderBy>>
-}
+	after?: InputMaybe<Scalars["Cursor"]["input"]>;
+	before?: InputMaybe<Scalars["Cursor"]["input"]>;
+	filter?: InputMaybe<DepotValuesFilter>;
+	first?: InputMaybe<Scalars["Int"]["input"]>;
+	last?: InputMaybe<Scalars["Int"]["input"]>;
+	offset?: InputMaybe<Scalars["Int"]["input"]>;
+	orderBy?: InputMaybe<Array<DepotValuesOrderBy>>;
+};
 
 export type DepotsTransactionsCollectionArgs = {
-	after?: InputMaybe<Scalars["Cursor"]["input"]>
-	before?: InputMaybe<Scalars["Cursor"]["input"]>
-	filter?: InputMaybe<TransactionsFilter>
-	first?: InputMaybe<Scalars["Int"]["input"]>
-	last?: InputMaybe<Scalars["Int"]["input"]>
-	offset?: InputMaybe<Scalars["Int"]["input"]>
-	orderBy?: InputMaybe<Array<TransactionsOrderBy>>
-}
+	after?: InputMaybe<Scalars["Cursor"]["input"]>;
+	before?: InputMaybe<Scalars["Cursor"]["input"]>;
+	filter?: InputMaybe<TransactionsFilter>;
+	first?: InputMaybe<Scalars["Int"]["input"]>;
+	last?: InputMaybe<Scalars["Int"]["input"]>;
+	offset?: InputMaybe<Scalars["Int"]["input"]>;
+	orderBy?: InputMaybe<Array<TransactionsOrderBy>>;
+};
 
 export type DepotsConnection = {
-	__typename?: "DepotsConnection"
-	edges: Array<DepotsEdge>
-	pageInfo: PageInfo
-}
+	__typename?: "DepotsConnection";
+	edges: Array<DepotsEdge>;
+	pageInfo: PageInfo;
+};
 
 export type DepotsDeleteResponse = {
-	__typename?: "DepotsDeleteResponse"
+	__typename?: "DepotsDeleteResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<Depots>
-}
+	records: Array<Depots>;
+};
 
 export type DepotsEdge = {
-	__typename?: "DepotsEdge"
-	cursor: Scalars["String"]["output"]
-	node: Depots
-}
+	__typename?: "DepotsEdge";
+	cursor: Scalars["String"]["output"];
+	node: Depots;
+};
 
 export type DepotsFilter = {
 	/** Returns true only if all its inner filters are true, otherwise returns false */
-	and?: InputMaybe<Array<DepotsFilter>>
-	created_at?: InputMaybe<DateFilter>
-	id?: InputMaybe<BigIntFilter>
-	liquid_assets?: InputMaybe<IntFilter>
-	name?: InputMaybe<StringFilter>
-	nodeId?: InputMaybe<IdFilter>
+	and?: InputMaybe<Array<DepotsFilter>>;
+	created_at?: InputMaybe<DateFilter>;
+	id?: InputMaybe<BigIntFilter>;
+	liquid_assets?: InputMaybe<IntFilter>;
+	name?: InputMaybe<StringFilter>;
+	nodeId?: InputMaybe<IdFilter>;
 	/** Negates a filter */
-	not?: InputMaybe<DepotsFilter>
+	not?: InputMaybe<DepotsFilter>;
 	/** Returns true if at least one of its inner filters is true, otherwise returns false */
-	or?: InputMaybe<Array<DepotsFilter>>
-	user_id?: InputMaybe<UuidFilter>
-}
+	or?: InputMaybe<Array<DepotsFilter>>;
+	user_id?: InputMaybe<UuidFilter>;
+};
 
 export type DepotsInsertInput = {
-	created_at?: InputMaybe<Scalars["Date"]["input"]>
-	liquid_assets?: InputMaybe<Scalars["Int"]["input"]>
-	name?: InputMaybe<Scalars["String"]["input"]>
-	user_id?: InputMaybe<Scalars["UUID"]["input"]>
-}
+	created_at?: InputMaybe<Scalars["Date"]["input"]>;
+	liquid_assets?: InputMaybe<Scalars["Int"]["input"]>;
+	name?: InputMaybe<Scalars["String"]["input"]>;
+	user_id?: InputMaybe<Scalars["UUID"]["input"]>;
+};
 
 export type DepotsInsertResponse = {
-	__typename?: "DepotsInsertResponse"
+	__typename?: "DepotsInsertResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<Depots>
-}
+	records: Array<Depots>;
+};
 
 export type DepotsOrderBy = {
-	created_at?: InputMaybe<OrderByDirection>
-	id?: InputMaybe<OrderByDirection>
-	liquid_assets?: InputMaybe<OrderByDirection>
-	name?: InputMaybe<OrderByDirection>
-	user_id?: InputMaybe<OrderByDirection>
-}
+	created_at?: InputMaybe<OrderByDirection>;
+	id?: InputMaybe<OrderByDirection>;
+	liquid_assets?: InputMaybe<OrderByDirection>;
+	name?: InputMaybe<OrderByDirection>;
+	user_id?: InputMaybe<OrderByDirection>;
+};
 
 export type DepotsUpdateInput = {
-	created_at?: InputMaybe<Scalars["Date"]["input"]>
-	liquid_assets?: InputMaybe<Scalars["Int"]["input"]>
-	name?: InputMaybe<Scalars["String"]["input"]>
-	user_id?: InputMaybe<Scalars["UUID"]["input"]>
-}
+	created_at?: InputMaybe<Scalars["Date"]["input"]>;
+	liquid_assets?: InputMaybe<Scalars["Int"]["input"]>;
+	name?: InputMaybe<Scalars["String"]["input"]>;
+	user_id?: InputMaybe<Scalars["UUID"]["input"]>;
+};
 
 export type DepotsUpdateResponse = {
-	__typename?: "DepotsUpdateResponse"
+	__typename?: "DepotsUpdateResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<Depots>
-}
+	records: Array<Depots>;
+};
 
 export enum FilterIs {
 	NotNull = "NOT_NULL",
@@ -452,302 +452,302 @@ export enum FilterIs {
 
 /** Boolean expression comparing fields on type "Float" */
 export type FloatFilter = {
-	eq?: InputMaybe<Scalars["Float"]["input"]>
-	gt?: InputMaybe<Scalars["Float"]["input"]>
-	gte?: InputMaybe<Scalars["Float"]["input"]>
-	in?: InputMaybe<Array<Scalars["Float"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	lt?: InputMaybe<Scalars["Float"]["input"]>
-	lte?: InputMaybe<Scalars["Float"]["input"]>
-	neq?: InputMaybe<Scalars["Float"]["input"]>
-}
+	eq?: InputMaybe<Scalars["Float"]["input"]>;
+	gt?: InputMaybe<Scalars["Float"]["input"]>;
+	gte?: InputMaybe<Scalars["Float"]["input"]>;
+	in?: InputMaybe<Array<Scalars["Float"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	lt?: InputMaybe<Scalars["Float"]["input"]>;
+	lte?: InputMaybe<Scalars["Float"]["input"]>;
+	neq?: InputMaybe<Scalars["Float"]["input"]>;
+};
 
 /** Boolean expression comparing fields on type "FloatList" */
 export type FloatListFilter = {
-	containedBy?: InputMaybe<Array<Scalars["Float"]["input"]>>
-	contains?: InputMaybe<Array<Scalars["Float"]["input"]>>
-	eq?: InputMaybe<Array<Scalars["Float"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	overlaps?: InputMaybe<Array<Scalars["Float"]["input"]>>
-}
+	containedBy?: InputMaybe<Array<Scalars["Float"]["input"]>>;
+	contains?: InputMaybe<Array<Scalars["Float"]["input"]>>;
+	eq?: InputMaybe<Array<Scalars["Float"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	overlaps?: InputMaybe<Array<Scalars["Float"]["input"]>>;
+};
 
 /** Boolean expression comparing fields on type "ID" */
 export type IdFilter = {
-	eq?: InputMaybe<Scalars["ID"]["input"]>
-}
+	eq?: InputMaybe<Scalars["ID"]["input"]>;
+};
 
 /** Boolean expression comparing fields on type "Int" */
 export type IntFilter = {
-	eq?: InputMaybe<Scalars["Int"]["input"]>
-	gt?: InputMaybe<Scalars["Int"]["input"]>
-	gte?: InputMaybe<Scalars["Int"]["input"]>
-	in?: InputMaybe<Array<Scalars["Int"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	lt?: InputMaybe<Scalars["Int"]["input"]>
-	lte?: InputMaybe<Scalars["Int"]["input"]>
-	neq?: InputMaybe<Scalars["Int"]["input"]>
-}
+	eq?: InputMaybe<Scalars["Int"]["input"]>;
+	gt?: InputMaybe<Scalars["Int"]["input"]>;
+	gte?: InputMaybe<Scalars["Int"]["input"]>;
+	in?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	lt?: InputMaybe<Scalars["Int"]["input"]>;
+	lte?: InputMaybe<Scalars["Int"]["input"]>;
+	neq?: InputMaybe<Scalars["Int"]["input"]>;
+};
 
 /** Boolean expression comparing fields on type "IntList" */
 export type IntListFilter = {
-	containedBy?: InputMaybe<Array<Scalars["Int"]["input"]>>
-	contains?: InputMaybe<Array<Scalars["Int"]["input"]>>
-	eq?: InputMaybe<Array<Scalars["Int"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	overlaps?: InputMaybe<Array<Scalars["Int"]["input"]>>
-}
+	containedBy?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+	contains?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+	eq?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	overlaps?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+};
 
 /** The root type for creating and mutating data */
 export type Mutation = {
-	__typename?: "Mutation"
-	buy_stock?: Maybe<Scalars["Opaque"]["output"]>
-	dblink_current_query?: Maybe<Scalars["String"]["output"]>
-	dblink_fdw_validator?: Maybe<Scalars["Opaque"]["output"]>
-	dblink_get_connections?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>
+	__typename?: "Mutation";
+	buy_stock?: Maybe<Scalars["Opaque"]["output"]>;
+	dblink_current_query?: Maybe<Scalars["String"]["output"]>;
+	dblink_fdw_validator?: Maybe<Scalars["Opaque"]["output"]>;
+	dblink_get_connections?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
 	/** Deletes zero or more records from the `DepotPositions` collection */
-	deleteFromDepotPositionsCollection: DepotPositionsDeleteResponse
+	deleteFromDepotPositionsCollection: DepotPositionsDeleteResponse;
 	/** Deletes zero or more records from the `DepotValues` collection */
-	deleteFromDepotValuesCollection: DepotValuesDeleteResponse
+	deleteFromDepotValuesCollection: DepotValuesDeleteResponse;
 	/** Deletes zero or more records from the `Depots` collection */
-	deleteFromDepotsCollection: DepotsDeleteResponse
+	deleteFromDepotsCollection: DepotsDeleteResponse;
 	/** Deletes zero or more records from the `StockInfo` collection */
-	deleteFromStockInfoCollection: StockInfoDeleteResponse
+	deleteFromStockInfoCollection: StockInfoDeleteResponse;
 	/** Deletes zero or more records from the `StockPrices` collection */
-	deleteFromStockPricesCollection: StockPricesDeleteResponse
+	deleteFromStockPricesCollection: StockPricesDeleteResponse;
 	/** Deletes zero or more records from the `Transactions` collection */
-	deleteFromTransactionsCollection: TransactionsDeleteResponse
+	deleteFromTransactionsCollection: TransactionsDeleteResponse;
 	/** Deletes zero or more records from the `profiles` collection */
-	deleteFromprofilesCollection: ProfilesDeleteResponse
+	deleteFromprofilesCollection: ProfilesDeleteResponse;
 	/** Adds one or more `DepotPositions` records to the collection */
-	insertIntoDepotPositionsCollection?: Maybe<DepotPositionsInsertResponse>
+	insertIntoDepotPositionsCollection?: Maybe<DepotPositionsInsertResponse>;
 	/** Adds one or more `DepotValues` records to the collection */
-	insertIntoDepotValuesCollection?: Maybe<DepotValuesInsertResponse>
+	insertIntoDepotValuesCollection?: Maybe<DepotValuesInsertResponse>;
 	/** Adds one or more `Depots` records to the collection */
-	insertIntoDepotsCollection?: Maybe<DepotsInsertResponse>
+	insertIntoDepotsCollection?: Maybe<DepotsInsertResponse>;
 	/** Adds one or more `StockInfo` records to the collection */
-	insertIntoStockInfoCollection?: Maybe<StockInfoInsertResponse>
+	insertIntoStockInfoCollection?: Maybe<StockInfoInsertResponse>;
 	/** Adds one or more `StockPrices` records to the collection */
-	insertIntoStockPricesCollection?: Maybe<StockPricesInsertResponse>
+	insertIntoStockPricesCollection?: Maybe<StockPricesInsertResponse>;
 	/** Adds one or more `Transactions` records to the collection */
-	insertIntoTransactionsCollection?: Maybe<TransactionsInsertResponse>
+	insertIntoTransactionsCollection?: Maybe<TransactionsInsertResponse>;
 	/** Adds one or more `profiles` records to the collection */
-	insertIntoprofilesCollection?: Maybe<ProfilesInsertResponse>
-	log_transaction?: Maybe<Scalars["Opaque"]["output"]>
-	sell_stock?: Maybe<Scalars["Opaque"]["output"]>
+	insertIntoprofilesCollection?: Maybe<ProfilesInsertResponse>;
+	log_transaction?: Maybe<Scalars["Opaque"]["output"]>;
+	sell_stock?: Maybe<Scalars["Opaque"]["output"]>;
 	/** Updates zero or more records in the `DepotPositions` collection */
-	updateDepotPositionsCollection: DepotPositionsUpdateResponse
+	updateDepotPositionsCollection: DepotPositionsUpdateResponse;
 	/** Updates zero or more records in the `DepotValues` collection */
-	updateDepotValuesCollection: DepotValuesUpdateResponse
+	updateDepotValuesCollection: DepotValuesUpdateResponse;
 	/** Updates zero or more records in the `Depots` collection */
-	updateDepotsCollection: DepotsUpdateResponse
+	updateDepotsCollection: DepotsUpdateResponse;
 	/** Updates zero or more records in the `StockInfo` collection */
-	updateStockInfoCollection: StockInfoUpdateResponse
+	updateStockInfoCollection: StockInfoUpdateResponse;
 	/** Updates zero or more records in the `StockPrices` collection */
-	updateStockPricesCollection: StockPricesUpdateResponse
+	updateStockPricesCollection: StockPricesUpdateResponse;
 	/** Updates zero or more records in the `Transactions` collection */
-	updateTransactionsCollection: TransactionsUpdateResponse
-	update_depot_values?: Maybe<Scalars["Opaque"]["output"]>
-	update_depot_values_s?: Maybe<Scalars["Opaque"]["output"]>
+	updateTransactionsCollection: TransactionsUpdateResponse;
+	update_depot_values?: Maybe<Scalars["Opaque"]["output"]>;
+	update_depot_values_s?: Maybe<Scalars["Opaque"]["output"]>;
 	/** Updates zero or more records in the `profiles` collection */
-	updateprofilesCollection: ProfilesUpdateResponse
-	upsert_stock_prices?: Maybe<Scalars["Opaque"]["output"]>
-	upsert_stock_prices_bulk?: Maybe<Scalars["Opaque"]["output"]>
-}
+	updateprofilesCollection: ProfilesUpdateResponse;
+	upsert_stock_prices?: Maybe<Scalars["Opaque"]["output"]>;
+	upsert_stock_prices_bulk?: Maybe<Scalars["Opaque"]["output"]>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationBuy_StockArgs = {
-	p_amount: Scalars["Int"]["input"]
-	p_depot_id: Scalars["BigInt"]["input"]
-	p_stock_id: Scalars["BigInt"]["input"]
-	p_timestamp: Scalars["Date"]["input"]
-}
+	p_amount: Scalars["Int"]["input"];
+	p_depot_id: Scalars["BigInt"]["input"];
+	p_stock_id: Scalars["BigInt"]["input"];
+	p_timestamp: Scalars["Date"]["input"];
+};
 
 /** The root type for creating and mutating data */
 export type MutationDblink_Fdw_ValidatorArgs = {
-	catalog: Scalars["Opaque"]["input"]
-	options: Array<InputMaybe<Scalars["String"]["input"]>>
-}
+	catalog: Scalars["Opaque"]["input"];
+	options: Array<InputMaybe<Scalars["String"]["input"]>>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationDeleteFromDepotPositionsCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<DepotPositionsFilter>
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<DepotPositionsFilter>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationDeleteFromDepotValuesCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<DepotValuesFilter>
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<DepotValuesFilter>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationDeleteFromDepotsCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<DepotsFilter>
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<DepotsFilter>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationDeleteFromStockInfoCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<StockInfoFilter>
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<StockInfoFilter>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationDeleteFromStockPricesCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<StockPricesFilter>
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<StockPricesFilter>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationDeleteFromTransactionsCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<TransactionsFilter>
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<TransactionsFilter>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationDeleteFromprofilesCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<ProfilesFilter>
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<ProfilesFilter>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationInsertIntoDepotPositionsCollectionArgs = {
-	objects: Array<DepotPositionsInsertInput>
-}
+	objects: Array<DepotPositionsInsertInput>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationInsertIntoDepotValuesCollectionArgs = {
-	objects: Array<DepotValuesInsertInput>
-}
+	objects: Array<DepotValuesInsertInput>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationInsertIntoDepotsCollectionArgs = {
-	objects: Array<DepotsInsertInput>
-}
+	objects: Array<DepotsInsertInput>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationInsertIntoStockInfoCollectionArgs = {
-	objects: Array<StockInfoInsertInput>
-}
+	objects: Array<StockInfoInsertInput>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationInsertIntoStockPricesCollectionArgs = {
-	objects: Array<StockPricesInsertInput>
-}
+	objects: Array<StockPricesInsertInput>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationInsertIntoTransactionsCollectionArgs = {
-	objects: Array<TransactionsInsertInput>
-}
+	objects: Array<TransactionsInsertInput>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationInsertIntoprofilesCollectionArgs = {
-	objects: Array<ProfilesInsertInput>
-}
+	objects: Array<ProfilesInsertInput>;
+};
 
 /** The root type for creating and mutating data */
 export type MutationLog_TransactionArgs = {
-	p_amount: Scalars["Int"]["input"]
-	p_depot_id: Scalars["BigInt"]["input"]
-	p_price: Scalars["Float"]["input"]
-	p_stock_id: Scalars["BigInt"]["input"]
-	p_timestamp: Scalars["Date"]["input"]
-}
+	p_amount: Scalars["Int"]["input"];
+	p_depot_id: Scalars["BigInt"]["input"];
+	p_price: Scalars["Float"]["input"];
+	p_stock_id: Scalars["BigInt"]["input"];
+	p_timestamp: Scalars["Date"]["input"];
+};
 
 /** The root type for creating and mutating data */
 export type MutationSell_StockArgs = {
-	p_amount: Scalars["Int"]["input"]
-	p_depot_id: Scalars["BigInt"]["input"]
-	p_stock_id: Scalars["BigInt"]["input"]
-	p_timestamp: Scalars["Date"]["input"]
-}
+	p_amount: Scalars["Int"]["input"];
+	p_depot_id: Scalars["BigInt"]["input"];
+	p_stock_id: Scalars["BigInt"]["input"];
+	p_timestamp: Scalars["Date"]["input"];
+};
 
 /** The root type for creating and mutating data */
 export type MutationUpdateDepotPositionsCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<DepotPositionsFilter>
-	set: DepotPositionsUpdateInput
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<DepotPositionsFilter>;
+	set: DepotPositionsUpdateInput;
+};
 
 /** The root type for creating and mutating data */
 export type MutationUpdateDepotValuesCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<DepotValuesFilter>
-	set: DepotValuesUpdateInput
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<DepotValuesFilter>;
+	set: DepotValuesUpdateInput;
+};
 
 /** The root type for creating and mutating data */
 export type MutationUpdateDepotsCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<DepotsFilter>
-	set: DepotsUpdateInput
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<DepotsFilter>;
+	set: DepotsUpdateInput;
+};
 
 /** The root type for creating and mutating data */
 export type MutationUpdateStockInfoCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<StockInfoFilter>
-	set: StockInfoUpdateInput
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<StockInfoFilter>;
+	set: StockInfoUpdateInput;
+};
 
 /** The root type for creating and mutating data */
 export type MutationUpdateStockPricesCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<StockPricesFilter>
-	set: StockPricesUpdateInput
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<StockPricesFilter>;
+	set: StockPricesUpdateInput;
+};
 
 /** The root type for creating and mutating data */
 export type MutationUpdateTransactionsCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<TransactionsFilter>
-	set: TransactionsUpdateInput
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<TransactionsFilter>;
+	set: TransactionsUpdateInput;
+};
 
 /** The root type for creating and mutating data */
 export type MutationUpdate_Depot_ValuesArgs = {
-	p_timestamp: Scalars["Date"]["input"]
-}
+	p_timestamp: Scalars["Date"]["input"];
+};
 
 /** The root type for creating and mutating data */
 export type MutationUpdate_Depot_Values_SArgs = {
-	p_depot_id: Scalars["BigInt"]["input"]
-	p_timestamp: Scalars["Date"]["input"]
-}
+	p_depot_id: Scalars["BigInt"]["input"];
+	p_timestamp: Scalars["Date"]["input"];
+};
 
 /** The root type for creating and mutating data */
 export type MutationUpdateprofilesCollectionArgs = {
-	atMost?: Scalars["Int"]["input"]
-	filter?: InputMaybe<ProfilesFilter>
-	set: ProfilesUpdateInput
-}
+	atMost?: Scalars["Int"]["input"];
+	filter?: InputMaybe<ProfilesFilter>;
+	set: ProfilesUpdateInput;
+};
 
 /** The root type for creating and mutating data */
 export type MutationUpsert_Stock_PricesArgs = {
-	p_close: Scalars["Float"]["input"]
-	p_high: Scalars["Float"]["input"]
-	p_low: Scalars["Float"]["input"]
-	p_open: Scalars["Float"]["input"]
-	p_stock_id: Scalars["BigInt"]["input"]
-	p_timestamp: Scalars["Date"]["input"]
-	p_volume: Scalars["BigInt"]["input"]
-}
+	p_close: Scalars["Float"]["input"];
+	p_high: Scalars["Float"]["input"];
+	p_low: Scalars["Float"]["input"];
+	p_open: Scalars["Float"]["input"];
+	p_stock_id: Scalars["BigInt"]["input"];
+	p_timestamp: Scalars["Date"]["input"];
+	p_volume: Scalars["BigInt"]["input"];
+};
 
 /** The root type for creating and mutating data */
 export type MutationUpsert_Stock_Prices_BulkArgs = {
-	p_data: Scalars["JSON"]["input"]
-}
+	p_data: Scalars["JSON"]["input"];
+};
 
 export type Node = {
 	/** Retrieves a record by `ID` */
-	nodeId: Scalars["ID"]["output"]
-}
+	nodeId: Scalars["ID"]["output"];
+};
 
 /** Boolean expression comparing fields on type "Opaque" */
 export type OpaqueFilter = {
-	eq?: InputMaybe<Scalars["Opaque"]["input"]>
-	is?: InputMaybe<FilterIs>
-}
+	eq?: InputMaybe<Scalars["Opaque"]["input"]>;
+	is?: InputMaybe<FilterIs>;
+};
 
 /** Defines a per-field sorting order */
 export enum OrderByDirection {
@@ -762,332 +762,332 @@ export enum OrderByDirection {
 }
 
 export type PageInfo = {
-	__typename?: "PageInfo"
-	endCursor?: Maybe<Scalars["String"]["output"]>
-	hasNextPage: Scalars["Boolean"]["output"]
-	hasPreviousPage: Scalars["Boolean"]["output"]
-	startCursor?: Maybe<Scalars["String"]["output"]>
-}
+	__typename?: "PageInfo";
+	endCursor?: Maybe<Scalars["String"]["output"]>;
+	hasNextPage: Scalars["Boolean"]["output"];
+	hasPreviousPage: Scalars["Boolean"]["output"];
+	startCursor?: Maybe<Scalars["String"]["output"]>;
+};
 
 /** The root type for querying data */
 export type Query = {
-	__typename?: "Query"
+	__typename?: "Query";
 	/** A pagable collection of type `DepotPositions` */
-	depotPositionsCollection?: Maybe<DepotPositionsConnection>
+	depotPositionsCollection?: Maybe<DepotPositionsConnection>;
 	/** A pagable collection of type `DepotValues` */
-	depotValuesCollection?: Maybe<DepotValuesConnection>
+	depotValuesCollection?: Maybe<DepotValuesConnection>;
 	/** A pagable collection of type `Depots` */
-	depotsCollection?: Maybe<DepotsConnection>
+	depotsCollection?: Maybe<DepotsConnection>;
 	/** Retrieve a record by its `ID` */
-	node?: Maybe<Node>
+	node?: Maybe<Node>;
 	/** A pagable collection of type `profiles` */
-	profilesCollection?: Maybe<ProfilesConnection>
+	profilesCollection?: Maybe<ProfilesConnection>;
 	/** A pagable collection of type `StockInfo` */
-	stockInfoCollection?: Maybe<StockInfoConnection>
+	stockInfoCollection?: Maybe<StockInfoConnection>;
 	/** A pagable collection of type `StockPrices` */
-	stockPricesCollection?: Maybe<StockPricesConnection>
+	stockPricesCollection?: Maybe<StockPricesConnection>;
 	/** A pagable collection of type `Transactions` */
-	transactionsCollection?: Maybe<TransactionsConnection>
-}
+	transactionsCollection?: Maybe<TransactionsConnection>;
+};
 
 /** The root type for querying data */
 export type QueryDepotPositionsCollectionArgs = {
-	after?: InputMaybe<Scalars["Cursor"]["input"]>
-	before?: InputMaybe<Scalars["Cursor"]["input"]>
-	filter?: InputMaybe<DepotPositionsFilter>
-	first?: InputMaybe<Scalars["Int"]["input"]>
-	last?: InputMaybe<Scalars["Int"]["input"]>
-	offset?: InputMaybe<Scalars["Int"]["input"]>
-	orderBy?: InputMaybe<Array<DepotPositionsOrderBy>>
-}
+	after?: InputMaybe<Scalars["Cursor"]["input"]>;
+	before?: InputMaybe<Scalars["Cursor"]["input"]>;
+	filter?: InputMaybe<DepotPositionsFilter>;
+	first?: InputMaybe<Scalars["Int"]["input"]>;
+	last?: InputMaybe<Scalars["Int"]["input"]>;
+	offset?: InputMaybe<Scalars["Int"]["input"]>;
+	orderBy?: InputMaybe<Array<DepotPositionsOrderBy>>;
+};
 
 /** The root type for querying data */
 export type QueryDepotValuesCollectionArgs = {
-	after?: InputMaybe<Scalars["Cursor"]["input"]>
-	before?: InputMaybe<Scalars["Cursor"]["input"]>
-	filter?: InputMaybe<DepotValuesFilter>
-	first?: InputMaybe<Scalars["Int"]["input"]>
-	last?: InputMaybe<Scalars["Int"]["input"]>
-	offset?: InputMaybe<Scalars["Int"]["input"]>
-	orderBy?: InputMaybe<Array<DepotValuesOrderBy>>
-}
+	after?: InputMaybe<Scalars["Cursor"]["input"]>;
+	before?: InputMaybe<Scalars["Cursor"]["input"]>;
+	filter?: InputMaybe<DepotValuesFilter>;
+	first?: InputMaybe<Scalars["Int"]["input"]>;
+	last?: InputMaybe<Scalars["Int"]["input"]>;
+	offset?: InputMaybe<Scalars["Int"]["input"]>;
+	orderBy?: InputMaybe<Array<DepotValuesOrderBy>>;
+};
 
 /** The root type for querying data */
 export type QueryDepotsCollectionArgs = {
-	after?: InputMaybe<Scalars["Cursor"]["input"]>
-	before?: InputMaybe<Scalars["Cursor"]["input"]>
-	filter?: InputMaybe<DepotsFilter>
-	first?: InputMaybe<Scalars["Int"]["input"]>
-	last?: InputMaybe<Scalars["Int"]["input"]>
-	offset?: InputMaybe<Scalars["Int"]["input"]>
-	orderBy?: InputMaybe<Array<DepotsOrderBy>>
-}
+	after?: InputMaybe<Scalars["Cursor"]["input"]>;
+	before?: InputMaybe<Scalars["Cursor"]["input"]>;
+	filter?: InputMaybe<DepotsFilter>;
+	first?: InputMaybe<Scalars["Int"]["input"]>;
+	last?: InputMaybe<Scalars["Int"]["input"]>;
+	offset?: InputMaybe<Scalars["Int"]["input"]>;
+	orderBy?: InputMaybe<Array<DepotsOrderBy>>;
+};
 
 /** The root type for querying data */
 export type QueryNodeArgs = {
-	nodeId: Scalars["ID"]["input"]
-}
+	nodeId: Scalars["ID"]["input"];
+};
 
 /** The root type for querying data */
 export type QueryProfilesCollectionArgs = {
-	after?: InputMaybe<Scalars["Cursor"]["input"]>
-	before?: InputMaybe<Scalars["Cursor"]["input"]>
-	filter?: InputMaybe<ProfilesFilter>
-	first?: InputMaybe<Scalars["Int"]["input"]>
-	last?: InputMaybe<Scalars["Int"]["input"]>
-	offset?: InputMaybe<Scalars["Int"]["input"]>
-	orderBy?: InputMaybe<Array<ProfilesOrderBy>>
-}
+	after?: InputMaybe<Scalars["Cursor"]["input"]>;
+	before?: InputMaybe<Scalars["Cursor"]["input"]>;
+	filter?: InputMaybe<ProfilesFilter>;
+	first?: InputMaybe<Scalars["Int"]["input"]>;
+	last?: InputMaybe<Scalars["Int"]["input"]>;
+	offset?: InputMaybe<Scalars["Int"]["input"]>;
+	orderBy?: InputMaybe<Array<ProfilesOrderBy>>;
+};
 
 /** The root type for querying data */
 export type QueryStockInfoCollectionArgs = {
-	after?: InputMaybe<Scalars["Cursor"]["input"]>
-	before?: InputMaybe<Scalars["Cursor"]["input"]>
-	filter?: InputMaybe<StockInfoFilter>
-	first?: InputMaybe<Scalars["Int"]["input"]>
-	last?: InputMaybe<Scalars["Int"]["input"]>
-	offset?: InputMaybe<Scalars["Int"]["input"]>
-	orderBy?: InputMaybe<Array<StockInfoOrderBy>>
-}
+	after?: InputMaybe<Scalars["Cursor"]["input"]>;
+	before?: InputMaybe<Scalars["Cursor"]["input"]>;
+	filter?: InputMaybe<StockInfoFilter>;
+	first?: InputMaybe<Scalars["Int"]["input"]>;
+	last?: InputMaybe<Scalars["Int"]["input"]>;
+	offset?: InputMaybe<Scalars["Int"]["input"]>;
+	orderBy?: InputMaybe<Array<StockInfoOrderBy>>;
+};
 
 /** The root type for querying data */
 export type QueryStockPricesCollectionArgs = {
-	after?: InputMaybe<Scalars["Cursor"]["input"]>
-	before?: InputMaybe<Scalars["Cursor"]["input"]>
-	filter?: InputMaybe<StockPricesFilter>
-	first?: InputMaybe<Scalars["Int"]["input"]>
-	last?: InputMaybe<Scalars["Int"]["input"]>
-	offset?: InputMaybe<Scalars["Int"]["input"]>
-	orderBy?: InputMaybe<Array<StockPricesOrderBy>>
-}
+	after?: InputMaybe<Scalars["Cursor"]["input"]>;
+	before?: InputMaybe<Scalars["Cursor"]["input"]>;
+	filter?: InputMaybe<StockPricesFilter>;
+	first?: InputMaybe<Scalars["Int"]["input"]>;
+	last?: InputMaybe<Scalars["Int"]["input"]>;
+	offset?: InputMaybe<Scalars["Int"]["input"]>;
+	orderBy?: InputMaybe<Array<StockPricesOrderBy>>;
+};
 
 /** The root type for querying data */
 export type QueryTransactionsCollectionArgs = {
-	after?: InputMaybe<Scalars["Cursor"]["input"]>
-	before?: InputMaybe<Scalars["Cursor"]["input"]>
-	filter?: InputMaybe<TransactionsFilter>
-	first?: InputMaybe<Scalars["Int"]["input"]>
-	last?: InputMaybe<Scalars["Int"]["input"]>
-	offset?: InputMaybe<Scalars["Int"]["input"]>
-	orderBy?: InputMaybe<Array<TransactionsOrderBy>>
-}
+	after?: InputMaybe<Scalars["Cursor"]["input"]>;
+	before?: InputMaybe<Scalars["Cursor"]["input"]>;
+	filter?: InputMaybe<TransactionsFilter>;
+	first?: InputMaybe<Scalars["Int"]["input"]>;
+	last?: InputMaybe<Scalars["Int"]["input"]>;
+	offset?: InputMaybe<Scalars["Int"]["input"]>;
+	orderBy?: InputMaybe<Array<TransactionsOrderBy>>;
+};
 
 export type StockInfo = Node & {
-	__typename?: "StockInfo"
-	depotPositionsCollection?: Maybe<DepotPositionsConnection>
-	description: Scalars["String"]["output"]
-	id: Scalars["BigInt"]["output"]
-	name: Scalars["String"]["output"]
+	__typename?: "StockInfo";
+	depotPositionsCollection?: Maybe<DepotPositionsConnection>;
+	description: Scalars["String"]["output"];
+	id: Scalars["BigInt"]["output"];
+	name: Scalars["String"]["output"];
 	/** Globally Unique Record Identifier */
-	nodeId: Scalars["ID"]["output"]
-	stockPricesCollection?: Maybe<StockPricesConnection>
-	symbol: Scalars["String"]["output"]
-	transactionsCollection?: Maybe<TransactionsConnection>
-	type: StockType
-}
+	nodeId: Scalars["ID"]["output"];
+	stockPricesCollection?: Maybe<StockPricesConnection>;
+	symbol: Scalars["String"]["output"];
+	transactionsCollection?: Maybe<TransactionsConnection>;
+	type: StockType;
+};
 
 export type StockInfoDepotPositionsCollectionArgs = {
-	after?: InputMaybe<Scalars["Cursor"]["input"]>
-	before?: InputMaybe<Scalars["Cursor"]["input"]>
-	filter?: InputMaybe<DepotPositionsFilter>
-	first?: InputMaybe<Scalars["Int"]["input"]>
-	last?: InputMaybe<Scalars["Int"]["input"]>
-	offset?: InputMaybe<Scalars["Int"]["input"]>
-	orderBy?: InputMaybe<Array<DepotPositionsOrderBy>>
-}
+	after?: InputMaybe<Scalars["Cursor"]["input"]>;
+	before?: InputMaybe<Scalars["Cursor"]["input"]>;
+	filter?: InputMaybe<DepotPositionsFilter>;
+	first?: InputMaybe<Scalars["Int"]["input"]>;
+	last?: InputMaybe<Scalars["Int"]["input"]>;
+	offset?: InputMaybe<Scalars["Int"]["input"]>;
+	orderBy?: InputMaybe<Array<DepotPositionsOrderBy>>;
+};
 
 export type StockInfoStockPricesCollectionArgs = {
-	after?: InputMaybe<Scalars["Cursor"]["input"]>
-	before?: InputMaybe<Scalars["Cursor"]["input"]>
-	filter?: InputMaybe<StockPricesFilter>
-	first?: InputMaybe<Scalars["Int"]["input"]>
-	last?: InputMaybe<Scalars["Int"]["input"]>
-	offset?: InputMaybe<Scalars["Int"]["input"]>
-	orderBy?: InputMaybe<Array<StockPricesOrderBy>>
-}
+	after?: InputMaybe<Scalars["Cursor"]["input"]>;
+	before?: InputMaybe<Scalars["Cursor"]["input"]>;
+	filter?: InputMaybe<StockPricesFilter>;
+	first?: InputMaybe<Scalars["Int"]["input"]>;
+	last?: InputMaybe<Scalars["Int"]["input"]>;
+	offset?: InputMaybe<Scalars["Int"]["input"]>;
+	orderBy?: InputMaybe<Array<StockPricesOrderBy>>;
+};
 
 export type StockInfoTransactionsCollectionArgs = {
-	after?: InputMaybe<Scalars["Cursor"]["input"]>
-	before?: InputMaybe<Scalars["Cursor"]["input"]>
-	filter?: InputMaybe<TransactionsFilter>
-	first?: InputMaybe<Scalars["Int"]["input"]>
-	last?: InputMaybe<Scalars["Int"]["input"]>
-	offset?: InputMaybe<Scalars["Int"]["input"]>
-	orderBy?: InputMaybe<Array<TransactionsOrderBy>>
-}
+	after?: InputMaybe<Scalars["Cursor"]["input"]>;
+	before?: InputMaybe<Scalars["Cursor"]["input"]>;
+	filter?: InputMaybe<TransactionsFilter>;
+	first?: InputMaybe<Scalars["Int"]["input"]>;
+	last?: InputMaybe<Scalars["Int"]["input"]>;
+	offset?: InputMaybe<Scalars["Int"]["input"]>;
+	orderBy?: InputMaybe<Array<TransactionsOrderBy>>;
+};
 
 export type StockInfoConnection = {
-	__typename?: "StockInfoConnection"
-	edges: Array<StockInfoEdge>
-	pageInfo: PageInfo
-}
+	__typename?: "StockInfoConnection";
+	edges: Array<StockInfoEdge>;
+	pageInfo: PageInfo;
+};
 
 export type StockInfoDeleteResponse = {
-	__typename?: "StockInfoDeleteResponse"
+	__typename?: "StockInfoDeleteResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<StockInfo>
-}
+	records: Array<StockInfo>;
+};
 
 export type StockInfoEdge = {
-	__typename?: "StockInfoEdge"
-	cursor: Scalars["String"]["output"]
-	node: StockInfo
-}
+	__typename?: "StockInfoEdge";
+	cursor: Scalars["String"]["output"];
+	node: StockInfo;
+};
 
 export type StockInfoFilter = {
 	/** Returns true only if all its inner filters are true, otherwise returns false */
-	and?: InputMaybe<Array<StockInfoFilter>>
-	description?: InputMaybe<StringFilter>
-	id?: InputMaybe<BigIntFilter>
-	name?: InputMaybe<StringFilter>
-	nodeId?: InputMaybe<IdFilter>
+	and?: InputMaybe<Array<StockInfoFilter>>;
+	description?: InputMaybe<StringFilter>;
+	id?: InputMaybe<BigIntFilter>;
+	name?: InputMaybe<StringFilter>;
+	nodeId?: InputMaybe<IdFilter>;
 	/** Negates a filter */
-	not?: InputMaybe<StockInfoFilter>
+	not?: InputMaybe<StockInfoFilter>;
 	/** Returns true if at least one of its inner filters is true, otherwise returns false */
-	or?: InputMaybe<Array<StockInfoFilter>>
-	symbol?: InputMaybe<StringFilter>
-	type?: InputMaybe<StockTypeFilter>
-}
+	or?: InputMaybe<Array<StockInfoFilter>>;
+	symbol?: InputMaybe<StringFilter>;
+	type?: InputMaybe<StockTypeFilter>;
+};
 
 export type StockInfoInsertInput = {
-	description?: InputMaybe<Scalars["String"]["input"]>
-	name?: InputMaybe<Scalars["String"]["input"]>
-	symbol?: InputMaybe<Scalars["String"]["input"]>
-	type?: InputMaybe<StockType>
-}
+	description?: InputMaybe<Scalars["String"]["input"]>;
+	name?: InputMaybe<Scalars["String"]["input"]>;
+	symbol?: InputMaybe<Scalars["String"]["input"]>;
+	type?: InputMaybe<StockType>;
+};
 
 export type StockInfoInsertResponse = {
-	__typename?: "StockInfoInsertResponse"
+	__typename?: "StockInfoInsertResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<StockInfo>
-}
+	records: Array<StockInfo>;
+};
 
 export type StockInfoOrderBy = {
-	description?: InputMaybe<OrderByDirection>
-	id?: InputMaybe<OrderByDirection>
-	name?: InputMaybe<OrderByDirection>
-	symbol?: InputMaybe<OrderByDirection>
-	type?: InputMaybe<OrderByDirection>
-}
+	description?: InputMaybe<OrderByDirection>;
+	id?: InputMaybe<OrderByDirection>;
+	name?: InputMaybe<OrderByDirection>;
+	symbol?: InputMaybe<OrderByDirection>;
+	type?: InputMaybe<OrderByDirection>;
+};
 
 export type StockInfoUpdateInput = {
-	description?: InputMaybe<Scalars["String"]["input"]>
-	name?: InputMaybe<Scalars["String"]["input"]>
-	symbol?: InputMaybe<Scalars["String"]["input"]>
-	type?: InputMaybe<StockType>
-}
+	description?: InputMaybe<Scalars["String"]["input"]>;
+	name?: InputMaybe<Scalars["String"]["input"]>;
+	symbol?: InputMaybe<Scalars["String"]["input"]>;
+	type?: InputMaybe<StockType>;
+};
 
 export type StockInfoUpdateResponse = {
-	__typename?: "StockInfoUpdateResponse"
+	__typename?: "StockInfoUpdateResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<StockInfo>
-}
+	records: Array<StockInfo>;
+};
 
 export type StockPrices = Node & {
-	__typename?: "StockPrices"
-	close: Scalars["Float"]["output"]
-	high: Scalars["Float"]["output"]
-	low: Scalars["Float"]["output"]
+	__typename?: "StockPrices";
+	close: Scalars["Float"]["output"];
+	high: Scalars["Float"]["output"];
+	low: Scalars["Float"]["output"];
 	/** Globally Unique Record Identifier */
-	nodeId: Scalars["ID"]["output"]
-	open: Scalars["Float"]["output"]
-	price_id: Scalars["BigInt"]["output"]
-	stockInfo?: Maybe<StockInfo>
-	stock_id: Scalars["BigInt"]["output"]
-	timestamp: Scalars["Date"]["output"]
-	volume: Scalars["BigInt"]["output"]
-}
+	nodeId: Scalars["ID"]["output"];
+	open: Scalars["Float"]["output"];
+	price_id: Scalars["BigInt"]["output"];
+	stockInfo?: Maybe<StockInfo>;
+	stock_id: Scalars["BigInt"]["output"];
+	timestamp: Scalars["Date"]["output"];
+	volume: Scalars["BigInt"]["output"];
+};
 
 export type StockPricesConnection = {
-	__typename?: "StockPricesConnection"
-	edges: Array<StockPricesEdge>
-	pageInfo: PageInfo
-}
+	__typename?: "StockPricesConnection";
+	edges: Array<StockPricesEdge>;
+	pageInfo: PageInfo;
+};
 
 export type StockPricesDeleteResponse = {
-	__typename?: "StockPricesDeleteResponse"
+	__typename?: "StockPricesDeleteResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<StockPrices>
-}
+	records: Array<StockPrices>;
+};
 
 export type StockPricesEdge = {
-	__typename?: "StockPricesEdge"
-	cursor: Scalars["String"]["output"]
-	node: StockPrices
-}
+	__typename?: "StockPricesEdge";
+	cursor: Scalars["String"]["output"];
+	node: StockPrices;
+};
 
 export type StockPricesFilter = {
 	/** Returns true only if all its inner filters are true, otherwise returns false */
-	and?: InputMaybe<Array<StockPricesFilter>>
-	close?: InputMaybe<FloatFilter>
-	high?: InputMaybe<FloatFilter>
-	low?: InputMaybe<FloatFilter>
-	nodeId?: InputMaybe<IdFilter>
+	and?: InputMaybe<Array<StockPricesFilter>>;
+	close?: InputMaybe<FloatFilter>;
+	high?: InputMaybe<FloatFilter>;
+	low?: InputMaybe<FloatFilter>;
+	nodeId?: InputMaybe<IdFilter>;
 	/** Negates a filter */
-	not?: InputMaybe<StockPricesFilter>
-	open?: InputMaybe<FloatFilter>
+	not?: InputMaybe<StockPricesFilter>;
+	open?: InputMaybe<FloatFilter>;
 	/** Returns true if at least one of its inner filters is true, otherwise returns false */
-	or?: InputMaybe<Array<StockPricesFilter>>
-	price_id?: InputMaybe<BigIntFilter>
-	stock_id?: InputMaybe<BigIntFilter>
-	timestamp?: InputMaybe<DateFilter>
-	volume?: InputMaybe<BigIntFilter>
-}
+	or?: InputMaybe<Array<StockPricesFilter>>;
+	price_id?: InputMaybe<BigIntFilter>;
+	stock_id?: InputMaybe<BigIntFilter>;
+	timestamp?: InputMaybe<DateFilter>;
+	volume?: InputMaybe<BigIntFilter>;
+};
 
 export type StockPricesInsertInput = {
-	close?: InputMaybe<Scalars["Float"]["input"]>
-	high?: InputMaybe<Scalars["Float"]["input"]>
-	low?: InputMaybe<Scalars["Float"]["input"]>
-	open?: InputMaybe<Scalars["Float"]["input"]>
-	stock_id?: InputMaybe<Scalars["BigInt"]["input"]>
-	timestamp?: InputMaybe<Scalars["Date"]["input"]>
-	volume?: InputMaybe<Scalars["BigInt"]["input"]>
-}
+	close?: InputMaybe<Scalars["Float"]["input"]>;
+	high?: InputMaybe<Scalars["Float"]["input"]>;
+	low?: InputMaybe<Scalars["Float"]["input"]>;
+	open?: InputMaybe<Scalars["Float"]["input"]>;
+	stock_id?: InputMaybe<Scalars["BigInt"]["input"]>;
+	timestamp?: InputMaybe<Scalars["Date"]["input"]>;
+	volume?: InputMaybe<Scalars["BigInt"]["input"]>;
+};
 
 export type StockPricesInsertResponse = {
-	__typename?: "StockPricesInsertResponse"
+	__typename?: "StockPricesInsertResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<StockPrices>
-}
+	records: Array<StockPrices>;
+};
 
 export type StockPricesOrderBy = {
-	close?: InputMaybe<OrderByDirection>
-	high?: InputMaybe<OrderByDirection>
-	low?: InputMaybe<OrderByDirection>
-	open?: InputMaybe<OrderByDirection>
-	price_id?: InputMaybe<OrderByDirection>
-	stock_id?: InputMaybe<OrderByDirection>
-	timestamp?: InputMaybe<OrderByDirection>
-	volume?: InputMaybe<OrderByDirection>
-}
+	close?: InputMaybe<OrderByDirection>;
+	high?: InputMaybe<OrderByDirection>;
+	low?: InputMaybe<OrderByDirection>;
+	open?: InputMaybe<OrderByDirection>;
+	price_id?: InputMaybe<OrderByDirection>;
+	stock_id?: InputMaybe<OrderByDirection>;
+	timestamp?: InputMaybe<OrderByDirection>;
+	volume?: InputMaybe<OrderByDirection>;
+};
 
 export type StockPricesUpdateInput = {
-	close?: InputMaybe<Scalars["Float"]["input"]>
-	high?: InputMaybe<Scalars["Float"]["input"]>
-	low?: InputMaybe<Scalars["Float"]["input"]>
-	open?: InputMaybe<Scalars["Float"]["input"]>
-	stock_id?: InputMaybe<Scalars["BigInt"]["input"]>
-	timestamp?: InputMaybe<Scalars["Date"]["input"]>
-	volume?: InputMaybe<Scalars["BigInt"]["input"]>
-}
+	close?: InputMaybe<Scalars["Float"]["input"]>;
+	high?: InputMaybe<Scalars["Float"]["input"]>;
+	low?: InputMaybe<Scalars["Float"]["input"]>;
+	open?: InputMaybe<Scalars["Float"]["input"]>;
+	stock_id?: InputMaybe<Scalars["BigInt"]["input"]>;
+	timestamp?: InputMaybe<Scalars["Date"]["input"]>;
+	volume?: InputMaybe<Scalars["BigInt"]["input"]>;
+};
 
 export type StockPricesUpdateResponse = {
-	__typename?: "StockPricesUpdateResponse"
+	__typename?: "StockPricesUpdateResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<StockPrices>
-}
+	records: Array<StockPrices>;
+};
 
 export enum StockType {
 	Crypto = "crypto",
@@ -1098,334 +1098,334 @@ export enum StockType {
 
 /** Boolean expression comparing fields on type "StockType" */
 export type StockTypeFilter = {
-	eq?: InputMaybe<StockType>
-	in?: InputMaybe<Array<StockType>>
-	is?: InputMaybe<FilterIs>
-	neq?: InputMaybe<StockType>
-}
+	eq?: InputMaybe<StockType>;
+	in?: InputMaybe<Array<StockType>>;
+	is?: InputMaybe<FilterIs>;
+	neq?: InputMaybe<StockType>;
+};
 
 /** Boolean expression comparing fields on type "String" */
 export type StringFilter = {
-	eq?: InputMaybe<Scalars["String"]["input"]>
-	gt?: InputMaybe<Scalars["String"]["input"]>
-	gte?: InputMaybe<Scalars["String"]["input"]>
-	ilike?: InputMaybe<Scalars["String"]["input"]>
-	in?: InputMaybe<Array<Scalars["String"]["input"]>>
-	iregex?: InputMaybe<Scalars["String"]["input"]>
-	is?: InputMaybe<FilterIs>
-	like?: InputMaybe<Scalars["String"]["input"]>
-	lt?: InputMaybe<Scalars["String"]["input"]>
-	lte?: InputMaybe<Scalars["String"]["input"]>
-	neq?: InputMaybe<Scalars["String"]["input"]>
-	regex?: InputMaybe<Scalars["String"]["input"]>
-	startsWith?: InputMaybe<Scalars["String"]["input"]>
-}
+	eq?: InputMaybe<Scalars["String"]["input"]>;
+	gt?: InputMaybe<Scalars["String"]["input"]>;
+	gte?: InputMaybe<Scalars["String"]["input"]>;
+	ilike?: InputMaybe<Scalars["String"]["input"]>;
+	in?: InputMaybe<Array<Scalars["String"]["input"]>>;
+	iregex?: InputMaybe<Scalars["String"]["input"]>;
+	is?: InputMaybe<FilterIs>;
+	like?: InputMaybe<Scalars["String"]["input"]>;
+	lt?: InputMaybe<Scalars["String"]["input"]>;
+	lte?: InputMaybe<Scalars["String"]["input"]>;
+	neq?: InputMaybe<Scalars["String"]["input"]>;
+	regex?: InputMaybe<Scalars["String"]["input"]>;
+	startsWith?: InputMaybe<Scalars["String"]["input"]>;
+};
 
 /** Boolean expression comparing fields on type "StringList" */
 export type StringListFilter = {
-	containedBy?: InputMaybe<Array<Scalars["String"]["input"]>>
-	contains?: InputMaybe<Array<Scalars["String"]["input"]>>
-	eq?: InputMaybe<Array<Scalars["String"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	overlaps?: InputMaybe<Array<Scalars["String"]["input"]>>
-}
+	containedBy?: InputMaybe<Array<Scalars["String"]["input"]>>;
+	contains?: InputMaybe<Array<Scalars["String"]["input"]>>;
+	eq?: InputMaybe<Array<Scalars["String"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	overlaps?: InputMaybe<Array<Scalars["String"]["input"]>>;
+};
 
 /** Boolean expression comparing fields on type "Time" */
 export type TimeFilter = {
-	eq?: InputMaybe<Scalars["Time"]["input"]>
-	gt?: InputMaybe<Scalars["Time"]["input"]>
-	gte?: InputMaybe<Scalars["Time"]["input"]>
-	in?: InputMaybe<Array<Scalars["Time"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	lt?: InputMaybe<Scalars["Time"]["input"]>
-	lte?: InputMaybe<Scalars["Time"]["input"]>
-	neq?: InputMaybe<Scalars["Time"]["input"]>
-}
+	eq?: InputMaybe<Scalars["Time"]["input"]>;
+	gt?: InputMaybe<Scalars["Time"]["input"]>;
+	gte?: InputMaybe<Scalars["Time"]["input"]>;
+	in?: InputMaybe<Array<Scalars["Time"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	lt?: InputMaybe<Scalars["Time"]["input"]>;
+	lte?: InputMaybe<Scalars["Time"]["input"]>;
+	neq?: InputMaybe<Scalars["Time"]["input"]>;
+};
 
 /** Boolean expression comparing fields on type "TimeList" */
 export type TimeListFilter = {
-	containedBy?: InputMaybe<Array<Scalars["Time"]["input"]>>
-	contains?: InputMaybe<Array<Scalars["Time"]["input"]>>
-	eq?: InputMaybe<Array<Scalars["Time"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	overlaps?: InputMaybe<Array<Scalars["Time"]["input"]>>
-}
+	containedBy?: InputMaybe<Array<Scalars["Time"]["input"]>>;
+	contains?: InputMaybe<Array<Scalars["Time"]["input"]>>;
+	eq?: InputMaybe<Array<Scalars["Time"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	overlaps?: InputMaybe<Array<Scalars["Time"]["input"]>>;
+};
 
 export type Transactions = Node & {
-	__typename?: "Transactions"
-	amount: Scalars["Int"]["output"]
-	depot_id: Scalars["BigInt"]["output"]
-	depots?: Maybe<Depots>
-	id: Scalars["BigInt"]["output"]
+	__typename?: "Transactions";
+	amount: Scalars["Int"]["output"];
+	depot_id: Scalars["BigInt"]["output"];
+	depots?: Maybe<Depots>;
+	id: Scalars["BigInt"]["output"];
 	/** Globally Unique Record Identifier */
-	nodeId: Scalars["ID"]["output"]
-	price: Scalars["Float"]["output"]
-	stockInfo?: Maybe<StockInfo>
-	stock_id: Scalars["BigInt"]["output"]
-	timestamp: Scalars["Date"]["output"]
-}
+	nodeId: Scalars["ID"]["output"];
+	price: Scalars["Float"]["output"];
+	stockInfo?: Maybe<StockInfo>;
+	stock_id: Scalars["BigInt"]["output"];
+	timestamp: Scalars["Date"]["output"];
+};
 
 export type TransactionsConnection = {
-	__typename?: "TransactionsConnection"
-	edges: Array<TransactionsEdge>
-	pageInfo: PageInfo
-}
+	__typename?: "TransactionsConnection";
+	edges: Array<TransactionsEdge>;
+	pageInfo: PageInfo;
+};
 
 export type TransactionsDeleteResponse = {
-	__typename?: "TransactionsDeleteResponse"
+	__typename?: "TransactionsDeleteResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<Transactions>
-}
+	records: Array<Transactions>;
+};
 
 export type TransactionsEdge = {
-	__typename?: "TransactionsEdge"
-	cursor: Scalars["String"]["output"]
-	node: Transactions
-}
+	__typename?: "TransactionsEdge";
+	cursor: Scalars["String"]["output"];
+	node: Transactions;
+};
 
 export type TransactionsFilter = {
-	amount?: InputMaybe<IntFilter>
+	amount?: InputMaybe<IntFilter>;
 	/** Returns true only if all its inner filters are true, otherwise returns false */
-	and?: InputMaybe<Array<TransactionsFilter>>
-	depot_id?: InputMaybe<BigIntFilter>
-	id?: InputMaybe<BigIntFilter>
-	nodeId?: InputMaybe<IdFilter>
+	and?: InputMaybe<Array<TransactionsFilter>>;
+	depot_id?: InputMaybe<BigIntFilter>;
+	id?: InputMaybe<BigIntFilter>;
+	nodeId?: InputMaybe<IdFilter>;
 	/** Negates a filter */
-	not?: InputMaybe<TransactionsFilter>
+	not?: InputMaybe<TransactionsFilter>;
 	/** Returns true if at least one of its inner filters is true, otherwise returns false */
-	or?: InputMaybe<Array<TransactionsFilter>>
-	price?: InputMaybe<FloatFilter>
-	stock_id?: InputMaybe<BigIntFilter>
-	timestamp?: InputMaybe<DateFilter>
-}
+	or?: InputMaybe<Array<TransactionsFilter>>;
+	price?: InputMaybe<FloatFilter>;
+	stock_id?: InputMaybe<BigIntFilter>;
+	timestamp?: InputMaybe<DateFilter>;
+};
 
 export type TransactionsInsertInput = {
-	amount?: InputMaybe<Scalars["Int"]["input"]>
-	depot_id?: InputMaybe<Scalars["BigInt"]["input"]>
-	price?: InputMaybe<Scalars["Float"]["input"]>
-	stock_id?: InputMaybe<Scalars["BigInt"]["input"]>
-	timestamp?: InputMaybe<Scalars["Date"]["input"]>
-}
+	amount?: InputMaybe<Scalars["Int"]["input"]>;
+	depot_id?: InputMaybe<Scalars["BigInt"]["input"]>;
+	price?: InputMaybe<Scalars["Float"]["input"]>;
+	stock_id?: InputMaybe<Scalars["BigInt"]["input"]>;
+	timestamp?: InputMaybe<Scalars["Date"]["input"]>;
+};
 
 export type TransactionsInsertResponse = {
-	__typename?: "TransactionsInsertResponse"
+	__typename?: "TransactionsInsertResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<Transactions>
-}
+	records: Array<Transactions>;
+};
 
 export type TransactionsOrderBy = {
-	amount?: InputMaybe<OrderByDirection>
-	depot_id?: InputMaybe<OrderByDirection>
-	id?: InputMaybe<OrderByDirection>
-	price?: InputMaybe<OrderByDirection>
-	stock_id?: InputMaybe<OrderByDirection>
-	timestamp?: InputMaybe<OrderByDirection>
-}
+	amount?: InputMaybe<OrderByDirection>;
+	depot_id?: InputMaybe<OrderByDirection>;
+	id?: InputMaybe<OrderByDirection>;
+	price?: InputMaybe<OrderByDirection>;
+	stock_id?: InputMaybe<OrderByDirection>;
+	timestamp?: InputMaybe<OrderByDirection>;
+};
 
 export type TransactionsUpdateInput = {
-	amount?: InputMaybe<Scalars["Int"]["input"]>
-	depot_id?: InputMaybe<Scalars["BigInt"]["input"]>
-	price?: InputMaybe<Scalars["Float"]["input"]>
-	stock_id?: InputMaybe<Scalars["BigInt"]["input"]>
-	timestamp?: InputMaybe<Scalars["Date"]["input"]>
-}
+	amount?: InputMaybe<Scalars["Int"]["input"]>;
+	depot_id?: InputMaybe<Scalars["BigInt"]["input"]>;
+	price?: InputMaybe<Scalars["Float"]["input"]>;
+	stock_id?: InputMaybe<Scalars["BigInt"]["input"]>;
+	timestamp?: InputMaybe<Scalars["Date"]["input"]>;
+};
 
 export type TransactionsUpdateResponse = {
-	__typename?: "TransactionsUpdateResponse"
+	__typename?: "TransactionsUpdateResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<Transactions>
-}
+	records: Array<Transactions>;
+};
 
 /** Boolean expression comparing fields on type "UUID" */
 export type UuidFilter = {
-	eq?: InputMaybe<Scalars["UUID"]["input"]>
-	in?: InputMaybe<Array<Scalars["UUID"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	neq?: InputMaybe<Scalars["UUID"]["input"]>
-}
+	eq?: InputMaybe<Scalars["UUID"]["input"]>;
+	in?: InputMaybe<Array<Scalars["UUID"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	neq?: InputMaybe<Scalars["UUID"]["input"]>;
+};
 
 /** Boolean expression comparing fields on type "UUIDList" */
 export type UuidListFilter = {
-	containedBy?: InputMaybe<Array<Scalars["UUID"]["input"]>>
-	contains?: InputMaybe<Array<Scalars["UUID"]["input"]>>
-	eq?: InputMaybe<Array<Scalars["UUID"]["input"]>>
-	is?: InputMaybe<FilterIs>
-	overlaps?: InputMaybe<Array<Scalars["UUID"]["input"]>>
-}
+	containedBy?: InputMaybe<Array<Scalars["UUID"]["input"]>>;
+	contains?: InputMaybe<Array<Scalars["UUID"]["input"]>>;
+	eq?: InputMaybe<Array<Scalars["UUID"]["input"]>>;
+	is?: InputMaybe<FilterIs>;
+	overlaps?: InputMaybe<Array<Scalars["UUID"]["input"]>>;
+};
 
 export type Profiles = Node & {
-	__typename?: "profiles"
-	depots?: Maybe<Depots>
-	id: Scalars["UUID"]["output"]
-	name?: Maybe<Scalars["String"]["output"]>
+	__typename?: "profiles";
+	depots?: Maybe<Depots>;
+	id: Scalars["UUID"]["output"];
+	name?: Maybe<Scalars["String"]["output"]>;
 	/** Globally Unique Record Identifier */
-	nodeId: Scalars["ID"]["output"]
-}
+	nodeId: Scalars["ID"]["output"];
+};
 
 export type ProfilesConnection = {
-	__typename?: "profilesConnection"
-	edges: Array<ProfilesEdge>
-	pageInfo: PageInfo
-}
+	__typename?: "profilesConnection";
+	edges: Array<ProfilesEdge>;
+	pageInfo: PageInfo;
+};
 
 export type ProfilesDeleteResponse = {
-	__typename?: "profilesDeleteResponse"
+	__typename?: "profilesDeleteResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<Profiles>
-}
+	records: Array<Profiles>;
+};
 
 export type ProfilesEdge = {
-	__typename?: "profilesEdge"
-	cursor: Scalars["String"]["output"]
-	node: Profiles
-}
+	__typename?: "profilesEdge";
+	cursor: Scalars["String"]["output"];
+	node: Profiles;
+};
 
 export type ProfilesFilter = {
 	/** Returns true only if all its inner filters are true, otherwise returns false */
-	and?: InputMaybe<Array<ProfilesFilter>>
-	id?: InputMaybe<UuidFilter>
-	name?: InputMaybe<StringFilter>
-	nodeId?: InputMaybe<IdFilter>
+	and?: InputMaybe<Array<ProfilesFilter>>;
+	id?: InputMaybe<UuidFilter>;
+	name?: InputMaybe<StringFilter>;
+	nodeId?: InputMaybe<IdFilter>;
 	/** Negates a filter */
-	not?: InputMaybe<ProfilesFilter>
+	not?: InputMaybe<ProfilesFilter>;
 	/** Returns true if at least one of its inner filters is true, otherwise returns false */
-	or?: InputMaybe<Array<ProfilesFilter>>
-}
+	or?: InputMaybe<Array<ProfilesFilter>>;
+};
 
 export type ProfilesInsertInput = {
-	id?: InputMaybe<Scalars["UUID"]["input"]>
-	name?: InputMaybe<Scalars["String"]["input"]>
-}
+	id?: InputMaybe<Scalars["UUID"]["input"]>;
+	name?: InputMaybe<Scalars["String"]["input"]>;
+};
 
 export type ProfilesInsertResponse = {
-	__typename?: "profilesInsertResponse"
+	__typename?: "profilesInsertResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<Profiles>
-}
+	records: Array<Profiles>;
+};
 
 export type ProfilesOrderBy = {
-	id?: InputMaybe<OrderByDirection>
-	name?: InputMaybe<OrderByDirection>
-}
+	id?: InputMaybe<OrderByDirection>;
+	name?: InputMaybe<OrderByDirection>;
+};
 
 export type ProfilesUpdateInput = {
-	id?: InputMaybe<Scalars["UUID"]["input"]>
-	name?: InputMaybe<Scalars["String"]["input"]>
-}
+	id?: InputMaybe<Scalars["UUID"]["input"]>;
+	name?: InputMaybe<Scalars["String"]["input"]>;
+};
 
 export type ProfilesUpdateResponse = {
-	__typename?: "profilesUpdateResponse"
+	__typename?: "profilesUpdateResponse";
 	/** Count of the records impacted by the mutation */
-	affectedCount: Scalars["Int"]["output"]
+	affectedCount: Scalars["Int"]["output"];
 	/** Array of records impacted by the mutation */
-	records: Array<Profiles>
-}
+	records: Array<Profiles>;
+};
 
 export type GetDepotsQueryVariables = Exact<{
-	user: Scalars["UUID"]["input"]
-}>
+	user: Scalars["UUID"]["input"];
+}>;
 
 export type GetDepotsQuery = {
-	__typename: "Query"
+	__typename: "Query";
 	profilesCollection?: {
-		__typename: "profilesConnection"
+		__typename: "profilesConnection";
 		edges: Array<{
-			__typename: "profilesEdge"
+			__typename: "profilesEdge";
 			node: {
-				__typename: "profiles"
+				__typename: "profiles";
 				depots?: {
-					__typename: "Depots"
-					name?: string | null
-					created_at: string
-					id: string
-				} | null
-			}
-		}>
-	} | null
-}
+					__typename: "Depots";
+					name?: string | null;
+					created_at: string;
+					id: string;
+				} | null;
+			};
+		}>;
+	} | null;
+};
 
 export type GetPositionsQueryVariables = Exact<{
-	depot: Scalars["BigInt"]["input"]
-}>
+	depot: Scalars["BigInt"]["input"];
+}>;
 
 export type GetPositionsQuery = {
-	__typename: "Query"
+	__typename: "Query";
 	depotPositionsCollection?: {
-		__typename: "DepotPositionsConnection"
+		__typename: "DepotPositionsConnection";
 		edges: Array<{
-			__typename: "DepotPositionsEdge"
+			__typename: "DepotPositionsEdge";
 			node: {
-				__typename: "DepotPositions"
-				amount: number
+				__typename: "DepotPositions";
+				amount: number;
 				stockInfo?: {
-					__typename: "StockInfo"
-					symbol: string
-					name: string
-					description: string
-					id: string
-					type: StockType
+					__typename: "StockInfo";
+					symbol: string;
+					name: string;
+					description: string;
+					id: string;
+					type: StockType;
 					transactionsCollection?: {
-						__typename: "TransactionsConnection"
+						__typename: "TransactionsConnection";
 						edges: Array<{
-							__typename: "TransactionsEdge"
+							__typename: "TransactionsEdge";
 							node: {
-								__typename: "Transactions"
-								amount: number
-								price: number
-								timestamp: string
-							}
-						}>
-					} | null
+								__typename: "Transactions";
+								amount: number;
+								price: number;
+								timestamp: string;
+							};
+						}>;
+					} | null;
 					stockPricesCollection?: {
-						__typename: "StockPricesConnection"
+						__typename: "StockPricesConnection";
 						edges: Array<{
-							__typename: "StockPricesEdge"
+							__typename: "StockPricesEdge";
 							node: {
-								__typename: "StockPrices"
-								timestamp: string
-								open: number
-								close: number
-								high: number
-								low: number
-								volume: string
-							}
-						}>
-					} | null
-				} | null
-			}
-		}>
-	} | null
-}
+								__typename: "StockPrices";
+								timestamp: string;
+								open: number;
+								close: number;
+								high: number;
+								low: number;
+								volume: string;
+							};
+						}>;
+					} | null;
+				} | null;
+			};
+		}>;
+	} | null;
+};
 
 export type GetDepotValuesQueryVariables = Exact<{
-	depot: Scalars["BigInt"]["input"]
-}>
+	depot: Scalars["BigInt"]["input"];
+}>;
 
 export type GetDepotValuesQuery = {
-	__typename: "Query"
+	__typename: "Query";
 	depotValuesCollection?: {
-		__typename: "DepotValuesConnection"
+		__typename: "DepotValuesConnection";
 		edges: Array<{
-			__typename: "DepotValuesEdge"
+			__typename: "DepotValuesEdge";
 			node: {
-				__typename: "DepotValues"
-				timestamp: string
-				stock_assets: number
-				liquid_assets: number
-			}
-		}>
-	} | null
-}
+				__typename: "DepotValues";
+				timestamp: string;
+				stock_assets: number;
+				liquid_assets: number;
+			};
+		}>;
+	} | null;
+};
 
 export const GetDepotsDocument = {
 	kind: "Document",
@@ -1541,7 +1541,7 @@ export const GetDepotsDocument = {
 			},
 		},
 	],
-} as unknown as DocumentNode<GetDepotsQuery, GetDepotsQueryVariables>
+} as unknown as DocumentNode<GetDepotsQuery, GetDepotsQueryVariables>;
 export const GetPositionsDocument = {
 	kind: "Document",
 	definitions: [
@@ -1898,7 +1898,7 @@ export const GetPositionsDocument = {
 			},
 		},
 	],
-} as unknown as DocumentNode<GetPositionsQuery, GetPositionsQueryVariables>
+} as unknown as DocumentNode<GetPositionsQuery, GetPositionsQueryVariables>;
 export const GetDepotValuesDocument = {
 	kind: "Document",
 	definitions: [
@@ -2006,4 +2006,4 @@ export const GetDepotValuesDocument = {
 			},
 		},
 	],
-} as unknown as DocumentNode<GetDepotValuesQuery, GetDepotValuesQueryVariables>
+} as unknown as DocumentNode<GetDepotValuesQuery, GetDepotValuesQueryVariables>;

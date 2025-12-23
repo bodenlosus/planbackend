@@ -1,8 +1,8 @@
-import type React from "react"
+import type React from "react";
 
 interface ChartT extends React.ComponentPropsWithoutRef<"div"> {
-	name: string
+	name: string;
 }
 export default function Chart({ name: _, children }: ChartT) {
-	return children
+	return children;
 }

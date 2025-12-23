@@ -5,4 +5,4 @@ export const Intervals = {
 	"3m": 90,
 	"1y": 365,
 	"5y": 365 * 5,
-}
+};

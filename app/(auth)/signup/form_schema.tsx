@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const formSchema = z
 	.object({
@@ -23,11 +23,11 @@ export const formSchema = z
 	})
 	.superRefine(({ password, confirmPassword }, ctx) => {
 		if (password === confirmPassword) {
-			return
+			return;
 		}
 		ctx.addIssue({
 			code: "custom",
 			message: "Passwords do not match",
 			path: ["confirmPassword"],
-		})
-	})
+		});
+	});
