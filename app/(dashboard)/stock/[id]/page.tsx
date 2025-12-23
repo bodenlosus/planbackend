@@ -24,7 +24,7 @@ export default async function Page(props: {
 	params: Promise<{ id: string }>;
 	searchParams: Promise<{ start: string }>;
 }) {
-	const id = Number.parseInt((await props.params).id);
+	const id = Number.parseInt((await props.params).id, 10);
 
 	if (id < 0 || !Number.isInteger(id)) {
 		return <ErrorCard error={new Error("Invalid ID")} />;
@@ -58,10 +58,10 @@ export default async function Page(props: {
 	const { dataWithEmptyDays: pricesWithEmptyDays, data: pricesFiltered } =
 		formatPrices(prices ?? []);
 
-	const {
-		dataWithEmptyDays: pricesWeeklyWithEmptyDays,
-		data: pricesWeeklyFiltered,
-	} = formatPrices(pricesWeekly ?? [], 7);
+	const { dataWithEmptyDays: pricesWeeklyWithEmptyDays } = formatPrices(
+		pricesWeekly ?? [],
+		7,
+	);
 
 	return (
 		<main className="w-full h-full overflow-hidden grid sm:grid-cols-2 md:grid-cols-[repeat(3,fit-content)] gap-5">

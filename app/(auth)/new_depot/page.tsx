@@ -1,11 +1,7 @@
-import { toast } from "sonner";
-import { createDepotAction } from "@/app/(auth)/actions";
-import { Button } from "@/components/ui/button";
 import {
 	Card,
 	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";

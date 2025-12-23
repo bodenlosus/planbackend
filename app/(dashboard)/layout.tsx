@@ -10,18 +10,17 @@ import { AppSidebar } from "@/components/navbar/desktop/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/toaster";
-import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
 	title: "Planspiel Boerse",
 	description: "Planspiel Boerse",
 };
 
-const fontSans = FontSans({
+const _fontSans = FontSans({
 	subsets: ["latin"],
 	variable: "--font-sans",
 });
 
-const fontMono = FontMono({
+const _fontMono = FontMono({
 	subsets: ["latin"],
 	variable: "--font-mono",
 	weight: "400",

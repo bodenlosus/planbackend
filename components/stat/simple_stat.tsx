@@ -37,7 +37,7 @@ export default function WinLossDisplay({
 			{mode === "indicator" ? (
 				<WinLossIndicator sign={sign} className={indicatorClassName} />
 			) : (
-				<></>
+				""
 			)}
 		</span>
 	);

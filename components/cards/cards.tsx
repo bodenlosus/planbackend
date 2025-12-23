@@ -28,8 +28,6 @@ import SellStockDialog from "../transaction_dialogs/sell_stock_dialog";
 
 type CardProps = ComponentPropsWithoutRef<"div">;
 
-type Price = Omit<StockPrice, "id" | "asset_id">;
-
 interface StatCardProps extends CardProps {
 	stock: Asset;
 	currentPrice?: StockPrice;
@@ -159,7 +157,7 @@ export function StockPositionCard({
 	commission,
 }: StockPositionCardProps) {
 	if (hidden || !depot) {
-		return <></>;
+		return;
 	}
 	const buyLimit = depot.cash - commission;
 	const sellLimit = position?.worth ?? 0;
@@ -206,7 +204,7 @@ export function StockPositionCard({
 						/>
 					</div>
 				) : (
-					<></>
+					""
 				)}
 			</CardContent>
 		</Card>

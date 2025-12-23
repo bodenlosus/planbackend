@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { createDepot, signup } from "../actions";
+import { signup } from "../actions";
 import { formSchema } from "./form_schema";
 
 export default function SignUpForm() {

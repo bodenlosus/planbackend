@@ -12,7 +12,6 @@ export default function StockStats<TStructure extends Record<string, string>>({
 	structure,
 	current,
 	reference,
-	className,
 	labels,
 }: StockStatsProps<TStructure>) {
 	const stats = Object.entries(structure).map(([key, display]) => ({

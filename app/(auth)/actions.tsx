@@ -1,6 +1,5 @@
 "use server";
 
-import {} from "@supabase/auth-js";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";

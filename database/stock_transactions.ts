@@ -1,4 +1,3 @@
-import { getCurrentDate } from "@/lib/date_utils";
 import { supabase } from "@/utils/supabase/client";
 
 export async function buyStock(id: number, depot_id: number, worth: number) {

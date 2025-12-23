@@ -25,7 +25,7 @@ interface props {
 	className?: string;
 }
 
-export default function SearchBar({ doRedirect, className }: props) {
+export default function SearchBar({ className }: props) {
 	const router = useRouter();
 	const [stocks, setStocks] = useState<Array<Asset>>([]);
 	const [searchQuery, setSearchQuery] = useState<string>("");
@@ -70,7 +70,7 @@ export default function SearchBar({ doRedirect, className }: props) {
 							key={stock.id}
 							value={stock.id.toString()}
 							onSelect={(value) => {
-								const id = Number.parseInt(value);
+								const id = Number.parseInt(value, 10);
 								router.push(getStockPagePath(id));
 							}}
 						>

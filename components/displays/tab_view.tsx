@@ -264,7 +264,7 @@ function IntervalSelector<T extends Record<number, string>>(props: {
 			defaultValue="1d"
 			className=""
 			onValueChange={(k) => {
-				const key = Number.parseInt(k);
+				const key = Number.parseInt(k, 10);
 				const value = props.intervals[key];
 				if (props.onValueChange) {
 					props.onValueChange(key, value);

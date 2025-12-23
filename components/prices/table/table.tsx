@@ -6,11 +6,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import type {
-	CleanedStockPrice,
-	NonNullableRow,
-	StockPrice,
-} from "@/database/custom_types";
+import type { NonNullableRow, StockPrice } from "@/database/custom_types";
 import { cn } from "@/lib/utils";
 import type { CellValueTypes } from "./cell";
 import PriceRow from "./row";

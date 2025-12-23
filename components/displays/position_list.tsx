@@ -4,7 +4,6 @@ import { getStockPagePath } from "@/lib/get_stock_path";
 import StockStats from "../stat/stats";
 import { Card } from "../ui/card";
 import "./style.css";
-import { X509Certificate } from "node:crypto";
 import type { PositionSummary } from "@/database/custom_types";
 import { getIconURL } from "@/lib/icon_url";
 import { cn } from "@/lib/utils";

@@ -18,7 +18,6 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { NavUser } from "./profile";
 
 export function AppSidebar() {
 	interface ItemT {

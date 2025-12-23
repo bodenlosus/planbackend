@@ -1,5 +1,3 @@
-import { GoTrueClient, type SignOut } from "@supabase/auth-js";
-import { PostgrestClient } from "@supabase/postgrest-js";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import type { Database } from "@/database/types";

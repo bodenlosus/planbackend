@@ -1,7 +1,6 @@
 "use server";
 import { LineChart as LinechartIcon, TableCellsMerge } from "lucide-react";
 import { redirect } from "next/navigation";
-import { cache } from "react";
 import { ErrorCard } from "@/components/cards/cards";
 import AreaChart from "@/components/charts/area";
 import ChartContainer from "@/components/charts/primitive/container";
@@ -10,17 +9,12 @@ import PositionTabView from "@/components/displays/tab_view";
 import HeaderStat from "@/components/stat/header_stat";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type {
-	Depot,
-	DepotPosition,
 	DepotValue,
+	NonNullableRow,
 	PositionSummary,
 } from "@/database/custom_types";
 import { processDepotValues } from "@/database/depots";
-import {
-	getCurrentDate,
-	getDateCertainDaysAgo,
-	toISODateOnly,
-} from "@/lib/date_utils";
+import { getDateCertainDaysAgo, toISODateOnly } from "@/lib/date_utils";
 import { createClient } from "@/utils/supabase/server";
 
 export default async function Page() {
@@ -37,7 +31,9 @@ export default async function Page() {
 	const treeData = fres.positions;
 
 	const d = fres.depotAggValues?.at(0);
-	const areaData = processDepotValues(fres.depotValues ?? []);
+	const areaData = processDepotValues(
+		(fres.depotValues as NonNullableRow<DepotValue>[]) ?? [],
+	);
 	return (
 		<main className="grid grid-cols-1 gap-3">
 			<Card className="overflow-hidden border-none">

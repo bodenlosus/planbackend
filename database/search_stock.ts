@@ -10,7 +10,7 @@ export interface TgetStockFromSearchString {
 
 export async function getStockFromSearchString(
 	searchQuery: string,
-	limit: number,
+	_limit: number,
 ): Promise<TgetStockFromSearchString> {
 	const client = createClient();
 	const { data, error } = await client.schema("api").rpc("search_assets", {

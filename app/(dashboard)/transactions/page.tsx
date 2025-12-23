@@ -1,18 +1,9 @@
-import { ArrowRight, Move, MoveRight } from "lucide-react";
-import Image from "next/image";
+import { MoveRight } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { ErrorCard } from "@/components/cards/cards";
 import { PositionRow } from "@/components/displays/position_list";
 import URLIcon from "@/components/icon";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
 import {
 	HoverCard,
 	HoverCardContent,
@@ -52,12 +43,12 @@ export default async function Page() {
 	);
 }
 
-type GroupedTransactions<T extends Record<string, any>> = {
+type GroupedTransactions<T extends object> = {
 	day: string;
 	transactions: (Transaction & T)[];
 };
 
-function groupTransactionsPerDay<T extends Record<string, any>>(
+function groupTransactionsPerDay<T extends object>(
 	transactions: (Transaction & T)[],
 ) {
 	// Assumes transactions are sorted by timestamp in descending order

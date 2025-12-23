@@ -15,7 +15,6 @@ import {
 	ChartContainer,
 	ChartTooltip,
 } from "@/components/ui/chart";
-import type { NullableRow } from "@/database/custom_types";
 import { formatFloatingPointString } from "@/lib/data/formatter";
 import { toAbsoluteTimeString } from "@/lib/date_utils";
 import { cn } from "@/lib/utils";

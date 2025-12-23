@@ -1,9 +1,4 @@
-import type {
-	CleanedStockPrice,
-	NullableRow,
-	PlainPrice,
-	StockPrice,
-} from "@/database/custom_types";
+import type { NullableRow, PlainPrice } from "@/database/custom_types";
 
 export interface TtoRelativeValues {
 	high_low: [number, number];

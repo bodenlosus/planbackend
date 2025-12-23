@@ -10,7 +10,6 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import type { PlainPrice } from "@/database/custom_types";
-import { flattenOpenClose } from "@/lib/data/data_utils";
 import {
 	getCurrentDate,
 	getDateCertainDaysAgo,
@@ -36,7 +35,7 @@ export function ChartCard({ prices, pricesWeekly, className }: ChartCardProps) {
 		return { start, end };
 	}, [selectedIntervall]);
 
-	const timeDiff = getTimeBetweenDates(timeFrame.start, timeFrame.end);
+	const _timeDiff = getTimeBetweenDates(timeFrame.start, timeFrame.end);
 
 	const data = useMemo(() => {
 		const data = [];
@@ -49,7 +48,7 @@ export function ChartCard({ prices, pricesWeekly, className }: ChartCardProps) {
 			}
 		}
 		return data;
-	}, [prices, pricesWeekly, timeFrame]);
+	}, [prices, pricesWeekly, timeFrame, selectedIntervall]);
 
 	return (
 		<Card className={cn(className)}>

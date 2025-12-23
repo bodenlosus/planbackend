@@ -1,7 +1,6 @@
 import type {
 	CleanedStockPrice,
 	NonNullableRow,
-	NullableRow,
 	StockPrice,
 } from "@/database/custom_types";
 import { getTimeBetweenDates, msPerDay, toISODateOnly } from "../date_utils";
