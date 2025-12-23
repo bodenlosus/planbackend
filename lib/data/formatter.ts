@@ -20,7 +20,7 @@ export function formatter(data: Array<StockPrice>, treshold = 1) {
 		const tDiff = getTimeBetweenDates(
 			new Date(previousTimeStamp),
 			new Date(price.tstamp),
-		)!;
+		) as number;
 
 		if (tDiff > treshold) {
 			for (let i = 1; i < tDiff; i += treshold) {

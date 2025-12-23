@@ -38,7 +38,7 @@ export function relativeDateString(
 	date: Date,
 	absolute: "necessary" | "never" = "necessary",
 ): string {
-	const diff = getTimeBetweenDates(new Date(), date)!;
+	const diff = getTimeBetweenDates(new Date(), date) as number;
 
 	if (diff <= 1) {
 		return "heute";
@@ -72,7 +72,7 @@ export function relativeDateStringCompact(
 	date: Date,
 	absolute: "necessary" | "never" = "necessary",
 ): string {
-	const diff = getTimeBetweenDates(new Date(), date);
+	const diff = getTimeBetweenDates(new Date(), date) as number;
 
 	if (diff <= 1) {
 		return "heu";
