@@ -30,7 +30,7 @@ export default function BuyStockForm({
 }: formProps) {
 	const formSchema = z.object({
 		worth: z.coerce
-			.number({ message: "keine gültige Zahl" }) // Coerces the input to a number
+			.number<number>({ message: "keine gültige Zahl" }) // Coerces the input to a number
 			.positive({ message: "Zahl muss positiv sein" }) // Checks that it's positive
 			.max(limit, {
 				message: `Aktuelle Geldsumme des Deopts erlaubt nur ${limit} USD`,
