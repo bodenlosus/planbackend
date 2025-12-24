@@ -19,6 +19,7 @@ GRANT SELECT ON depots.depots TO anon;
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.depots TO authenticated;
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.positions TO authenticated;
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.transactions TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON depots.savings_plans TO authenticated;
 GRANT SELECT ON depots.values TO authenticated;
 GRANT SELECT ON depots.aggregated_transactions TO authenticated;
 -- GRANT SELECT ON depots.values TO authenticated;
@@ -98,6 +99,25 @@ WITH CHECK (depots.is_depot_member (depot_id)) ;
 CREATE POLICY "Users can delete their depot transactions" ON depots.transactions
 FOR DELETE TO authenticated
 USING (depots.is_depot_member (depot_id)) ;
+-- savings
+CREATE POLICY "Users can read their depot savings plans" ON depots.savings_plans
+FOR SELECT TO authenticated
+USING (depots.is_depot_member (depot_id)) ;
+
+CREATE POLICY "Users can create savings plans in their depots" ON depots.savings_plans
+FOR INSERT TO authenticated
+WITH CHECK (depots.is_depot_member (depot_id)) ;
+
+CREATE POLICY "Users can update their depot savings plans" ON depots.savings_plans
+FOR UPDATE TO authenticated
+USING (depots.is_depot_member (depot_id))
+WITH CHECK (depots.is_depot_member (depot_id)) ;
+
+CREATE POLICY "Users can delete their depot savings plans" ON depots.savings_plans
+FOR DELETE TO authenticated
+USING (depots.is_depot_member (depot_id)) ;
+
+
 
 -- -- Values table policies
 -- CREATE POLICY "Anyone can read depot values" ON depots.values

@@ -2,7 +2,7 @@ use sqlx::{
     Pool, Postgres,
     postgres::{PgPoolOptions, PgQueryResult},
 };
-use std::{collections::HashMap, env::var, error::Error, time::Duration};
+use std::{env::var, error::Error, time::Duration};
 use time::{Date, UtcDateTime, macros::time};
 use tokio::{join, time::Sleep};
 
@@ -80,7 +80,6 @@ impl Updater {
         last_updated: Option<Date>,
     ) -> Option<(UtcDateTime, UtcDateTime)> {
         let last_updated = last_updated?;
-
         if last_updated == now.date() {
             return None;
         }
@@ -118,7 +117,7 @@ impl Updater {
             r#"
                 INSERT INTO api.asset_prices (asset_id, open, close, high, low, volume, tstamp)
                 SELECT * FROM UNNEST($1::bigint[], $2::real[], $3::real[], $4::real[], $5::real[], $6::bigint[], $7::date[])
-                ON CONFLICT ON CONSTRAINT unique_asset_timestamp
+                ON CONFLICT (asset_id, tstamp)
                 DO UPDATE SET
                     open = EXCLUDED.open,
                     close = EXCLUDED.close,
@@ -198,11 +197,11 @@ impl Updater {
         self.prices.clear();
         Ok(())
     }
-    async fn update_depot_positions(&self) -> Result<PgQueryResult, sqlx::Error> {
-        sqlx::query!("CALL update_depot_positions()",)
-            .execute(&self.conn)
-            .await
-    }
+    // async fn update_depot_positions(&self) -> Result<PgQueryResult, sqlx::Error> {
+    //     sqlx::query!("CALL update_depot_positions()",)
+    //         .execute(&self.conn)
+    //         .await
+    // }
     // async fn update_depot_values(&self) -> Result<PgQueryResult, sqlx::Error> {
     //     sqlx::query!("CALL ")
     // }
@@ -252,8 +251,8 @@ async fn main() {
 
         println!("updating depots...");
 
-        if let Err(e) = updater.update_depot_positions().await {
-            eprintln!("Error updating depots: {e}")
-        }
+        // if let Err(e) = updater.update_depot_positions().await {
+        //     eprintln!("Error updating depots: {e}")
+        // }
     }
 }

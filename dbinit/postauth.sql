@@ -13,6 +13,8 @@ USING (
 
 GRANT SELECT ON depots.position_profits TO authenticated;
 GRANT SELECT ON depots.aggregated_values TO authenticated;
+GRANT SELECT ON depots.transactions_with_asset_position TO authenticated;
+GRANT SELECT ON api.asset_prices_weekly TO authenticated, anon;
 
 CREATE POLICY "auth_admin_insert" ON depots.depots TO auth_admin USING (TRUE);
 GRANT USAGE ON schema depots TO auth_admin;

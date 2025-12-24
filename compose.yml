@@ -1,7 +1,7 @@
 services:
   db:
     container_name: postgres
-    image: postgres:17
+    image: timescale/timescaledb:latest-pg17
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
@@ -11,6 +11,7 @@ services:
       - postgres:/data/postgres
       - ./dbinit/init.sql:/docker-entrypoint-initdb.d/01_init.sql
       - ./dbinit/functions.sql:/docker-entrypoint-initdb.d/02_functions.sql
+      - ./dbinit/assets.csv:/docker-entrypoint-initdb.d/data/assets.csv
       - ./dbinit/stocks.sql:/docker-entrypoint-initdb.d/03_stocks.sql
     ports:
       - 0.0.0.0:5432:5432

@@ -1,0 +1,1200 @@
+id,symbol,name,description,asset_type
+1,ADM,Archer Daniels Midland Company,Agrar - Verarbeitung von Agrarprodukten,stock
+2,RNL1.F,Ronal AG,Automobile - Autoteile,stock
+3,RNO.PA,Renault S.A.,Automobile - Fahrzeughersteller,stock
+4,DTG.DE,Daimler Truck Holding AG,Automobilhersteller - Fahrzeuge,stock
+5,F,Ford Motor Company,Automobilhersteller - Fahrzeuge und Ersatzteile,stock
+6,RACE.MI,Ferrari N.V.,Automobilindustrie,stock
+7,PAH3.DE,Porsche Automobil Holding SE,Automobilindustrie,stock
+8,STLA,Stellantis N.V.,Automobilindustrie - Automobilhersteller,stock
+9,7EL.F,ElringKlinger AG,Automobilzulieferer,stock
+10,BWA,BorgWarner Inc.,Automobilzulieferer - Antriebssysteme,stock
+11,BMED.MI,Brembo S.p.A.,Automobilzulieferer - Bremssysteme,stock
+12,FR.PA,Valeo SA,Automobilzulieferer - Fahrzeugtechnologie,stock
+13,BDT.DE,Bertrandt AG,Automobilzulieferer - Ingenieurdienstleistungen,stock
+14,GMM.DE,Grammer AG,Automobilzulieferer - Innenraumausstattung,stock
+15,BVI.PA,Burelle SA,Automobilzulieferer - Kunststoffteile,stock
+16,CON.DE,Continental AG,Automobilzulieferer - Reifen und Automobilteile,stock
+17,ALIV-SDB.ST,Autoliv; Inc.,Automobilzulieferer - Sicherheitssysteme,stock
+18,APTV,Aptiv PLC,Automobilzulieferer - Technologie,stock
+19,RDC.DE,Klöckner & Co SE,Basismetalle und Bergbau - Metall- und Bergbau,stock
+20,RER1.F,Eiffage S.A.,Bau - Bauwesen,stock
+21,PSN.L,Persimmon plc,Bau - Bauwesen,stock
+22,PWR,Quanta Services; Inc.,Bau - Bauwesen,stock
+23,SKBSY,Skanska AB,Bau - Bauwesen,stock
+24,SAX.DE,Strabag SE,Bau - Bauwesen,stock
+25,PHM,PulteGroup; Inc.,Bau - Wohnbau,stock
+26,AHT.L,Ashtead Group plc,Bau und Bauwirtschaft,stock
+27,BDEV.L,Barratt Developments plc,Bau und Bauwirtschaft,stock
+28,4BV.F,Bauer AG,Bau und Bauwirtschaft,stock
+29,CTEC.L,Conteco Holding A/S,Bau und Bauwirtschaft,stock
+30,CRH.L,CRH plc,Bau und Bauwirtschaft,stock
+31,FER.MC,Ferrovial; S.A.,Bau und Bauwirtschaft - Bau und Betrieb von Infrastruktur,stock
+32,2FB.SG,Fortune Brands Home & Security; Inc.,Bau und Bauwirtschaft - Baustoffe und -ausrüstung,stock
+33,FLR,Fluor Corporation,Bau und Bauwirtschaft - Ingenieurdienstleistungen,stock
+34,ALLE,Allegion plc,Bau und Bauwirtschaft - Sicherheitstechnik,stock
+35,WIE.VI,Wienerberger AG,Baumaterialien - Ziegel und Keramik,stock
+36,CDI.PA,Cie de Saint-Gobain SA,Baustoffe - Baustoffe und Baumaterialien,stock
+37,ROCK-B.CO,Rockwool International A/S,Baustoffe - Dämmstoffe,stock
+38,HEI.DE,HeidelbergCement AG,Baustoffe - Zement,stock
+39,RMC.BE,Buzzi Unicem S.p.A.,Baustoffe - Zement und Zuschlagstoffe,stock
+40,HOT.DE,Hochtief AG,Bauwesen - Bau und Infrastruktur,stock
+41,MAS,Masco Corporation,Bauwesen - Baumaterialien,stock
+42,LLD.F,LafargeHolcim Ltd,Bauwesen - Baustoffe,stock
+43,MLM,Martin Marietta Materials; Inc.,Bauwesen - Baustoffe,stock
+44,LLC.F,Lendlease Group,Bauwesen - Immobilienentwicklung,stock
+45,LEN,Lennar Corporation,Bauwesen - Wohnbau,stock
+46,DHI,D.R. Horton; Inc.,Bauwirtschaft - Wohnbau,stock
+47,GIL.DE,Gildan Activewear Inc.,Bekleidung - Bekleidungsindustrie,stock
+48,HBI,Hanesbrands Inc.,Bekleidung - Bekleidungsindustrie,stock
+49,48CA.F,Canada Goose Holdings Inc.,Bekleidung - Luxus,stock
+50,CPRI,Capri Holdings Limited,Bekleidung - Luxusmode,stock
+51,BOSS.DE,HUGO BOSS AG,Bekleidung - Mode,stock
+52,NKE,NIKE; Inc.,Bekleidung - Sportbekleidung,stock
+53,ADS.DE,Adidas AG,Bekleidung und Schuhe,stock
+54,AON,Aon plc,Beratung und Versicherungsdienstleistungen,stock
+55,BHP.L,BHP Group Limited,Bergbau - Diversifizierter Bergbau,stock
+56,GLEN.L,Glencore plc,Bergbau - Diversifizierter Bergbau,stock
+57,NEM,Newmont Corporation,Bergbau - Gold und Edelmetalle,stock
+58,HMSB.DE,HMS Bergbau AG,Bergbau - Kohle,stock
+59,ANTO.L,Antofagasta plc,Bergbau - Kupfer,stock
+60,NDA.DE,Aurubis AG,Bergbau - Kupfer,stock
+61,FCX,Freeport-McMoRan Inc.,Bergbau - Kupfer; Gold und Molybdän,stock
+62,FGR.PA,Eramet SA,Bergbau - Metalle und Bergbau,stock
+63,LUMI.ST,Lundin Mining Corporation,Bergbau - Metallproduktion,stock
+64,CHGG,Chegg; Inc.,Bildung - Bildungsdienstleistungen,stock
+65,EDU,New Oriental Education & Technology Group Inc.,Bildung - Bildungsdienstleistungen,stock
+66,PSON.L,Pearson plc,Bildung - Bildungsdienstleistungen,stock
+67,AMGN,Amgen Inc.,Biotechnologie,stock
+68,ANAB,AnaptysBio; Inc.,Biotechnologie,stock
+69,BIIB,Biogen Inc.,Biotechnologie,stock
+70,BMRN,BioMarin Pharmaceutical Inc.,Biotechnologie,stock
+71,BSN.F,Biosearch SA,Biotechnologie,stock
+72,BLUE,bluebird bio; Inc.,Biotechnologie,stock
+73,2CV.F,Celyad SA,Biotechnologie,stock
+74,MRNA,Moderna; Inc.,Biotechnologie,stock
+75,MOR.DE,MorphoSys AG,Biotechnologie,stock
+76,NKTR,Nektar Therapeutics,Biotechnologie,stock
+77,NBIX,Neurocrine Biosciences; Inc.,Biotechnologie,stock
+78,2NN.MU,Nordic Nanovector ASA,Biotechnologie,stock
+79,NZM2.MU,Novozymes A/S,Biotechnologie,stock
+80,GLPG.AS,Galapagos NV,Biotechnologie - Biopharmazeutika,stock
+81,INCY,Incyte Corporation,Biotechnologie - Biopharmazeutika,stock
+82,ILMN,Illumina; Inc.,Biotechnologie - Genomik,stock
+83,AKZA.AS,Akzo Nobel N.V.,Chemie,stock
+84,AKE.PA,Arkema S.A.,Chemie,stock
+85,IMCD.AS,IMCD N.V.,Chemie - Chemiehandel,stock
+86,BAS.DE,BASF SE,Chemie - Chemikalien und Kunststoffe,stock
+87,CE,Celanese Corporation,Chemie - Chemikalien und Kunststoffe,stock
+88,DOW,Dow Inc.,Chemie - Chemikalien und Kunststoffe,stock
+89,BNR.DE,Brenntag AG,Chemie - Distribution von Chemikalien,stock
+90,CF,CF Industries Holdings; Inc.,Chemie - Düngemittel,stock
+91,MOS,Mosaic Company (The),Chemie - Düngemittel,stock
+92,NOA3.F,Nutrien Ltd.,Chemie - Düngemittel,stock
+93,SHW,Sherwin-Williams Company,Chemie - Farben und Beschichtungen,stock
+94,APD,Air Products and Chemicals; Inc.,Chemie - Industriegase,stock
+95,SHL.DE,A. Schulman; Inc. (jetzt Teil von LyondellBasell),Chemie - Kunststoffe,stock
+96,BRKM5.SA,Braskem S.A.,Chemie - Kunststoffe,stock
+97,1COV.DE,Covestro AG,Chemie - Kunststoffe,stock
+98,LYB,LyondellBasell Industries N.V.,Chemie - Kunststoffe,stock
+99,FMC,FMC Corporation,Chemie - Landwirtschaft und Industrielle Chemie,stock
+100,ALB,Albemarle Corporation,Chemie - Lithium und fortschrittliche Materialien,stock
+101,ECL,Ecolab Inc.,Chemie - Reinigungs- und Hygieneprodukte,stock
+102,FPE.DE,Fuchs Petrolub SE,Chemie - Schmierstoffe und Industriechemikalien,stock
+103,IFF,International Flavors & Fragrances Inc.,Chemie - Spezialchemikalien,stock
+104,JMAT.L,Johnson Matthey plc,Chemie - Spezialchemikalien,stock
+105,DSM,Koninklijke DSM N.V.,Chemie - Spezialchemikalien,stock
+106,LXS.DE,Lanxess AG,Chemie - Spezialchemikalien,stock
+107,PPG,PPG Industries; Inc.,Chemie - Spezialchemikalien,stock
+108,SYNT.L,Synthomer plc (vormals Synthomer LLC),Chemie - Spezialchemikalien,stock
+109,CTAS,Cintas Corporation,Dienstleistungen - Arbeitskleidung und -Dienstleistungen,stock
+110,CPRT,Copart; Inc.,Dienstleistungen - Autoverkauf und Recycling,stock
+111,CPG.L,Compass Group PLC,Dienstleistungen - Catering,stock
+112,AKSO.OL,Akastor ASA,Dienstleistungen - Öl- und Gasindustrie,stock
+113,ADP,Automatic Data Processing; Inc.,Dienstleistungen - Personalwesen,stock
+114,BZUN,Baozun Inc.,E-Commerce - Dienstleistungen,stock
+115,TGT,Target Corporation,Einzelhandel - Allgemeine Warenhäuser,stock
+116,WMT,Walmart Inc.,Einzelhandel - Allgemeine Warenhäuser,stock
+117,AZO,AutoZone; Inc.,Einzelhandel - Autoersatzteile,stock
+118,AAP,Advance Auto Parts; Inc.,Einzelhandel - Autoteile,stock
+119,GPC,Genuine Parts Company,Einzelhandel - Autoteile und Zubehör,stock
+120,ORLY,O'Reilly Automotive; Inc.,Einzelhandel - Autozubehör,stock
+121,LOW,Lowe's Companies; Inc.,Einzelhandel - Bau- und Heimwerksmärkte,stock
+122,BYG.F,Byggmax Group AB,Einzelhandel - Baumärkte,stock
+123,HBH.DE,HORNBACH Holding AG & Co. KGaA,Einzelhandel - Baumärkte,stock
+124,HD,The Home Depot; Inc.,Einzelhandel - Baumärkte,stock
+125,HM-B.ST,Hennes & Mauritz AB (H&M),Einzelhandel - Bekleidung,stock
+126,ITX.MC,Inditex; S.A.,Einzelhandel - Bekleidung,stock
+127,KER.PA,Kering SA,Einzelhandel - Bekleidung,stock
+128,KSS,Kohl's Corporation,Einzelhandel - Bekleidung,stock
+129,L,L Brands; Inc.,Einzelhandel - Bekleidung,stock
+130,LREN3.SA,Lojas Renner S.A.,Einzelhandel - Bekleidung,stock
+131,JWN,Nordstrom; Inc.,Einzelhandel - Bekleidung,stock
+132,PUM.DE,Puma SE,Einzelhandel - Bekleidung,stock
+133,PVH,PVH Corp,Einzelhandel - Bekleidung,stock
+134,RL,Ralph Lauren Corporation,Einzelhandel - Bekleidung,stock
+135,ROST,Ross Stores; Inc.,Einzelhandel - Bekleidung,stock
+136,SKX,Skechers U.S.A.; Inc.,Einzelhandel - Bekleidung,stock
+137,SFIX,Stitch Fix; Inc.,Einzelhandel - Bekleidung,stock
+138,TJX,The TJX Companies; Inc.,Einzelhandel - Bekleidung,stock
+139,TLX.DE,Tom Tailor Holding SE,Einzelhandel - Bekleidung,stock
+140,GPS,Gap Inc.,Einzelhandel - Bekleidung und Accessoires,stock
+141,ZAL.DE,Zalando SE,Einzelhandel - Bekleidung und Accessoires,stock
+142,BME.L,B&M European Value Retail SA,Einzelhandel - Discount-Einzelhandel,stock
+143,FIVE,Five Below; Inc.,Einzelhandel - Discount-Einzelhandel,stock
+144,DLTR,Dollar Tree; Inc.,Einzelhandel - Diskontläden,stock
+145,WBA,Walgreens Boots Alliance; Inc.,Einzelhandel - Drogerien und Apotheken,stock
+146,AMZN,Amazon.com; Inc.,Einzelhandel - E-Commerce,stock
+147,MELI,MercadoLibre; Inc.,Einzelhandel - E-Commerce,stock
+148,PDD,Pinduoduo Inc.,Einzelhandel - E-Commerce,stock
+149,DEQ.DE,Deutsche EuroShop AG,Einzelhandel - Einkaufszentren,stock
+150,COST,Costco Wholesale Corporation,Einzelhandel - Einzelhandel,stock
+151,BBY,Best Buy Co.; Inc.,Einzelhandel - Elektronik,stock
+152,CEC.DE,Ceconomy AG,Einzelhandel - Elektronik,stock
+153,CWH,Camping World Holdings; Inc.,Einzelhandel - Freizeitfahrzeuge,stock
+154,KMX,CarMax; Inc.,Einzelhandel - Gebrauchtwagenhandel,stock
+155,1LNB.F,Steinhoff International Holdings N.V.,Einzelhandel - Haushaltswaren,stock
+157,KGF.L,Kingfisher plc,Einzelhandel - Heimwerkerbedarf,stock
+158,TSCO,Tractor Supply Company,Einzelhandel - Heimwerkerbedarf,stock
+159,AD.AS,Koninklijke Ahold Delhaize N.V.,Einzelhandel - Lebensmittel,stock
+160,SON.LS,Sonae SGPS; S.A.,Einzelhandel - Lebensmittel und Getränke,stock
+161,DG,Dollar General Corporation,Einzelhandel - Lebensmittel und Grundnahrungsmittel,stock
+162,0F4I.IL,Shufersal Ltd,Einzelhandel - Lebensmittel und Supermärkte,stock
+163,JMT.LS,Jerónimo Martins; SGPS; S.A.,Einzelhandel - Lebensmitteleinzelhandel,stock
+164,ME9.F,Metro Inc.,Einzelhandel - Lebensmitteleinzelhandel,stock
+165,KR,The Kroger Co.,Einzelhandel - Lebensmitteleinzelhandel,stock
+166,TPR,Tapestry; Inc.,Einzelhandel - Luxusgüter,stock
+167,AUTO.L,Auto Trader Group plc,Einzelhandel - Online-Automobilhandel,stock
+168,JD,JD.com; Inc.,Einzelhandel - Online-Einzelhandel,stock
+169,EBAY,eBay Inc.,Einzelhandel - Online-Marktplatz,stock
+170,ETSY,Etsy; Inc.,Einzelhandel - Online-Marktplatz,stock
+171,FIE.DE,Fielmann AG,Einzelhandel - Optik,stock
+172,PNDORA.CO,Pandora A/S,Einzelhandel - Schmuck,stock
+173,ULTA,Ulta Beauty; Inc.,Einzelhandel - Schönheitsprodukte,stock
+174,FL,Foot Locker; Inc.,Einzelhandel - Schuhe und Sportbekleidung,stock
+175,LULU,Lululemon Athletica Inc.,Einzelhandel - Sportbekleidung,stock
+176,CA.PA,Carrefour SA,Einzelhandel - Supermärkte,stock
+177,M,Macy's; Inc.,Einzelhandel - Warenhäuser,stock
+178,VAR1.DE,Varta AG,Elektroindustrie - Elektrogeräte und Instrumente,stock
+179,LIGHT.AS,Signify N.V.,Elektronik - Beleuchtung,stock
+180,LR.PA,Legrand S.A.,Elektronik - Elektrische Ausrüstung,stock
+181,DNQ.F,Datacolor AG,Elektronik - Farbmanagement,stock
+182,IXD1.DE,IXYS Corporation,Elektronik - Halbleiter,stock
+183,KLAC,KLA Corporation,Elektronik - Halbleiterausrüstung,stock
+184,LRCX,Lam Research Corporation,Elektronik - Halbleiterausrüstung,stock
+185,ASM.AS,ASM International NV,Elektronik - Halbleiterproduktionsausrüstung,stock
+186,ASMF.F,ASM Pacific Technology Ltd.,Elektronik - Halbleiterproduktionsausrüstung,stock
+187,7752.T,Canon Inc.,Elektronik - Kameras und Drucker,stock
+188,IPG,IPG Photonics Corporation,Elektronik - Lasertechnologie,stock
+189,ASML,ASML Holding N.V.,Elektronik - Lithographieausrüstung für Halbleiter,stock
+190,GRMN,Garmin Ltd.,Elektronik - Navigationstechnologie,stock
+191,AME,AMETEK; Inc.,Elektronik - Präzisionsinstrumente,stock
+192,APH,Amphenol Corporation,Elektronik - Verbindungstechnik,stock
+193,0669.HK,Techtronic Industries Co. Ltd.,Elektronik - Werkzeuge,stock
+194,ETN,Eaton Corporation plc,Elektrotechnik - Elektrische Systeme und Dienstleistungen,stock
+195,0002.HK,CLP Holdings Ltd,Energie,stock
+196,0006.HK,Power Assets Holdings Limited,Energie,stock
+197,NOV,NOV Inc.,Energie - Ausrüstung für Öl- und Gasbohrungen,stock
+198,SBO.VI,Schoeller-Bleckmann Oilfield Equipment AG,Energie - Ausrüstung und Dienstleistungen,stock
+199,TSCDF,Tesco Corporation,Energie - Ausrüstung und Dienstleistungen,stock
+200,ESW.F,Ence Energia y Celulosa SA,Energie - Biomasse und Zellstoff,stock
+201,CNP,CenterPoint Energy; Inc.,Energie - Elektrizität,stock
+202,CMS,CMS Energy Corporation,Energie - Elektrizität,stock
+203,CMIG4.SA,Companhia Energetica de Minas Gerais - CEMIG,Energie - Elektrizität,stock
+204,DUK,Duke Energy Corporation,Energie - Elektrizität,stock
+205,EDN.BA,Edenor SA,Energie - Elektrizität,stock
+206,EIX,Edison International,Energie - Elektrizität,stock
+207,EGL.LS,EDP - Energias de Portugal SA,Energie - Elektrizität,stock
+208,ENEL.MI,Enel S.p.A.,Energie - Elektrizität,stock
+209,ETR,Entergy Corporation,Energie - Elektrizität,stock
+210,EQTL3.SA,Equatorial Energia SA,Energie - Elektrizität,stock
+211,EVRG,Evergy; Inc.,Energie - Elektrizität,stock
+212,FE,FirstEnergy Corp.,Energie - Elektrizität,stock
+213,KEK.F,KEPCO KPS Co.; Ltd.,Energie - Elektrizität,stock
+214,NEE,NextEra Energy; Inc.,Energie - Elektrizität,stock
+215,NRG,NRG Energy; Inc.,Energie - Elektrizität,stock
+216,PAMP.BA,Pampa Energia S.A.,Energie - Elektrizität,stock
+217,PNW,Pinnacle West Capital Corporation,Energie - Elektrizität,stock
+218,PPL,PPL Corporation,Energie - Elektrizität,stock
+219,PEG,Public Service Enterprise Group Incorporated,Energie - Elektrizität,stock
+220,SO,Southern Company,Energie - Elektrizität,stock
+221,SSE.L,SSE plc,Energie - Elektrizität,stock
+222,VBK.DE,Verbund AG,Energie - Elektrizität,stock
+223,ED,Consolidated Edison; Inc.,Energie - Elektrizität und Gas,stock
+224,D,Dominion Energy; Inc.,Energie - Elektrizität und Gas,stock
+225,ES,Eversource Energy,Energie - Elektrizität und Gas,stock
+226,DCC.SG,DCC plc,Energie - Energiehandel,stock
+227,HER.MI,Hera S.p.A.,Energie - Energieversorgung,stock
+228,INN1.DE,Innogy SE,Energie - Energieversorgung,stock
+229,GZ5.F,Gazprom PJSC,Energie - Erdgas,stock
+230,OKE,ONEOK; Inc.,Energie - Erdgas,stock
+231,ENA.F,Enagas SA,Energie - Erdgasinfrastruktur,stock
+232,PGS.OL,PGS ASA,Energie - Erdöl und Erdgas,stock
+233,LYV.SG,Orron Energy AB,Energie - Erdöl- und Erdgasexploration,stock
+234,NRE.F,Northland Power Inc.,Energie - Erneuerbare Energie,stock
+235,ORSTED.CO,Orsted A/S,Energie - Erneuerbare Energie,stock
+236,PNE3.DE,PNE AG,Energie - Erneuerbare Energie,stock
+237,SCATC.OL,Scatec ASA,Energie - Erneuerbare Energie,stock
+238,SFQ.DE,SFC Energy AG,Energie - Erneuerbare Energie,stock
+239,SLR.MC,Solaria Energía y Medio Ambiente; S.A.,Energie - Erneuerbare Energie,stock
+240,SPWR,SunPower Corporation,Energie - Erneuerbare Energie,stock
+241,TYGO,Tigo Energy; Inc.,Energie - Erneuerbare Energie,stock
+242,EDPR.LS,EDP Renovaveis SA,Energie - Erneuerbare Energien,stock
+243,ENR.DE,Encavis AG,Energie - Erneuerbare Energien,stock
+244,0EXG.IL,Energix-Renewable Energies Ltd,Energie - Erneuerbare Energien,stock
+245,ERG.MI,ERG S.p.A.,Energie - Erneuerbare Energien,stock
+246,0NWF.IL,Ormat Technologies; Inc.,Energie - Erneuerbare Energien,stock
+247,VWS.CO,Vestas Wind Systems A/S,Energie - Erneuerbare Energien,stock
+248,IBE.MC,Iberdrola; S.A.,Energie - Erneuerbare Energiequellen,stock
+249,GTN.F,Golar LNG Limited,Energie - Flüssigerdgas (LNG),stock
+250,SRG.MI,Snam S.p.A.,Energie - Gasinfrastruktur,stock
+251,ATO,Atmos Energy Corporation,Energie - Gasversorgung,stock
+252,XOM,Exxon Mobil Corporation,Energie - Integrierte Öl- und Gasunternehmen,stock
+253,DOM.ST,Dominion Energy Midstream Partners; LP,Energie - Midstream-Energieinfrastruktur,stock
+254,KWI.SG,Kuwait Petroleum Corporation,Energie - Mineralölunternehmen,stock
+255,EOAN.DE,E.ON SE,Energie - Multi-Utilities,stock
+256,ENGI.PA,Engie SA,Energie - Multi-Utilities,stock
+257,EVD.DE,EVN AG,Energie - Multi-Utilities,stock
+258,NTGY.MC,Naturgy Energy Group; S.A.,Energie - Multi-Utilities,stock
+259,TTE,TotalEnergies SE,Energie - Multi-Utilities,stock
+260,AKRBF,Aker BP ASA,Energie - Öl und Gas,stock
+261,APA,APA Corporation,Energie - Öl und Gas,stock
+262,0883.HK,CNOOC Limited,Energie - Öl und Gas,stock
+263,0EBQ.IL,Delek Drilling Limited Partnership,Energie - Öl und Gas,stock
+264,OXY,Occidental Petroleum Corporation,Energie - Öl und Gas,stock
+265,OMV.VI,OMV AG,Energie - Öl und Gas,stock
+266,0RP9.IL,Paz Oil Company Ltd,Energie - Öl und Gas,stock
+267,PETR4.SA,Petroleo Brasileiro S.A. - Petrobras,Energie - Öl und Gas,stock
+268,PSX,Phillips 66,Energie - Öl und Gas,stock
+269,0ROY.IL,Ratio Oil Exploration Limited Partnership,Energie - Öl und Gas,stock
+270,RIGD.IL,Reliance Industries Limited,Energie - Öl und Gas,stock
+271,REP.DE,Repsol S.A.,Energie - Öl und Gas,stock
+272,SHEL,Royal Dutch Shell plc,Energie - Öl und Gas,stock
+273,SFER.MI,Saipem S.p.A.,Energie - Öl und Gas,stock
+274,SLB,Schlumberger Limited,Energie - Öl und Gas,stock
+275,SNW.DE,Siemens Energy AG,Energie - Öl und Gas,stock
+276,0386.HK,Sinopec Corp,Energie - Öl und Gas,stock
+277,SUBC.OL,Subsea 7 S.A.,Energie - Öl und Gas,stock
+278,TEP.PA,Technip Energies N.V.,Energie - Öl und Gas,stock
+279,TRE.MC,Tecnicas Reunidas SA,Energie - Öl und Gas,stock
+280,TEL,Tellurian Inc.,Energie - Öl und Gas,stock
+281,TGS.OL,TGS-NOPEC Geophysical Company ASA,Energie - Öl und Gas,stock
+282,WMB,The Williams Companies; Inc.,Energie - Öl und Gas,stock
+283,UGPA3.SA,Ultrapar Participacoes SA,Energie - Öl und Gas,stock
+284,VLO,Valero Energy Corporation,Energie - Öl und Gas,stock
+285,YPFD.BA,YPF SA,Energie - Öl und Gas,stock
+286,MRO,Marathon Oil Corporation,Energie - Öl und Gas Exploration,stock
+287,KMI,Kinder Morgan; Inc.,Energie - Öl und Gas Pipelines,stock
+288,BKR,Baker Hughes Company,Energie - Öl- und Gasdienstleistungen,stock
+289,HAL,Halliburton Company,Energie - Öl- und Gasdienstleistungen,stock
+290,FTI,TechnipFMC plc,Energie - Öl- und Gasdienstleistungen,stock
+291,CBT,Cabot Oil & Gas Corporation,Energie - Öl- und Gasexploration und -produktion,stock
+292,CVX,Chevron Corporation,Energie - Öl- und Gasexploration und -produktion,stock
+293,COP,ConocoPhillips,Energie - Öl- und Gasexploration und -produktion,stock
+294,DVN,Devon Energy Corporation,Energie - Öl- und Gasexploration und -produktion,stock
+295,FANG,Diamondback Energy; Inc.,Energie - Öl- und Gasexploration und -produktion,stock
+296,DNO.OL,DNO ASA,Energie - Öl- und Gasexploration und -produktion,stock
+297,ENI.DE,Eni S.p.A.,Energie - Öl- und Gasexploration und -produktion,stock
+298,EOG,EOG Resources; Inc.,Energie - Öl- und Gasexploration und -produktion,stock
+299,EQT.ST,EQT AB,Energie - Öl- und Gasexploration und -produktion,stock
+300,EQNR.OL,Equinor ASA,Energie - Öl- und Gasexploration und -produktion,stock
+301,GALP.LS,Galp Energia SGPS SA,Energie - Öl- und Gasexploration und -produktion,stock
+302,HES,Hess Corporation,Energie - Öl- und Gasexploration und -produktion,stock
+303,MPC,Marathon Petroleum Corporation,Energie - Raffinerien,stock
+304,FSLR,First Solar; Inc.,Energie - Solarenergie,stock
+305,1AE.F,SMA Solar Technology AG,Energie - Solarenergie,stock
+306,ENPH,Enphase Energy; Inc.,Energie - Solartechnik,stock
+307,AES,The AES Corporation,Energie - Stromerzeugung,stock
+308,TRN.MI,Terna Rete Elettrica Nazionale SpA,Energie - Versorgungsdienstleistungen,stock
+309,LNT,Alliant Energy Corporation,Energie - Versorgungsunternehmen,stock
+310,AEE,Ameren Corporation,Energie - Versorgungsunternehmen,stock
+311,AEP,American Electric Power Company; Inc.,Energie - Versorgungsunternehmen,stock
+312,CNA.L,Centrica plc,Energie - Versorgungsunternehmen,stock
+313,RUI.PA,RWE AG,Energie - Versorgungsunternehmen,stock
+314,SRE,Sempra Energy,Energie - Versorgungsunternehmen,stock
+315,NEL.OL,NEL ASA,Energie - Wasserstoff,stock
+316,7EVB.F,Eolus Vind AB,Energie - Windenergie,stock
+317,GM,General Motors Company,Fahrzeugbau - Automobilhersteller,stock
+318,HOG,Harley-Davidson; Inc.,Fahrzeugbau - Motorräder,stock
+319,BMW.DE,Bayerische Motoren Werke AG (BMW),Fahrzeuge - Autos,stock
+320,6AA0.F,Aston Martin Lagonda Global Holdings plc,Fahrzeuge - Luxus,stock
+321,2PI.F,Piaggio & C. SpA,Fahrzeuge - Motorroller,stock
+322,LKQ,LKQ Corporation,Fahrzeugindustrie - Autoteilehandel,stock
+323,BR,Broadridge Financial Solutions; Inc.,Finanzdienstleistungen,stock
+324,USB,U.S. Bancorp,Finanzdienstleistungen - Banken,stock
+325,UCG.MI,Unione di Banche Italiane S.p.A.,Finanzdienstleistungen - Banken,stock
+326,WFC,Wells Fargo & Company,Finanzdienstleistungen - Banken,stock
+327,ZION,Zions Bancorporation; N.A.,Finanzdienstleistungen - Banken,stock
+328,CBOE,Cboe Global Markets; Inc.,Finanzdienstleistungen - Börsenbetreiber,stock
+329,CME,CME Group Inc.,Finanzdienstleistungen - Börsenbetreiber,stock
+330,DB1.DE,Deutsche Boerse AG,Finanzdienstleistungen - Börsenbetreiber,stock
+331,EUZ.DE,Eurex Frankfurt AG,Finanzdienstleistungen - Börsenbetreiber,stock
+332,EUQ.F,Euronext NV,Finanzdienstleistungen - Börsenbetreiber,stock
+333,ICE,Intercontinental Exchange; Inc.,Finanzdienstleistungen - Börsenbetreiber,stock
+334,NDAQ,Nasdaq; Inc.,Finanzdienstleistungen - Börsenbetreiber,stock
+335,WU,The Western Union Company,Finanzdienstleistungen - Datenverarbeitung und Outsourcing,stock
+336,HYQ.DE,Hypoport AG,Finanzdienstleistungen - Finanzberatung,stock
+337,WDI.HM,Wirecard AG,Finanzdienstleistungen - Finanzdatendienste,stock
+338,MSCI,MSCI Inc.,Finanzdienstleistungen - Index- und Datenanbieter,stock
+339,SPGI,S&P Global Inc.,Finanzdienstleistungen - Informationsdienste,stock
+340,EXPN.L,Experian plc,Finanzdienstleistungen - Kreditinformationen,stock
+341,XRP-USD,Ripple,Finanzdienstleistungen - Kryptowährung,crypto
+342,GLJ.DE,Grenke AG,Finanzdienstleistungen - Leasing,stock
+343,IGG.L,IG Group Holdings plc,Finanzdienstleistungen - Online-Handel mit CFDs,stock
+344,HRB,H&R Block; Inc.,Finanzdienstleistungen - Steuerdienstleistungen,stock
+345,BLK,BlackRock; Inc.,Finanzdienstleistungen - Vermögensverwaltung,stock
+346,TROW,T. Rowe Price Group; Inc.,Finanzdienstleistungen - Vermögensverwaltung,stock
+347,UNI.MI,Unipol Gruppo SpA,Finanzdienstleistungen - Versicherungen,stock
+348,UQA.VI,Uniqa Insurance Group AG,Finanzdienstleistungen - Versicherungen,stock
+349,UNM,Unum Group,Finanzdienstleistungen - Versicherungen,stock
+350,WTW,Willis Towers Watson Public Limited Company,Finanzdienstleistungen - Versicherungen,stock
+351,ADYEN.AS,Adyen N.V.,Finanzdienstleistungen - Zahlungsabwicklung,stock
+352,EDEN.PA,Edenred SA,Finanzdienstleistungen - Zahlungslösungen,stock
+353,GPN,Global Payments Inc.,Finanzdienstleistungen - Zahlungsverarbeitung,stock
+354,NEXI.MI,Nexi S.p.A.,Finanzdienstleistungen - Zahlungsverkehr,stock
+355,V,Visa Inc.,Finanzdienstleistungen - Zahlungsverkehr,stock
+356,0011.HK,Hang Seng Bank Ltd,Finanzen,stock
+357,MOV.F,Aareal Bank AG,Finanzen - Banken,stock
+358,ABN.AS,ABN AMRO Group N.V.,Finanzen - Banken,stock
+359,BMPS.MI,Banca Monte dei Paschi di Siena S.p.A.,Finanzen - Banken,stock
+360,BBVA.MC,Banco Bilbao Vizcaya Argentaria SA,Finanzen - Banken,stock
+361,BPE.MI,Banco BPM S.p.A.,Finanzen - Banken,stock
+362,BBDC3.SA,Banco Bradesco SA,Finanzen - Banken,stock
+363,BCP.LS,Banco Comercial Portugues SA,Finanzen - Banken,stock
+364,SAB.MC,Banco de Sabadell; S.A.,Finanzen - Banken,stock
+365,BBAS3.SA,Banco do Brasil SA,Finanzen - Banken,stock
+366,BMA.BA,Banco Macro SA,Finanzen - Banken,stock
+367,0RUG.IL,Bank Hapoalim B.M.,Finanzen - Banken,stock
+368,BLMIF,Bank Leumi Le-Israel B.M.,Finanzen - Banken,stock
+369,BAC,Bank of America Corporation,Finanzen - Banken,stock
+370,BKCYF,Bank of Cyprus Holdings Public Limited Company,Finanzen - Banken,stock
+371,BIRG.L,Bank of Ireland Group plc,Finanzen - Banken,stock
+372,BK,Bank of New York Mellon Corporation,Finanzen - Banken,stock
+373,BARC.L,Barclays PLC,Finanzen - Banken,stock
+374,BG.VI,BAWAG Group AG,Finanzen - Banken,stock
+376,BNF.SG,BNP Paribas Fortis SA/NV,Finanzen - Banken,stock
+377,BNP.PA,BNP Paribas SA,Finanzen - Banken,stock
+378,2388.HK,BOC Hong Kong (Holdings) Limited,Finanzen - Banken,stock
+379,BGN.MI,BPER Banca S.p.A.,Finanzen - Banken,stock
+380,CABK.MC,CaixaBank SA,Finanzen - Banken,stock
+381,COF,Capital One Financial Corporation,Finanzen - Banken,stock
+382,C,Citigroup Inc.,Finanzen - Banken,stock
+383,CFG,Citizens Financial Group; Inc.,Finanzen - Banken,stock
+384,CBG.L,Close Brothers Group plc,Finanzen - Banken,stock
+385,CMAB.F,Comdirect Bank AG,Finanzen - Banken,stock
+386,CMA,Comerica Incorporated,Finanzen - Banken,stock
+387,CBK.DE,Commerzbank AG,Finanzen - Banken,stock
+388,ACA.PA,Crédit Agricole S.A.,Finanzen - Banken,stock
+389,DANSKE.CO,Danske Bank A/S,Finanzen - Banken,stock
+390,DBK.DE,Deutsche Bank AG,Finanzen - Banken,stock
+391,PBB.DE,Deutsche Pfandbriefbank AG,Finanzen - Banken,stock
+392,EDW.F,Erste Group Bank AG,Finanzen - Banken,stock
+393,FMNB.F,Farmers National Banc Corp,Finanzen - Banken,stock
+394,FITB,Fifth Third Bancorp,Finanzen - Banken,stock
+395,FBK.MI,FinecoBank Banca Fineco S.p.A.,Finanzen - Banken,stock
+396,FRCB,First Republic Bank,Finanzen - Banken,stock
+397,GGAL.BA,Grupo Financiero Galicia S.A.,Finanzen - Banken,stock
+398,HAB.DE,Habib Bank AG Zurich,Finanzen - Banken,stock
+399,HBAN,Huntington Bancshares Inc.,Finanzen - Banken,stock
+400,1398.HK,Industrial and Commercial Bank of China Limited,Finanzen - Banken,stock
+401,INGA.AS,ING Groep N.V.,Finanzen - Banken,stock
+402,IG.MI,Intesa Sanpaolo S.p.A.,Finanzen - Banken,stock
+403,0RLA.IL,Israel Discount Bank Limited,Finanzen - Banken,stock
+404,JPM,JPMorgan Chase & Co.,Finanzen - Banken,stock
+405,JYSK.CO,Jyske Bank A/S,Finanzen - Banken,stock
+406,KEY,KeyCorp,Finanzen - Banken,stock
+407,KDB.F,Kreditanstalt für Wiederaufbau (KfW),Finanzen - Banken,stock
+408,MTB,M&T Bank Corporation,Finanzen - Banken,stock
+409,MB.MI,Mediobanca Banca di Credito Finanziario S.p.A.,Finanzen - Banken,stock
+410,NBNKF,Nordea Bank Abp,Finanzen - Banken,stock
+411,1NBA.DE,OneSavings Bank plc,Finanzen - Banken,stock
+412,PNC,PNC Financial Services Group; Inc.,Finanzen - Banken,stock
+413,RBI.VI,Raiffeisen Bank International AG,Finanzen - Banken,stock
+414,RF,Regions Financial Corporation,Finanzen - Banken,stock
+415,SEBA.F,Schweizerische Eidgenossenschaft,Finanzen - Banken,stock
+416,SEB-A.ST,Skandinaviska Enskilda Banken AB,Finanzen - Banken,stock
+417,SK.PA,Société Générale S.A.,Finanzen - Banken,stock
+418,STT,State Street Corporation,Finanzen - Banken,stock
+419,SIVBQ,SVB Financial Group,Finanzen - Banken,stock
+420,SVKB.F,Svenska Handelsbanken AB (publ),Finanzen - Banken,stock
+421,SWED-A.ST,Swedbank AB,Finanzen - Banken,stock
+422,SYDB.CO,Sydbank A/S,Finanzen - Banken,stock
+423,GS,The Goldman Sachs Group; Inc.,Finanzen - Banken,stock
+424,IDVA.SG,Industrivaerden AB,Finanzen - Beteiligungsgesellschaft,stock
+425,INVE-B.ST,Investor AB (Class B),Finanzen - Beteiligungsgesellschaft,stock
+426,KFI1.F,KAP Beteiligungs-AG,Finanzen - Beteiligungsgesellschaft,stock
+427,DBAN.SG,Deutsche Beteiligungs AG,Finanzen - Beteiligungsgesellschaften,stock
+428,DEZ.DE,Deutsche Zweitmarkt AG,Finanzen - Beteiligungsgesellschaften,stock
+429,NGLB.DE,Naga Group AG,Finanzen - Brokerage,stock
+430,EXXRF,Exor NV,Finanzen - Dachgesellschaft,stock
+431,CGM.F,Cerved Group S.p.A.,Finanzen - Finanzdienstleistungen,stock
+432,ERF.PA,Eurazeo SE,Finanzen - Finanzdienstleistungen,stock
+433,GBLB.BR,GBL Group SA,Finanzen - Finanzdienstleistungen,stock
+434,PPX.DE,Papyrus Capital AG,Finanzen - Finanzdienstleistungen,stock
+435,RJF,Raymond James Financial; Inc.,Finanzen - Finanzdienstleistungen,stock
+436,RE21.F,Refinitiv PLC,Finanzen - Finanzdienstleistungen,stock
+437,SYF,Synchrony Financial,Finanzen - Finanzdienstleistungen,stock
+438,SCHW,The Charles Schwab Corporation,Finanzen - Finanzdienstleistungen,stock
+439,ITSA4.SA,Itaúsa - Investimentos Itaú S.A.,Finanzen - Holdinggesellschaft,stock
+440,KBC.VI,KBC Ancora SCA,Finanzen - Holdinggesellschaft,stock
+441,JEF,Jefferies Financial Group Inc.,Finanzen - Investmentbanken,stock
+442,MS,Morgan Stanley,Finanzen - Investmentbanken,stock
+443,BSP.F,Berenberg European Small Cap Fd,Finanzen - Investmentfonds,stock
+444,IVZ,Invesco Ltd.,Finanzen - Investmentfonds,stock
+445,JUP.L,Jupiter Fund Management plc,Finanzen - Investmentfonds,stock
+446,SMT.L,Scottish Mortgage Investment Trust PLC,Finanzen - Investmentfonds,stock
+447,DFS,Discover Financial Services,Finanzen - Kreditkarten,stock
+448,III.L,3i Group plc,Finanzen - Private Equity,stock
+449,MCO,Moody's Corporation,Finanzen - Ratingagentur,stock
+450,AMP,Ameriprise Financial; Inc.,Finanzen - Vermögensverwaltung,stock
+451,AMUN.PA,Amundi SA,Finanzen - Vermögensverwaltung,stock
+452,AZM.MI,Azimut Holding S.p.A.,Finanzen - Vermögensverwaltung,stock
+453,DWS.DE,DWS Group GmbH & Co. KGaA,Finanzen - Vermögensverwaltung,stock
+454,BEN,Franklin Resources; Inc.,Finanzen - Vermögensverwaltung,stock
+455,NTRS,Northern Trust Corporation,Finanzen - Vermögensverwaltung,stock
+456,PVQ.F,Perpetual Ltd,Finanzen - Vermögensverwaltung,stock
+457,SDR.L,Schroders plc,Finanzen - Vermögensverwaltung,stock
+458,STJ.L,St. James's Place plc,Finanzen - Vermögensverwaltung,stock
+459,APAM.AS,a.s.r. Nederland NV,Finanzen - Versicherung,stock
+460,AFL,Aflac Incorporated,Finanzen - Versicherung,stock
+461,AGS.BR,Ageas S.A.,Finanzen - Versicherung,stock
+462,1299.HK,AIA Group Limited,Finanzen - Versicherung,stock
+463,ALV.DE,Allianz SE,Finanzen - Versicherung,stock
+464,ALL,Allstate Corporation,Finanzen - Versicherung,stock
+465,AIG,American International Group; Inc.,Finanzen - Versicherung,stock
+466,AJG,Arthur J. Gallagher & Co.,Finanzen - Versicherung,stock
+467,ASRNL.AS,ASR Nederland N.V.,Finanzen - Versicherung,stock
+468,AIZ,Assicurazioni Generali S.p.A.,Finanzen - Versicherung,stock
+469,AV.L,Aviva plc,Finanzen - Versicherung,stock
+470,CS.PA,AXA SA,Finanzen - Versicherung,stock
+471,EFC1.BE,Baloise Holding AG,Finanzen - Versicherung,stock
+472,BBSE3.SA,BB Seguridade Participacoes SA,Finanzen - Versicherung,stock
+473,BEZ.L,Beazley plc,Finanzen - Versicherung,stock
+474,2628.HK,China Life Insurance Company Limited,Finanzen - Versicherung,stock
+475,CB,Chubb Limited,Finanzen - Versicherung,stock
+476,CINF,Cincinnati Financial Corporation,Finanzen - Versicherung,stock
+477,CENB.F,CNP Assurances SA,Finanzen - Versicherung,stock
+478,ENX.PA,Euler Hermes Group SA,Finanzen - Versicherung,stock
+479,GSF.OL,Gjensidige Forsikring ASA,Finanzen - Versicherung,stock
+480,LNC,Lincoln National Corporation,Finanzen - Versicherung,stock
+481,MAP.MC,Mapfre; S.A.,Finanzen - Versicherung,stock
+482,MMC,Marsh & McLennan Companies; Inc.,Finanzen - Versicherung,stock
+483,MET,MetLife; Inc.,Finanzen - Versicherung,stock
+484,2318.HK,Ping An Insurance (Group) Company of China; Ltd.,Finanzen - Versicherung,stock
+485,PST.MI,Poste Italiane S.p.A.,Finanzen - Versicherung,stock
+486,PFG,Principal Financial Group; Inc.,Finanzen - Versicherung,stock
+487,PGR,Progressive Corporation,Finanzen - Versicherung,stock
+488,PRU,Prudential Financial; Inc.,Finanzen - Versicherung,stock
+489,SCR.PA,SCOR SE,Finanzen - Versicherung,stock
+490,HIG,The Hartford Financial Services Group; Inc.,Finanzen - Versicherung,stock
+491,IIA.VI,Vienna Insurance Group AG,Finanzen - Versicherung,stock
+492,STB.OL,Storebrand ASA,Finanzen - Versicherungen,stock
+493,MA,Mastercard Incorporated,Finanzen - Zahlungsabwicklung,stock
+494,AXP,American Express Company,Finanzen - Zahlungsdienste,stock
+495,PYPL,PayPal Holdings; Inc.,Finanzen - Zahlungsdienste,stock
+496,BWO.OL,Bakkafrost P/F,Fischerei - Lachszucht,stock
+497,HOLM-B.ST,Holmen AB,Forstwirtschaft - Papier und Verpackungen,stock
+498,JUVE.MI,Juventus Football Club S.p.A.,Freizeit - Fußballvereine,stock
+499,KINV-B.ST,Kindred Group plc,Freizeit - Glücksspiel,stock
+500,MGM,MGM Resorts International,Freizeit - Hotels und Casinos,stock
+501,MAR,Marriott International; Inc.,Freizeit - Hotels und Resorts,stock
+502,MEL.MC,MELIÁ HOTELS INTERNATIONAL; S.A.,Freizeit - Hotels und Resorts,stock
+503,KINB.XC,Kinepolis Group NV,Freizeit - Kinos,stock
+504,CCL,Carnival Corporation & plc,Freizeit - Kreuzfahrt,stock
+505,NCLH,Norwegian Cruise Line Holdings Ltd.,Freizeit - Kreuzfahrt,stock
+506,KBX.DE,Kuoni Reisen Holding AG,Freizeit - Reisedienstleistungen,stock
+507,MAT,Mattel; Inc.,Freizeit - Spielwaren,stock
+508,HAS,Hasbro; Inc.,Freizeit - Spielzeug,stock
+509,LYV,Live Nation Entertainment; Inc.,Freizeit - Veranstaltungsdienste,stock
+510,RCL,Royal Caribbean Group,Freizeit und Tourismus - Kreuzfahrt,stock
+511,AC.PA,Accor S.A.,Gastgewerbe - Hotels,stock
+512,HLT,Hilton Worldwide Holdings Inc.,Gastgewerbe - Hotels,stock
+513,IBS.LS,Ibersol; SGPS; S.A.,Gastgewerbe - Restaurants,stock
+514,ABNB,Airbnb; Inc.,Gastgewerbe - Unterkunftsvermittlung,stock
+515,DRI,Darden Restaurants; Inc.,Gastronomie - Restaurants,stock
+516,CMG,Chipotle Mexican Grill; Inc.,Gastronomie - Schnellrestaurantkette,stock
+517,LRC.F,Lassila & Tikanoja Oyj,Geschäftsdienstleistungen - Abfallwirtschaft,stock
+518,LOOMIS.ST,Loomis AB,Geschäftsdienstleistungen - Bargeldmanagement,stock
+519,UPWK,Upwork Inc.,Geschäftsdienstleistungen - Berufsdienstleistungen,stock
+520,ISS.CO,ISS A/S,Geschäftsdienstleistungen - Facility Management,stock
+521,RTO.L,Rentokil Initial plc,Geschäftsdienstleistungen - Facility Services,stock
+522,RTO1.F,Rentokil Initial plc,Geschäftsdienstleistungen - Facility Services,stock
+523,ROL,Rollins; Inc.,Geschäftsdienstleistungen - Facility Services,stock
+524,PAYX,Paychex; Inc.,Geschäftsdienstleistungen - Personalmanagement,stock
+525,RRU.F,Randstad N.V.,Geschäftsdienstleistungen - Personalmanagement,stock
+526,SGE.SG,SGS SA,Geschäftsdienstleistungen - Prüfung und Testen,stock
+527,SECU-B.ST,Securitas AB,Geschäftsdienstleistungen - Sicherheitsdienste,stock
+528,CVS,CVS Health Corporation,Gesundheitswesen - Apotheken,stock
+529,RADL3.SA,Raia Drogasil S.A.,Gesundheitswesen - Apotheken,stock
+530,GILD,Gilead Sciences; Inc.,Gesundheitswesen - Biopharmazeutika,stock
+531,GRF.MC,Grifols; S.A.,Gesundheitswesen - Biopharmazeutika,stock
+532,HRZA.F,Horizon Therapeutics plc,Gesundheitswesen - Biopharmazeutika,stock
+533,EDIT,Editas Medicine; Inc.,Gesundheitswesen - Biotechnologie,stock
+534,EVT.DE,EVOTEC AG,Gesundheitswesen - Biotechnologie,stock
+535,E7V.F,Evotec SE,Gesundheitswesen - Biotechnologie,stock
+536,GMAB.CO,Genmab A/S,Gesundheitswesen - Biotechnologie,stock
+537,0O26.IL,OPKO Health; Inc.,Gesundheitswesen - Biotechnologie,stock
+538,PRX.AS,Pharming Group N.V.,Gesundheitswesen - Biotechnologie,stock
+539,QIA.DE,Qiagen N.V.,Gesundheitswesen - Biotechnologie,stock
+540,REGN,Regeneron Pharmaceuticals; Inc.,Gesundheitswesen - Biotechnologie,stock
+541,RGEN,Repligen Corporation,Gesundheitswesen - Biotechnologie,stock
+542,SRT.DE,Sartorius AG,Gesundheitswesen - Biotechnologie,stock
+543,VRTX,Vertex Pharmaceuticals Incorporated,Gesundheitswesen - Biotechnologie,stock
+544,VITR.ST,Vitrolife AB,Gesundheitswesen - Biotechnologie,stock
+545,BIH.F,Biohit Oyj,Gesundheitswesen - Diagnose,stock
+546,DIA.MI,Diasorin S.p.A.,Gesundheitswesen - Diagnoseprodukte,stock
+547,IDXX,IDEXX Laboratories; Inc.,Gesundheitswesen - Diagnostika,stock
+548,DGX,Quest Diagnostics Incorporated,Gesundheitswesen - Diagnostiklabor,stock
+549,DVA,DaVita Inc.,Gesundheitswesen - Dialyse,stock
+550,IQV,IQVIA Holdings Inc.,Gesundheitswesen - Forschung und Entwicklung,stock
+551,ORP.PA,Orpea SA,Gesundheitswesen - Gesundheitsdienste,stock
+552,PER.F,Premier; Inc.,Gesundheitswesen - Gesundheitsdienste,stock
+553,UHS,Universal Health Services; Inc.,Gesundheitswesen - Gesundheitsdienste,stock
+554,FRA.DE,Fresenius SE & Co. KGaA,Gesundheitswesen - Gesundheitsdienstleistungen,stock
+555,RMS.PA,Ramsay Health Care Limited,Gesundheitswesen - Gesundheitsdienstleistungen,stock
+556,RSH.F,Rhoen Klinikum AG,Gesundheitswesen - Gesundheitsdienstleistungen,stock
+557,UNH,UnitedHealth Group Incorporated,Gesundheitswesen - Gesundheitsdienstleistungen,stock
+558,AMP.MI,Amplifon S.p.A.,Gesundheitswesen - Hörgeräte,stock
+559,DEMANT.CO,Demant A/S,Gesundheitswesen - Hörgeräte,stock
+560,BIM.PA,Biomérieux S.A.,Gesundheitswesen - In-vitro-Diagnostika,stock
+561,HCA,HCA Healthcare; Inc.,Gesundheitswesen - Krankenhaus- und Gesundheitsdienste,stock
+562,CNC,Centene Corporation,Gesundheitswesen - Krankenversicherung,stock
+563,CI,Cigna Corporation,Gesundheitswesen - Krankenversicherung,stock
+564,HUM,Humana Inc.,Gesundheitswesen - Krankenversicherung,stock
+565,MF.PA,Mutualité Française Loire - SSAM,Gesundheitswesen - Krankenversicherung,stock
+566,ERFSF,Eurofins Scientific SE,Gesundheitswesen - Labor- und Diagnosedienste,stock
+567,A,Agilent Technologies; Inc.,Gesundheitswesen - Labortechnik,stock
+568,HSIC,Henry Schein; Inc.,Gesundheitswesen - Medizinbedarf,stock
+569,NCYT.L,Novacyt S.A.,Gesundheitswesen - Medizinische Diagnose,stock
+570,GN.CO,GN Store Nord A/S,Gesundheitswesen - Medizinische Geräte,stock
+571,NVCR,NovoCure Limited,Gesundheitswesen - Medizinische Geräte,stock
+572,QDEL,Quidel Corporation,Gesundheitswesen - Medizinische Geräte,stock
+573,FME.DE,Fresenius Medical Care AG & Co. KGaA,Gesundheitswesen - Medizinische Geräte und Dienstleistungen,stock
+574,BAX,Baxter International Inc.,Gesundheitswesen - Medizinprodukte,stock
+575,COLO-B.CO,Coloplast A/S,Gesundheitswesen - Medizinprodukte,stock
+576,COO,Cooper Companies; Inc.,Gesundheitswesen - Medizinprodukte,stock
+577,PODD,Insulet Corporation,Gesundheitswesen - Medizinprodukte,stock
+578,RMD,ResMed Inc.,Gesundheitswesen - Medizinprodukte,stock
+579,ABT,Abbott Laboratories,Gesundheitswesen - Medizintechnik,stock
+580,BDX,Becton; Dickinson and Company,Gesundheitswesen - Medizintechnik,stock
+581,XRAY,DENTSPLY SIRONA Inc.,Gesundheitswesen - Medizintechnik,stock
+582,DXCM,DexCom; Inc.,Gesundheitswesen - Medizintechnik,stock
+583,EW,Edwards Lifesciences Corporation,Gesundheitswesen - Medizintechnik,stock
+584,GETI-B.ST,Getinge AB,Gesundheitswesen - Medizintechnik,stock
+585,HOLX,Hologic; Inc.,Gesundheitswesen - Medizintechnik,stock
+586,PHI1.DE,Koninklijke Philips NV,Gesundheitswesen - Medizintechnik,stock
+587,MDT,Medtronic plc,Gesundheitswesen - Medizintechnik,stock
+588,PKN.SG,PerkinElmer; Inc.,Gesundheitswesen - Medizintechnik,stock
+589,SNM.F,Siemens Healthineers AG,Gesundheitswesen - Medizintechnik,stock
+590,SNL.XC,Smith & Nephew plc,Gesundheitswesen - Medizintechnik,stock
+591,STAA,STAAR Surgical Company,Gesundheitswesen - Medizintechnik,stock
+592,SYK,Stryker Corporation,Gesundheitswesen - Medizintechnik,stock
+593,TFX,Teleflex Incorporated,Gesundheitswesen - Medizintechnik,stock
+594,TMO,Thermo Fisher Scientific Inc.,Gesundheitswesen - Medizintechnik,stock
+595,WAT,Waters Corporation,Gesundheitswesen - Medizintechnik,stock
+596,ZBH,Zimmer Biomet Holdings; Inc.,Gesundheitswesen - Medizintechnik,stock
+597,ERCG.F,EssilorLuxottica SA,Gesundheitswesen - Optik und Brillen,stock
+598,CAH,Cardinal Health; Inc.,Gesundheitswesen - Pharma und Gesundheitsprodukte,stock
+599,MCK,McKesson Corporation,Gesundheitswesen - Pharmagroßhandel,stock
+600,AZN,AstraZeneca plc,Gesundheitswesen - Pharmazeutika,stock
+601,LLY,Eli Lilly and Company,Gesundheitswesen - Pharmazeutika,stock
+602,GL9.F,Galenica AG,Gesundheitswesen - Pharmazeutika,stock
+603,HIK.L,Hikma Pharmaceuticals plc,Gesundheitswesen - Pharmazeutika,stock
+604,IPN.PA,Ipsen S.A.,Gesundheitswesen - Pharmazeutika,stock
+605,JNJ,Johnson & Johnson,Gesundheitswesen - Pharmazeutika,stock
+606,MRK,Merck & Co.; Inc.,Gesundheitswesen - Pharmazeutika,stock
+607,NVO,Novo Nordisk A/S,Gesundheitswesen - Pharmazeutika,stock
+608,ORXOY,Orexo AB,Gesundheitswesen - Pharmazeutika,stock
+609,0M2O.IL,Orion Oyj,Gesundheitswesen - Pharmazeutika,stock
+610,PRGO,Perrigo Company plc,Gesundheitswesen - Pharmazeutika,stock
+611,PFE,Pfizer Inc.,Gesundheitswesen - Pharmazeutika,stock
+612,PIRC.MI,Pierrel S.p.A.,Gesundheitswesen - Pharmazeutika,stock
+613,REC.MI,Recordati S.p.A.,Gesundheitswesen - Pharmazeutika,stock
+614,RO41.F,Roche Holding AG,Gesundheitswesen - Pharmazeutika,stock
+615,SKNB.F,Sanofi SA,Gesundheitswesen - Pharmazeutika,stock
+616,SOBI.ST,Swedish Orphan Biovitrum AB,Gesundheitswesen - Pharmazeutika,stock
+617,1093.HK,CSPC Pharmaceutical Group Limited,Gesundheitswesen - Pharmazie,stock
+618,DMP.DE,Dermapharm Holding SE,Gesundheitswesen - Pharmazie,stock
+619,TDOC,Teladoc Health; Inc.,Gesundheitswesen - Telemedizin,stock
+620,STZ,Constellation Brands; Inc.,Getränke - Alkoholische Getränke,stock
+621,ABI.BR,Anheuser-Busch InBev SA/NV,Getränke - Bier,stock
+622,CARL-B.CO,Carlsberg A/S,Getränke - Bier,stock
+623,TAP,Molson Coors Beverage Company,Getränke - Bier,stock
+624,HEIA.AS,Heineken N.V.,Getränke - Brauereien,stock
+625,CCH.L,Coca-Cola HBC AG,Getränke - Erfrischungsgetränke,stock
+626,MNST,Monster Beverage Corporation,Getränke - Erfrischungsgetränke,stock
+627,KDP,Keurig Dr Pepper Inc.,Getränke - Softdrinks,stock
+628,KO,The Coca-Cola Company,Getränke - Softdrinks,stock
+629,CPR.MI,Campari Group,Getränke - Spirituosen,stock
+630,RI.PA,Pernod Ricard S.A.,Getränke - Spirituosen,stock
+631,NHY.OL,Norsk Hydro ASA,Grundstoffe - Aluminium,stock
+632,WAC.DE,Wacker Chemie AG,Grundstoffe - Chemikalien,stock
+633,KCO.DE,K + S AG,Grundstoffe - Düngemittel,stock
+634,YAR.OL,Yara International ASA,Grundstoffe - Düngemittel,stock
+635,LNZ.VI,Lenzing AG,Grundstoffe - Fasern und Textilien,stock
+637,VOE.VI,Voestalpine AG,Grundstoffe - Stahlprodukte,stock
+638,MT.AS,ArcelorMittal,Grundstoffe - Stahlproduktion,stock
+639,MTS.MC,ArcelorMittal S.A.,Grundstoffe - Stahlproduktion,stock
+640,NUE,Nucor Corporation,Grundstoffe - Stahlproduktion,stock
+641,ADI,Analog Devices; Inc.,Halbleiter - Analogtechnik,stock
+642,AVGO,Broadcom Inc.,Halbleiter - Breitbandkommunikation,stock
+643,AMAT,Applied Materials; Inc.,Halbleiter - Halbleiterausrüstung,stock
+644,AMD,Advanced Micro Devices; Inc.,Halbleiter - Halbleiterprodukte,stock
+645,MRVL,Marvell Technology Group Ltd.,Halbleiterindustrie,stock
+646,MU,Micron Technology; Inc.,Halbleiterindustrie,stock
+647,NVDA,NVIDIA Corporation,Halbleiterindustrie,stock
+648,NXPI,NXP Semiconductors N.V.,Halbleiterindustrie,stock
+649,ON,ON Semiconductor Corporation,Halbleiterindustrie,stock
+650,IFX.DE,Infineon Technologies AG,Halbleiterindustrie - Halbleiter,stock
+651,INTC,Intel Corporation,Halbleiterindustrie - Halbleiter,stock
+652,RXL.PA,Rexel S.A.,Handel - Elektrogeräte,stock
+653,CLX,Clorox Company,Haushalt und Körperpflege,stock
+654,AOS,A. O. Smith Corporation,Herstellung - Wasseraufbereitung und Heizung,stock
+655,ANI.F,Adler Real Estate AG,Immobilien,stock
+656,AOMD.DE,Ado Properties S.A.,Immobilien,stock
+657,ARE,Alexandria Real Estate Equities; Inc.,Immobilien,stock
+658,AIV,Apartment Investment and Management Company (Aimco),Immobilien,stock
+659,TOWN.VI,Aroundtown SA,Immobilien,stock
+660,AVB,AvalonBay Communities; Inc.,Immobilien,stock
+661,0RH1.IL,Azrieli Group Ltd,Immobilien,stock
+662,1109.HK,China Resources Land Limited,Immobilien,stock
+663,0101.HK,Hang Lung Group Limited,Immobilien,stock
+664,0012.HK,Henderson Land Development Company Limited,Immobilien,stock
+665,3IC.F,ICADE S.A.,Immobilien,stock
+666,0017.HK,New World Development Company Limited,Immobilien,stock
+667,0083.HK,Sino Land Company Limited,Immobilien,stock
+668,0016.HK,Sun Hung Kai Properties Limited,Immobilien,stock
+669,ENXB.F,Nexity SA,Immobilien - Bau und Entwicklung,stock
+670,SPI.VI,S IMMO AG,Immobilien - Büroimmobilien,stock
+671,SLG,SL Green Realty Corp,Immobilien - Büroimmobilien,stock
+672,TLG.HM,TLG Immobilien AG,Immobilien - Büroimmobilien,stock
+673,CSGP,CoStar Group; Inc.,Immobilien - Daten und Analysen,stock
+674,DLR,Digital Realty Trust; Inc.,Immobilien - Datenzentren,stock
+675,REG,Regency Centers Corporation,Immobilien - Einzelhandel,stock
+676,UNBA.F,Unibail-Rodamco-Westfield SE,Immobilien - Einzelhandelimmobilien,stock
+677,VNO,Vornado Realty Trust,Immobilien - Einzelhandelimmobilien,stock
+678,FRT,Federal Realty Investment Trust,Immobilien - Einzelhandelsimmobilien,stock
+679,KIM,Kimco Realty Corporation,Immobilien - Einzelhandelsimmobilien,stock
+680,MAC,Macerich Company,Immobilien - Einzelhandelsimmobilien,stock
+681,MRL.MC,Merlin Properties SOCIMI; S.A.,Immobilien - Einzelhandelsimmobilien,stock
+682,SPG,Simon Property Group; Inc.,Immobilien - Einzelhandelsimmobilien,stock
+684,MULT3.SA,Multiplan Empreendimentos Imobiliários S.A.,Immobilien - Entwicklung und Verwaltung,stock
+685,NUVA.DE,Noratis AG,Immobilien - Entwicklung und Verwaltung,stock
+686,HCP,HCP; Inc.,Immobilien - Gesundheitswesenimmobilien,stock
+687,VTR,Ventas; Inc.,Immobilien - Gesundheitswesenimmobilien,stock
+688,WELL,Welltower Inc.,Immobilien - Gesundheitswesenimmobilien,stock
+689,BXP,Boston Properties; Inc.,Immobilien - Gewerbeimmobilien,stock
+690,CAI.VI,CA Immobilien Anlagen AG,Immobilien - Gewerbeimmobilien,stock
+691,CAST.ST,Castellum AB,Immobilien - Gewerbeimmobilien,stock
+692,CBRE,CBRE Group; Inc.,Immobilien - Gewerbeimmobilien,stock
+693,COV.PA,Covivio SA,Immobilien - Gewerbeimmobilien,stock
+694,DOC.VI,De Raj Group AG,Immobilien - Gewerbeimmobilien,stock
+695,WILC.F,Fabege AB,Immobilien - Gewerbeimmobilien,stock
+696,GFC.PA,Gecina SA,Immobilien - Gewerbeimmobilien,stock
+697,COL.MC,Inmobiliaria Colonial SOCIMI SA,Immobilien - Gewerbeimmobilien,stock
+698,LAND.L,Land Securities Group plc,Immobilien - Gewerbeimmobilien,stock
+699,WY,Weyerhaeuser Company,Immobilien - Holz und Zellstoff,stock
+700,HST,Host Hotels & Resorts; Inc.,Immobilien - Hotelimmobilien,stock
+701,RDFN,Redfin Corporation,Immobilien - Immobiliendienstleistungen,stock
+702,REY.MI,Reyer Venezia Mestre,Immobilien - Immobiliendienstleistungen,stock
+703,IY4.F,Immobilière Dassault SA,Immobilien - Immobilienentwicklung,stock
+705,INH.DE,Instone Real Estate Group AG,Immobilien - Immobilienentwicklung,stock
+706,SK3.F,SK3 Group AB,Immobilien - Immobilienentwicklung,stock
+707,PLD,Prologis; Inc.,Immobilien - Lagerung und Logistik,stock
+708,PSA,Public Storage,Immobilien - Lagerung und Logistik,stock
+709,O,Realty Income Corporation,Immobilien - Real Estate Investment Trusts,stock
+710,EXR,Extra Space Storage Inc.,Immobilien - Self-Storage,stock
+711,DWNI.DE,Deutsche Wohnen SE,Immobilien - Wohnimmobilien,stock
+712,EQR,Equity Residential,Immobilien - Wohnimmobilien,stock
+713,ESS,Essex Property Trust; Inc.,Immobilien - Wohnimmobilien,stock
+714,TEG.DE,TAG Immobilien AG,Immobilien - Wohnimmobilien,stock
+715,UDR,UDR; Inc.,Immobilien - Wohnimmobilien,stock
+716,MAA,Mid-America Apartment Communities; Inc.,Immobilien - Wohnungsbau,stock
+717,IES.DE,SLM Solutions Group AG,Industrie - 3D-Druck,stock
+718,NOEJ.DE,Norma Group SE,Industrie - Autozulieferer,stock
+719,UNP,Union Pacific Corporation,Industrie - Bahndienste,stock
+720,VOS.DE,Vossloh AG,Industrie - Bahndienste,stock
+721,WAB,Wabtec Corporation,Industrie - Bahndienste,stock
+722,CCRO3.SA,CCR S.A.,Industrie - Bau und Ingenieurwesen,stock
+723,FAST,Fastenal Company,Industrie - Bau- und Baustoffzulieferung,stock
+724,CAT,Caterpillar Inc.,Industrie - Baumaschinen,stock
+725,MHK,Mohawk Industries; Inc.,Industrie - Bodenbeläge,stock
+726,SCS,Steelcase Inc.,Industrie - Büromöbel,stock
+727,AKER.OL,Aker ASA,Industrie - Diversifizierte Industrie,stock
+728,HDD.DE,Heidelberger Druckmaschinen AG,Industrie - Druck- und Medientechnologie,stock
+729,SND.F,Schneider Electric SE,Industrie - Elektrikausrüstung,stock
+730,GWW,W.W. Grainger; Inc.,Industrie - Elektrogeräte und Zubehör,stock
+731,SIE.DE,Siemens AG,Industrie - Elektroindustrie,stock
+732,ROK,Rockwell Automation; Inc.,Industrie - Elektrotechnik,stock
+733,ABB.ST,ABB Ltd,Industrie - Elektrotechnik; Automation,stock
+734,TDG,TransDigm Group Incorporated,Industrie - Flugzeugkomponenten,stock
+735,JCI,Johnson Controls International plc,Industrie - Gebäudetechnik,stock
+736,SPIE.PA,SPIE SA,Industrie - Gebäudetechnik,stock
+737,TTK.DE,Takkt AG,Industrie - Geschäftsausstattung,stock
+738,URI,United Rentals; Inc.,Industrie - Handel und Vermietung von Baugeräten,stock
+739,INX.F,Interpump Group S.p.A.,Industrie - Hydrauliksysteme,stock
+740,I1M.F,Indutrade AB,Industrie - Industrieausrüstung,stock
+741,LIN,Linde plc,Industrie - Industriegase,stock
+742,PNR,Pentair plc,Industrie - Industriegüter und -dienstleistungen,stock
+743,SMIN.L,Smiths Group plc,Industrie - Industriegüter und -dienstleistungen,stock
+744,STM.DE,Stabilus S.A.,Industrie - Industriegüter und -dienstleistungen,stock
+745,DOV,Dover Corporation,Industrie - Industrielle Ausrüstung,stock
+746,ITW,Illinois Tool Works Inc.,Industrie - Industrielle Produktion,stock
+747,IR,Ingersoll Rand Inc.,Industrie - Industrielle Produktion,stock
+748,XYL,Xylem Inc.,Industrie - Industriemaschinen,stock
+749,LATO-B.ST,Latour AB,Industrie - Investmentgesellschaft,stock
+750,AEU.F,Prysmian S.p.A.,Industrie - Kabel und Leitungen,stock
+751,AALB.AS,Aalberts NV,Industrie - Klimakontrolle; Industrieautomatisierung; Wasser- und Gassteuerung,stock
+752,JUN3.DE,Jungheinrich AG,Industrie - Lagertechnik,stock
+753,KGX.DE,Kion Group AG,Industrie - Lagertechnik,stock
+754,DE,Deere & Company,Industrie - Landwirtschaftsmaschinen,stock
+755,POST.VI,Österreichische Post AG,Industrie - Logistik und Kurierdienste,stock
+756,MTX.F,MTU Aero Engines AG,Industrie - Luft- und Raumfahrt,stock
+757,UPS,United Parcel Service; Inc.,Industrie - Luft- und Raumfahrt und Verteidigung,stock
+758,UAL,United Airlines Holdings; Inc.,Industrie - Luftfahrt,stock
+759,SKF-B.ST,AB SKF,Industrie - Maschinenbau,stock
+760,AA9.BE,Alfa Laval AB,Industrie - Maschinenbau,stock
+761,ANDR.VI,ANDRITZ AG,Industrie - Maschinenbau,stock
+762,ATCO-B.ST,Atlas Copco AB,Industrie - Maschinenbau,stock
+763,EVK.DE,Aumann AG,Industrie - Maschinenbau,stock
+764,CMI,Cummins Inc.,Industrie - Maschinenbau,stock
+765,DUE.DE,Duerr AG,Industrie - Maschinenbau,stock
+766,G1A.DE,Gea Group AG,Industrie - Maschinenbau,stock
+767,PH,Parker-Hannifin Corporation,Industrie - Maschinenbau,stock
+768,PFV.DE,Pfeiffer Vacuum Technology AG,Industrie - Maschinenbau,stock
+769,TPE.DE,PVA TePla AG,Industrie - Maschinenbau,stock
+770,SAND.ST,Sandvik AB,Industrie - Maschinenbau,stock
+771,SHA.DE,Schaeffler AG,Industrie - Maschinenbau,stock
+772,SNA,Snap-on Incorporated,Industrie - Maschinenbau,stock
+773,SPX.L,Spirax-Sarco Engineering plc,Industrie - Maschinenbau,stock
+774,SUY1.F,Sulzer AG,Industrie - Maschinenbau,stock
+775,0QIW.IL,Valmet Oyj,Industrie - Maschinenbau,stock
+776,0QN2.L,Interroll Holding AG,Industrie - Materialflusssysteme,stock
+777,FTV,Fortive Corporation,Industrie - Mess- und Regeltechnik,stock
+778,GE,General Electric Company,Industrie - Mischkonglomerat,stock
+779,LEG,Leggett & Platt; Incorporated,Industrie - Möbelkomponenten,stock
+780,JST.DE,JOST Werke AG,Industrie - Nutzfahrzeugausrüstung,stock
+781,PCAR,PACCAR Inc,Industrie - Nutzfahrzeuge,stock
+782,FLS,Flowserve Corporation,Industrie - Pumpen und Ventile,stock
+783,GRU.F,Grundfos A/S,Industrie - Pumpen und Wasseraufbereitung,stock
+784,ML.PA,Michelin SCA,Industrie - Reifen und Gummiprodukte,stock
+785,KRZ.F,KUKA AG,Industrie - Robotik und Automatisierung,stock
+786,ASSA-B.ST,ASSA ABLOY AB,Industrie - Sicherheitssysteme,stock
+787,KRN.DE,Krones AG,Industrie - Verpackungsmaschinen,stock
+788,RHM.DE,Rheinmetall AG,Industrie - Verteidigung und Raumfahrt,stock
+789,SWK,Stanley Black & Decker; Inc.,Industrie - Werkzeuge und Haushaltswaren,stock
+790,AI.PA,Air Liquide S.A.,Industriegase,stock
+791,DSY.PA,Dassault Systemes SE,Informationstechnologie - 3D-Software und -Dienstleistungen,stock
+792,TWLO,Twilio Inc.,Informationstechnologie - Cloud Computing,stock
+793,DDOG,Datadog; Inc.,Informationstechnologie - Cloud-Monitoring und -Analyse,stock
+794,FSLY,Fastly; Inc.,Informationstechnologie - Content Delivery Network,stock
+795,CRWD,CrowdStrike Holdings; Inc.,Informationstechnologie - Cybersecurity,stock
+796,FTNT,Fortinet; Inc.,Informationstechnologie - Cybersicherheit,stock
+797,VRSK,Verisk Analytics; Inc.,Informationstechnologie - Datenverarbeitung und Outsourcing,stock
+798,WDC,Western Digital Corporation,Informationstechnologie - Datenverarbeitung und Outsourcing,stock
+799,CDNS,Cadence Design Systems; Inc.,Informationstechnologie - Elektronik,stock
+800,FIS,Fidelity National Information Services; Inc.,Informationstechnologie - Finanzdienstleistungen,stock
+801,FISV.VI,Fiserv; Inc.,Informationstechnologie - Finanzdienstleistungen,stock
+802,IT,Gartner; Inc.,Informationstechnologie - Forschung und Beratung,stock
+803,TXN,Texas Instruments Incorporated,Informationstechnologie - Halbleiter,stock
+804,GDDY,GoDaddy Inc.,Informationstechnologie - Internetdienste,stock
+805,VRSN,VeriSign; Inc.,Informationstechnologie - Internetdienste,stock
+806,YNDX,Yandex N.V.,Informationstechnologie - Internetdienste,stock
+807,DXC,DXC Technology Company,Informationstechnologie - IT-Beratung und -Dienstleistungen,stock
+808,GFT.DE,GFT Technologies SE,Informationstechnologie - IT-Beratung und -Dienstleistungen,stock
+809,BC8.DE,Bechtle AG,Informationstechnologie - IT-Dienstleistungen,stock
+810,COK.DE,Cancom SE,Informationstechnologie - IT-Dienstleistungen,stock
+811,CTSH,Cognizant Technology Solutions Corporation,Informationstechnologie - IT-Dienstleistungen,stock
+812,WLN.PA,Worldline SA,Informationstechnologie - IT-Dienstleistungen,stock
+813,XRX,Xerox Holdings Corporation,Informationstechnologie - IT-Hardware und -Ausrüstung,stock
+814,ANET,Arista Networks; Inc.,Informationstechnologie - Netzwerklösungen,stock
+815,FFIV,F5 Networks; Inc.,Informationstechnologie - Netzwerklösungen,stock
+816,CSCO,Cisco Systems; Inc.,Informationstechnologie - Netzwerktechnologie,stock
+817,GAN.F,Gan Limited,Informationstechnologie - Online-Glücksspiele,stock
+818,EQIX,Equinix; Inc.,Informationstechnologie - Rechenzentren,stock
+819,AMS.MC,Amadeus IT Group SA,Informationstechnologie - Reisesoftware,stock
+820,CHKP,Check Point Software Technologies Ltd.,Informationstechnologie - Sicherheitssoftware,stock
+821,GOB.SG,GO Beyond SA,Informationstechnologie - Softwareentwicklung,stock
+822,HUBS,HubSpot; Inc.,Informationstechnologie - Softwareentwicklung,stock
+823,IDV1.F,Ideagen Plc,Informationstechnologie - Softwareentwicklung,stock
+824,JKHY,Jack Henry & Associates; Inc.,Informationstechnologie - Softwareentwicklung,stock
+825,U,Unity Software Inc.,Informationstechnologie - Softwareentwicklung,stock
+826,WKL.AS,Wolters Kluwer NV,Informationstechnologie - Softwareentwicklung,stock
+827,WDAY,Workday; Inc.,Informationstechnologie - Softwareentwicklung,stock
+828,ZM,Zoom Video Communications; Inc.,Informationstechnologie - Softwareentwicklung,stock
+829,ZS,Zscaler; Inc.,Informationstechnologie - Softwareentwicklung,stock
+830,HEXA-B.ST,Hexagon AB,Informationstechnologie - Technologiedienstleistungen,stock
+831,1038.HK,CK Infrastructure Holdings Limited,Infrastruktur,stock
+832,ANA.MC,Acciona; S.A.,Infrastruktur - Erneuerbare Energien,stock
+833,TRVG,Trivago NV,Internet - Online-Reisesuche,stock
+834,TRIP,TripAdvisor; Inc.,Internet - Reisebüros,stock
+835,GOOGL,Alphabet Inc. (Class A),Internetdienste - Internetdienste,stock
+836,GOOG,Alphabet Inc. (Class C),Internetdienste - Internetdienste,stock
+837,IRM,Iron Mountain Incorporated,IT - Datenverwaltung,stock
+838,ITW.MI,IT WAY SPA,IT - IT-Dienstleistungen,stock
+839,VZ,Verizon Communications Inc.,Kommunikation - Telekommunikationsdienste,stock
+840,VOD.L,Vodafone Group Plc,Kommunikation - Telekommunikationsdienste,stock
+841,41B.F,Berkshire Hathaway Inc.,Konglomerat,stock
+842,0267.HK,CITIC Limited,Konglomerat,stock
+843,SPM.MI,Salvatore Ferragamo S.p.A.,Konsumgüter - Bekleidung,stock
+844,HEN.DE,Henkel AG & Co. KGaA,Konsumgüter - Haushalts- und Körperpflegeprodukte,stock
+845,CHD,Church & Dwight Co.; Inc.,Konsumgüter - Haushaltsprodukte,stock
+846,CL,Colgate-Palmolive Company,Konsumgüter - Haushaltsprodukte,stock
+847,NWL,Newell Brands Inc.,Konsumgüter - Haushaltswaren,stock
+848,PG,Procter & Gamble Co.,Konsumgüter - Haushaltswaren,stock
+849,BEI.DE,Beiersdorf AG,Konsumgüter - Hautpflege,stock
+851,KMB,Kimberly-Clark Corporation,Konsumgüter - Hygieneprodukte,stock
+852,LOR.BE,L'Oreal S.A.,Konsumgüter - Kosmetik,stock
+853,ORK.OL,Orkla ASA,Konsumgüter - Lebensmittel,stock
+854,PEP,PepsiCo; Inc.,Konsumgüter - Lebensmittel,stock
+855,SJM,The J. M. Smucker Company,Konsumgüter - Lebensmittel,stock
+856,TSN,Tyson Foods; Inc.,Konsumgüter - Lebensmittel und Fleisch,stock
+857,SY1.DE,Symrise AG,Konsumgüter - Lebensmittel und Getränke,stock
+858,SYY,Sysco Corporation,Konsumgüter - Lebensmittel und Getränke,stock
+859,RDEB.F,Unilever N.V.,Konsumgüter - Lebensmittel und Getränke,stock
+860,MC.PA,LVMH Moet Hennessy Louis Vuitton SE,Konsumgüter - Luxusgüter,stock
+861,1044.HK,Hengan International Group Company Limited,Konsumgüter - Papierprodukte,stock
+862,COTY,Coty Inc.,Konsumgüter - Schönheitsprodukte,stock
+863,PM,Philip Morris International Inc.,Konsumgüter - Tabak,stock
+864,FRPT,Freshpet; Inc.,Konsumgüter - Tierfutter,stock
+865,HUSQ-B.ST,Husqvarna AB,Konsumgüter - Werkzeuge und Gartengeräte,stock
+866,BTC-USD,Bitcoin,Kryptowährung,crypto
+867,ETH-USD,Ethereum (Kryptowährung),Kryptowährung,crypto
+868,LINK-USD,Chainlink (Kryptowährung),Kryptowährung - Blockchain,crypto
+869,LTC-USD,Litecoin (Kryptowährung),Kryptowährung - Blockchain,crypto
+870,UNI-USD,Uniswap,Kryptowährung - Dezentralisierte Finanzen,crypto
+871,KWS.DE,KWS SAAT SE & Co. KGaA,Landwirtschaft - Saatgut,stock
+872,MOWI.OL,Mowi ASA,Lebensmittel - Fisch,stock
+873,BYND,Beyond Meat; Inc.,Lebensmittel - Fleischersatz,stock
+874,CPB,Campbell Soup Company,Lebensmittel - Lebensmittel und Getränke,stock
+875,2319.HK,China Mengniu Dairy Company Limited,Lebensmittel - Molkereiprodukte,stock
+876,CAG,Conagra Brands; Inc.,Lebensmittel - Nahrungsmittel und Getränke,stock
+877,BN.PA,Danone SA,Lebensmittel - Nahrungsmittel und Getränke,stock
+878,AAK.ST,AAK AB,Lebensmittel - Pflanzenöle und -fette,stock
+879,HSY,The Hershey Company,Lebensmittel - Süßwaren,stock
+880,HRL,Hormel Foods Corporation,Lebensmittel - Verarbeitete Lebensmittel,stock
+881,SOP.PA,Société Poivrière du Tricastin SCA,Lebensmittel - Verarbeitung,stock
+882,1997.HK,WH Group Limited,Lebensmittel und Fleischverarbeitung,stock
+883,0QBO.IL,Frutarom Industries Ltd.,Lebensmittel und Getränke,stock
+884,SALM.OL,SalMar ASA,Lebensmittel und Getränke - Fisch und Meeresfrüchte,stock
+885,GJF.OL,Grieg Seafood ASA,Lebensmittel und Getränke - Fischerei und Landwirtschaft,stock
+886,GIS,General Mills; Inc.,Lebensmittel und Getränke - Lebensmittel,stock
+887,FNTN.DE,Fonterra Co-operative Group Limited,Lebensmittel und Getränke - Milchwirtschaft,stock
+888,CHRW,C.H. Robinson Worldwide; Inc.,Logistik - Fracht- und Logistikdienstleistungen,stock
+889,EXPD,Expeditors International of Washington; Inc.,Logistik - Fracht- und Logistikdienstleistungen,stock
+890,DSV.CO,DSV Panalpina A/S,Logistik - Logistikdienstleistungen,stock
+891,FDX,FedEx Corporation,Logistik - Paketdienstleistungen,stock
+892,ATS.VI,Austrian Post AG,Logistik - Post- und Paketdienste,stock
+893,BOP.F,Bpost SA,Logistik - Post- und Paketdienste,stock
+894,CTT.LS,CTT - Correios de Portugal SA,Logistik - Postdienste,stock
+895,DHL.DE,Deutsche Post AG,Logistik - Postdienste,stock
+896,NVG.LS,Navigator Company; S.A.,Logistik - Schifffahrt,stock
+897,AIR.PA,Airbus SE,Luft- und Raumfahrt,stock
+898,BA,Boeing Co,Luft- und Raumfahrt,stock
+899,LH,Deutsche Lufthansa AG,Luft- und Raumfahrt - Fluggesellschaft,stock
+900,LHA.DE,Lufthansa AG,Luft- und Raumfahrt - Fluggesellschaft,stock
+901,LUV,Southwest Airlines Co.,Luft- und Raumfahrt - Fluggesellschaft,stock
+902,FACC.VI,FACC AG,Luft- und Raumfahrt - Flugzeugteile,stock
+903,RR.L,Rolls-Royce Holdings plc,Luft- und Raumfahrt - Luftfahrt,stock
+904,SAF.PA,Safran S.A.,Luft- und Raumfahrt - Luftfahrt,stock
+905,HII,Huntington Ingalls Industries; Inc.,Luft- und Raumfahrt - Schiffsbau,stock
+906,GD,General Dynamics Corporation,Luft- und Raumfahrt - Verteidigung,stock
+907,LDO.MI,Leonardo S.p.A.,Luft- und Raumfahrt - Verteidigung,stock
+908,HO.PA,Thales SA,Luft- und Raumfahrt - Verteidigungselektronik,stock
+909,0QQ2.IL,El Al Israel Airlines Ltd,Luftfahrt,stock
+910,DAL,Delta Air Lines; Inc.,Luftfahrt - Fluggesellschaft,stock
+911,EZJ.L,easyJet plc,Luftfahrt - Fluggesellschaft,stock
+912,IAG.MC,International Consolidated Airlines Group; S.A.,Luftfahrt - Fluggesellschaft,stock
+913,NAS.OL,Norwegian Air Shuttle ASA,Luftfahrt - Fluggesellschaft,stock
+914,RYE.F,Ryanair Holdings plc,Luftfahrt - Fluggesellschaften,stock
+915,FRU.DE,Fraport AG,Luftfahrt - Flughafenbetreiber,stock
+916,NOC,Northrop Grumman Corporation,Luftfahrt und Rüstung,stock
+917,AF.PA,Air France-KLM,Luftverkehr,stock
+918,AAL,American Airlines Group Inc.,Luftverkehr,stock
+919,ICLA.F,Cell Impact AB,Maschinenbau - Papierherstellung,stock
+920,VMC,Vulcan Materials Company,Materialien - Baustoffe,stock
+921,AVY,Avery Dennison Corporation,Materialien - Etiketten und Verpackungen,stock
+922,SGL.DE,SGL Carbon SE,Materialien - Kohlenstoffprodukte,stock
+923,SEM.LS,Semapa - Sociedade de Investimento e Gestão; SGPS; S.A.,Materialien - Papier und Forstprodukte,stock
+924,SZG.DE,Salzgitter AG,Materialien - Stahlprodukte,stock
+925,SSAB-A.ST,SSAB AB,Materialien - Stahlprodukte,stock
+926,TS,Tenaris SA,Materialien - Stahlprodukte,stock
+927,TKA.DE,Thyssenkrupp AG,Materialien - Stahlprodukte,stock
+928,USIM5.SA,Usinas Siderurgicas de Minas Gerais SA,Materialien - Stahlprodukte,stock
+929,WRK,WestRock Company,Materialien - Verpackungsprodukte,stock
+930,FOX,Fox Corporation,Medien - Film und Fernsehen,stock
+931,IQ,IQIYI Inc.,Medien - Online-Unterhaltung,stock
+932,PSM.DE,ProSiebenSat.1 Media SE,Medien - Rundfunk und Unterhaltung,stock
+933,RRTL.DE,RTL Group S.A.,Medien - Rundfunk und Unterhaltung,stock
+934,SIRI,Sirius XM Holdings Inc.,Medien - Rundfunk und Unterhaltung,stock
+935,VIV.PA,Vivendi SE,Medien - Rundfunk- und Fernsehsender,stock
+936,DIS,The Walt Disney Company,Medien - Unterhaltung,stock
+937,REN.AS,Relx PLC,Medien - Verlagswesen,stock
+938,SCHA.OL,Schibsted ASA,Medien - Verlagswesen,stock
+939,NWS,News Corporation,Medien - Zeitungen; Bücher und Zeitschriften,stock
+940,BSX,Boston Scientific Corporation,Medizintechnik,stock
+941,AFX.DE,Carl Zeiss Meditec AG,Medizintechnik,stock
+942,ISRG,Intuitive Surgical; Inc.,Medizintechnik - Chirurgische Roboter,stock
+943,DHR,Danaher Corporation,Medizintechnik - Diagnostika und Testlösungen,stock
+944,ALGN,Align Technology; Inc.,Medizintechnik - Kieferorthopädie,stock
+945,DRW3.DE,Draegerwerk AG & Co. KGaA,Medizintechnik - Medizinische Ausrüstung,stock
+946,AMBU-B.CO,Ambu A/S,Medizintechnik - Medizinische Geräte,stock
+947,MTD,Mettler-Toledo International Inc.,Messtechnik,stock
+948,AMG,AMG Advanced Metallurgical Group N.V.,Metalle - Metallurgy,stock
+949,ALUA.BA,Aluar Aluminio Argentino S.A.I.C.,Metallurgie - Aluminium,stock
+950,ACX.MC,Acerinox; S.A.,Metallurgie - Edelstahl,stock
+951,MMM,3M Company,Mischkonzern,stock
+952,MONC.MI,Moncler S.p.A.,Mode - Luxus,stock
+953,G14.F,Gucci Group N.V.,Mode - Luxusmode,stock
+954,JBSS3.SA,JBS S.A.,Nahrungsmittel - Fleischverarbeitung,stock
+955,MKC,McCormick & Company; Incorporated,Nahrungsmittel - Gewürze,stock
+956,K,Kellogg Company,Nahrungsmittel - Lebensmittelprodukte,stock
+957,MDLZ,Mondelez International; Inc.,Nahrungsmittel - Lebensmittelprodukte,stock
+958,NESM.SG,Nestlé S.A.,Nahrungsmittel - Lebensmittelprodukte,stock
+959,KHC,The Kraft Heinz Company,Nahrungsmittel - Lebensmittelprodukte,stock
+960,MCD,McDonald's Corporation,Nahrungsmittel - Restaurants,stock
+961,LW,Lamb Weston Holdings; Inc.,Nahrungsmittel - Tiefkühlkost,stock
+962,BKNG,Booking Holdings Inc.,Online-Reiseagentur,stock
+963,EXPE,Expedia Group; Inc.,Online-Reiseunternehmen,stock
+964,IP,International Paper Company,Papier und Forstprodukte - Verpackung,stock
+965,VTRS,Viatris Inc. (ehemals Mylan N.V.),Pharmazeutika,stock
+966,VSC.BE,4SC AG,Pharmazie,stock
+967,ABBV,AbbVie Inc.,Pharmazie,stock
+968,ALK,Alkermes plc,Pharmazie,stock
+969,BAYN.DE,Bayer AG,Pharmazie,stock
+970,BMY,Bristol Myers Squibb Company,Pharmazie,stock
+971,3P7.F,PAION AG,Pharmazie,stock
+972,0HB2.IL,Teva Pharmaceutical Industries Limited,Pharmazie,stock
+973,BFSA.DE,Biofrontera AG,Pharmazie - Dermatologie,stock
+974,ATE.PA,Altamir SCA,Private Equity - Beteiligungen,stock
+975,7PI.F,Pirelli & C. S.p.A.,Reifen - Automobil,stock
+976,PHBA.F,Polyus Gold International Limited,Rohstoffe - Gold,stock
+977,NEF.F,Nemetschek SE,Software - CAD und BIM,stock
+978,CRM,Salesforce.com; Inc.,Software - Cloud-Computing und -Services,stock
+979,DOCU,DocuSign; Inc.,Software - Elektronische Signaturen,stock
+980,BL,BlackLine; Inc.,Software - Finanzautomatisierung,stock
+981,INTU,Intuit Inc.,Software - Finanzsoftware,stock
+982,BVB.DE,Borussia Dortmund GmbH & Co. KGaA,Sport - Fußballclub,stock
+983,MO,Altria Group; Inc.,Tabak,stock
+984,BATS.L,British American Tobacco p.l.c.,Tabak,stock
+985,CTAA.F,China Tobacco International (HK) Company Limited,Tabak,stock
+986,DDD,3D Systems Corporation,Technologie - 3D-Druck,stock
+987,HP,HP Inc.,Technologie - Computer und Drucker,stock
+988,LOGI,Logitech International S.A.,Technologie - Computerzubehör,stock
+989,MDB,MongoDB; Inc.,Technologie - Datenbanksoftware,stock
+990,NTAP,NetApp; Inc.,Technologie - Datenmanagement,stock
+991,PTON,Peloton Interactive; Inc.,Technologie - E-Commerce,stock
+992,2018.HK,AAC Technologies Holdings Inc.,Technologie - Elektronik,stock
+993,SEJ1.F,Seiko Epson Corporation,Technologie - Elektronik,stock
+994,AAPL,Apple Inc.,Technologie - Elektronik; Software,stock
+995,KEYS,Keysight Technologies; Inc.,Technologie - Elektroniktest- und -messlösungen,stock
+996,AIXA.DE,AIXTRON SE,Technologie - Halbleiter,stock
+997,MCHP,Microchip Technology Incorporated,Technologie - Halbleiter,stock
+998,MIPS.ST,MIPS AB,Technologie - Halbleiter,stock
+999,WAF.DE,Siltronic AG,Technologie - Halbleiter,stock
+1000,SWKS,Skyworks Solutions; Inc.,Technologie - Halbleiter,stock
+1001,0QQ3.IL,Tower Semiconductor Ltd.,Technologie - Halbleiter,stock
+1002,SZU.DE,Suess Microtec SE,Technologie - Halbleiterausrüstung,stock
+1003,QRVO,Qorvo; Inc.,Technologie - Halbleiterindustrie,stock
+1004,QCOM,Qualcomm Incorporated,Technologie - Halbleiterindustrie,stock
+1005,AZZ2.MU,Addtech AB,Technologie - Industrieausrüstung,stock
+1006,AKAM,Akamai Technologies; Inc.,Technologie - Internetdienste,stock
+1007,BIDU,Baidu; Inc.,Technologie - Internetdienste,stock
+1008,NTES,NetEase; Inc.,Technologie - Internetdienste,stock
+1009,RMV.L,Rightmove plc,Technologie - Internetdienste,stock
+1010,SE,Sea Limited,Technologie - Internetdienste,stock
+1011,TCEHY,Tencent Holdings Limited,Technologie - Internetdienste,stock
+1012,IBM,International Business Machines Corporation,Technologie - IT-Dienstleistungen,stock
+1013,ATAZF,Atea ASA,Technologie - IT-Infrastruktur,stock
+1014,PANW,Palo Alto Networks; Inc.,Technologie - IT-Sicherheit,stock
+1015,NOHA.F,Nokia Oyj,Technologie - Kommunikationsausrüstung,stock
+1016,DHER.DE,Delivery Hero SE,Technologie - Lebensmittel-Onlineplattform,stock
+1017,ROP,Roper Technologies; Inc.,Technologie - Mess- und Kontrollinstrumente,stock
+1018,HON,Honeywell International Inc.,Technologie - Mischkonzern,stock
+1019,JEN.DE,Jenoptik AG,Technologie - Optik und Photonik,stock
+1020,8FS.F,First Sensor AG,Technologie - Sensorik,stock
+1021,ANSS,ANSYS; Inc.,Technologie - Simulationssoftware,stock
+1022,MOMO,Momo Inc.,Technologie - Social Media,stock
+1023,ADBE,Adobe Inc.,Technologie - Software,stock
+1024,ADSK,Autodesk; Inc.,Technologie - Software,stock
+1025,NICE,NICE Ltd,Technologie - Software,stock
+1026,4QT1.F,QUADIENT S.A.,Technologie - Software,stock
+1027,TEAM,Atlassian Corporation Plc,Technologie - Softwareentwicklung,stock
+1028,MSFT,Microsoft Corporation,Technologie - Softwareentwicklung,stock
+1029,NWO.DE,Norwood Systems Limited,Technologie - Softwareentwicklung,stock
+1030,OKL.F,OKTA Inc.,Technologie - Softwareentwicklung,stock
+1031,OMU.L,Oxford Metrics plc,Technologie - Softwareentwicklung,stock
+1032,RAA.DE,Rational AG,Technologie - Softwareentwicklung,stock
+1033,SAP.DE,SAP SE,Technologie - Softwareentwicklung,stock
+1034,SNPS,Synopsys; Inc.,Technologie - Softwareentwicklung,stock
+1035,UBER,Uber Technologies; Inc.,Technologie - Softwareentwicklung,stock
+1036,META,Meta Platforms; Inc.,Technologie - Soziale Medien,stock
+1037,PINS,Pinterest; Inc.,Technologie - Soziale Medien,stock
+1038,STX,Seagate Technology Holdings plc,Technologie - Speichersysteme,stock
+1039,GLW,Corning Incorporated,Technologie - Spezialglas und Keramik,stock
+1040,AXON,Axon Enterprise; Inc.,Technologie - Strafverfolgung; Bodycams,stock
+1041,ROKU,Roku; Inc.,Technologie - Unterhaltungselektronik,stock
+1042,HPE,Hewlett Packard Enterprise Company,Technologie - Unternehmens-IT,stock
+1043,NTNX,Nutanix; Inc.,Technologie - Unternehmenssoftware,stock
+1044,ORCL,Oracle Corporation,Technologie - Unternehmenssoftware,stock
+1045,LHX,L3Harris Technologies; Inc.,Technologie - Verteidigung,stock
+1046,LMT,Lockheed Martin Corporation,Technologie - Verteidigung,stock
+1047,ALTR.LS,Altice Europe N.V.,Telekommunikation,stock
+1048,BTQ.F,BT Group plc,Telekommunikation,stock
+1049,0941.HK,China Mobile Limited,Telekommunikation,stock
+1050,SES.F,SES S.A.,Telekommunikation,stock
+1051,HT8.XA,Harris Corporation,Telekommunikation - Drahtlose Kommunikation,stock
+1052,SBAC,SBA Communications Corporation,Telekommunikation - Drahtlose Kommunikation,stock
+1053,SINCH.ST,Sinch AB,Telekommunikation - Drahtlose Kommunikation,stock
+1054,AMT,American Tower Corporation,Telekommunikation - Funkturmvermietung,stock
+1055,CCI,Crown Castle International Corp.,Telekommunikation - Funkturmvermietung,stock
+1056,IJ7.F,1&1 AG,Telekommunikation - Internetdienstanbieter,stock
+1057,UTDI.DE,United Internet AG,Telekommunikation - Internetdienste,stock
+1058,CHTR,Charter Communications; Inc.,Telekommunikation - Kabelnetzbetreiber,stock
+1059,CMCSA,Comcast Corporation,Telekommunikation - Kabelnetzbetreiber,stock
+1060,LBTYA,Liberty Global plc,Telekommunikation - Kabelnetzbetreiber,stock
+1061,ALFA.ST,Millicom International Cellular S.A.,Telekommunikation - Mobilfunk,stock
+1062,CLNX.MC,Cellnex Telecom; S.A.,Telekommunikation - Mobilfunkinfrastruktur,stock
+1063,JNPR,Juniper Networks; Inc.,Telekommunikation - Netzwerkausrüstung,stock
+1064,MSI,Motorola Solutions; Inc.,Telekommunikation - Netzwerkausrüstung,stock
+1065,GI6A.F,Gigaset AG,Telekommunikation - Telekommunikationsausrüstung,stock
+1066,ERIC-B.ST,Telefonaktiebolaget LM Ericsson,Telekommunikation - Telekommunikationsausrüstung,stock
+1067,T,AT&T Inc.,Telekommunikation - Telekommunikationsdienste,stock
+1068,DTE,Deutsche Telekom AG,Telekommunikation - Telekommunikationsdienste,stock
+1069,ENC.MC,Ezentis SA,Telekommunikation - Telekommunikationsdienste,stock
+1070,FRE.DE,Freenet AG,Telekommunikation - Telekommunikationsdienste,stock
+1071,KPN.AS,Koninklijke KPN N.V.,Telekommunikation - Telekommunikationsdienste,stock
+1072,NOS.LS,NOS; SGPS S.A.,Telekommunikation - Telekommunikationsdienste,stock
+1073,OIBR4.SA,Oi S.A.,Telekommunikation - Telekommunikationsdienste,stock
+1074,0FBS.IL,Orange Belgium SA,Telekommunikation - Telekommunikationsdienste,stock
+1075,ORA,Orange SA,Telekommunikation - Telekommunikationsdienste,stock
+1076,PHR.LS,Pharol SGPS SA,Telekommunikation - Telekommunikationsdienste,stock
+1077,TMUS,T-Mobile US; Inc.,Telekommunikation - Telekommunikationsdienste,stock
+1078,TEX.F,Tele Columbus AG,Telekommunikation - Telekommunikationsdienste,stock
+1079,TECO2.BA,Telecom Argentina SA,Telekommunikation - Telekommunikationsdienste,stock
+1080,TIT.MI,Telecom Italia SpA,Telekommunikation - Telekommunikationsdienste,stock
+1081,TEF.MC,Telefonica SA,Telekommunikation - Telekommunikationsdienste,stock
+1082,TNU3.F,Telekomunikacja Polska SA,Telekommunikation - Telekommunikationsdienste,stock
+1083,TEL.OL,Telenor ASA,Telekommunikation - Telekommunikationsdienste,stock
+1084,TELIA.ST,Telia Company AB,Telekommunikation - Telekommunikationsdienste,stock
+1085,ECOR3.SA,Ecorodovias Infraestrutura e Logistica SA,Transport - Autobahnbetreiber,stock
+1086,COME.BA,Corporacion America Airports SA,Transport - Flughäfen,stock
+1087,HHFA.DE,Hamburger Hafen und Logistik AG,Transport - Hafenbetreiber,stock
+1088,GRPTF,Getlink SE,Transport - Infrastruktur,stock
+1089,BOL.PA,Bollore SA,Transport - Logistik und Energiespeicherung,stock
+1090,JBHT,J.B. Hunt Transport Services; Inc.,Transport - Logistikdienstleistungen,stock
+1091,KNCAF,Kuehne + Nagel International AG,Transport - Logistikdienstleistungen,stock
+1092,LSG.OL,LSG Group,Transport - Luftverkehrsdienstleistungen,stock
+1093,FGP.L,FirstGroup plc,Transport - Personenverkehr,stock
+1094,CNI,CNI SA,Transport - Schienenverkehr,stock
+1095,CSX,CSX Corporation,Transport - Schienenverkehr,stock
+1096,NSC,Norfolk Southern Corporation,Transport - Schienenverkehr,stock
+1097,MAERSK-A.CO,A.P. Moller - Maersk A/S,Transport - Schifffahrt,stock
+1098,MAERSK-B.CO,A.P. Moller - Maersk A/S,Transport - Schifffahrt,stock
+1099,HAG.F,Hapag-Lloyd AG,Transport - Schifffahrt,stock
+1100,ODFL,Old Dominion Freight Line; Inc.,Transport - Straßengüterverkehr,stock
+1101,RSG,Republic Services; Inc.,Umwelt - Abfallwirtschaft,stock
+1102,FLTR.L,Flutter Entertainment plc,Unterhaltung - Glücksspiel,stock
+1103,BILI,Bilibili Inc.,Unterhaltung - Online-Unterhaltung,stock
+1104,NFLX,Netflix; Inc.,Unterhaltung - Streaming,stock
+1105,EA,Electronic Arts Inc.,Unterhaltung - Videospielentwicklung,stock
+1106,0027.HK,Galaxy Entertainment Group Limited,Unterhaltung und Freizeit,stock
+1107,1928.HK,Sands China Ltd,Unterhaltung und Freizeit,stock
+1108,ACN,Accenture plc,Unternehmensberatung; Technologie,stock
+1109,BB.PA,Bureau Veritas SA,Unternehmensdienstleistungen,stock
+1110,CWC.DE,CeWe Stiftung & Co. KGaA,Verbraucherdienste - Fotografie,stock
+1111,SIX2.DE,Sixt SE,Verbraucherdienstleistungen - Autovermietung,stock
+1112,SBUX,Starbucks Corporation,Verbraucherdienstleistungen - Restaurants,stock
+1113,WYNN,Wynn Resorts; Limited,Verbrauchsgüter - Freizeiteinrichtungen,stock
+1114,WING,Wingstop Inc.,Verbrauchsgüter - Restaurants und Bars,stock
+1115,YUM,Yum! Brands; Inc.,Verbrauchsgüter - Restaurants und Bars,stock
+1116,VIS.MC,Viscofan SA,Verbrauchsgüter - Verpackungsprodukte,stock
+1117,AENA.MC,Aena S.M.E.; S.A.,Verkehr - Flughäfen,stock
+1118,ALO.PA,Alstom S.A.,Verkehr - Schienenverkehr,stock
+1119,37C.F,VTG AG,Verkehr - Schienenverkehr,stock
+1120,SKG.L,Smurfit Kappa Group plc,Verpackung - Verpackungsindustrie,stock
+1121,SEE,Sealed Air Corporation,Verpackung und Behälter - Verpackungsprodukte,stock
+1122,SCA-B.ST,Svenska Cellulosa Aktiebolaget SCA (publ),Verpackung und Behälter - Verpackungsprodukte,stock
+1123,COR.LS,Corticeira Amorim SGPS SA,Verpackungen - Holzverschlüsse,stock
+1124,BALL,Ball Corporation,Verpackungen - Metallverpackungen,stock
+1125,MMK.VI,Mayr-Melnhof Karton AG,Verpackungsindustrie,stock
+1126,PKG,Packaging Corporation of America,Verpackungsindustrie,stock
+1127,ESL.F,Essel Propack Limited,Verpackungsindustrie - Verpackungslösungen,stock
+1128,NN.AS,NN Group N.V.,Versicherung - Lebensversicherung,stock
+1129,MUV2.DE,Munich Re (Münchener Rückversicherungs-Gesellschaft AG),Versicherung - Rückversicherung,stock
+1130,TRV,The Travelers Companies; Inc.,Versicherungen - Sachversicherung,stock
+1131,TRYG.CO,Tryg A/S,Versicherungen - Sachversicherung,stock
+1132,RAM.LS,REN - Redes Energeticas Nacionais; SGPS; S.A.,Versorgung - Energieversorgung,stock
+1133,RENE.LS,REN - Redes Energeticas Nacionais; SGPS; S.A.,Versorgung - Energieversorgung,stock
+1134,0003.HK,The Hong Kong and China Gas Company Limited,Versorgung - Gas,stock
+1135,CWT,California Water Service Group,Versorgung - Wasser- und Abwasserdienstleistungen,stock
+1136,SBSP3.SA,Companhia de Saneamento Básico do Estado de São Paulo (SABESP),Versorgung - Wasser- und Abwasserentsorgung,stock
+1137,PNN.L,Pennon Group Plc,Versorgung - Wasserdienstleistungen,stock
+1138,AWK,American Water Works Company; Inc.,Versorgung - Wasserversorgung,stock
+1139,WEC,WEC Energy Group; Inc.,Versorgungsdienstleistungen - Elektrizität,stock
+1140,XEL,Xcel Energy Inc.,Versorgungsdienstleistungen - Elektrizität,stock
+1141,VPK.AS,Vopak NV,Versorgungsdienstleistungen - Erdöl- und Erdgaslagerung,stock
+1142,WM,Waste Management; Inc.,Versorgungsdienstleistungen - Umwelt- und Recyclingdienste,stock
+1143,UU.L,United Utilities Group PLC,Versorgungsdienstleistungen - Wasserversorgung,stock
+1144,VIE.PA,Veolia Environnement SA,Versorgungsdienstleistungen - Wasserversorgung,stock
+1145,A2A.F,A2A S.p.A.,Versorgungsunternehmen - Energie,stock
+1146,NI,NiSource Inc.,Versorgungsunternehmen - Energie,stock
+1147,SVT.L,Severn Trent Plc,Versorgungsunternehmen - Wasser- und Abwasserversorgung,stock
+1148,0MET.IL,Elbit Systems Ltd,Verteidigung und Luftfahrt,stock
+1149,TTD,The Trade Desk; Inc.,Werbung - Digitales Marketing,stock
+1150,OMC,Omnicom Group Inc.,Werbung - Werbedienstleistungen,stock
+1151,PU4.SG,Publicis Groupe S.A.,Werbung - Werbedienstleistungen,stock
+1152,VOW3.DE,Volkswagen AG,Zyklus und Automobile - Automobile,stock
+1153,TSLA,Tesla; Inc.,Zyklus und Automobile - Automobilhersteller,stock
+1154,TILE,Interface; Inc.,Zyklus und Automobile - Autozubehör,stock
+1155,THULE.ST,Thule Group,Zyklus und Automobile - Autozubehör,stock
+1156,UA,Under Armour; Inc.,Zyklus und Automobile - Bekleidung,stock
+1157,VFC,V.F. Corporation,Zyklus und Automobile - Bekleidung,stock
+1158,TXT,Textron Inc.,Zyklus und Automobile - Flugzeugherstellung,stock
+1159,WHR,Whirlpool Corporation,Zyklus und Automobile - Haushaltswaren,stock
+1160,Z,Zillow Group; Inc.,Zyklus und Automobile - Immobilien,stock
+1161,VOLV-B.ST,Volvo AB,Zyklus und Automobile - Nutzfahrzeuge,stock
+1162,TTWO,Take-Two Interactive Software; Inc.,Zyklus und Automobile - Unterhaltungselektronik,stock
+1163,UBI.PA,Ubisoft Entertainment SA,Zyklus und Automobile - Unterhaltungselektronik,stock
+1164,LISPZ.XC,Chocoladefabriken Lindt & Sprüngli AG,Lebensmittel - Süßwaren,stock
+1165,URTH,iShares MSCI World ETF,Exchange Traded Fund - global diversifiert,fund
+1166,STOXX50E,EURO STOXX 50 I,Exchange Traded Fund - Europa,fund
+1167,GSPC,S&P 500,Exchange Traded Funds - Nordamerika,fund
+1168,EEM,iShares MSCI Emerging Markets,Exchange Traded Fonds - Emerging Markets,fund
+1169,DAX,DAX,Exchange Traded Funds - Deutschland,fund
+1170,SXR8.DE,iShares Core S&P 500 UCITS ETF USD (Acc),Exchange Traded Funds - iShares Core S&P 500 UCITS ETF USD Accumulating,fund
+1171,CSPX.MI,iShares Core S&P 500 UCITS ETF USD (Acc),Exchange Traded Funds - iShares Core S&P 500 UCITS ETF USD Accumulating - Milan,fund
+1172,EUNL.DE,iShares Core MSCI World UCITS ETF USD (Acc),Exchange Traded Funds - iShares Core MSCI World UCITS ETF USD Accumulating,fund
+1173,IWDA.AS,iShares Core MSCI World UCITS ETF USD (Acc),Exchange Traded Funds - iShares Core MSCI World UCITS ETF USD Accumulating - Amsterdam,fund
+1174,EUNK.DE,iShares Core MSCI Europe UCITS ETF EUR (Acc),Exchange Traded Funds - iShares Core MSCI Europe UCITS ETF EUR Accumulating,fund
+1175,IMAE.AS,iShares Core MSCI Europe UCITS ETF EUR (Acc),Exchange Traded Funds - iShares Core MSCI Europe UCITS ETF EUR Accumulating - Amsterdam,fund
+1176,SMEA.MI,iShares Core MSCI Europe UCITS ETF EUR (Acc),Exchange Traded Funds - iShares Core MSCI Europe UCITS ETF EUR Accumulating - Milan,fund
+1177,EMIM.AS,iShares Core MSCI EM IMI UCITS ETF USD (Acc),Exchange Traded Funds - iShares Core MSCI Emerging Markets IMI UCITS ETF USD Accumulating - Amsterdam,fund
+1178,IS3N.DE,iShares Core MSCI EM IMI UCITS ETF USD (Acc),Exchange Traded Funds - iShares Core MSCI Emerging Markets IMI UCITS ETF USD Accumulating,fund
+1179,IVV,iShares Core S&P 500 ETF,Exchange Traded Funds - iShares Core S&P 500 ETF Distributing,fund
+1180,IUSA.L,iShares Core S&P 500 UCITS ETF USD (Dist),Exchange Traded Funds - iShares Core S&P 500 UCITS ETF USD Distributing - London,fund
+1181,SWDA.L,iShares Core MSCI World UCITS ETF USD (Acc),Exchange Traded Funds - iShares Core MSCI World UCITS ETF USD Accumulating - London,fund
+1182,SWDA.MI,iShares Core MSCI World UCITS ETF USD (Acc),Exchange Traded Funds - iShares Core MSCI World UCITS ETF USD Accumulating - Milan,fund
+1183,IWRD.L,iShares MSCI World UCITS ETF USD (Dist),Exchange Traded Funds - iShares MSCI World UCITS ETF USD Distributing - London,fund
+1184,ITOT,iShares Core S&P Total U.S. Stock Market ETF,Exchange Traded Funds - iShares Core S&P Total US Stock Market ETF Distributing,fund
+1185,AGG,iShares Core U.S. Aggregate Bond ETF,Exchange Traded Funds - iShares Core US Aggregate Bond ETF Distributing,fund
+1186,HDV,iShares Core High Dividend ETF,Exchange Traded Funds - iShares Core High Dividend ETF Distributing,fund
+1187,DGRO,iShares Core Dividend Growth ETF,Exchange Traded Funds - iShares Core Dividend Growth ETF Distributing,fund
+1188,VGK,Vanguard FTSE Europe ETF,Exchange Traded Funds - Vanguard FTSE Europe Index Fund ETF,fund
+1189,VEA,Vanguard FTSE Developed Markets ETF,Exchange Traded Funds - Vanguard FTSE Developed Markets Index Fund ETF,fund
+1190,VEU,Vanguard FTSE All-World ex-US ETF,Exchange Traded Funds - Vanguard FTSE All-World ex-US Index Fund ETF,fund
+1191,VTI,Vanguard Total Stock Market ETF,Exchange Traded Funds - Vanguard Total Stock Market Index Fund ETF,fund
+1192,VWCE.DE,Vanguard FTSE All-World UCITS ETF (USD) Accumulating,Exchange Traded Funds - Vanguard FTSE All-World UCITS ETF USD Accumulating,fund
+1193,VWRA.L,Vanguard FTSE All-World UCITS ETF (USD) Accumulating,Exchange Traded Funds - Vanguard FTSE All-World UCITS ETF USD Accumulating - London,fund
+1194,VHVE.MI,Vanguard FTSE Developed World UCITS ETF (USD) Accumulating,Exchange Traded Funds - Vanguard FTSE Developed World UCITS ETF USD Accumulating - Milan,fund
+1195,VUKE.L,Vanguard FTSE 100 UCITS ETF,Exchange Traded Funds - Vanguard FTSE 100 UCITS ETF - London,fund
+1196,CW8.PA,Amundi MSCI World UCITS ETF Acc,Exchange Traded Funds - Amundi MSCI World UCITS ETF EUR Accumulating - Paris,fund
+1197,LCWD.L,Amundi MSCI World UCITS ETF Acc,Exchange Traded Funds - Amundi MSCI World UCITS ETF Accumulating - London,fund
+1198,500.PA,Amundi S&P 500 UCITS ETF Acc,Exchange Traded Funds - Amundi S&P 500 UCITS ETF EUR Accumulating - Paris,fund
+1199,A500.MI,Amundi S&P 500 UCITS ETF Acc,Exchange Traded Funds - Amundi S&P 500 UCITS ETF EUR Accumulating - Milan,fund
+1200,ANX.PA,Amundi Nasdaq-100 UCITS ETF Acc,Exchange Traded Funds - Amundi Nasdaq-100 UCITS ETF EUR Accumulating - Paris,fund
+1201,ANX.MI,Amundi Nasdaq-100 UCITS ETF Acc,Exchange Traded Funds - Amundi Nasdaq-100 UCITS ETF EUR Accumulating - Milan,fund
+1202,LYP6.DE,Amundi Stoxx Europe 600 UCITS ETF Acc,Exchange Traded Funds - Amundi Stoxx Europe 600 UCITS ETF Accumulating,fund
+1203,MEUD.PA,Amundi Stoxx Europe 600 UCITS ETF Acc,Exchange Traded Funds - Amundi Stoxx Europe 600 UCITS ETF Accumulating - Paris,fund
+1204,WEBN.DE,Amundi Prime All Country World UCITS ETF Acc,Exchange Traded Funds - Amundi Prime All Country World UCITS ETF Accumulating,fund
+1205,AEEM.MI,Amundi MSCI Emerging Markets UCITS ETF Acc,Exchange Traded Funds - Amundi MSCI Emerging Markets UCITS ETF EUR Accumulating - Milan,fund

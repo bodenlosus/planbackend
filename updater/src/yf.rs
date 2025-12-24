@@ -84,7 +84,7 @@ fn mk_url(
             start.unix_timestamp(),
             end.unix_timestamp()
         ),
-        None => format!("{ROOT_URL}/v8/finance/chart/{symbol}?range=1y&interval={interval}"),
+        None => format!("{ROOT_URL}/v8/finance/chart/{symbol}?range=5y&interval={interval}"),
     }
 }
 

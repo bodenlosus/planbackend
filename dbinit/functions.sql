@@ -177,7 +177,7 @@ BEGIN
     END IF;
 
 
-    PERFORM log_transaction (p_asset_id, p_depot_id, asset_amount, price, commission);
+    PERFORM log_transaction (p_asset_id, p_depot_id, - asset_amount, price, commission);
 END;
 $$ ;
 
