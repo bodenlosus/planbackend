@@ -36,3 +36,6 @@ export type Transaction = Database["depots"]["Tables"]["transactions"]["Row"];
 
 export type AssetType =
 	Database["api"]["Tables"]["assets"]["Row"]["asset_type"];
+
+export type Frequency =
+	Database["depots"]["Tables"]["savings_plans"]["Row"]["period"];

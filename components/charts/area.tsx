@@ -51,8 +51,6 @@ export default function AreaChart<T extends Record<string, number | string>>({
 		},
 	} satisfies ChartConfig;
 
-	console.log("offset", offset);
-
 	return (
 		<ChartContainer
 			config={chartConfig}

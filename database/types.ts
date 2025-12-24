@@ -922,6 +922,61 @@ export type Database = {
 					},
 				];
 			};
+			savings_plans: {
+				Row: {
+					asset_id: number;
+					created: string;
+					created_by: string;
+					depot_id: number;
+					last_changed: string;
+					last_executed: string;
+					period: "annually" | "monthly" | "weekly" | "daily";
+					worth: number;
+				};
+				Insert: {
+					asset_id: number;
+					created: string;
+					created_by: string;
+					depot_id: number;
+					last_changed: string;
+					last_executed: string;
+					period: "annually" | "monthly" | "weekly" | "daily";
+					worth: number;
+				};
+				Update: {
+					asset_id?: number;
+					created?: string;
+					created_by?: string;
+					depot_id?: number;
+					last_changed?: string;
+					last_executed?: string;
+					period?: "annually" | "monthly" | "weekly" | "daily";
+					worth?: number;
+				};
+				Relationships: [
+					{
+						foreignKeyName: "savings_depot_fkey";
+						columns: ["depot_id"];
+						isOneToOne: false;
+						referencedRelation: "aggregated_values";
+						referencedColumns: ["depot_id"];
+					},
+					{
+						foreignKeyName: "savings_depot_fkey";
+						columns: ["depot_id"];
+						isOneToOne: false;
+						referencedRelation: "depots";
+						referencedColumns: ["id"];
+					},
+					{
+						foreignKeyName: "savings_depot_fkey";
+						columns: ["depot_id"];
+						isOneToOne: false;
+						referencedRelation: "values";
+						referencedColumns: ["depot_id"];
+					},
+				];
+			};
 			transactions: {
 				Row: {
 					amount: number;

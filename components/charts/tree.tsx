@@ -27,7 +27,6 @@ function CustomContent(props: ContentProps) {
 	if (position) {
 		prof =
 			(position.total_profit as number) / (position.total_invested as number);
-		console.log("profit:", prof);
 		color = prof > 0 ? "hsl(var(--win))" : "hsl(var(--loss))";
 	}
 

@@ -22,7 +22,5 @@ export default function StockStats<TStructure extends Record<string, string>>({
 		labels: labels ? labels[key] : undefined,
 	}));
 
-	console.log("stats", stats);
-
 	return stats.map((stat) => <StockStat key={stat.name} {...stat} />);
 }

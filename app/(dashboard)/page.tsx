@@ -19,7 +19,6 @@ import { createClient } from "@/utils/supabase/server";
 
 export default async function Page() {
 	const fres = await dataFetcher();
-	console.log(fres);
 	if (fres.error) {
 		return <ErrorCard error={fres.error} />;
 	}

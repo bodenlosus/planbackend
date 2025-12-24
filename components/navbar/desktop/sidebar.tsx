@@ -3,10 +3,10 @@ import {
 	ArrowLeftRight,
 	Home,
 	type LucideIcon,
+	PiggyBank,
 	SearchIcon,
 } from "lucide-react";
 import { SearchBarPopOut } from "@/components/search_bar";
-import { Button } from "@/components/ui/button";
 import {
 	Sidebar,
 	SidebarContent,
@@ -29,6 +29,7 @@ export function AppSidebar() {
 		Depot: [
 			{ title: "Mein Depot", url: "/", icon: Home },
 			{ title: "Transaktionen", url: "/transactions", icon: ArrowLeftRight },
+			{ title: "Sparplan", url: "/savings_plan", icon: PiggyBank },
 		],
 		// Aktien: [{ title: "Suche", url: "/search", icon: SearchIcon }],
 		// Wettbewerb: [{ title: "Leaderboard", url: "/leaderboard", icon: Trophy }],
@@ -43,12 +44,12 @@ export function AppSidebar() {
 					<SidebarMenuItem>
 						<SidebarMenuButton asChild>
 							<SearchBarPopOut doRedirect>
-								<Button variant={"outline"}>
+								<div className="w-full flex items-center gap-2 justify-center whitespace-nowrap text-ellipsis overflow-hidden rounded-md text-sm font-medium transition-colors border border-input shadow-sm bg-background h-9 px-3 py-1">
 									<SearchIcon className="size-5 shrink-0 stroke-muted-foreground" />
 									<span className="text-muted-foreground shrink truncate hidden lg:inline">
 										Search for a Stock...
 									</span>
-								</Button>
+								</div>
 							</SearchBarPopOut>
 						</SidebarMenuButton>
 					</SidebarMenuItem>
