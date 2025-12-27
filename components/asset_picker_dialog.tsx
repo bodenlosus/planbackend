@@ -1,57 +1,71 @@
-import { Search } from "lucide-react";
-import Image from "next/image";
-import { useMemo, useState } from "react";
-import type { Asset } from "@/database/custom_types";
-import { getIconURL } from "@/lib/icon_url";
-import { cn } from "@/lib/utils";
-import StockPicker from "./asset_picker";
-import { Button } from "./ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import { Search } from "lucide-react"
+import Image from "next/image"
+import { useMemo, useState } from "react"
+import type { Asset } from "@/database/custom_types"
+import { getIconURL } from "@/lib/icon_url"
+import { cn } from "@/lib/utils"
+import StockPicker from "./asset_picker"
+import { Button } from "./ui/button"
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
+
+type AssetT = Omit<Asset, "last_updated" | "description">
 
 type AssetPickerDialogProps = {
-	className?: string;
-	value?: number;
-	onValueChange?: (assetId: number) => void;
-};
+	className?: string
+	value?: number
+	defaultValue?: AssetT | null
+	onValueChange?: (asset: Asset) => void
+	displayName?: boolean
+	disabled?: boolean
+}
 
 export default function AssetPickerDialog({
 	className,
 	value,
+	defaultValue,
 	onValueChange,
+	displayName = true,
+	disabled = false,
 }: AssetPickerDialogProps) {
-	const [open, setOpen] = useState(false);
-	const [searchQuery, setSearchQuery] = useState<string>("");
-	const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
+	const [open, setOpen] = useState(false)
+	const [searchQuery, setSearchQuery] = useState<string>("")
+	const [selectedAsset, setSelectedAsset] = useState<Asset | null | undefined>(
+		defaultValue as Asset // dirty asfuck but doesnt matter rly
+	)
 
-	const handleSelect = (assetId: number, asset: Asset) => {
-		setSelectedAsset(asset);
-		onValueChange?.(assetId);
-		setOpen(false);
-		setSearchQuery("");
-	};
+	const handleSelect = (_: number, asset: Asset) => {
+		setSelectedAsset(asset)
+		onValueChange?.(asset)
+		setOpen(false)
+		setSearchQuery("")
+	}
 
 	const handleOpenChange = (isOpen: boolean) => {
-		setOpen(isOpen);
+		setOpen(isOpen)
 		if (isOpen) {
-			setSearchQuery("");
+			setSearchQuery("")
 		}
-	};
+	}
 
 	const iconUrl = useMemo(() => {
-		if (!selectedAsset) return null;
-		return getIconURL(selectedAsset.symbol, selectedAsset.asset_type, 32);
-	}, [selectedAsset]);
+		if (!selectedAsset) return null
+		return getIconURL(selectedAsset.symbol, selectedAsset.asset_type, 32)
+	}, [selectedAsset])
 
 	return (
 		<Dialog open={open} onOpenChange={handleOpenChange}>
-			<DialogTrigger className="w-full" asChild>
+			<DialogTrigger disabled={disabled} asChild>
 				<Button
 					variant="outline"
-					className={cn("w-full justify-start", className)}
+					className={cn(
+						className,
+						"w-full justify-start",
+						disabled ? "border-transparent bg-transparent" : "border"
+					)}
 					type="button"
 				>
 					{selectedAsset ? (
-						<div className="flex items-center gap-2">
+						<div className="flex items-center gap-2 w-full">
 							{iconUrl ? (
 								<Image
 									src={iconUrl}
@@ -63,9 +77,15 @@ export default function AssetPickerDialog({
 							) : (
 								""
 							)}
-							<span className="font-medium">{selectedAsset.symbol}</span>
-							<span className="text-muted-foreground">-</span>
-							<span>{selectedAsset.name}</span>
+							<span className="font-medium ">{selectedAsset.symbol}</span>
+							{displayName ? (
+								<>
+									<span className="text-muted-foreground">-</span>
+									<span className="overflow-hidden text-ellipsis whitespace-nowrap">
+										{selectedAsset.name}
+									</span>
+								</>
+							) : null}
 						</div>
 					) : (
 						<div className="flex items-center gap-2 text-muted-foreground">
@@ -84,5 +104,5 @@ export default function AssetPickerDialog({
 				/>
 			</DialogContent>
 		</Dialog>
-	);
+	)
 }

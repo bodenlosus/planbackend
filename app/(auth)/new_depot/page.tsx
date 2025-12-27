@@ -4,8 +4,8 @@ import {
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
-import Inner from "./form";
+} from "@/components/ui/card"
+import Inner from "./form"
 
 export default async function Page() {
 	return (
@@ -23,5 +23,5 @@ export default async function Page() {
 				</CardContent>
 			</Card>
 		</main>
-	);
+	)
 }

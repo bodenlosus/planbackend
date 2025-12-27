@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import { SunIcon } from "lucide-react";
-import { useTheme } from "next-themes";
-import { Switch } from "../ui/switch";
+import { SunIcon } from "lucide-react"
+import { useTheme } from "next-themes"
+import { Switch } from "../ui/switch"
 
 export function ModeToggle() {
-	const { theme, setTheme } = useTheme();
+	const { theme, setTheme } = useTheme()
 
 	return (
 		<span className="inline-flex flex-row gap-4">
@@ -18,5 +18,5 @@ export function ModeToggle() {
 				onCheckedChange={(checked) => setTheme(checked ? "light" : "dark")}
 			/>
 		</span>
-	);
+	)
 }

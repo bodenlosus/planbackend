@@ -1,11 +1,11 @@
-import type React from "react";
-import { TableRow } from "@/components/ui/table";
-import PriceCell from "./cell";
-import type { PriceColumnOptions } from "./table";
+import type React from "react"
+import { TableRow } from "@/components/ui/table"
+import PriceCell from "./cell"
+import type { PriceColumnOptions } from "./table"
 
 interface PriceRowProps extends React.ComponentPropsWithoutRef<"div"> {
-	price: Record<string, number | string>;
-	columns: Record<string, PriceColumnOptions>;
+	price: Record<string, number | string>
+	columns: Record<string, PriceColumnOptions>
 }
 export default function PriceRow({ price, columns }: PriceRowProps) {
 	return (
@@ -19,5 +19,5 @@ export default function PriceRow({ price, columns }: PriceRowProps) {
 				/>
 			))}
 		</TableRow>
-	);
+	)
 }

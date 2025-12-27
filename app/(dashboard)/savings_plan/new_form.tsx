@@ -1,9 +1,10 @@
-"use client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import AssetPickerDialog from "@/components/asset_picker_dialog";
-import { Button } from "@/components/ui/button";
+"use client"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+import { z } from "zod"
+import AssetPickerDialog from "@/components/asset_picker_dialog"
+import { Button } from "@/components/ui/button"
 import {
 	Form,
 	FormControl,
@@ -12,20 +13,18 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
-import type { Frequency } from "@/database/custom_types";
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import { useDepotStore } from "@/lib/store/client"
+import { cn } from "@/lib/utils"
+import { createClient } from "@/utils/supabase/client"
 
 type Props = {
-	limit?: number;
-};
+	limit?: number
+	onSuccessAction?: () => void
+	className?: string
+}
 
 function getFormSchema(limit?: number) {
 	return z.object({
@@ -38,14 +37,20 @@ function getFormSchema(limit?: number) {
 			.max(limit || 1000000, {
 				error: `Dir stehen nur ${limit || 1000000} zur Verfügung`,
 			}),
-		frequency: z.enum<Frequency[]>(["daily", "weekly", "monthly", "annually"], {
+		frequency: z.enum(["daily", "weekly", "monthly", "annually"], {
 			error: "Bitte wähle eine gültige Frequenz aus",
 		}),
-	});
+	})
 }
 
-export default function NewEntryForm({ limit }: Props) {
-	const formSchema = getFormSchema(limit);
+export default function NewEntryForm({
+	limit,
+	onSuccessAction: onSuccess,
+	className,
+}: Props) {
+	const { activeDepotId } = useDepotStore()
+	const formSchema = getFormSchema(limit)
+	const client = createClient()
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -53,17 +58,37 @@ export default function NewEntryForm({ limit }: Props) {
 			asset_id: undefined,
 			frequency: "monthly",
 		},
-	});
+	})
+	async function onSubmit(data: z.infer<typeof formSchema>) {
+		if (!activeDepotId) {
+			toast.error("Bitte wähle ein Depot aus")
+			return
+		}
+		const { error } = await client.schema("depots").rpc("upsert_savings_plan", {
+			p_depot_id: activeDepotId,
+			p_asset_id: data.asset_id,
+			p_worth: data.worth,
+			p_frequency: data.frequency,
+		})
 
-	function onSubmit(data: z.infer<typeof formSchema>) {
-		console.log(data);
+		if (error) {
+			toast.error(`Fehler beim Erstellen des Sparplans ${error.message}`)
+		} else {
+			toast.success("Sparplan erfolgreich erstellt")
+			if (onSuccess) {
+				onSuccess()
+			}
+		}
 	}
 
 	return (
 		<Form {...form}>
 			<form
-				className="flex flex-col gap-4"
-				onSubmit={form.handleSubmit(onSubmit)}
+				className={cn("flex flex-col gap-4", className)}
+				onSubmit={(e) => {
+					e.preventDefault()
+					form.handleSubmit(onSubmit)()
+				}}
 			>
 				<FormField
 					control={form.control}
@@ -74,7 +99,7 @@ export default function NewEntryForm({ limit }: Props) {
 							<FormControl>
 								<AssetPickerDialog
 									value={field.value}
-									onValueChange={field.onChange}
+									onValueChange={(value) => field.onChange(value.id)}
 								/>
 							</FormControl>
 							<FormDescription>
@@ -107,20 +132,17 @@ export default function NewEntryForm({ limit }: Props) {
 						<FormItem>
 							<FormLabel>Frequenz</FormLabel>
 							<FormControl>
-								<Select
+								<ToggleGroup
+									type="single"
+									className="w-full flex flex-row justify-start gap-3 "
 									onValueChange={field.onChange}
 									defaultValue={field.value}
 								>
-									<SelectTrigger>
-										<SelectValue placeholder="Wähle eine Frequenz aus" />
-									</SelectTrigger>
-									<SelectContent>
-										<SelectItem value="daily">Täglich</SelectItem>
-										<SelectItem value="weekly">Wöchentlich</SelectItem>
-										<SelectItem value="monthly">Monatlich</SelectItem>
-										<SelectItem value="annually">Jährlich</SelectItem>
-									</SelectContent>
-								</Select>
+									<ToggleGroupItem value="daily">Täglich</ToggleGroupItem>
+									<ToggleGroupItem value="weekly">Wöchentlich</ToggleGroupItem>
+									<ToggleGroupItem value="monthly">Monatlich</ToggleGroupItem>
+									<ToggleGroupItem value="annually">Jährlich</ToggleGroupItem>
+								</ToggleGroup>
 							</FormControl>
 							<FormDescription>
 								In dieser Frequenz wird das Wertpapier regelmäßig investiert.
@@ -129,8 +151,10 @@ export default function NewEntryForm({ limit }: Props) {
 						</FormItem>
 					)}
 				/>
-				<Button type="submit">Speichern</Button>
+				<Button type="submit" className="mt-4">
+					Speichern
+				</Button>
 			</form>
 		</Form>
-	);
+	)
 }

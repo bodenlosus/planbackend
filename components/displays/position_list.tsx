@@ -1,18 +1,18 @@
-import Link from "next/link";
-import type React from "react";
-import { getStockPagePath } from "@/lib/get_stock_path";
-import StockStats from "../stat/stats";
-import { Card } from "../ui/card";
-import "./style.css";
-import type { PositionSummary } from "@/database/custom_types";
-import { getIconURL } from "@/lib/icon_url";
-import { cn } from "@/lib/utils";
-import URLIcon from "../icon";
+import Link from "next/link"
+import type React from "react"
+import { getStockPagePath } from "@/lib/get_stock_path"
+import StockStats from "../stat/stats"
+import { Card } from "../ui/card"
+import "./style.css"
+import type { PositionSummary } from "@/database/custom_types"
+import { getIconURL } from "@/lib/icon_url"
+import { cn } from "@/lib/utils"
+import URLIcon from "../icon"
 
 export default function PositionList({
 	positions,
 }: {
-	positions: PositionSummary[];
+	positions: PositionSummary[]
 }) {
 	// "grid  p-3 gap-3 rounded-xl"
 	return (
@@ -21,11 +21,11 @@ export default function PositionList({
 				<PositionRow key={position.asset_id} position={position} />
 			))}
 		</div>
-	);
+	)
 }
 
 interface PositionRowProps extends React.ComponentPropsWithoutRef<"div"> {
-	position: PositionSummary;
+	position: PositionSummary
 }
 
 export function PositionRow({
@@ -44,14 +44,14 @@ export function PositionRow({
 	// "p-3 flex flex-row gap-3 border-b w-max"
 
 	let indicatorClass =
-		"bg-gradient-to-r from-accent-foreground/60 via-accent-foreground/25 to-transparent to-[100px] bg-no-repeat";
+		"bg-gradient-to-r from-accent-foreground/60 via-accent-foreground/25 to-transparent to-[100px] bg-no-repeat"
 	if (total_profit && total_profit !== 0) {
 		indicatorClass =
 			total_profit > 0
 				? "bg-gradient-to-r from-win/60 via-win/25 to-transparent to-[100px] bg-no-repeat"
-				: "bg-gradient-to-r from-loss/35 to-transparent to-[100px] bg-no-repeat";
+				: "bg-gradient-to-r from-loss/35 to-transparent to-[100px] bg-no-repeat"
 	}
-	const iconURL = symbol ? getIconURL(symbol, asset_type ?? "stock", 40) : null;
+	const iconURL = symbol ? getIconURL(symbol, asset_type ?? "stock", 40) : null
 
 	return (
 		<Card
@@ -59,7 +59,7 @@ export function PositionRow({
 				className,
 				"flex overflow-hidden flex-row flex-wrap rounded-xl max-w-[800px]",
 
-				indicatorClass,
+				indicatorClass
 			)}
 		>
 			<Link
@@ -97,5 +97,5 @@ export function PositionRow({
 				/>
 			</div>
 		</Card>
-	);
+	)
 }

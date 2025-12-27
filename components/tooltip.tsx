@@ -1,13 +1,13 @@
-import type React from "react";
+import type React from "react"
 import {
 	Tooltip as TooltipComponent,
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/components/ui/tooltip"
 
 interface IconT extends React.ComponentPropsWithoutRef<"div"> {
-	name: string;
+	name: string
 }
 
 export default function Tooltip({ name, children, className }: IconT) {
@@ -22,5 +22,5 @@ export default function Tooltip({ name, children, className }: IconT) {
 				</TooltipContent>
 			</TooltipComponent>
 		</TooltipProvider>
-	);
+	)
 }

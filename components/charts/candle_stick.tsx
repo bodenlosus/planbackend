@@ -1,5 +1,5 @@
-"use client";
-import type React from "react";
+"use client"
+import type React from "react"
 import {
 	Bar,
 	Cell,
@@ -9,35 +9,35 @@ import {
 	type Tooltip,
 	XAxis,
 	YAxis,
-} from "recharts";
+} from "recharts"
 import {
 	type ChartConfig,
 	ChartContainer,
 	ChartTooltip,
-} from "@/components/ui/chart";
-import { formatFloatingPointString } from "@/lib/data/formatter";
-import { toAbsoluteTimeString } from "@/lib/date_utils";
-import { cn } from "@/lib/utils";
+} from "@/components/ui/chart"
+import { formatFloatingPointString } from "@/lib/data/formatter"
+import { toAbsoluteTimeString } from "@/lib/date_utils"
+import { cn } from "@/lib/utils"
 import {
 	type TtoRelativeValues,
 	toAbsoluteValues,
-} from "../../lib/data/data_utils";
-import { WinLossIndicator } from "../stat/indicator";
-import { Separator } from "../ui/separator";
+} from "../../lib/data/data_utils"
+import { WinLossIndicator } from "../stat/indicator"
+import { Separator } from "../ui/separator"
 
 type BarDataT = Record<
 	string,
 	[number, number] | string | boolean | number | null
->;
+>
 
 interface props<T extends BarDataT>
 	extends React.ComponentPropsWithoutRef<"div"> {
-	data: Array<T>;
-	barKey: Extract<keyof T, string>;
-	errorKey: Extract<keyof T, string>;
-	winKey: Extract<keyof T, string>;
-	xKey: Extract<keyof T, string>;
-	lineKey: Extract<keyof T, string>;
+	data: Array<T>
+	barKey: Extract<keyof T, string>
+	errorKey: Extract<keyof T, string>
+	winKey: Extract<keyof T, string>
+	xKey: Extract<keyof T, string>
+	lineKey: Extract<keyof T, string>
 }
 export default function CandleStickChart<T extends BarDataT>({
 	data,
@@ -48,7 +48,7 @@ export default function CandleStickChart<T extends BarDataT>({
 	winKey,
 	lineKey,
 }: props<T>) {
-	const chartData = data; //data
+	const chartData = data //data
 	const chartConfig = {
 		open: {
 			label: "Open",
@@ -56,7 +56,7 @@ export default function CandleStickChart<T extends BarDataT>({
 		close: {
 			label: "Open",
 		},
-	} satisfies ChartConfig;
+	} satisfies ChartConfig
 
 	return (
 		<ChartContainer
@@ -73,7 +73,7 @@ export default function CandleStickChart<T extends BarDataT>({
 				/>
 				<Bar maxBarSize={20} dataKey={barKey} fill="hsl(var(--win))">
 					{chartData.map((entry) => {
-						const win = entry[winKey];
+						const win = entry[winKey]
 						return (
 							<Cell
 								className="z-10"
@@ -83,7 +83,7 @@ export default function CandleStickChart<T extends BarDataT>({
 								stroke={win ? "hsl(var(--win))" : "hsl(var(--loss))"}
 								fill={win ? "hsl(var(--win))" : "hsl(var(--loss))"}
 							/>
-						);
+						)
 					})}
 					<ErrorBar
 						className="-z-10"
@@ -105,30 +105,30 @@ export default function CandleStickChart<T extends BarDataT>({
 				<ChartTooltip filterNull content={<CustomTooltip />} />
 			</ComposedChart>
 		</ChartContainer>
-	);
+	)
 }
 
-type CustomToolTipProps = React.ComponentProps<typeof Tooltip>;
+type CustomToolTipProps = React.ComponentProps<typeof Tooltip>
 
 const CustomTooltip = ({ active, payload, label }: CustomToolTipProps) => {
 	if (!active || !payload || !payload.length) {
-		return null;
+		return null
 	}
 
-	const dataPayload = payload[0].payload as TtoRelativeValues | null;
+	const dataPayload = payload[0].payload as TtoRelativeValues | null
 
 	if (!dataPayload) {
-		return null;
+		return null
 	}
-	const row = toAbsoluteValues(dataPayload);
+	const row = toAbsoluteValues(dataPayload)
 	const displayValues = [
 		{ name: "Open", string: formatFloatingPointString(row.open, 2) },
 		{ name: "Close", string: formatFloatingPointString(row.close, 2) },
 		{ name: "High", string: formatFloatingPointString(row.high, 2) },
 		{ name: "Low", string: formatFloatingPointString(row.low, 2) },
-	];
-	const profit = row.close - row.open;
-	const date = new Date(label);
+	]
+	const profit = row.close - row.open
+	const date = new Date(label)
 	return (
 		<div className="bg-background p-2 rounded shadow border">
 			<h1 className="font-semibold text-sm">{toAbsoluteTimeString(date)}</h1>
@@ -155,5 +155,5 @@ const CustomTooltip = ({ active, payload, label }: CustomToolTipProps) => {
 				</span>
 			</span>
 		</div>
-	);
-};
+	)
+}

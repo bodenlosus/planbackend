@@ -1,12 +1,13 @@
-"use client";
+"use client"
 import {
 	ArrowLeftRight,
 	Home,
 	type LucideIcon,
 	PiggyBank,
 	SearchIcon,
-} from "lucide-react";
-import { SearchBarPopOut } from "@/components/search_bar";
+} from "lucide-react"
+import DepotPicker from "@/components/navbar/desktop/depot_picker"
+import { SearchBarPopOut } from "@/components/search_bar"
 import {
 	Sidebar,
 	SidebarContent,
@@ -17,13 +18,13 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
-} from "@/components/ui/sidebar";
+} from "@/components/ui/sidebar"
 
 export function AppSidebar() {
 	interface ItemT {
-		title: string;
-		url: string;
-		icon: LucideIcon;
+		title: string
+		url: string
+		icon: LucideIcon
 	}
 	const tree: Record<string, Array<ItemT>> = {
 		Depot: [
@@ -33,7 +34,7 @@ export function AppSidebar() {
 		],
 		// Aktien: [{ title: "Suche", url: "/search", icon: SearchIcon }],
 		// Wettbewerb: [{ title: "Leaderboard", url: "/leaderboard", icon: Trophy }],
-	};
+	}
 	return (
 		<Sidebar className="bg-sidebar px-3 pt-3">
 			<SidebarHeader>
@@ -72,7 +73,9 @@ export function AppSidebar() {
 					</SidebarGroup>
 				))}
 			</SidebarContent>
-			<SidebarFooter>{/*<NavUser />*/}</SidebarFooter>
+			<SidebarFooter>
+				<DepotPicker />
+			</SidebarFooter>
 		</Sidebar>
-	);
+	)
 }

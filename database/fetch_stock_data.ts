@@ -1,24 +1,24 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@/database/types";
-import { toISODateOnly } from "@/lib/date_utils";
-import { createClient } from "@/utils/supabase/server";
-import type { Asset, StockPrice } from "./custom_types";
+import type { SupabaseClient } from "@supabase/supabase-js"
+import type { Database } from "@/database/types"
+import { toISODateOnly } from "@/lib/date_utils"
+import { createClient } from "@/utils/supabase/server"
+import type { Asset, StockPrice } from "./custom_types"
 
 export interface TfetchStockData {
-	info: Asset[];
-	prices: StockPrice[] | null;
-	pricesWeekly: StockPrice[] | null;
+	info: Asset[]
+	prices: StockPrice[] | null
+	pricesWeekly: StockPrice[] | null
 
-	error?: Error;
+	error?: Error
 }
 export async function fetchStockData(
 	id: number,
 	restclient?: SupabaseClient<Database>,
 	start?: Date,
-	startWeekly?: Date,
+	startWeekly?: Date
 ): Promise<TfetchStockData> {
 	// Handle responses and errors individually
-	const client = restclient ?? (await createClient());
+	const client = restclient ?? (await createClient())
 	const [
 		{ data: prices, error: priceError },
 		{ data: pricesWeekly, error: priceWeeklyError },
@@ -39,7 +39,7 @@ export async function fetchStockData(
 			.gte("tstamp", startWeekly ? toISODateOnly(startWeekly) : undefined)
 			.order("tstamp", { ascending: true }),
 		client.schema("api").from("assets").select("*").eq("id", id),
-	]);
+	])
 
 	if (infoError) {
 		return {
@@ -49,7 +49,7 @@ export async function fetchStockData(
 			error: new Error(`Failed to fetch asset info for id ${id}`, {
 				cause: infoError,
 			}),
-		};
+		}
 	}
 
 	if (priceWeeklyError) {
@@ -60,7 +60,7 @@ export async function fetchStockData(
 			error: new Error(`Failed to fetch asset prices weekly for id ${id}`, {
 				cause: priceWeeklyError,
 			}),
-		};
+		}
 	}
 
 	if (priceError) {
@@ -71,7 +71,7 @@ export async function fetchStockData(
 			error: new Error(`Failed to fetch asset prices for id ${id}`, {
 				cause: priceError,
 			}),
-		};
+		}
 	}
 
 	if (!prices || prices.length === 0) {
@@ -79,12 +79,12 @@ export async function fetchStockData(
 			info,
 			prices: [],
 			pricesWeekly: [],
-		};
+		}
 	}
 
 	return {
 		info,
 		prices,
 		pricesWeekly: pricesWeekly as StockPrice[],
-	};
+	}
 }

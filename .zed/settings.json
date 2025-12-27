@@ -4,6 +4,7 @@
 // see the documentation: https://zed.dev/docs/configuring-zed#settings-files
 {
   "inlay_hints": {
+    "enabled": false,
     "toggle_on_modifiers_press": {
       "control": true
     }

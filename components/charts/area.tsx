@@ -1,5 +1,5 @@
-"use client";
-import type React from "react";
+"use client"
+import type React from "react"
 import {
 	Area,
 	AreaChart as RechartsAreaChart,
@@ -7,30 +7,30 @@ import {
 	type Tooltip,
 	XAxis,
 	YAxis,
-} from "recharts";
+} from "recharts"
 import {
 	type ChartConfig,
 	ChartContainer,
 	ChartTooltip,
-} from "@/components/ui/chart";
-import type { NullableRow } from "@/database/custom_types";
-import { to_display_string } from "@/lib/cash_display_string";
+} from "@/components/ui/chart"
+import type { NullableRow } from "@/database/custom_types"
+import { to_display_string } from "@/lib/cash_display_string"
 import {
 	relativeDateStringCompact,
 	toAbsoluteTimeString,
-} from "@/lib/date_utils";
-import { cn } from "@/lib/utils";
-import { Separator } from "../ui/separator";
+} from "@/lib/date_utils"
+import { cn } from "@/lib/utils"
+import { Separator } from "../ui/separator"
 
 interface props<T extends Record<string, number | string>>
 	extends React.ComponentPropsWithoutRef<"div"> {
-	data: Array<T | NullableRow<T>>;
-	offset: number;
-	dataKey: Extract<keyof T, string>;
-	xKey: Extract<keyof T, string>;
-	yKey: Extract<keyof T, string>;
-	startValue: number;
-	range?: number;
+	data: Array<T | NullableRow<T>>
+	offset: number
+	dataKey: Extract<keyof T, string>
+	xKey: Extract<keyof T, string>
+	yKey: Extract<keyof T, string>
+	startValue: number
+	range?: number
 }
 
 export default function AreaChart<T extends Record<string, number | string>>({
@@ -49,7 +49,7 @@ export default function AreaChart<T extends Record<string, number | string>>({
 		close: {
 			label: "Open",
 		},
-	} satisfies ChartConfig;
+	} satisfies ChartConfig
 
 	return (
 		<ChartContainer
@@ -136,23 +136,23 @@ export default function AreaChart<T extends Record<string, number | string>>({
 				/>
 			</RechartsAreaChart>
 		</ChartContainer>
-	);
+	)
 }
 
-type CustomTooltipProps = React.ComponentProps<typeof Tooltip>;
+type CustomTooltipProps = React.ComponentProps<typeof Tooltip>
 
 const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 	if (!active || !payload || !payload.length) {
-		return null;
+		return null
 	}
 
-	const value = Number.parseFloat(payload[0].value?.toString() ?? "");
-	const valueType = payload[0].payload?.type ?? "";
+	const value = Number.parseFloat(payload[0].value?.toString() ?? "")
+	const valueType = payload[0].payload?.type ?? ""
 
 	const displayString = Number.isNaN(value)
 		? "No value"
-		: to_display_string(value as number);
-	const date = new Date(label);
+		: to_display_string(value as number)
+	const date = new Date(label)
 
 	return (
 		<div className="bg-background p-2 text-sm rounded shadow border">
@@ -165,5 +165,5 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 				<span className="">{valueType}</span>
 			</p>
 		</div>
-	);
-};
+	)
+}

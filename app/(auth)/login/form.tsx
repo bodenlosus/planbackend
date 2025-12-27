@@ -1,12 +1,13 @@
-"use client";
+"use client"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import type { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import { zodResolver } from "@hookform/resolvers/zod"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+import type { z } from "zod"
+import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import {
 	Form,
 	FormControl,
@@ -14,15 +15,13 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
-import { login } from "../actions";
-import { formSchema } from "./form_schema";
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { login } from "../actions"
+import { formSchema } from "./form_schema"
 
 export default function LoginForm() {
-	const router = useRouter();
-	const toast = useToast();
+	const router = useRouter()
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -30,28 +29,23 @@ export default function LoginForm() {
 			password: "",
 			rememberUser: true,
 		},
-	});
+	})
 
 	async function onSubmit(data: z.infer<typeof formSchema>) {
-		const { error, success } = await login(data.email, data.password);
+		const { error, success } = await login(data.email, data.password)
 
 		if (error) {
-			toast.toast({
-				title: "Failed to log in",
-				variant: "destructive",
+			toast("Failed to log in", {
 				description: error,
-			});
-			return;
+			})
+			return
 		}
 		if (!success) {
-			return;
+			return
 		}
 
-		toast.toast({
-			title: "Logged in successfully",
-			variant: "default",
-		});
-		router.push("/");
+		toast("Logged in successfully")
+		router.push("/")
 	}
 
 	return (
@@ -118,5 +112,5 @@ export default function LoginForm() {
 				</span>
 			</form>
 		</Form>
-	);
+	)
 }

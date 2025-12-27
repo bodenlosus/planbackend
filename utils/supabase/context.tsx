@@ -1,4 +1,4 @@
-import { createContext } from "react";
-import { createClient } from "./server";
+import { createContext } from "react"
+import { createClient } from "./server"
 
-export const SupaBaseContext = createContext(createClient());
+export const SupaBaseContext = createContext(createClient())

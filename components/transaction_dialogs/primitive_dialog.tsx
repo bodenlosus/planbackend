@@ -1,7 +1,7 @@
-import { useRouter } from "next/navigation";
-import React from "react";
-import { useToast } from "@/hooks/use-toast";
-import { Button } from "../ui/button";
+import { useRouter } from "next/navigation"
+import React from "react"
+import { toast } from "sonner"
+import { Button } from "../ui/button"
 import {
 	Dialog,
 	DialogClose,
@@ -10,38 +10,38 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "../ui/dialog";
-import BuyStockForm, { type onSubmitValues } from "./buy_stock_form";
+} from "../ui/dialog"
+import BuyStockForm, { type onSubmitValues } from "./buy_stock_form"
 
 interface props extends React.ComponentPropsWithoutRef<"div"> {
-	stock: TStock;
-	depot: TDepot;
-	handleTransaction: TTransactionHandler;
-	description?: string;
-	title?: string;
-	action?: string;
-	reload?: boolean;
-	limit: number;
-	commission: number;
-	triggerVariant?: "default" | "secondary" | "outline";
+	stock: TStock
+	depot: TDepot
+	handleTransaction: TTransactionHandler
+	description?: string
+	title?: string
+	action?: string
+	reload?: boolean
+	limit: number
+	commission: number
+	triggerVariant?: "default" | "secondary" | "outline"
 }
 
 export type TStock = {
-	name: string;
-	id: number;
-	price: number;
-};
+	name: string
+	id: number
+	price: number
+}
 
 export type TDepot = {
-	id: number;
-	monetaryAssets: number;
-};
+	id: number
+	monetaryAssets: number
+}
 export type TTransactionHandler = (
 	stock: TStock,
 	worth: number,
 	commission: number,
-	depot: TDepot,
-) => Promise<{ error: Error | null; success: { message: string } | null }>;
+	depot: TDepot
+) => Promise<{ error: Error | null; success: { message: string } | null }>
 
 export default function PrimitiveDialog({
 	stock,
@@ -55,36 +55,31 @@ export default function PrimitiveDialog({
 	commission,
 	triggerVariant,
 }: props) {
-	const router = useRouter();
-	const [isOpen, setOpen] = React.useState(false);
-	const toast = useToast();
+	const router = useRouter()
+	const [isOpen, setOpen] = React.useState(false)
 	const handleSubmit = async ({ worth }: onSubmitValues) => {
 		const { error, success } = await handleTransaction(
 			stock,
 			worth,
 			commission,
-			depot,
-		);
+			depot
+		)
 
 		if (error) {
-			toast.toast({
-				title: "Failed Transaction",
+			toast.error("Failed Transaction", {
 				description: error?.message,
-				variant: "destructive",
-			});
-			return;
+			})
+			return
 		}
 
-		toast.toast({
-			title: "Successfull Transaction",
+		toast("Successfull Transaction", {
 			description: success?.message,
-			variant: "default",
-		});
-		setOpen(false);
+		})
+		setOpen(false)
 		if (reload) {
-			router.refresh();
+			router.refresh()
 		}
-	};
+	}
 
 	return (
 		<Dialog onOpenChange={(open) => setOpen(open)} open={isOpen}>
@@ -93,7 +88,7 @@ export default function PrimitiveDialog({
 					variant={triggerVariant}
 					disabled={limit === 0}
 					onClick={() => {
-						setOpen(true);
+						setOpen(true)
 					}}
 				>
 					{action}
@@ -112,5 +107,5 @@ export default function PrimitiveDialog({
 				/>
 			</DialogContent>
 		</Dialog>
-	);
+	)
 }

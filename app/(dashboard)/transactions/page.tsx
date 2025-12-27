@@ -1,36 +1,44 @@
-import { MoveRight } from "lucide-react";
-import Link from "next/link";
-import { redirect } from "next/navigation";
-import { ErrorCard } from "@/components/cards/cards";
-import { PositionRow } from "@/components/displays/position_list";
-import URLIcon from "@/components/icon";
+import { MoveRight } from "lucide-react"
+import Link from "next/link"
+import { redirect } from "next/navigation"
+import { ErrorCard } from "@/components/cards/cards"
+import { PositionRow } from "@/components/displays/position_list"
+import URLIcon from "@/components/icon"
 import {
 	HoverCard,
 	HoverCardContent,
 	HoverCardTrigger,
-} from "@/components/ui/hover-card";
-import type { PositionSummary, Transaction } from "@/database/custom_types";
+} from "@/components/ui/hover-card"
+import type { PositionSummary, Transaction } from "@/database/custom_types"
 import {
 	parseDate,
 	relativeDateString,
 	toAbsoluteTimeString,
 	toISODateOnly,
-} from "@/lib/date_utils";
-import { getStockPagePath } from "@/lib/get_stock_path";
-import { getIconURL } from "@/lib/icon_url";
-import { cn } from "@/lib/utils";
-import { createClient } from "@/utils/supabase/server";
+} from "@/lib/date_utils"
+import { getDepotId, type SearchParams } from "@/lib/get_depot_id"
+import { getStockPagePath } from "@/lib/get_stock_path"
+import { getIconURL } from "@/lib/icon_url"
+import { cn } from "@/lib/utils"
+import { createClient } from "@/utils/supabase/server"
 
-type TransactionWithAssetPosition = Transaction & PositionSummary;
+type TransactionWithAssetPosition = Transaction & PositionSummary
 
-export default async function Page() {
-	const { depot, transactions, error } = await dataFetcher();
+export default async function Page(props: {
+	searchParams: Promise<SearchParams>
+}) {
+	const searchParams = await props.searchParams
+	const { depotId, error: depotIdError } = await getDepotId(searchParams)
+	if (depotIdError) {
+		return <ErrorCard error={depotIdError} />
+	}
+	const { depot, transactions, error } = await dataFetcher(depotId)
 
 	if (error || !depot || !transactions) {
-		return <ErrorCard error={error || new Error("Error fetching Data")} />;
+		return <ErrorCard error={error || new Error("Error fetching Data")} />
 	}
 
-	const groupedTransactions = groupTransactionsPerDay(transactions);
+	const groupedTransactions = groupTransactionsPerDay(transactions)
 
 	return (
 		<main className="w-full">
@@ -40,55 +48,55 @@ export default async function Page() {
 				))}
 			</div>
 		</main>
-	);
+	)
 }
 
 type GroupedTransactions<T extends object> = {
-	day: string;
-	transactions: (Transaction & T)[];
-};
+	day: string
+	transactions: (Transaction & T)[]
+}
 
 function groupTransactionsPerDay<T extends object>(
-	transactions: (Transaction & T)[],
+	transactions: (Transaction & T)[]
 ) {
 	// Assumes transactions are sorted by timestamp in descending order
-	const groupedTransactions: GroupedTransactions<T>[] = [];
-	let currentDay = "";
-	let currentDayTransactions: (Transaction & T)[] = [];
+	const groupedTransactions: GroupedTransactions<T>[] = []
+	let currentDay = ""
+	let currentDayTransactions: (Transaction & T)[] = []
 
 	for (const transaction of transactions) {
-		const date = new Date(transaction.tstamp);
-		const key = toISODateOnly(date);
+		const date = new Date(transaction.tstamp)
+		const key = toISODateOnly(date)
 
 		if (currentDay !== key) {
 			if (currentDayTransactions.length > 0) {
 				groupedTransactions.push({
 					day: currentDay,
 					transactions: currentDayTransactions,
-				});
+				})
 			}
-			currentDay = key;
-			currentDayTransactions = [];
+			currentDay = key
+			currentDayTransactions = []
 		}
 
-		currentDayTransactions.push(transaction);
+		currentDayTransactions.push(transaction)
 	}
 
 	if (currentDayTransactions.length > 0) {
 		groupedTransactions.push({
 			day: currentDay,
 			transactions: currentDayTransactions,
-		});
+		})
 	}
 
-	return groupedTransactions;
+	return groupedTransactions
 }
 
 function TransactionGroup({
 	day,
 	transactions,
 }: GroupedTransactions<PositionSummary>) {
-	const date = parseDate(day);
+	const date = parseDate(day)
 	return (
 		<div className="overflow-hidden flex flex-col gap-3">
 			<div className="flex flex-row gap-2">
@@ -105,22 +113,22 @@ function TransactionGroup({
 				))}
 			</div>
 		</div>
-	);
+	)
 }
 
 function Description({
 	transaction,
 }: {
-	transaction: TransactionWithAssetPosition;
+	transaction: TransactionWithAssetPosition
 }) {
-	const buy = transaction.amount > 0;
+	const buy = transaction.amount > 0
 	const worth =
 		Math.abs(transaction.amount * transaction.price) +
-		transaction.commission * (buy ? 1 : -1);
+		transaction.commission * (buy ? 1 : -1)
 	const iconURL =
 		transaction.symbol && transaction.asset_type
 			? getIconURL(transaction.symbol, transaction.asset_type, 32)
-			: null;
+			: null
 
 	return (
 		<div className={cn(buy ? "flex-row" : "flex-row-reverse", "flex gap-3")}>
@@ -169,24 +177,24 @@ function Description({
 				</HoverCardContent>
 			</HoverCard>
 		</div>
-	);
+	)
 }
 
 function TransactionItem({
 	transaction,
 }: {
-	transaction: TransactionWithAssetPosition;
+	transaction: TransactionWithAssetPosition
 }) {
-	const buy = transaction.amount > 0;
+	const buy = transaction.amount > 0
 
-	const bg = buy ? "bg-loss" : "bg-win";
+	const bg = buy ? "bg-loss" : "bg-win"
 
-	const date = new Date(transaction.tstamp);
+	const date = new Date(transaction.tstamp)
 
 	return (
 		<div
 			className={cn(
-				"pr-7 pl-3 py-4 flex flex-row gap-3 shadow even:bg-muted/50 even:shadow border-b last:border-none",
+				"pr-7 pl-3 py-4 flex flex-row gap-3 shadow even:bg-muted/50 even:shadow border-b last:border-none"
 			)}
 		>
 			<span
@@ -200,49 +208,49 @@ function TransactionItem({
 				{date.toLocaleTimeString("de-DE")}
 			</span>
 		</div>
-	);
+	)
 }
 
-const dataFetcher = async () => {
-	const client = await createClient();
-	const user = (await client.auth.getUser()).data.user;
+const dataFetcher = async (depotId?: number) => {
+	const client = await createClient()
+	const user = (await client.auth.getUser()).data.user
 
 	if (!user) {
-		redirect("/login");
+		redirect("/login")
 	}
 
 	const { data: depots, error: depotsError } = await client
 		.schema("depots")
 		.from("depots")
 		.select("*")
-		.contains("users", [user.id]);
+		.contains("users", [user.id])
 
-	const depot = depots?.at(0);
+	const depot = depots?.find((depot) => depot.id === depotId) || depots?.at(0)
 	if (depotsError) {
 		return {
 			error: depotsError,
-		};
+		}
 	}
 	if (!depot) {
 		return {
 			error: new Error("No depot found"),
-		};
+		}
 	}
 	const { data: transactions, error: transactionsError } = await client
 		.schema("depots")
 		.from("transactions_with_asset_position")
 		.select(`*`)
 		.eq("depot_id", depot.id)
-		.order("tstamp", { ascending: false });
+		.order("tstamp", { ascending: false })
 
 	if (transactionsError) {
 		return {
 			error: transactionsError,
-		};
+		}
 	}
 
 	return {
 		depot,
 		transactions: transactions as TransactionWithAssetPosition[],
-	};
-};
+	}
+}

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod"
 
 export const formSchema = z.object({
 	email: z.string().trim().email({ message: "Please provide a valid E-Mail" }),
@@ -7,4 +7,4 @@ export const formSchema = z.object({
 		.trim()
 		.min(1, { message: "Please provide a valid password" }),
 	rememberUser: z.boolean(),
-});
+})

@@ -1,6 +1,6 @@
-import { Check } from "lucide-react";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { Check } from "lucide-react"
+import Image from "next/image"
+import { useEffect, useState } from "react"
 import {
 	Command,
 	CommandEmpty,
@@ -8,18 +8,18 @@ import {
 	CommandInput,
 	CommandItem,
 	CommandList,
-} from "@/components/ui/command";
-import type { Asset } from "@/database/custom_types";
-import { getStockFromSearchString } from "@/database/search_stock";
-import { getIconURL } from "@/lib/icon_url";
-import { cn } from "@/lib/utils";
+} from "@/components/ui/command"
+import type { Asset } from "@/database/custom_types"
+import { getStockFromSearchString } from "@/database/search_stock"
+import { getIconURL } from "@/lib/icon_url"
+import { cn } from "@/lib/utils"
 
 type StockPickerProps = {
-	value?: number;
-	onSelect: (assetId: number, asset: Asset) => void;
-	searchQuery: string;
-	onSearchChange: (query: string) => void;
-};
+	value?: number
+	onSelect: (assetId: number, asset: Asset) => void
+	searchQuery: string
+	onSearchChange: (query: string) => void
+}
 
 export default function StockPicker({
 	value,
@@ -27,27 +27,27 @@ export default function StockPicker({
 	searchQuery,
 	onSearchChange,
 }: StockPickerProps) {
-	const [stocks, setStocks] = useState<Array<Asset>>([]);
+	const [stocks, setStocks] = useState<Array<Asset>>([])
 
 	useEffect(() => {
 		const fetchStocks = async () => {
 			if (searchQuery === "" || !searchQuery) {
-				setStocks([]);
-				return;
+				setStocks([])
+				return
 			}
 			const { assets, error, success } = await getStockFromSearchString(
 				searchQuery,
-				5,
-			);
+				5
+			)
 			if (error) {
-				console.error("Failed to fetch data from database", error);
+				console.error("Failed to fetch data from database", error)
 			}
 			if (success) {
-				setStocks(assets);
+				setStocks(assets)
 			}
-		};
-		fetchStocks().catch(console.error);
-	}, [searchQuery]);
+		}
+		fetchStocks().catch(console.error)
+	}, [searchQuery])
 
 	return (
 		<Command shouldFilter={false} className="border-none">
@@ -64,14 +64,14 @@ export default function StockPicker({
 				</CommandEmpty>
 				<CommandGroup>
 					{stocks.map((stock) => {
-						const iconUrl = getIconURL(stock.symbol, stock.asset_type, 32);
+						const iconUrl = getIconURL(stock.symbol, stock.asset_type, 32)
 						return (
 							<CommandItem
 								className="!rounded-lg w-full flex gap-3 flex-row !py-2 !px-3"
 								key={stock.id}
 								value={stock.id.toString()}
 								onSelect={() => {
-									onSelect(stock.id, stock);
+									onSelect(stock.id, stock)
 								}}
 							>
 								{iconUrl && iconUrl !== "" ? (
@@ -96,14 +96,14 @@ export default function StockPicker({
 								<Check
 									className={cn(
 										"h-4 w-4 mr-2",
-										value === stock.id ? "opacity-100" : "opacity-0",
+										value === stock.id ? "opacity-100" : "opacity-0"
 									)}
 								/>
 							</CommandItem>
-						);
+						)
 					})}
 				</CommandGroup>
 			</CommandList>
 		</Command>
-	);
+	)
 }

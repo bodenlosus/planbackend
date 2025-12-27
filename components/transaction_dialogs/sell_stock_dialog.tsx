@@ -1,24 +1,24 @@
-"use client";
+"use client"
 
-import { sellStock } from "@/database/stock_transactions";
+import { sellStock } from "@/database/stock_transactions"
 import PrimitiveDialog, {
 	type TDepot,
 	type TStock,
 	type TTransactionHandler,
-} from "./primitive_dialog";
+} from "./primitive_dialog"
 
 const handleStockSale: TTransactionHandler = async (
 	stock,
 	worth,
 	commission,
-	depot,
+	depot
 ) => {
-	const { error } = await sellStock(stock.id, depot.id, worth);
+	const { error } = await sellStock(stock.id, depot.id, worth)
 	if (error) {
-		return { error: error, success: null };
+		return { error: error, success: null }
 	}
 
-	const amount = worth / stock.price;
+	const amount = worth / stock.price
 
 	return {
 		error: null,
@@ -27,14 +27,14 @@ const handleStockSale: TTransactionHandler = async (
 				worth + commission
 			).toFixed(2)} USD`,
 		},
-	};
-};
+	}
+}
 
 export default function SellStockDialog(props: {
-	stock: TStock;
-	depot: TDepot;
-	commission: number;
-	limit: number;
+	stock: TStock
+	depot: TDepot
+	commission: number
+	limit: number
 }) {
 	return (
 		<PrimitiveDialog
@@ -45,5 +45,5 @@ export default function SellStockDialog(props: {
 			{...props}
 			handleTransaction={handleStockSale}
 		/>
-	);
+	)
 }

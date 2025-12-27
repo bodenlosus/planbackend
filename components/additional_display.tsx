@@ -1,16 +1,16 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from "react"
 import {
 	Dialog,
 	DialogContent,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "./ui/button";
+} from "@/components/ui/dialog"
+import { Button } from "./ui/button"
 
 interface props extends ComponentPropsWithoutRef<"div"> {
-	title?: string;
-	buttonTitle?: string;
+	title?: string
+	buttonTitle?: string
 }
 export default function AdditionalContent({
 	children,
@@ -33,5 +33,5 @@ export default function AdditionalContent({
 				{children}
 			</DialogContent>
 		</Dialog>
-	);
+	)
 }

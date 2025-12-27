@@ -1,25 +1,25 @@
-"use client";
+"use client"
 
-import { buyStock } from "@/database/stock_transactions";
+import { buyStock } from "@/database/stock_transactions"
 import PrimitiveDialog, {
 	type TDepot,
 	type TStock,
 	type TTransactionHandler,
-} from "./primitive_dialog";
+} from "./primitive_dialog"
 
 const handleStockPurchase: TTransactionHandler = async (
 	stock,
 	worth,
 	commission,
-	depot,
+	depot
 ) => {
-	const { error } = await buyStock(stock.id, depot.id, worth);
+	const { error } = await buyStock(stock.id, depot.id, worth)
 	if (error) {
-		console.error("Error buying stock:", error);
-		return { error: error, success: null };
+		console.error("Error buying stock:", error)
+		return { error: error, success: null }
 	}
 
-	const amount = worth / stock.price;
+	const amount = worth / stock.price
 	return {
 		error: null,
 		success: {
@@ -27,14 +27,14 @@ const handleStockPurchase: TTransactionHandler = async (
 				worth + commission
 			).toFixed(2)} USD`,
 		},
-	};
-};
+	}
+}
 
 export default function BuyStockDialog(props: {
-	stock: TStock;
-	depot: TDepot;
-	commission: number;
-	limit: number;
+	stock: TStock
+	depot: TDepot
+	commission: number
+	limit: number
 }) {
 	return (
 		<PrimitiveDialog
@@ -44,5 +44,5 @@ export default function BuyStockDialog(props: {
 			{...props}
 			handleTransaction={handleStockPurchase}
 		/>
-	);
+	)
 }

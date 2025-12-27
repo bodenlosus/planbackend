@@ -41,6 +41,7 @@
     "@radix-ui/react-visually-hidden": "^1.2.4",
     "@supabase/ssr": "^0.5.1",
     "@supabase/supabase-js": "^2.45.6",
+    "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -63,7 +64,8 @@
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.2",
-    "zod": "^4.1.13"
+    "zod": "^4.1.13",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",

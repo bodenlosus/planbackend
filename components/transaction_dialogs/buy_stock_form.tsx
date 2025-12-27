@@ -1,7 +1,7 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Button } from "@/components/ui/button"
 import {
 	Form,
 	FormControl,
@@ -10,17 +10,17 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 
 interface formProps {
-	onSubmit?: (values: onSubmitValues) => void;
-	limit: number;
-	commission: number;
+	onSubmit?: (values: onSubmitValues) => void
+	limit: number
+	commission: number
 }
 
 export interface onSubmitValues {
-	worth: number;
+	worth: number
 }
 
 export default function BuyStockForm({
@@ -35,19 +35,19 @@ export default function BuyStockForm({
 			.max(limit, {
 				message: `Aktuelle Geldsumme des Deopts erlaubt nur ${limit} USD`,
 			}), // Limits it to the available budget
-	});
+	})
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			worth: limit,
 		},
-	});
+	})
 
 	// 2. Define a submit handler.
 
 	function handleSubmit(values: z.infer<typeof formSchema>) {
-		if (onSubmit) onSubmit(values);
+		if (onSubmit) onSubmit(values)
 	}
 
 	return (
@@ -70,5 +70,5 @@ export default function BuyStockForm({
 				<Button type="submit">Proceed</Button>
 			</form>
 		</Form>
-	);
+	)
 }

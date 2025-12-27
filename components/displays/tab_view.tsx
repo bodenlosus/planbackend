@@ -1,34 +1,34 @@
-"use client";
-import { ArrowDownAZ, Euro, SortAsc, SortDesc } from "lucide-react";
-import type React from "react";
-import { useMemo, useState } from "react";
-import type { AssetType, PositionSummary } from "@/database/custom_types";
+"use client"
+import { ArrowDownAZ, Euro, SortAsc, SortDesc } from "lucide-react"
+import type React from "react"
+import { useMemo, useState } from "react"
+import type { AssetType, PositionSummary } from "@/database/custom_types"
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "../ui/select";
-import { Separator } from "../ui/separator";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
-import PositionList from "./position_list";
+} from "../ui/select"
+import { Separator } from "../ui/separator"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
+import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group"
+import PositionList from "./position_list"
 
 interface returnT {
-	interval: 1 | 5 | 30;
-	order: SortMode;
-	descending: boolean;
+	interval: 1 | 5 | 30
+	order: SortMode
+	descending: boolean
 }
 function ToolBar(props: {
-	value: returnT;
-	onValueChange?: (value: returnT) => void;
+	value: returnT
+	onValueChange?: (value: returnT) => void
 }) {
 	const intervals = {
 		1: "1d",
 		5: "1w",
 		30: "1m",
-	};
+	}
 	const orders = [
 		{
 			type: "profit",
@@ -40,25 +40,25 @@ function ToolBar(props: {
 			display: "Name",
 			icon: <ArrowDownAZ />,
 		},
-	];
+	]
 
-	let interval = props.value.interval;
-	let order: string = props.value.order;
-	let descending = props.value.descending;
+	let interval = props.value.interval
+	let order: string = props.value.order
+	let descending = props.value.descending
 
 	return (
 		<>
 			<SortSelector
 				orders={orders}
 				onValueChange={(value, desc) => {
-					order = value;
-					descending = desc;
+					order = value
+					descending = desc
 					if (props.onValueChange) {
 						props.onValueChange({
 							order: order as SortMode,
 							descending,
 							interval,
-						});
+						})
 					}
 				}}
 				value={props.value.order}
@@ -69,98 +69,98 @@ function ToolBar(props: {
 				intervals={intervals}
 				value={props.value.interval}
 				onValueChange={(value) => {
-					interval = value;
+					interval = value
 
 					if (props.onValueChange) {
 						props.onValueChange({
 							order: order as SortMode,
 							descending,
 							interval,
-						});
+						})
 					}
 				}}
 			/>
 		</>
-	);
+	)
 }
-type SortMode = "profit" | "alphabetical";
+type SortMode = "profit" | "alphabetical"
 
 function sortProcessedPositions(
 	positions: PositionSummary[],
 	mode: SortMode,
-	descending: boolean,
+	descending: boolean
 ) {
 	const sort_funcs: Record<
 		SortMode,
 		(a: PositionSummary, b: PositionSummary) => number
 	> = {
 		profit: (a, b) => {
-			const profitDiff = (a.total_profit ?? 0) - (b.total_profit ?? 0);
-			return descending ? -profitDiff : profitDiff;
+			const profitDiff = (a.total_profit ?? 0) - (b.total_profit ?? 0)
+			return descending ? -profitDiff : profitDiff
 		},
 		alphabetical: (a, b) =>
 			(descending ? -1 : 1) * (a.symbol ?? "").localeCompare(b.symbol ?? ""),
-	};
+	}
 
-	return positions.sort(sort_funcs[mode] ?? sort_funcs.profit);
+	return positions.sort(sort_funcs[mode] ?? sort_funcs.profit)
 }
 
 export default function PositionTabView({
 	positions_raw,
 }: {
-	positions_raw: PositionSummary[];
+	positions_raw: PositionSummary[]
 }) {
 	const [modes, setModes] = useState<returnT>({
 		descending: true,
 		interval: 1,
 		order: "profit",
-	});
+	})
 
 	const positions = useMemo(
 		() => sortProcessedPositions(positions_raw, modes.order, modes.descending),
-		[positions_raw, modes.order, modes.descending],
-	);
-	type AssetTypeWithOther = AssetType | "other";
+		[positions_raw, modes.order, modes.descending]
+	)
+	type AssetTypeWithOther = AssetType | "other"
 	const displays: Map<AssetType | "other", string> = new Map([
 		["stock", "Aktien"],
 		["fund", "ETFs"],
 		["crypto", "Krypto"],
 		["commodity", "Kommoditäten"],
 		["other", "Andere"],
-	]);
+	])
 
 	const sortedStocks: Partial<Record<AssetTypeWithOther, PositionSummary[]>> =
-		{};
-	const counts: Map<AssetTypeWithOther, number> = new Map();
+		{}
+	const counts: Map<AssetTypeWithOther, number> = new Map()
 
 	for (const position of positions) {
-		const asset_type = position.asset_type ?? "other";
+		const asset_type = position.asset_type ?? "other"
 		if (!sortedStocks[asset_type]) {
-			sortedStocks[asset_type] = [];
+			sortedStocks[asset_type] = []
 		}
-		(sortedStocks[asset_type] as PositionSummary[]).push(position);
-		counts.set(asset_type, (counts.get(asset_type) ?? 0) + 1);
+		;(sortedStocks[asset_type] as PositionSummary[]).push(position)
+		counts.set(asset_type, (counts.get(asset_type) ?? 0) + 1)
 	}
 
-	const types = Object.keys(sortedStocks);
+	const types = Object.keys(sortedStocks)
 	const triggers = types.map((asset_type) => {
-		const count = counts.get(asset_type as AssetTypeWithOther) ?? 0;
-		const name = displays.get(asset_type as AssetTypeWithOther) ?? asset_type;
+		const count = counts.get(asset_type as AssetTypeWithOther) ?? 0
+		const name = displays.get(asset_type as AssetTypeWithOther) ?? asset_type
 		return (
 			<TabsTrigger className="h-full" key={asset_type} value={asset_type}>
 				{name} {count}
 			</TabsTrigger>
-		);
-	});
+		)
+	})
 	const contents = Object.entries(sortedStocks).map(
 		([stockType, positions]) => {
 			return (
 				<TabsContent key={stockType} value={stockType}>
 					<PositionList positions={positions} />
 				</TabsContent>
-			);
-		},
-	);
+			)
+		}
+	)
 
 	return (
 		<Tabs defaultValue={types[0]}>
@@ -172,22 +172,22 @@ export default function PositionTabView({
 			</div>
 			{contents}
 		</Tabs>
-	);
+	)
 }
 
 function SortSelector(props: {
 	orders: {
-		type: string;
-		display: string;
-		icon: React.ReactNode;
-	}[];
-	onValueChange?: (value: string, descending: boolean) => void;
-	value?: string;
-	descending?: boolean;
+		type: string
+		display: string
+		icon: React.ReactNode
+	}[]
+	onValueChange?: (value: string, descending: boolean) => void
+	value?: string
+	descending?: boolean
 }) {
-	let descending = props.descending ?? false;
-	let order = props.value;
-	const items: React.ReactNode[] = [];
+	let descending = props.descending ?? false
+	let order = props.value
+	const items: React.ReactNode[] = []
 	for (const order of props.orders) {
 		items.push(
 			<SelectItem value={order.type} key={order.type}>
@@ -197,17 +197,17 @@ function SortSelector(props: {
 					</span>
 					<span>{order.display}</span>
 				</div>
-			</SelectItem>,
-		);
+			</SelectItem>
+		)
 	}
 	return (
 		<div className="flex flex-row gap-2">
 			<Select
 				onValueChange={(value) => {
 					if (props.onValueChange) {
-						props.onValueChange(value, descending);
+						props.onValueChange(value, descending)
 					}
-					order = value;
+					order = value
 				}}
 				value={props.value}
 			>
@@ -222,9 +222,9 @@ function SortSelector(props: {
 				defaultValue="descending"
 				onValueChange={(value) => {
 					if (props.onValueChange) {
-						props.onValueChange(order ?? "", value === "descending");
+						props.onValueChange(order ?? "", value === "descending")
 					}
-					descending = value === "descending";
+					descending = value === "descending"
 				}}
 			>
 				<ToggleGroupItem value="descending">
@@ -235,16 +235,16 @@ function SortSelector(props: {
 				</ToggleGroupItem>
 			</ToggleGroup>
 		</div>
-	);
+	)
 }
 
 function IntervalSelector<T extends Record<number, string>>(props: {
-	intervals: T;
-	default?: keyof T;
-	value?: keyof T;
-	onValueChange?: (days: keyof T, display: string) => void;
+	intervals: T
+	default?: keyof T
+	value?: keyof T
+	onValueChange?: (days: keyof T, display: string) => void
 }) {
-	const items: React.ReactNode[] = [];
+	const items: React.ReactNode[] = []
 
 	for (const [days, display] of Object.entries(props.intervals)) {
 		items.push(
@@ -254,8 +254,8 @@ function IntervalSelector<T extends Record<number, string>>(props: {
 				value={days.toString()}
 			>
 				{display}
-			</ToggleGroupItem>,
-		);
+			</ToggleGroupItem>
+		)
 	}
 	return (
 		<ToggleGroup
@@ -264,14 +264,14 @@ function IntervalSelector<T extends Record<number, string>>(props: {
 			defaultValue="1d"
 			className=""
 			onValueChange={(k) => {
-				const key = Number.parseInt(k, 10);
-				const value = props.intervals[key];
+				const key = Number.parseInt(k, 10)
+				const value = props.intervals[key]
 				if (props.onValueChange) {
-					props.onValueChange(key, value);
+					props.onValueChange(key, value)
 				}
 			}}
 		>
 			{items}
 		</ToggleGroup>
-	);
+	)
 }

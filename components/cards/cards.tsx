@@ -1,6 +1,6 @@
-import { X } from "lucide-react";
-import type { ComponentPropsWithoutRef } from "react";
-import { Badge } from "@/components/ui/badge";
+import { X } from "lucide-react"
+import type { ComponentPropsWithoutRef } from "react"
+import { Badge } from "@/components/ui/badge"
 import {
 	Card,
 	CardContent,
@@ -8,44 +8,44 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui/card"
 import type {
 	Asset,
 	Depot,
 	DepotPosition,
 	StockPrice,
-} from "@/database/custom_types";
-import { to_display_string } from "@/lib/cash_display_string";
-import { toAbsoluteTimeString } from "@/lib/date_utils";
-import { getIconURL } from "@/lib/icon_url";
-import { cn } from "@/lib/utils";
-import AdditionalContent from "../additional_display";
-import URLIcon from "../icon";
-import HeaderStat from "../stat/header_stat";
-import BuyStockDialog from "../transaction_dialogs/buy_stock_dialog";
-import type { TStock } from "../transaction_dialogs/primitive_dialog";
-import SellStockDialog from "../transaction_dialogs/sell_stock_dialog";
+} from "@/database/custom_types"
+import { to_display_string } from "@/lib/cash_display_string"
+import { toAbsoluteTimeString } from "@/lib/date_utils"
+import { getIconURL } from "@/lib/icon_url"
+import { cn } from "@/lib/utils"
+import AdditionalContent from "../additional_display"
+import URLIcon from "../icon"
+import HeaderStat from "../stat/header_stat"
+import BuyStockDialog from "../transaction_dialogs/buy_stock_dialog"
+import type { TStock } from "../transaction_dialogs/primitive_dialog"
+import SellStockDialog from "../transaction_dialogs/sell_stock_dialog"
 
-type CardProps = ComponentPropsWithoutRef<"div">;
+type CardProps = ComponentPropsWithoutRef<"div">
 
 interface StatCardProps extends CardProps {
-	stock: Asset;
-	currentPrice?: StockPrice;
-	referencePrice?: StockPrice;
-	dateString?: string;
+	stock: Asset
+	currentPrice?: StockPrice
+	referencePrice?: StockPrice
+	dateString?: string
 }
 
 function calculateChange(
 	currentPrice?: StockPrice,
-	referencePrice?: StockPrice,
+	referencePrice?: StockPrice
 ) {
 	if (!currentPrice?.close || !currentPrice.open || !referencePrice?.close)
-		return { change24h: null, absoluteChange: null, relativeChange: null };
+		return { change24h: null, absoluteChange: null, relativeChange: null }
 
-	const change24h = currentPrice.close - (referencePrice?.close ?? 0);
-	const absoluteChange = currentPrice.close - currentPrice.open;
-	const relativeChange = (absoluteChange / currentPrice.open) * 100;
-	return { change24h, absoluteChange, relativeChange };
+	const change24h = currentPrice.close - (referencePrice?.close ?? 0)
+	const absoluteChange = currentPrice.close - currentPrice.open
+	const relativeChange = (absoluteChange / currentPrice.open) * 100
+	return { change24h, absoluteChange, relativeChange }
 }
 
 export function StatCard({
@@ -55,8 +55,8 @@ export function StatCard({
 	referencePrice,
 	dateString,
 }: StatCardProps) {
-	const stats = calculateChange(currentPrice, referencePrice);
-	const lastUpdated = dateString ?? currentPrice?.tstamp;
+	const stats = calculateChange(currentPrice, referencePrice)
+	const lastUpdated = dateString ?? currentPrice?.tstamp
 	return (
 		<Card className={cn(className)}>
 			<CardHeader className="w-full flex flex-row h-fit">
@@ -115,11 +115,11 @@ export function StatCard({
 				</CardFooter>
 			</CardContent>
 		</Card>
-	);
+	)
 }
 
 interface ErrorCardProps extends CardProps {
-	error: Error;
+	error: Error
 }
 
 export function ErrorCard({ error, className }: ErrorCardProps) {
@@ -138,15 +138,15 @@ export function ErrorCard({ error, className }: ErrorCardProps) {
 				<Badge className="w-fit">{error.name}</Badge>
 			</CardFooter>
 		</Card>
-	);
+	)
 }
 
 interface StockPositionCardProps extends CardProps {
-	stock: { name: string; id: number; price: number | null };
-	depot?: Depot | null;
-	position?: DepotPosition;
-	hidden?: boolean;
-	commission: number;
+	stock: { name: string; id: number; price: number | null }
+	depot?: Depot | null
+	position?: DepotPosition
+	hidden?: boolean
+	commission: number
 }
 export function StockPositionCard({
 	className,
@@ -157,10 +157,10 @@ export function StockPositionCard({
 	commission,
 }: StockPositionCardProps) {
 	if (hidden || !depot) {
-		return;
+		return
 	}
-	const buyLimit = depot.cash - commission;
-	const sellLimit = position?.worth ?? 0;
+	const buyLimit = depot.cash - commission
+	const sellLimit = position?.worth ?? 0
 
 	return (
 		<Card className={cn(className)}>
@@ -208,5 +208,5 @@ export function StockPositionCard({
 				)}
 			</CardContent>
 		</Card>
-	);
+	)
 }

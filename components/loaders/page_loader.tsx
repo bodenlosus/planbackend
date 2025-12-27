@@ -1,5 +1,5 @@
 export default function PageLoader() {
-	const symbols = 3;
+	const symbols = 3
 	return (
 		<div className="w-full h-full flex flex-col justify-center items-center text-muted-foreground text-xl gap-3">
 			<span className="">Loading Page</span>
@@ -14,5 +14,5 @@ export default function PageLoader() {
 				))}
 			</span>
 		</div>
-	);
+	)
 }

@@ -1,28 +1,63 @@
-"use client";
-import "./container.css";
+"use client"
+import "./container.css"
 import {
 	CandlestickChart as CandleStickIcon,
 	LineChart as LinechartIcon,
-} from "lucide-react";
-import { type ComponentPropsWithoutRef, useMemo } from "react";
+} from "lucide-react"
+import { type ComponentPropsWithoutRef, useMemo, useState } from "react"
 
-import type { PlainPrice } from "@/database/custom_types";
-import toRelativeValues, { calculateOffset } from "@/lib/data/data_utils";
-import AreaChart from "./area";
-import CandleStickChart from "./candle_stick";
-import ChartContainer from "./primitive/container";
+import type { PlainPrice } from "@/database/custom_types"
+import toRelativeValues, { calculateOffset } from "@/lib/data/data_utils"
+import {
+	getCurrentDate,
+	getDateCertainDaysAgo,
+	toISODateOnly,
+} from "@/lib/date_utils"
+import { IntervallPickerControlled } from "../cards/pick_intervall"
+import AreaChart from "./area"
+import CandleStickChart from "./candle_stick"
+import ChartContainer from "./primitive/container"
 
 export interface props extends ComponentPropsWithoutRef<"div"> {
-	data: Array<PlainPrice>;
+	prices: Array<PlainPrice>
+	pricesWeekly: Array<PlainPrice>
 }
-export default function StockChartContainer({ data }: props) {
-	const area = useMemo(() => calculateOffset(data, "close"), [data]);
+export default function StockChartContainer({ prices, pricesWeekly }: props) {
+	const [selectedIntervall, setSelectedIntervall] = useState<number>(7)
+	const timeFrame = useMemo(() => {
+		const start = getDateCertainDaysAgo(selectedIntervall)
+		const end = getCurrentDate()
+		return { start, end }
+	}, [selectedIntervall])
 
-	const candleData = toRelativeValues(data);
+	const data = useMemo(() => {
+		const data = []
+		const src = selectedIntervall < 360 ? prices : pricesWeekly
+		const start = timeFrame.start ? toISODateOnly(timeFrame.start) : undefined
+
+		for (const price of src) {
+			if (start && price.tstamp >= start) {
+				data.push(price)
+			}
+		}
+		return data
+	}, [prices, pricesWeekly, timeFrame, selectedIntervall])
+
+	const area = useMemo(() => calculateOffset(data, "close"), [data])
+
+	const candleData = toRelativeValues(data)
 	return (
 		<ChartContainer
+			toolbar={[
+				<IntervallPickerControlled
+					key={0}
+					className="py-2"
+					value={selectedIntervall}
+					onValueChange={setSelectedIntervall}
+				/>,
+			]}
 			defaultTab="line"
-			className="w-full border rounded-md bg-muted/25 shadow overflow-hidden"
+			className="w-full border rounded-md bg-muted/20 shadow overflow-hidden"
 			tabs={[
 				{
 					name: "candlestick",
@@ -60,5 +95,5 @@ export default function StockChartContainer({ data }: props) {
 				},
 			]}
 		/>
-	);
+	)
 }
