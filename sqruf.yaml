@@ -1,5 +1,0 @@
-lowercaseKeywords: true
-connections:
-  - alias: pg
-    driver: postgresql
-    dataSourceName: postgres://postgres:postgres@localhost:5432/postgres
