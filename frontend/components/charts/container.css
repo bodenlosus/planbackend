@@ -1,0 +1,3 @@
+.chart_type[data-state="active"] * {
+	stroke: hsl(var(--foreground));
+}
