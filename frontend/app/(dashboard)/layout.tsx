@@ -11,8 +11,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 export const metadata: Metadata = {
-  title: "Planspiel Boerse",
-  description: "Planspiel Boerse",
+  title: "FinanzQuest",
+  description: "FinanzQuest",
 };
 
 const _fontSans = FontSans({
