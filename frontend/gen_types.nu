@@ -1,1 +1,1 @@
-supabase gen types --db-url "postgresql://postgres:postgres@0.0.0.0:5432/postgres" --lang typescript --schema api,depots,auth | save database_types.ts
+supabase gen types --db-url "postgresql://postgres:postgres@0.0.0.0:5432/postgres" --lang typescript --schema api,depots,auth,public,users | save -f ./database/types.ts

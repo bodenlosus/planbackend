@@ -5,6 +5,7 @@ import {
   type LucideIcon,
   PiggyBank,
   SearchIcon,
+  LayoutDashboard,
 } from "lucide-react";
 import DepotPicker from "@/components/navbar/desktop/depot_picker";
 import { SearchBarPopOut } from "@/components/search_bar";
@@ -19,8 +20,23 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { createClient } from "@/utils/supabase/client";
+import { hasSpecialRoles } from "@/lib/db";
+import { SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "@/database/types";
+import { useEffect, useState } from "react";
+import User from "./user";
 
 export function AppSidebar() {
+  const [isTeacher, setIsTeacher] = useState(false);
+  useEffect(() => {
+    const client: SupabaseClient<Database> = createClient();
+
+    hasSpecialRoles(["teacher"], client).then((result) => {
+      setIsTeacher(result.hasPermission);
+    });
+  }, []);
+
   interface ItemT {
     title: string;
     url: string;
@@ -35,6 +51,13 @@ export function AppSidebar() {
     // Aktien: [{ title: "Suche", url: "/search", icon: SearchIcon }],
     // Wettbewerb: [{ title: "Leaderboard", url: "/leaderboard", icon: Trophy }],
   };
+
+  if (isTeacher) {
+    tree.Administration = [
+      { title: "Dashboard", url: "/admin_dashboard", icon: LayoutDashboard },
+    ];
+  }
+
   return (
     <Sidebar className="bg-sidebar px-3 pt-3">
       <SidebarHeader>
@@ -74,6 +97,7 @@ export function AppSidebar() {
         ))}
       </SidebarContent>
       <SidebarFooter>
+        <User />
         <DepotPicker />
       </SidebarFooter>
     </Sidebar>

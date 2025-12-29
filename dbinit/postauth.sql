@@ -20,13 +20,20 @@ CREATE POLICY "auth_admin_insert" ON depots.depots TO auth_admin USING (TRUE);
 GRANT USAGE ON schema depots TO auth_admin;
 GRANT INSERT ON depots.depots TO auth_admin;
 
-CREATE OR REPLACE FUNCTION depots.new_depot_for_user(p_user_id UUID) RETURNS void AS $$
-    BEGIN
-        INSERT INTO depots.depots (created, cash, cash_start, users)
-        VALUES (NOW(), 50000, 50000,  ARRAY[p_user_id]);
-    END;
+CREATE OR REPLACE FUNCTION depots.new_depot_for_user(p_user_id UUID) 
+RETURNS BIGINT AS $$
+DECLARE
+    v_depot_id BIGINT;
+BEGIN
+    -- Use provided user_id or fall back to auth.uid()
+    
+    INSERT INTO depots.depots (created, cash, cash_start, users)
+    VALUES (NOW(), 50000, 50000, ARRAY[p_user_id])
+    RETURNING id INTO v_depot_id;
+    
+    RETURN v_depot_id;
+END;
 $$ LANGUAGE plpgsql;
-
 
 GRANT EXECUTE ON FUNCTION depots.new_depot_for_user(UUID) TO anon, authenticated;
 GRANT INSERT ON depots.depots TO authenticated;

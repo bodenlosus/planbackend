@@ -1229,7 +1229,7 @@ export type Database = {
         }
         Returns: undefined
       }
-      new_depot_for_user: { Args: { p_user_id: string }; Returns: undefined }
+      new_depot_for_user: { Args: { p_user_id?: string }; Returns: number }
       sell_asset: {
         Args: { p_asset_id: number; p_depot_id: number; p_worth: number }
         Returns: undefined
@@ -1908,6 +1908,106 @@ export type Database = {
       [_ in never]: never
     }
   }
+  users: {
+    Tables: {
+      special_roles: {
+        Row: {
+          granted_at: string
+          user_id: string
+          user_role: Database["users"]["Enums"]["special_role"]
+        }
+        Insert: {
+          granted_at?: string
+          user_id: string
+          user_role: Database["users"]["Enums"]["special_role"]
+        }
+        Update: {
+          granted_at?: string
+          user_id?: string
+          user_role?: Database["users"]["Enums"]["special_role"]
+        }
+        Relationships: []
+      }
+    }
+    Views: {
+      admin_overview: {
+        Row: {
+          created_at: string | null
+          depot_count: number | null
+          email: string | null
+          id: string | null
+          meta_data: Json | null
+          position_count: number | null
+          role_granted_at: string | null
+          transaction_count: number | null
+          user_name: string | null
+          user_role: Database["users"]["Enums"]["special_role"] | null
+        }
+        Relationships: []
+      }
+      profile: {
+        Row: {
+          created_at: string | null
+          name: string | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
+    }
+    Functions: {
+      get_admin_overview: {
+        Args: never
+        Returns: {
+          created_at: string
+          depot_count: number
+          email: string
+          id: string
+          meta_data: Json
+          position_count: number
+          role_granted_at: string
+          transaction_count: number
+          user_name: string
+          user_role: Database["users"]["Enums"]["special_role"]
+        }[]
+      }
+      get_all_profiles: {
+        Args: never
+        Returns: {
+          created_at: string
+          name: string
+          user_id: string
+        }[]
+      }
+      grant_role: {
+        Args: {
+          p_user_id: string
+          p_user_role: Database["users"]["Enums"]["special_role"]
+        }
+        Returns: undefined
+      }
+      has_any_role: {
+        Args: { required_roles: Database["users"]["Enums"]["special_role"][] }
+        Returns: boolean
+      }
+      has_role: {
+        Args: { required_role: Database["users"]["Enums"]["special_role"] }
+        Returns: boolean
+      }
+      revoke_role: {
+        Args: {
+          p_user_id: string
+          p_user_role: Database["users"]["Enums"]["special_role"]
+        }
+        Returns: undefined
+      }
+    }
+    Enums: {
+      special_role: "admin" | "teacher"
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
 }
 
 type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
@@ -2054,6 +2154,11 @@ export const Constants = {
     Enums: {
       assettype: ["commodity", "crypto", "fund", "stock"],
       savingsfrequency: ["annually", "monthly", "weekly", "daily"],
+    },
+  },
+  users: {
+    Enums: {
+      special_role: ["admin", "teacher"],
     },
   },
 } as const
