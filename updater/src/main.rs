@@ -3,8 +3,8 @@ use sqlx::{
     postgres::{PgPoolOptions, PgQueryResult},
 };
 use std::{env::var, error::Error, time::Duration};
-use time::{Date, UtcDateTime, macros::time};
-use tokio::{join, time::Sleep};
+use time::{Date, UtcDateTime};
+use tokio::join;
 
 use crate::yf::PriceFrame;
 mod yf;
