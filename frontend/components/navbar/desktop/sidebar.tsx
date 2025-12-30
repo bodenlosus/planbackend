@@ -96,7 +96,7 @@ export function AppSidebar() {
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="flex flex-col gap-0">
         <User />
         <DepotPicker />
       </SidebarFooter>

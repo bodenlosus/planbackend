@@ -1,3 +1,4 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "./types.ts";
 
 export type StockPrice = Database["api"]["Tables"]["asset_prices"]["Row"];
@@ -22,6 +23,15 @@ export type PositionSummary =
 export type SpecialRole = Database["users"]["Enums"]["special_role"];
 
 export type UserProfile = Database["users"]["Views"]["profile"]["Row"];
+
+export type UserOverview = Database["users"]["Views"]["admin_overview"]["Row"];
+
+export type Result<Data, Error> =
+  | { error: Error; data: null }
+  | { error: null; data: Data };
+
+export type AsyncResult<Data, Error> = Promise<Result<Data, Error>>;
+export type Client = SupabaseClient<Database>;
 
 export type StockPosition = {
   stock: Asset;

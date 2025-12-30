@@ -35,6 +35,8 @@
 
           '';
           packages = with pkgs; [
+            nginx-language-server
+            nginx-config-formatter
 
             pgformatter
             postgres-lsp

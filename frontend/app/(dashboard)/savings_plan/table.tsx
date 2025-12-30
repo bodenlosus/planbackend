@@ -18,9 +18,7 @@ import {
   ArrowRight,
   ArrowUpDown,
   Check,
-  Edit2,
-  MoveLeft,
-  MoveRight,
+  Edit,
   Plus,
   Trash,
   Trash2,
@@ -32,11 +30,9 @@ import * as React from "react";
 import { toast } from "sonner";
 import AssetPickerDialog from "@/components/asset_picker_dialog";
 import URLIcon from "@/components/icon";
+import Tooltip from "@/components/tooltip";
 import { Button } from "@/components/ui/button";
-import {
-  ButtonGroup,
-  ButtonGroupSeparator,
-} from "@/components/ui/button-group";
+import { ButtonGroup } from "@/components/ui/button-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import {
@@ -65,10 +61,6 @@ import { getStockPagePath } from "@/lib/get_stock_path";
 import { getIconURL } from "@/lib/icon_url";
 import { createClient } from "@/utils/supabase/client";
 import NewEntryDialog from "./new_dialog";
-import { cn } from "@/lib/utils";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import Tooltip from "@/components/tooltip";
-import { AlertDialog } from "@/components/ui/alert-dialog";
 
 interface EditableTableProps {
   data: SavingsPlanWithAsset[];
@@ -433,7 +425,7 @@ export function SavingsPlanTable({ data }: EditableTableProps) {
               size="icon"
               onClick={() => handleEdit(row)}
             >
-              <Edit2 />
+              <Edit />
             </Button>
             <Button
               variant="outline"

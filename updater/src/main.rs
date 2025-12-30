@@ -207,23 +207,6 @@ impl Updater {
     // }
 }
 
-fn sleep_till_time(time: time::Time) -> Sleep {
-    let now = time::UtcDateTime::now();
-    let next_run = now.replace_time(time);
-
-    let mut diff = next_run - now;
-
-    if diff.is_negative() {
-        diff += time::Duration::days(1);
-    }
-
-    let delay = std::time::Duration::from_millis(diff.whole_milliseconds() as u64);
-
-    println!("Sleeping for {}s", delay.as_secs());
-
-    tokio::time::sleep(delay)
-}
-
 #[tokio::main]
 async fn main() {
     let db_url = var("DATABASE_URL").expect("DATABASE_URL not given");
@@ -233,26 +216,7 @@ async fn main() {
 
     let mut updater = Updater::new(&db_url, timeout).await.unwrap();
 
-    let immediate = var("UPDATE_IMMEDIATE")
-        .map(|s| !s.is_empty())
-        .unwrap_or(false);
-    if immediate {
-        if let Err(e) = updater.update().await {
-            eprintln!("{e}");
-        };
-    }
-
-    loop {
-        sleep_till_time(time!(1:00)).await;
-        println!("Starting Update");
-        if let Err(e) = updater.update().await {
-            eprintln!("{e}");
-        };
-
-        println!("updating depots...");
-
-        // if let Err(e) = updater.update_depot_positions().await {
-        //     eprintln!("Error updating depots: {e}")
-        // }
-    }
+    if let Err(e) = updater.update().await {
+        eprintln!("{e}");
+    };
 }

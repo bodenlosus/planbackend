@@ -1229,7 +1229,7 @@ export type Database = {
         }
         Returns: undefined
       }
-      new_depot_for_user: { Args: { p_user_id?: string }; Returns: number }
+      new_depot_for_user: { Args: { p_user_id: string }; Returns: number }
       sell_asset: {
         Args: { p_asset_id: number; p_depot_id: number; p_worth: number }
         Returns: undefined
@@ -1938,10 +1938,10 @@ export type Database = {
           id: string | null
           meta_data: Json | null
           position_count: number | null
-          role_granted_at: string | null
+          role_granted_at: string[] | null
           transaction_count: number | null
           user_name: string | null
-          user_role: Database["users"]["Enums"]["special_role"] | null
+          user_roles: Database["users"]["Enums"]["special_role"][] | null
         }
         Relationships: []
       }
@@ -1964,10 +1964,10 @@ export type Database = {
           id: string
           meta_data: Json
           position_count: number
-          role_granted_at: string
+          role_granted_at: string[]
           transaction_count: number
           user_name: string
-          user_role: Database["users"]["Enums"]["special_role"]
+          user_roles: Database["users"]["Enums"]["special_role"][]
         }[]
       }
       get_all_profiles: {

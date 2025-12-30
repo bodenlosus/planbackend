@@ -32,7 +32,7 @@ export default async function Page(props: {
 
   return (
     <main className="w-full flex flex-row justify-center h-full">
-      <div className="max-w-[1200px] grow flex flex-col gap-4">
+      <div className="grow flex flex-col gap-4">
         {data.length === 0 ? (
           <Empty>
             <EmptyHeader>
