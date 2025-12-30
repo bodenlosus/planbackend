@@ -84,6 +84,8 @@ impl Updater {
             return None;
         }
 
+        let last_updated = last_updated.saturating_sub(time::Duration::days(30));
+
         let dt = UtcDateTime::new(last_updated, time::macros::time!(0:00));
 
         Some((dt, now))

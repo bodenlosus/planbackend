@@ -1,18 +1,31 @@
+import { cn } from "@/lib/utils";
+import { Spinner } from "../ui/spinner";
+import styles from "./styles.module.css";
+import { Ellipsis } from "lucide-react";
+
 export default function PageLoader() {
-	const symbols = 3
-	return (
-		<div className="w-full h-full flex flex-col justify-center items-center text-muted-foreground text-xl gap-3">
-			<span className="">Loading Page</span>
-			<span className="*:animate-pulse text-3xl flex flex-row gap-1">
-				{Array.from({ length: symbols }, (_, i) => (
-					<span
-						// biome-ignore lint/suspicious/noArrayIndexKey: <wont be re-sorted>
-						key={i}
-						style={{ animationDelay: `${i / symbols}s` }}
-						className="block size-2 rounded-full bg-muted-foreground"
-					/>
-				))}
-			</span>
-		</div>
-	)
+  const symbols = 3;
+  return (
+    <div className="w-full h-[100dvh]">
+      <div className="relative top-[40%] left-1/2 translate-x-[-50%] translate-y-[-50%] h-fit w-fit flex flex-col items-center justify-center gap-3">
+        <span className="text-xl text-muted-foreground">
+          Seite wird geladen ...
+        </span>
+        <Loader />
+      </div>
+    </div>
+  );
+}
+
+export function Loader({ className }: { className?: string }) {
+  return (
+    <div className={cn("h-1 w-full overflow-hidden rounded-full", className)}>
+      <div
+        className={cn(
+          styles.inner,
+          "bg-muted-foreground h-full w-full rounded-full",
+        )}
+      />
+    </div>
+  );
 }

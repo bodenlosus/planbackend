@@ -34,7 +34,7 @@ LANGUAGE plpgsql AS $$
     END;
 $$ ;
 -- Set the commission configuration
-ALTER DATABASE postgres SET config.commission = '10' ;
+ALTER DATABASE postgres SET config.commission = '1' ;
 
 CREATE OR REPLACE FUNCTION depots.buy_asset (
 p_asset_id BIGINT,
