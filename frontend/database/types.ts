@@ -1932,6 +1932,7 @@ export type Database = {
     Views: {
       admin_overview: {
         Row: {
+          banned_until: string | null
           created_at: string | null
           depot_count: number | null
           email: string | null
@@ -1958,6 +1959,7 @@ export type Database = {
       get_admin_overview: {
         Args: never
         Returns: {
+          banned_until: string
           created_at: string
           depot_count: number
           email: string
@@ -1985,6 +1987,7 @@ export type Database = {
         }
         Returns: undefined
       }
+      grant_teacher: { Args: { p_user_id: string }; Returns: undefined }
       has_any_role: {
         Args: { required_roles: Database["users"]["Enums"]["special_role"][] }
         Returns: boolean
@@ -2000,6 +2003,7 @@ export type Database = {
         }
         Returns: undefined
       }
+      revoke_teacher: { Args: { p_user_id: string }; Returns: undefined }
     }
     Enums: {
       special_role: "admin" | "teacher"

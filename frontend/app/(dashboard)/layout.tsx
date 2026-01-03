@@ -2,7 +2,6 @@ import "@/app/globals.css";
 import "./layout.css";
 
 import type { Metadata } from "next";
-import { IBM_Plex_Mono as FontMono, Inter as FontSans } from "next/font/google";
 import type React from "react";
 import { Suspense } from "react";
 import PageLoader from "@/components/loaders/page_loader";
@@ -15,17 +14,6 @@ export const metadata: Metadata = {
   description: "FinanzQuest",
 };
 
-const _fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-const _fontMono = FontMono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: "400",
-});
-
 export default function DashboardLayout({
   children,
 }: Readonly<{
@@ -35,8 +23,8 @@ export default function DashboardLayout({
     <>
       <SidebarProvider>
         <AppSidebar />
-        {/* <SidebarTrigger /> */}
         <Suspense fallback={<PageLoader />}>
+          {/*<SidebarTrigger />*/}
           <ScrollArea className="h-full pt-3 px-3 mx-2 mt-2 w-full">
             {children}
           </ScrollArea>

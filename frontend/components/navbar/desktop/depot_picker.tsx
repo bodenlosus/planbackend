@@ -9,9 +9,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import type { Depot } from "@/database/custom_types";
-import { useDepotStore } from "@/lib/store/client";
 import { createClient } from "@/utils/supabase/client";
 import { getUserId } from "@/lib/db";
+import { getDepotDefaultId } from "@/lib/db";
+import { toast } from "sonner";
+import { getDepotCookie, setDepotCookie } from "@/lib/store/client";
 
 async function fetchDepots() {
   const client = createClient();
@@ -29,9 +31,14 @@ async function fetchDepots() {
 export default function DepotPicker() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { activeDepotId, setActiveDepot } = useDepotStore();
-
+  const [activeDepotId, setActiveDepotId] = useState<number | null>(null);
   const [depots, setDepots] = useState<Depot[] | null>([]);
+
+  function setDepot(id: number) {
+    setDepotCookie(id);
+    router.push(`?depot=${id}`);
+    router.refresh();
+  }
 
   useEffect(() => {
     fetchDepots().then((res) => {
@@ -45,17 +52,22 @@ export default function DepotPicker() {
   }, []);
 
   useEffect(() => {
-    const s = searchParams.get("activeDepotId");
-    const id = s ? parseInt(s, 10) : undefined;
+    (async () => {
+      const s = searchParams.get("depot");
+      const id = s ? parseInt(s, 10) : undefined;
 
-    if (id) {
-      setActiveDepot(id);
-    }
+      if (id) {
+        setActiveDepotId(id);
+        setDepotCookie(id);
+        return;
+      }
 
-    if (!activeDepotId && depots?.length) {
-      setActiveDepot(depots[0].id);
-    }
-  }, [searchParams, setActiveDepot, depots, activeDepotId]);
+      const cookie = await getDepotCookie();
+      if (cookie) {
+        setActiveDepotId(cookie);
+      }
+    })();
+  }, [searchParams]);
 
   return (
     <Select
@@ -63,9 +75,8 @@ export default function DepotPicker() {
       onValueChange={(value) => {
         const id = parseInt(value, 10);
         if (id) {
-          setActiveDepot(id);
-          router.push(`?depot=${id}`);
-          router.refresh();
+          setActiveDepotId(id);
+          setDepot(id);
         }
       }}
     >

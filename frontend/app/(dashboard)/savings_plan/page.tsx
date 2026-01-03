@@ -9,10 +9,11 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
-import { getDepotId, type SearchParams } from "@/lib/get_depot_id";
+import { getDepotId } from "@/lib/get_depot_id";
 import { createClient } from "@/utils/supabase/server";
 import NewEntryDialog from "./new_dialog";
 import { SavingsPlanTable } from "./table";
+import type { SearchParams } from "@/database/custom_types";
 export default async function Page(props: {
   searchParams: Promise<SearchParams>;
 }) {
@@ -27,8 +28,6 @@ export default async function Page(props: {
   if (error) {
     return <ErrorCard error={error}></ErrorCard>;
   }
-
-  console.log(data);
 
   return (
     <main className="w-full flex flex-row justify-center h-full">

@@ -154,94 +154,102 @@ SELECT
     tstamp;
 
 
--- CREATE OR REPLACE VIEW depots.values AS
--- SELECT
---   t.depot_id,
---   ap.tstamp,
---   d.cash_start + SUM(COALESCE(t.running_amount, 0) * ap.close - COALESCE(t.running_commission, 0) - COALESCE(t.running_expenses)) AS value,
---   d.cash_start - SUM(COALESCE(t.running_commission, 0) + COALESCE(t.running_expenses)) AS cash,
---   SUM(COALESCE(t.running_amount, 0) * ap.close - COALESCE(t.running_commission, 0) - COALESCE(t.running_expenses)) AS profit_from_start,
---   SUM(COALESCE(t.running_amount, 0) * ap.close) AS assets
--- FROM
---   api.asset_prices ap
--- INNER JOIN LATERAL (
---   SELECT
---     *
---   FROM
---     depots.aggregated_transactions t
---   WHERE
---     t.asset_id = ap.asset_id
---     AND t.tstamp <= ap.tstamp
---   ORDER BY
---     t.tstamp DESC
---     LIMIT 1) t ON TRUE
--- LEFT JOIN depots.depots d ON t.depot_id = d.id
--- WHERE
---   t.depot_id IS NOT NULL -- optional, but keeps it clean
--- GROUP BY
---   t.depot_id,
---   ap.tstamp,
---   d.cash_start
--- ORDER BY
---   t.depot_id,
---   ap.tstamp;
 
-CREATE OR REPLACE VIEW depots.values AS
+
+CREATE OR REPLACE VIEW depots.position_values AS
 WITH depot_first_transaction AS (
   SELECT depot_id, MIN(tstamp) as first_date
   FROM depots.aggregated_transactions
   GROUP BY depot_id
 ),
-all_dates AS (
-  SELECT DISTINCT tstamp 
-  FROM api.asset_prices
+date_range AS (
+  SELECT generate_series(
+    (SELECT MIN(first_date) FROM depot_first_transaction),
+    CURRENT_DATE,
+    '1 day'::interval
+  )::date as tstamp
 ),
-depot_holdings_by_date AS (
-  SELECT
-    d.id as depot_id,
-    dates.tstamp,
-    t.asset_id,
-    t.running_amount,
-    t.running_commission,
-    t.running_expenses,
-    ap.close
-  FROM depots.depots d
-  INNER JOIN depot_first_transaction dft ON d.id = dft.depot_id
-  CROSS JOIN all_dates dates
-  LEFT JOIN LATERAL (
-    SELECT *
-    FROM depots.aggregated_transactions t
-    WHERE t.depot_id = d.id
-      AND t.tstamp <= dates.tstamp
-  ) t ON TRUE
-  LEFT JOIN LATERAL (
-    SELECT close
-    FROM api.asset_prices
-    WHERE asset_id = t.asset_id
-      AND tstamp <= dates.tstamp
-    ORDER BY tstamp DESC
-    LIMIT 1
-  ) ap ON TRUE
-  WHERE dates.tstamp >= dft.first_date
-    AND t.asset_id IS NOT NULL
+depot_assets AS (
+  SELECT DISTINCT depot_id, asset_id
+  FROM depots.aggregated_transactions
 )
 SELECT
-  depot_id,
-  tstamp,
-  MAX(d.cash_start) + SUM(COALESCE(running_amount, 0) * close 
-    - COALESCE(running_commission, 0) 
-    - COALESCE(running_expenses, 0)) AS value,
-  MAX(d.cash_start) - SUM(COALESCE(running_commission, 0) 
-    + COALESCE(running_expenses, 0)) AS cash,
-  SUM(COALESCE(running_amount, 0) * close 
-    - COALESCE(running_commission, 0) 
-    - COALESCE(running_expenses, 0)) AS profit_from_start,
-  SUM(COALESCE(running_amount, 0) * close) AS assets
-FROM depot_holdings_by_date
-LEFT JOIN depots.depots d ON depot_id = d.id
-GROUP BY depot_id, tstamp
-ORDER BY depot_id, tstamp;
+  da.depot_id,
+  dates.tstamp,
+  da.asset_id,
+  t.running_amount,
+  t.running_commission,
+  t.running_expenses,
+  ap.close as price,
+  t.running_amount * ap.close as market_value,
+  (t.running_amount * ap.close) - t.running_expenses - t.running_commission as position_profit
+FROM depot_assets da
+INNER JOIN depot_first_transaction dft ON da.depot_id = dft.depot_id
+CROSS JOIN date_range dates
+INNER JOIN LATERAL (
+  SELECT *
+  FROM depots.aggregated_transactions t
+  WHERE t.depot_id = da.depot_id
+    AND t.asset_id = da.asset_id
+    AND t.tstamp <= dates.tstamp
+  ORDER BY t.tstamp DESC
+  LIMIT 1
+) t ON TRUE
+LEFT JOIN LATERAL (
+  SELECT close
+  FROM api.asset_prices
+  WHERE asset_id = da.asset_id
+    AND tstamp <= dates.tstamp
+  ORDER BY tstamp DESC
+  LIMIT 1
+) ap ON TRUE
+WHERE dates.tstamp >= dft.first_date
+AND ap.close IS NOT NULL
+ORDER BY da.depot_id, dates.tstamp, da.asset_id;
 
+CREATE OR REPLACE VIEW depots.values AS
+WITH all_depot_dates AS (
+  SELECT DISTINCT depot_id, tstamp
+  FROM depots.position_values
+),
+depot_assets AS (
+  SELECT DISTINCT depot_id, asset_id
+  FROM depots.position_values
+),
+-- Get the latest position state for each depot-asset-date combination
+latest_position_state AS (
+  SELECT 
+    da.depot_id,
+    ad.tstamp,
+    da.asset_id,
+    pv.running_commission,
+    pv.running_expenses,
+    pv.market_value,
+    pv.position_profit
+  FROM depot_assets da
+  CROSS JOIN all_depot_dates ad
+  LEFT JOIN LATERAL (
+    SELECT *
+    FROM depots.position_values pv
+    WHERE pv.depot_id = da.depot_id
+      AND pv.asset_id = da.asset_id
+      AND pv.tstamp <= ad.tstamp
+    ORDER BY pv.tstamp DESC
+    LIMIT 1
+  ) pv ON pv.depot_id = da.depot_id AND ad.depot_id = da.depot_id
+)
+SELECT
+  lps.depot_id,
+  lps.tstamp,
+  d.cash_start + SUM(COALESCE(lps.position_profit, 0)) AS value,
+  d.cash_start - SUM(COALESCE(lps.running_commission, 0) + COALESCE(lps.running_expenses, 0)) AS cash,
+  SUM(COALESCE(lps.position_profit, 0)) AS profit_from_start,
+  SUM(COALESCE(lps.market_value, 0)) AS assets
+FROM latest_position_state lps
+JOIN depots.depots d ON lps.depot_id = d.id
+WHERE lps.running_commission IS NOT NULL  -- Only include dates after first transaction
+GROUP BY lps.depot_id, lps.tstamp, d.cash_start
+ORDER BY lps.depot_id, lps.tstamp;
 
 CREATE OR REPLACE VIEW depots.aggregated_values AS
 WITH latest_per_depot AS (
@@ -540,3 +548,7 @@ END;
 $$ LANGUAGE plpgsql STABLE;
 
 GRANT EXECUTE ON FUNCTION api.search_assets(text, text, integer) TO anon, authenticated;
+
+
+-- Set the commission configuration
+ALTER DATABASE postgres SET config.commission = '1' ;

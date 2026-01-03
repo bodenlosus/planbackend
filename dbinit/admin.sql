@@ -22,7 +22,38 @@ BEGIN
 END;
 $$;
 
-GRANT EXECUTE ON FUNCTION users.grant_role(UUID, users.special_role) TO authenticated;
+CREATE OR REPLACE FUNCTION users.grant_teacher(p_user_id UUID)
+RETURNS VOID
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    IF NOT (users.has_any_role('admin', 'teacher') OR current_user = 'postgres') THEN
+        RAISE EXCEPTION 'Unauthorized: Admin or Teacher role required'
+            USING ERRCODE = '42501';
+    END IF;
+    INSERT INTO users.special_roles (user_id, user_role) VALUES (p_user_id, 'teacher');
+    UPDATE auth.users SET is_super_admin = true;
+END;
+$$ SECURITY DEFINER;
+
+
+GRANT EXECUTE ON FUNCTION users.grant_teacher(UUID) TO authenticated;
+
+CREATE OR REPLACE FUNCTION users.revoke_teacher(p_user_id UUID)
+RETURNS VOID
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    IF NOT (users.has_any_role('admin', 'teacher') OR current_user = 'postgres') THEN
+        RAISE EXCEPTION 'Unauthorized: Admin or Teacher role required'
+            USING ERRCODE = '42501';
+    END IF;
+    DELETE FROM users.special_roles WHERE user_id = p_user_id AND user_role = 'teacher' ;
+    UPDATE auth.users SET is_super_admin = false WHERE id = p_user_id;
+END;
+$$ SECURITY DEFINER;
+
+GRANT EXECUTE ON FUNCTION users.grant_teacher(UUID) TO authenticated;
 
 CREATE OR REPLACE FUNCTION users.revoke_role(p_user_id UUID, p_user_role users.special_role)
 RETURNS VOID
@@ -89,6 +120,7 @@ CREATE POLICY "Admins can update roles"
 ON users.special_roles FOR UPDATE
 TO authenticated
 USING (users.has_role('admin'));
+
 
 -- Admins can insert new user roles
 CREATE POLICY "Admins can insert roles"
@@ -165,6 +197,7 @@ RETURNS TABLE(
     created_at timestamptz,
     meta_data jsonb,
     user_name text,
+    banned_until timestamptz,
     user_roles users.special_role[],
     role_granted_at timestamptz[],
     depot_count bigint,
@@ -184,6 +217,7 @@ BEGIN
         au.created_at,
         au.raw_user_meta_data,
         au.raw_user_meta_data->>'name' AS user_name,
+        au.banned_until,
         roles.user_roles,
         roles.role_granted_at,
         COUNT(DISTINCT d.id) AS depot_count,

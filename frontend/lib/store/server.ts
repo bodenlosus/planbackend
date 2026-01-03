@@ -23,3 +23,9 @@ export async function getActiveDepotId() {
   const activeDepotId = cookieStore.get("activeDepotId");
   return activeDepotId?.value;
 }
+
+export async function getActiveDepotIdNumber() {
+  const cookieStore = await cookies();
+  const activeDepotId = cookieStore.get("activeDepotId");
+  return activeDepotId?.value ? parseInt(activeDepotId.value, 10) : null;
+}

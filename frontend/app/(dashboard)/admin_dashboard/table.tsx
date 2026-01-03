@@ -23,7 +23,9 @@ import {
   KeyRound,
   LogOut,
   MoreVertical,
+  Plus,
   Trash2,
+  UserStar,
   X,
 } from "lucide-react";
 import * as React from "react";
@@ -49,11 +51,34 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import type { UserOverview } from "@/database/custom_types";
-import { relativeDateString } from "@/lib/date_utils";
+import { getTimeBetweenDates, relativeDateString } from "@/lib/date_utils";
+import {
+  banUser,
+  changePassword,
+  deleteUser,
+  grantTeacher,
+  newUser,
+  revokeTeacher,
+  unbanUser,
+  updateUser,
+} from "@/lib/admin_actions";
+import { toast } from "sonner";
+import SimpleDialog from "@/components/simple_dialog";
+import { BanForm, ChangePasswordForm } from "./forms";
+import { useRouter } from "next/navigation";
+import SimpleAlertDialog from "@/components/simple_alert_dialog";
+import { NewUserDialog } from "./new_user_dialog";
+import { isThisHour } from "date-fns";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface AdminUsersTableProps {
   data: UserOverview[];
 }
+
+const rolesDisplay = {
+  admin: "Administrator",
+  teacher: "Lehrer",
+};
 
 // Helper function to format date
 const formatDate = (dateString: string) => {
@@ -65,6 +90,13 @@ const formatDate = (dateString: string) => {
     hour: "2-digit",
     minute: "2-digit",
   }).format(date);
+};
+
+const handleError = ({ error }: { error?: Error | null }) => {
+  if (error) {
+    console.error(error);
+    toast.error(`${error.name && `${error.name}: `}${error.message}`);
+  }
 };
 
 export function AdminUsersTable({ data }: AdminUsersTableProps) {
@@ -90,11 +122,19 @@ export function AdminUsersTable({ data }: AdminUsersTableProps) {
     });
   };
 
+  const router = useRouter();
+
   const handleSave = async (row: Row<UserOverview>) => {
     // Implement save logic here
     console.log("Saving user:", row.original.id, editedData);
+    const user_id = row.original.id;
+
+    if (user_id) updateUser(user_id, editedData).then(handleError);
+    else toast.error("User ID is missing");
+
     setEditingRowId(null);
     setEditedData({});
+    router.refresh();
   };
 
   const handleCancel = () => {
@@ -102,51 +142,35 @@ export function AdminUsersTable({ data }: AdminUsersTableProps) {
     setEditedData({});
   };
 
-  const handleDeleteUser = (userId: string) => {
-    console.log("Delete user:", userId);
-  };
-
-  const handleBanUser = (userId: string) => {
-    console.log("Ban user:", userId);
-  };
-
-  const handleLogOutUser = (userId: string) => {
-    console.log("Log out user:", userId);
-  };
-
-  const handleChangePassword = (userId: string) => {
-    console.log("Change password for user:", userId);
-  };
-
   const updateEditedData = (field: keyof typeof editedData, value: string) => {
     setEditedData((prev) => ({ ...prev, [field]: value }));
   };
 
   const columns: ColumnDef<UserOverview>[] = [
-    {
-      id: "select",
-      header: ({ table }) => (
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
-          }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Alle auswählen"
-        />
-      ),
-      cell: ({ row }) => (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Auswählen"
-          disabled={editingRowId === row.id}
-        />
-      ),
-      enableSorting: false,
-      enableHiding: false,
-      size: 40,
-    },
+    // {
+    //   id: "select",
+    //   header: ({ table }) => (
+    //     <Checkbox
+    //       checked={
+    //         table.getIsAllPageRowsSelected() ||
+    //         (table.getIsSomePageRowsSelected() && "indeterminate")
+    //       }
+    //       onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+    //       aria-label="Alle auswählen"
+    //     />
+    //   ),
+    //   cell: ({ row }) => (
+    //     <Checkbox
+    //       checked={row.getIsSelected()}
+    //       onCheckedChange={(value) => row.toggleSelected(!!value)}
+    //       aria-label="Auswählen"
+    //       disabled={editingRowId === row.id}
+    //     />
+    //   ),
+    //   enableSorting: false,
+    //   enableHiding: false,
+    //   size: 40,
+    // },
     {
       id: "id",
       accessorKey: "id",
@@ -238,6 +262,37 @@ export function AdminUsersTable({ data }: AdminUsersTableProps) {
       },
     },
     {
+      accessorKey: "banned_until",
+      header: ({ column }) => (
+        <Button
+          variant="ghost"
+          className="px-0 hover:bg-transparent"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Gesperrt
+          <ArrowUpDown />
+        </Button>
+      ),
+      cell: ({ row }) => {
+        const bannedUntil = row.getValue("banned_until") as string | null;
+        if (!bannedUntil) {
+          return (
+            <div className="flex flex-row gap-2">
+              <span>-</span>
+            </div>
+          );
+        }
+        return (
+          <div className="flex flex-row gap-2">
+            <span>{formatDate(bannedUntil)}</span>
+            <span className="text-muted-foreground font-normal">
+              {getTimeBetweenDates(new Date(), new Date(bannedUntil))} Tage
+            </span>
+          </div>
+        );
+      },
+    },
+    {
       accessorKey: "depot_count",
       header: ({ column }) => (
         <Button
@@ -304,7 +359,11 @@ export function AdminUsersTable({ data }: AdminUsersTableProps) {
             {roles.map((role, index) => {
               const granted = grantedAt?.[index];
 
-              const badge = <Badge variant="secondary">{role}</Badge>;
+              const badge = (
+                <Badge variant="secondary">
+                  {(rolesDisplay as Record<string, string>)[role as string]}
+                </Badge>
+              );
               if (!granted) {
                 return badge;
               }
@@ -330,6 +389,14 @@ export function AdminUsersTable({ data }: AdminUsersTableProps) {
       cell: ({ row }) => {
         const isEditing = editingRowId === row.id;
         const userId = row.getValue("id") as string;
+        const banned = row.getValue("banned_until") as
+          | string
+          | null
+          | undefined;
+
+        const isTeacher = (
+          row.getValue("user_roles") as string[] | undefined
+        )?.includes("teacher");
 
         if (isEditing) {
           return (
@@ -349,7 +416,7 @@ export function AdminUsersTable({ data }: AdminUsersTableProps) {
         }
 
         return (
-          <div className="flex gap-2">
+          <ButtonGroup>
             <Button
               variant="outline"
               size="icon"
@@ -358,37 +425,8 @@ export function AdminUsersTable({ data }: AdminUsersTableProps) {
               <Edit />
               <span className="sr-only">Bearbeiten</span>
             </Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <MoreVertical className="size-4" />
-                  <span className="sr-only">Aktionen öffnen</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => handleChangePassword(userId)}>
-                  <KeyRound className="mr-2 size-4" />
-                  Passwort ändern
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleLogOutUser(userId)}>
-                  <LogOut className="mr-2 size-4" />
-                  Ausloggen
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => handleBanUser(userId)}>
-                  <Ban className="mr-2 size-4" />
-                  Benutzer sperren
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => handleDeleteUser(userId)}
-                  className="text-destructive focus:text-destructive"
-                >
-                  <Trash2 className="mr-2 size-4" />
-                  Benutzer löschen
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+            <DotsMenu userId={userId} banned={banned} isTeacher={isTeacher} />
+          </ButtonGroup>
         );
       },
     },
@@ -414,9 +452,9 @@ export function AdminUsersTable({ data }: AdminUsersTableProps) {
   });
 
   return (
-    <div className="flex flex-col gap-4 h-full">
-      <div className="overflow-hidden rounded-md border grow">
-        <Table>
+    <div className="flex flex-col gap-4 h-full w-max max-w-full">
+      <ScrollArea className="w-[800px] rounded-md border p-6 whitespace-nowrap overflow-x-scroll">
+        <Table className="!w-[900px] overflow-visible">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -465,12 +503,18 @@ export function AdminUsersTable({ data }: AdminUsersTableProps) {
             )}
           </TableBody>
         </Table>
-      </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="text-muted-foreground flex-1 text-sm">
-          {table.getFilteredSelectedRowModel().rows.length} von{" "}
-          {table.getFilteredRowModel().rows.length} Zeile(n) ausgewählt.
-        </div>
+      </ScrollArea>
+      <div className="flex flex-row items-center justify-between gap-2">
+        <NewUserDialog
+          onSubmit={(data) => {
+            newUser(data).then(handleError);
+          }}
+          trigger={
+            <Button size="icon">
+              <Plus />
+            </Button>
+          }
+        />
         <ButtonGroup className="justify-end">
           <Tooltip name="Vorherige Seite">
             <Button
@@ -495,5 +539,145 @@ export function AdminUsersTable({ data }: AdminUsersTableProps) {
         </ButtonGroup>
       </div>
     </div>
+  );
+}
+function DotsMenu({
+  userId,
+  banned,
+  isTeacher = false,
+}: {
+  userId: string;
+  banned?: string | null;
+  isTeacher?: boolean;
+}) {
+  "use client";
+  function handleSubmit<T extends unknown[]>(
+    f: (...args: T) => Promise<unknown> | unknown,
+  ) {
+    return (...params: T) => {
+      setOpen(null);
+      return f(...params);
+    };
+  }
+
+  const forms: Record<
+    string,
+    { title: string; description: string; content: React.ReactNode }
+  > = {
+    changePassword: {
+      title: "Passwort ändern",
+      description: "Geben Sie ein neues Passwort ein.",
+      content: (
+        <ChangePasswordForm
+          user_id={userId}
+          onSubmit={handleSubmit((password) => {
+            changePassword(userId, password).then(handleError);
+            router.refresh();
+          })}
+        />
+      ),
+    },
+    banUser: {
+      title: "Benutzer sperren",
+      description:
+        "Sperren Sie den Benutzer auf die Plattform für eine bestimmte Zeit.",
+      content: (
+        <BanForm
+          user_id={userId}
+          onSubmit={handleSubmit((duration) => {
+            banUser(userId, duration).then(handleError);
+            router.refresh();
+          })}
+        />
+      ),
+    },
+  };
+  const [open, setOpen] = React.useState<keyof typeof forms | null>(null);
+  const [alertOpen, setAlertOpen] = React.useState(false);
+  const router = useRouter();
+  return (
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" size="icon">
+            <MoreVertical className="size-4" />
+            <span className="sr-only">Aktionen öffnen</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem onClick={() => setOpen("changePassword")}>
+            <KeyRound className="mr-2 size-4" />
+            Passwort ändern
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+
+          {isTeacher ? (
+            <DropdownMenuItem
+              onClick={() => {
+                revokeTeacher(userId).then(handleError);
+                router.refresh();
+              }}
+            >
+              <UserStar className="mr-2 size-4" />
+              Lehrer entziehen
+            </DropdownMenuItem>
+          ) : (
+            <DropdownMenuItem
+              onClick={() => {
+                grantTeacher(userId).then(handleError);
+                router.refresh();
+              }}
+            >
+              <UserStar className="mr-2 size-4" />
+              Zum Lehrer machen
+            </DropdownMenuItem>
+          )}
+          <DropdownMenuSeparator />
+          {banned ? (
+            <DropdownMenuItem
+              onClick={() => {
+                unbanUser(userId).then(handleError);
+                router.refresh();
+              }}
+            >
+              <Ban className="mr-2 size-4" />
+              Benutzer entsperren
+            </DropdownMenuItem>
+          ) : (
+            <DropdownMenuItem onClick={() => setOpen("banUser")}>
+              <Ban className="mr-2 size-4" />
+              Benutzer sperren
+            </DropdownMenuItem>
+          )}
+          <DropdownMenuItem
+            onClick={() => setAlertOpen(true)}
+            className="text-destructive focus:text-destructive"
+          >
+            <Trash2 className="mr-2 size-4" />
+            Benutzer löschen
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <SimpleDialog
+        open={Boolean(open)}
+        onOpenChange={() => setOpen(null)}
+        title={open && forms[open].title}
+        description={open && forms[open].description}
+      >
+        {open && forms[open].content}
+      </SimpleDialog>
+      <SimpleAlertDialog
+        open={alertOpen}
+        onOpenChange={(open) => setAlertOpen(open)}
+        title="Benutzer löschen"
+        description="Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?"
+        cancel="Abbrechen"
+        confirm="Löschen"
+        onConfirm={() => {
+          deleteUser(userId).then(handleError);
+          router.refresh();
+        }}
+      />
+    </>
   );
 }

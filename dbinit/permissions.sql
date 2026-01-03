@@ -20,7 +20,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON depots.depots TO authenticated;
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.positions TO authenticated;
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.transactions TO authenticated;
 GRANT SELECT, INSERT, UPDATE, DELETE ON depots.savings_plans TO authenticated;
-GRANT SELECT ON depots.values TO authenticated;
+GRANT SELECT ON depots."values" TO authenticated;
 GRANT SELECT ON depots.aggregated_transactions TO authenticated;
 -- GRANT SELECT ON depots.values TO authenticated;
 GRANT SELECT ON depots.position_profits TO authenticated;

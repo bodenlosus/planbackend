@@ -2,6 +2,33 @@ import { SpecialRole } from "@/database/custom_types";
 import type { Database } from "@/database/types";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
+export async function getDepotDefaultId(client: SupabaseClient<Database>) {
+  const { error: userIdError, userId } = await getUserId(client);
+  if (userIdError)
+    return {
+      error: userIdError,
+      depotId: null,
+    };
+  const { data, error } = await client
+    .schema("depots")
+    .from("depots")
+    .select("id")
+    .contains("users", [userId])
+    .limit(1)
+    .single();
+  if (error) {
+    console.error(error);
+    return {
+      error,
+      depotId: null,
+    };
+  }
+  return {
+    depotId: data.id,
+    error: null,
+  };
+}
+
 export async function hasSpecialRoles<T extends SupabaseClient<Database>>(
   roles: SpecialRole[],
   client: T,

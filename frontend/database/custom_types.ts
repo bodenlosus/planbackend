@@ -1,6 +1,9 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "./types.ts";
 
+export type SearchParams = {
+  depot?: string | null;
+};
 export type StockPrice = Database["api"]["Tables"]["asset_prices"]["Row"];
 export type Asset = Database["api"]["Tables"]["assets"]["Row"];
 

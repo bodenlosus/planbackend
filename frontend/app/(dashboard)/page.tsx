@@ -15,8 +15,9 @@ import type {
 } from "@/database/custom_types";
 import { processDepotValues } from "@/database/depots";
 import { getDateCertainDaysAgo, toISODateOnly } from "@/lib/date_utils";
-import { getDepotId, type SearchParams } from "@/lib/get_depot_id";
+import { getDepotId } from "@/lib/get_depot_id";
 import { createClient } from "@/utils/supabase/server";
+import type { SearchParams } from "@/database/custom_types";
 
 export default async function Page({
   searchParams,
@@ -26,8 +27,7 @@ export default async function Page({
   const params = await searchParams;
 
   const { depotId, error: depotIdError } = await getDepotId(params);
-
-  console.log("depotIdError", depotIdError);
+  console.log("depotId", depotId, Date.now());
 
   if (depotIdError) {
     return <ErrorCard error={depotIdError} />;
@@ -49,7 +49,7 @@ export default async function Page({
     (fres.depotValues as NonNullableRow<DepotValue>[]) ?? [],
   );
   return (
-    <main className="grid grid-cols-1 gap-3">
+    <div className="grid grid-cols-1 gap-3">
       <Card className="overflow-hidden border-none">
         <CardHeader>
           <CardTitle>
@@ -105,11 +105,11 @@ export default async function Page({
         </CardContent>
       </Card>
       <PositionTabView positions_raw={fres.positions as PositionSummary[]} />
-    </main>
+    </div>
   );
 }
 
-const dataFetcher = async (depotId?: number) => {
+const dataFetcher = async (depotId: number) => {
   const client = await createClient();
 
   const { user } = (await client.auth.getUser()).data;
@@ -117,18 +117,16 @@ const dataFetcher = async (depotId?: number) => {
   if (!user) {
     redirect("/auth/login");
   }
-  console.log(await client.auth.getSession());
-  console.log(user.id);
-  const depotResponse = await client
+  const { data: depot, error: depotError } = await client
     .schema("depots")
     .from("depots")
     .select()
-    .contains("users", [user.id]);
-  console.log("depots", depotResponse.data);
-  console.log("depotId", depotId);
-  const depot = depotResponse.data?.find((d) => d.id === depotId);
-  if (depotResponse.error) {
-    return { error: depotResponse.error };
+    .eq("id", depotId)
+    .contains("users", [user.id])
+    .single();
+
+  if (depotError) {
+    return { error: depotError };
   }
   if (!depot) {
     return { depot: null };

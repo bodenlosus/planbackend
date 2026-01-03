@@ -1,4 +1,4 @@
-import { IBM_Plex_Mono as FontMono, Inter as FontSans } from "next/font/google";
+import { Geist_Mono as FontMono, Inter as FontSans } from "next/font/google";
 
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
@@ -6,6 +6,7 @@ import type React from "react";
 import { cn } from "@/lib/utils";
 
 const fontSans = FontSans({
+  weight: "400",
   subsets: ["latin"],
   variable: "--font-sans",
 });
@@ -13,7 +14,6 @@ const fontSans = FontSans({
 const fontMono = FontMono({
   subsets: ["latin"],
   variable: "--font-mono",
-  weight: "400",
 });
 
 export default function RootLayout({

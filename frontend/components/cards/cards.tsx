@@ -28,17 +28,16 @@ import SellStockDialog from "../transaction_dialogs/sell_stock_dialog";
 
 type CardProps = ComponentPropsWithoutRef<"div">;
 
+type Price = Omit<StockPrice, "asset_id">;
+
 interface StatCardProps extends CardProps {
   stock: Asset;
-  currentPrice?: StockPrice;
-  referencePrice?: StockPrice;
+  currentPrice?: Price;
+  referencePrice?: Price;
   dateString?: string;
 }
 
-function calculateChange(
-  currentPrice?: StockPrice,
-  referencePrice?: StockPrice,
-) {
+function calculateChange(currentPrice?: Price, referencePrice?: Price) {
   if (!currentPrice?.close || !currentPrice.open || !referencePrice?.close)
     return { change24h: null, absoluteChange: null, relativeChange: null };
 
@@ -160,7 +159,7 @@ export function StockPositionCard({
   if (hidden || !depot) {
     return;
   }
-  const buyLimit = depot.cash - commission;
+  const buyLimit = Math.max(0, depot.cash - commission);
   const sellLimit = position?.worth ?? 0;
 
   return (
@@ -189,7 +188,7 @@ export function StockPositionCard({
             </span>
           </div>
         </div>
-        {stock.price && buyLimit ? (
+        {stock.price && buyLimit !== undefined && buyLimit !== null ? (
           <div className="grid grid-cols-2 gap-3 grow">
             <BuyStockDialog
               stock={stock as TStock}

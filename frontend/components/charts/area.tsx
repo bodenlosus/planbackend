@@ -151,9 +151,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   const value = Number.parseFloat(payload[0].value?.toString() ?? "");
   const valueType = payload[0].payload?.type ?? "";
 
-  const displayString = Number.isNaN(value)
-    ? "No value"
-    : to_display_string(value as number);
+  const displayString = Number.isNaN(value) ? "No value" : value.toFixed(3);
   const date = new Date(label);
 
   return (

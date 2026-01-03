@@ -64,9 +64,9 @@ export function PositionRow({
     >
       <Link
         href={asset_id ? getStockPagePath(asset_id) : ""}
-        className="flex flex-col p-6 pb-3 gap-1 overflow-hidden"
+        className="flex flex-col p-6 pb-3 gap-1 items-start overflow-hidden"
       >
-        <div className="flex flex-row gap-x-2 flex-wrap">
+        <div className="flex flex-row gap-2">
           <URLIcon
             className="h-[1.4lh] aspect-square w-auto self-center rounded"
             size={100}
@@ -75,11 +75,13 @@ export function PositionRow({
           <span className="text-2xl self-end font-bold hover:underline-offset-4 transition-all no-underline hover:underline">
             {symbol}
           </span>
-          <span className="self-end mb-[.1lh] text-foreground">{name}</span>
         </div>
-        <div className="text-muted-foreground text-sm hidden md:block text-ellipsis max-w-full overflow-hidden whitespace-nowrap">
+        <div className="mb-[.1lh] text-ellipsis whitespace-nowrap overflow-hidden max-w-full text-muted-foreground">
+          {name}
+        </div>
+        {/*<div className="text-muted-foreground text-sm hidden md:block text-ellipsis max-w-full overflow-hidden whitespace-nowrap">
           {description}
-        </div>
+        </div>*/}
       </Link>
       <div className="border-t row-span-1 row-start-2 self-end px-3 py-3 *:rounded-none col-start-1 h-fit gap-3 justify-evenly w-full flex flex-row overflow-hidden shadow bg-muted/10 backdrop-blur-3xl backdrop-brightness-[40%] ">
         <StockStats

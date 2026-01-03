@@ -248,8 +248,6 @@ export function SavingsPlanTable({ data }: EditableTableProps) {
         const icon = getIconURL(symbol, asset_type, 32);
 
         if (isEditing) {
-          console.log("data", editedData, asset_id);
-
           return (
             <AssetPickerDialog
               className="!w-fit"

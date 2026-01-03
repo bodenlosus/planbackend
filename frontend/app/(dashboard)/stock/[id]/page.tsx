@@ -12,9 +12,9 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { fetchStockData } from "@/database/fetch_stock_data";
 import { formatter as formatPrices } from "@/lib/data/formatter";
 import { getDateCertainDaysAgo } from "@/lib/date_utils";
-import { getDepotId, type SearchParams } from "@/lib/get_depot_id";
+import { getDepotId } from "@/lib/get_depot_id";
 import { createClient } from "@/utils/supabase/server";
-
+import type { SearchParams } from "@/database/custom_types";
 export const revalidate = 3600;
 // export async function generateStaticParams() {
 //   const ids = await fetchStockIds() // Fetch the array of IDs (1000+ IDs)
@@ -37,23 +37,17 @@ export default async function Page(props: {
     return <ErrorCard error={new Error("Invalid ID")} />;
   }
 
-  const { depots, error, positions, commission } = await dataFetcher(
+  const { depot, error, positions, commission } = await dataFetcher(
     id,
     depotId,
   );
-  const depot = depots ? depots[0] : null;
 
   const {
     info,
     prices,
     pricesWeekly,
     error: fetchError,
-  } = await fetchStockData(
-    id,
-    undefined,
-    getDateCertainDaysAgo(365),
-    getDateCertainDaysAgo(5 * 365),
-  );
+  } = await fetchStockDataCached(id);
 
   if (error || fetchError) {
     return (
@@ -77,8 +71,8 @@ export default async function Page(props: {
     <main className="w-full h-full overflow-hidden grid sm:grid-cols-2 md:grid-cols-[repeat(3,fit-content)] gap-5">
       <StatCard
         className="col-span-3 md:col-span-2"
-        currentPrice={prices?.at(-1) ?? prices?.at(0)}
-        referencePrice={prices?.at(-2) ?? prices?.at(0)}
+        currentPrice={pricesFiltered.at(-1) ?? pricesFiltered?.at(0)}
+        referencePrice={pricesFiltered?.at(-2) ?? pricesFiltered?.at(0)}
         stock={info[0]}
       />
 
@@ -110,7 +104,16 @@ export default async function Page(props: {
 
 // const dataFetcherUncached = async (user: User, stockId: number) => {}
 
-const dataFetcher = cache(async (stockId: number, depotId?: number) => {
+const fetchStockDataCached = cache(async (id: number) => {
+  return await fetchStockData(
+    id,
+    undefined,
+    getDateCertainDaysAgo(365),
+    getDateCertainDaysAgo(5 * 365),
+  );
+});
+
+const dataFetcher = async (stockId: number, depotId: number) => {
   const client = await createClient();
 
   const user = (await client.auth.getUser()).data.user;
@@ -118,22 +121,22 @@ const dataFetcher = cache(async (stockId: number, depotId?: number) => {
   if (!user) {
     redirect("/auth/login");
   }
-  const { data: depots, error: depotError } = await client
+  const { data: depot, error: depotError } = await client
     .schema("depots")
     .from("depots")
     .select()
-    .contains("users", [user.id]);
+    .eq("id", depotId)
+    .contains("users", [user.id])
+    .single();
 
   if (depotError) {
     return {
-      depots: null,
+      depot: null,
       error: depotError,
       positions: null,
       commission: null,
     };
   }
-
-  const depot = depots.find((depot) => depot.id === depotId) ?? depots.at(0);
 
   if (!depot) {
     redirect("/new_depot");
@@ -148,7 +151,7 @@ const dataFetcher = cache(async (stockId: number, depotId?: number) => {
 
   if (positionError) {
     return {
-      depots: depots,
+      depot: depot,
       error: positionError,
       positions: null,
       commission: null,
@@ -161,7 +164,7 @@ const dataFetcher = cache(async (stockId: number, depotId?: number) => {
 
   if (commissionError) {
     return {
-      depots: depots,
+      depot: depot,
       error: commissionError,
       positions: positions,
       commission: null,
@@ -169,9 +172,9 @@ const dataFetcher = cache(async (stockId: number, depotId?: number) => {
   }
 
   return {
-    depots: depots,
+    depot: depot,
     error: null,
     positions,
     commission,
   };
-});
+};

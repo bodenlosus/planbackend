@@ -2,7 +2,7 @@ use sqlx::{
     Pool, Postgres,
     postgres::{PgPoolOptions, PgQueryResult},
 };
-use std::{env::var, error::Error, time::Duration};
+use std::{env::var, error::Error, ffi::FromBytesUntilNulError, time::Duration};
 use time::{Date, UtcDateTime};
 use tokio::join;
 
@@ -40,20 +40,19 @@ impl Prices {
 struct Updater {
     timeout: Duration,
     conn: Pool<Postgres>,
-    client: reqwest::Client,
     today: UtcDateTime,
     prices: PriceFrame,
     assets: Vec<Asset>,
     updated_ids: Vec<i64>,
+    max_retries: u32,
 }
 
 impl Updater {
     pub async fn new(db_url: &str, timeout: Duration) -> Result<Self, Box<dyn Error>> {
         let conn = PgPoolOptions::new().connect(&db_url).await?;
-        let client = yf::client()?;
         Ok(Self {
+            max_retries: 4,
             conn,
-            client,
             today: UtcDateTime::now(),
             prices: PriceFrame::empty(),
             assets: vec![],
@@ -97,18 +96,37 @@ impl Updater {
             symbol,
             last_updated,
         }: &Asset,
+        max_retries: u32,
     ) -> Result<(), Box<dyn std::error::Error>> {
         let today = self.today;
 
         let range = Self::mk_range(today, *last_updated);
-        let fut = yf::fetch_for_symbol(&self.client, &symbol, range.as_ref(), "1d");
-        let (result, _) = join!(fut, tokio::time::sleep(self.timeout));
 
-        let mut result = result?;
+        for attempt in 1..(max_retries + 1) {
+            // new client with new UA per stock - rate limiting
+            let client = yf::client()?;
 
-        let mut frame = result.extract_time_series(*id)?;
+            // jitter to evade rate limiting
+            let jitter = Duration::from_millis(rand::random::<u64>() % 1000);
+            let timeout = self.timeout + jitter;
 
-        self.prices.extend(&mut frame);
+            let fut = yf::fetch_for_symbol(&client, &symbol, range.as_ref(), "1d");
+            let (result, _) = join!(fut, tokio::time::sleep(timeout));
+
+            match result {
+                Ok(mut data) => {
+                    let mut frame = data.extract_time_series(*id)?;
+                    self.prices.extend(&mut frame);
+                    return Ok(());
+                }
+                Err(e) => {
+                    // Exponential backoff to evade rate limiting
+                    let backoff = Duration::from_secs(2u64.pow(max_retries));
+                    tokio::time::sleep(backoff);
+                    eprintln!("Retry {attempt}/{max_retries} after {e}")
+                }
+            }
+        }
 
         Ok(())
     }
@@ -168,13 +186,12 @@ impl Updater {
     }
 
     pub async fn update(&mut self) -> Result<(), Box<dyn Error>> {
-        self.client = yf::client()?;
         self.update_date();
         self.fetch_assets().await?;
 
         while let Some(asset) = self.assets.pop() {
             print!("{}", asset.symbol);
-            if let Err(e) = self.fetch_prices_for_asset(&asset).await {
+            if let Err(e) = self.fetch_prices_for_asset(&asset, self.max_retries).await {
                 eprintln!("Error fetching prices for {}: {}", asset.symbol, e);
                 continue;
             };
@@ -199,21 +216,13 @@ impl Updater {
         self.prices.clear();
         Ok(())
     }
-    // async fn update_depot_positions(&self) -> Result<PgQueryResult, sqlx::Error> {
-    //     sqlx::query!("CALL update_depot_positions()",)
-    //         .execute(&self.conn)
-    //         .await
-    // }
-    // async fn update_depot_values(&self) -> Result<PgQueryResult, sqlx::Error> {
-    //     sqlx::query!("CALL ")
-    // }
 }
 
 #[tokio::main]
 async fn main() {
     let db_url = var("DATABASE_URL").expect("DATABASE_URL not given");
 
-    let timeout: f32 = var("YF_TIMEOUT").map_or(1.0, |s| s.parse().unwrap());
+    let timeout: f32 = var("YF_TIMEOUT").map_or(2f32, |s| s.parse().unwrap());
     let timeout = Duration::from_secs_f32(timeout);
 
     let mut updater = Updater::new(&db_url, timeout).await.unwrap();
