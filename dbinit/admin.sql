@@ -243,7 +243,7 @@ BEGIN
     PERFORM depots.change_budget(NEW.id, 0); -- Set default budget, adjust as needed
     RETURN NEW;
 END;
-$$;
+$$ SECURITY DEFINER;
 
 CREATE TRIGGER grant_default_budget 
 AFTER INSERT ON depots.depots
