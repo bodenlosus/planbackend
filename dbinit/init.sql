@@ -330,6 +330,7 @@ latest_prices AS (
     CLOSE AS current_price
   FROM
     api.asset_prices
+  WHERE close IS NOT NULL
   ORDER BY
     asset_id,
     tstamp DESC
@@ -404,6 +405,18 @@ CREATE TYPE SavingsPeriod AS ENUM (
   'weekly',
   'daily' -- WHY NOT LOL
 );
+
+CREATE OR REPLACE FUNCTION depots.sp_to_per_month(period SavingsFrequency) 
+RETURNS NUMERIC AS $$
+BEGIN
+  RETURN CASE period
+    WHEN 'daily' THEN 365.0 / 12  -- 30.4167
+    WHEN 'weekly' THEN 52.0 / 12  -- 4.3333
+    WHEN 'monthly' THEN 1
+    WHEN 'annually' THEN 1.0 / 12  -- 0.0833
+  END;
+END;
+$$ LANGUAGE plpgsql IMMUTABLE;
 
 CREATE TABLE IF NOT EXISTS depots.savings_plans (
   depot_id bigint NOT NULL,
