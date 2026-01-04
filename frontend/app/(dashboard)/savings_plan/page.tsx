@@ -68,7 +68,7 @@ export default async function Page(props: {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <div>Kosten</div>
+            <div>Ausgaben</div>
             <div className="text-2xl font-semibold number flex flex-row items-center gap-2">
               {budget.monthly_expenses &&
                 currencyFormat.format(budget.monthly_expenses)}
