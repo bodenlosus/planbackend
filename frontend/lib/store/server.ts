@@ -1,31 +1,31 @@
-"use server";
-import { cookies } from "next/headers";
+"use server"
+import { cookies } from "next/headers"
 export async function setActiveDepotId(id: string) {
-  const cookieStore = await cookies();
-  const day = 24 * 3600 * 1000;
-  cookieStore.set({
-    name: "activeDepotId",
-    value: id,
-    expires: Date.now() + day,
-    path: "/",
-    sameSite: "lax",
-    httpOnly: false,
-  });
+	const cookieStore = await cookies()
+	const day = 24 * 3600 * 1000
+	cookieStore.set({
+		name: "activeDepotId",
+		value: id,
+		expires: Date.now() + day,
+		path: "/",
+		sameSite: "lax",
+		httpOnly: false,
+	})
 }
 
 export async function clearActiveDepotId() {
-  const cookieStore = await cookies();
-  cookieStore.delete("activeDepotId");
+	const cookieStore = await cookies()
+	cookieStore.delete("activeDepotId")
 }
 
 export async function getActiveDepotId() {
-  const cookieStore = await cookies();
-  const activeDepotId = cookieStore.get("activeDepotId");
-  return activeDepotId?.value;
+	const cookieStore = await cookies()
+	const activeDepotId = cookieStore.get("activeDepotId")
+	return activeDepotId?.value
 }
 
 export async function getActiveDepotIdNumber() {
-  const cookieStore = await cookies();
-  const activeDepotId = cookieStore.get("activeDepotId");
-  return activeDepotId?.value ? parseInt(activeDepotId.value, 10) : null;
+	const cookieStore = await cookies()
+	const activeDepotId = cookieStore.get("activeDepotId")
+	return activeDepotId?.value ? parseInt(activeDepotId.value, 10) : null
 }

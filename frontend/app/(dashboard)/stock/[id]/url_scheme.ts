@@ -8,12 +8,12 @@ export function urlSchema(defaults: { start: string; end: string }) {
 			.positive({ message: "ID must be a positive integer" }),
 
 		start: z.preprocess(
-			(val) => (val === undefined ? defaults.start : val),
+			val => (val === undefined ? defaults.start : val),
 			z.string().date("Start date must be a valid date string")
 		),
 
 		end: z.preprocess(
-			(val) => (val === undefined ? defaults.end : val),
+			val => (val === undefined ? defaults.end : val),
 			z.string().date("End date must be a valid date string")
 		),
 	})

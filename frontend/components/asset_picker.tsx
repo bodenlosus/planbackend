@@ -63,7 +63,7 @@ export default function StockPicker({
 						: "Starte deine Suche..."}
 				</CommandEmpty>
 				<CommandGroup>
-					{stocks.map((stock) => {
+					{stocks.map(stock => {
 						const iconUrl = getIconURL(stock.symbol, stock.asset_type, 32)
 						return (
 							<CommandItem

@@ -82,7 +82,7 @@ export default function PrimitiveDialog({
 	}
 
 	return (
-		<Dialog onOpenChange={(open) => setOpen(open)} open={isOpen}>
+		<Dialog onOpenChange={open => setOpen(open)} open={isOpen}>
 			<DialogTrigger asChild>
 				<Button
 					variant={triggerVariant}

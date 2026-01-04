@@ -26,13 +26,13 @@ export default function ChartContainer({
 	className,
 	toolbar,
 }: ChartContainerProps) {
-	const tabsContent: React.ReactNode[] = tabs.map((tab) => (
+	const tabsContent: React.ReactNode[] = tabs.map(tab => (
 		<TabsContent key={tab.key ?? tab.name} value={tab.name}>
 			{tab.content}
 		</TabsContent>
 	))
 
-	const tabsTrigger = tabs.map((tab) => (
+	const tabsTrigger = tabs.map(tab => (
 		<TabsTrigger
 			className="grow-0 h-max py-1 px-1 data-[state=active]:bg-secondary *:data-[state=active]:stroke-foreground *:hover:stroke-foreground hover:bg-secondary/50 transition-colors *:transition-colors"
 			key={tab.key ?? tab.name}

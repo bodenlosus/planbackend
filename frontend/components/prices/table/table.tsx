@@ -53,7 +53,7 @@ export default function PriceTable({ prices, className }: props) {
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{prices.map((price) => {
+				{prices.map(price => {
 					return (
 						<PriceRow
 							columns={columns}

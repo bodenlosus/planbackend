@@ -15,7 +15,7 @@ export function ModeToggle() {
 			<Switch
 				className="bg-red"
 				checked={{ light: true, dark: false }[theme ? theme : "dark"]}
-				onCheckedChange={(checked) => setTheme(checked ? "light" : "dark")}
+				onCheckedChange={checked => setTheme(checked ? "light" : "dark")}
 			/>
 		</span>
 	)

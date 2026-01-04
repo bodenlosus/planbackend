@@ -10,7 +10,7 @@ export interface TtoRelativeValues {
 export default function toRelativeValues(
 	data: Array<PlainPrice>
 ): Array<NullableRow<TtoRelativeValues>> {
-	return data.map((price) => {
+	return data.map(price => {
 		if (!price.close || !price.open || !price.high || !price.low) {
 			return {
 				high_low: null,

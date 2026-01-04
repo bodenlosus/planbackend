@@ -47,10 +47,8 @@ export default function IntervallPicker({
 	return (
 		<Select
 			value={selected.name}
-			onValueChange={(value) => {
-				const s = intervallTemplates.find(
-					(intervall) => intervall.name === value
-				)
+			onValueChange={value => {
+				const s = intervallTemplates.find(intervall => intervall.name === value)
 				const result = s === undefined ? intervallTemplates[0] : s
 				onValueChange(result.days)
 				setSelected(result)
@@ -66,7 +64,7 @@ export default function IntervallPicker({
 				{/* <SelectItem key={-1} value={selected.name}>
               {selected.display}
             </SelectItem> */}
-				{intervallTemplates.map((item) => (
+				{intervallTemplates.map(item => (
 					<SelectItem key={item.name} value={item.name}>
 						{item.display}
 					</SelectItem>
@@ -99,16 +97,14 @@ export function IntervallPickerControlled({
 		<ToggleGroup
 			className={cn("w-fit flex flex-row gap-1", className)}
 			type="single"
-			value={intervallTemplates.find((item) => item.days === value)?.name}
-			onValueChange={(value) => {
-				const s = intervallTemplates.find(
-					(intervall) => intervall.name === value
-				)
+			value={intervallTemplates.find(item => item.days === value)?.name}
+			onValueChange={value => {
+				const s = intervallTemplates.find(intervall => intervall.name === value)
 				const result = s === undefined ? intervallTemplates[0] : s
 				onValueChange(result.days)
 			}}
 		>
-			{intervallTemplates.map((item) => (
+			{intervallTemplates.map(item => (
 				<ToggleGroupItem key={item.name} value={item.name}>
 					{item.display}
 				</ToggleGroupItem>
@@ -126,7 +122,7 @@ export function IntervallContainer({ defaultValue, id }: containerProps) {
 	return (
 		<IntervallPicker
 			value={defaultValue}
-			onValueChange={(value) => router.push(getStockPagePath(id, value))}
+			onValueChange={value => router.push(getStockPagePath(id, value))}
 		/>
 	)
 }

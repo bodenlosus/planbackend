@@ -40,7 +40,7 @@ export default function NewEntryDialog({
 				<DialogHeader>
 					<DialogTitle>Neuer Eintrag</DialogTitle>
 					<DialogClose
-						onClick={(e) => {
+						onClick={e => {
 							e.preventDefault()
 							e.stopPropagation()
 							setIsOpen(false)

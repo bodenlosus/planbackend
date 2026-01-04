@@ -8,7 +8,7 @@ export default function IntervalControls(props: {
 	onChange?: (key: string, value: number) => void
 }) {
 	const keys = Object.keys(props.intervals)
-	const items = keys.map((key) => (
+	const items = keys.map(key => (
 		<ToggleGroupItem
 			className="min-w-7 min-h-7 p-0 h-fit text-xs"
 			key={key}
@@ -20,7 +20,7 @@ export default function IntervalControls(props: {
 	return (
 		<ToggleGroup
 			defaultValue={keys[0]}
-			onValueChange={(key) => {
+			onValueChange={key => {
 				const value = props.intervals[key]
 				if (props.onChange) {
 					props.onChange(key, value)
