@@ -33,7 +33,6 @@ export function PositionRow({
     market_value,
     total_profit,
     current_price,
-    description,
     name,
     asset_type,
     asset_id,

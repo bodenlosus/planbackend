@@ -4,9 +4,10 @@ import { type Tooltip, Treemap } from "recharts";
 import type { TreemapNode } from "recharts/types/util/types";
 import { type ChartConfig, ChartContainer } from "@/components/ui/chart";
 import { to_display_string } from "@/lib/cash_display_string";
-import { toAbsoluteTimeString } from "@/lib/date_utils";
+import { toAbsoluteTimeString } from "@/lib/util";
 import { cn } from "@/lib/utils";
 import { Separator } from "../ui/separator";
+import { PositionSummary } from "@/database/custom_types";
 
 interface props<T extends Record<string, number | string | null>>
   extends React.ComponentPropsWithoutRef<"div"> {
@@ -18,17 +19,25 @@ interface ContentProps extends TreemapNode {
   data: Record<string, number | string | null>[];
   key: string;
 }
+
+function calculateOpacity(profit: number) {
+  const x = Math.abs(profit);
+  return Math.min(0.7, 10 * x); // clamp so it remains readable
+}
+
 function CustomContent(props: ContentProps) {
   const { depth, x, y, width, height, index, data, name, value } = props;
-  const position = data.at(index);
+  const position = data.at(index) as PositionSummary;
   let prof = 0;
   let color = "";
 
-  if (position) {
+  if (position !== undefined && position !== null) {
     prof =
-      (position.total_profit as number) / (position.total_invested as number);
+      (position.total_profit as number) / (position.market_value as number);
     color = prof > 0 ? "hsl(var(--win))" : "hsl(var(--loss))";
   }
+
+  const opacity = depth > 0 ? calculateOpacity(prof) : 0;
   const mix_factor = 0.4;
   return (
     <g>
@@ -42,7 +51,7 @@ function CustomContent(props: ContentProps) {
         style={{
           fill: color,
           stroke: color,
-          fillOpacity: depth > 0 ? Math.min(1, Math.abs(prof * 10)) : 0,
+          fillOpacity: opacity,
           borderRadius: 10,
           strokeWidth: 1,
           strokeOpacity: depth > 0 ? 1 : 0,

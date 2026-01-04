@@ -2,6 +2,28 @@ export const toISODateOnly = (date: Date) => date.toISOString().slice(0, 10);
 export const msPerDay = 1000 * 3600 * 24;
 export const getCurrentDate = () => new Date();
 
+export const numberFormat = Intl.NumberFormat("de-DE", {
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 2,
+});
+
+export const dateFormat = Intl.DateTimeFormat("de-DE", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
+export const formatDate = (date: Date) => {
+  return dateFormat.format(date);
+};
+
+export const formatDateString = (dateString: string) => {
+  const date = new Date(dateString);
+  return formatDate(date);
+};
+
 export function parseDate(dateString?: string | null): Date | null {
   if (!dateString) return null;
   try {

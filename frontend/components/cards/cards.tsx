@@ -16,10 +16,9 @@ import type {
   StockPrice,
 } from "@/database/custom_types";
 import { to_display_string } from "@/lib/cash_display_string";
-import { toAbsoluteTimeString } from "@/lib/date_utils";
+import { toAbsoluteTimeString } from "@/lib/util";
 import { getIconURL } from "@/lib/icon_url";
 import { cn } from "@/lib/utils";
-import AdditionalContent from "../additional_display";
 import URLIcon from "../icon";
 import HeaderStat from "../stat/header_stat";
 import BuyStockDialog from "../transaction_dialogs/buy_stock_dialog";

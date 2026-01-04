@@ -56,17 +56,25 @@ import {
   frequenciesDisplay,
   type SavingsPlanWithAsset,
 } from "@/database/custom_types";
-import { relativeDateString, toAbsoluteTimeString } from "@/lib/date_utils";
+import { relativeDateString, toAbsoluteTimeString } from "@/lib/util";
 import { getStockPagePath } from "@/lib/get_stock_path";
 import { getIconURL } from "@/lib/icon_url";
 import { createClient } from "@/utils/supabase/client";
 import NewEntryDialog from "./new_dialog";
+import { currencyFormat } from "@/lib/cash_display_string";
+import { cn } from "@/lib/utils";
 
 interface EditableTableProps {
   data: SavingsPlanWithAsset[];
+  monthlyBudget?: number;
+  className?: string;
 }
 
-export function SavingsPlanTable({ data }: EditableTableProps) {
+export function SavingsPlanTable({
+  data,
+  monthlyBudget,
+  className,
+}: EditableTableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
@@ -303,6 +311,7 @@ export function SavingsPlanTable({ data }: EditableTableProps) {
       cell: ({ row }) => {
         const isEditing = editingRowId === row.id;
         const worth = row.getValue("worth") as number;
+        const percentage = monthlyBudget && (worth / monthlyBudget) * 100;
         if (isEditing) {
           return (
             <Input
@@ -317,7 +326,14 @@ export function SavingsPlanTable({ data }: EditableTableProps) {
             />
           );
         }
-        return <div className="number">{worth}</div>;
+        return (
+          <div className="flex flex-row gap-2">
+            <div className="number">{currencyFormat.format(worth)}</div>
+            <div className="number text-muted-foreground">
+              {percentage?.toFixed(1)}%
+            </div>
+          </div>
+        );
       },
     },
     {
@@ -464,7 +480,9 @@ export function SavingsPlanTable({ data }: EditableTableProps) {
   const selectedRows = table.getFilteredSelectedRowModel().rows;
   return (
     <div className="flex flex-col gap-4 h-full">
-      <div className="overflow-hidden rounded-md border grow">
+      <div
+        className={cn("overflow-hidden rounded-md border grow p-2 ", className)}
+      >
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

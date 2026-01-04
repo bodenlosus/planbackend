@@ -1,12 +1,14 @@
 "use client";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import {
   ArrowLeftRight,
   Home,
+  LayoutDashboard,
   type LucideIcon,
   PiggyBank,
   SearchIcon,
-  LayoutDashboard,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 import DepotPicker from "@/components/navbar/desktop/depot_picker";
 import { SearchBarPopOut } from "@/components/search_bar";
 import {
@@ -20,11 +22,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { createClient } from "@/utils/supabase/client";
+import type { Database } from "@/database/types";
 import { hasSpecialRoles } from "@/lib/db";
-import { SupabaseClient } from "@supabase/supabase-js";
-import { Database } from "@/database/types";
-import { useEffect, useState } from "react";
+import { createClient } from "@/utils/supabase/client";
 import User from "./user";
 
 export function AppSidebar() {
@@ -54,7 +54,7 @@ export function AppSidebar() {
 
   if (isTeacher) {
     tree.Administration = [
-      { title: "Dashboard", url: "/admin_dashboard", icon: LayoutDashboard },
+      { title: "Dashboard", url: "/admin", icon: LayoutDashboard },
     ];
   }
 

@@ -9,12 +9,12 @@ import { ChartCard } from "@/components/cards/client";
 import PriceTable from "@/components/prices/table/table";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import type { SearchParams } from "@/database/custom_types";
 import { fetchStockData } from "@/database/fetch_stock_data";
 import { formatter as formatPrices } from "@/lib/data/formatter";
-import { getDateCertainDaysAgo } from "@/lib/date_utils";
+import { getDateCertainDaysAgo } from "@/lib/util";
 import { getDepotId } from "@/lib/get_depot_id";
 import { createClient } from "@/utils/supabase/server";
-import type { SearchParams } from "@/database/custom_types";
 export const revalidate = 3600;
 // export async function generateStaticParams() {
 //   const ids = await fetchStockIds() // Fetch the array of IDs (1000+ IDs)

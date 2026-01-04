@@ -23,6 +23,8 @@ export type CleanedPlainPrice = NonNullableRow<PlainPrice>;
 export type PositionSummary =
   Database["depots"]["Views"]["position_profits"]["Row"];
 
+export type DepotOverview =
+  Database["depots"]["Views"]["depot_overview"]["Row"];
 export type SpecialRole = Database["users"]["Enums"]["special_role"];
 
 export type UserProfile = Database["users"]["Views"]["profile"]["Row"];

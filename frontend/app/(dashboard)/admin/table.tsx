@@ -51,7 +51,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import type { UserOverview } from "@/database/custom_types";
-import { getTimeBetweenDates, relativeDateString } from "@/lib/date_utils";
+import { getTimeBetweenDates, relativeDateString } from "@/lib/util";
 import {
   banUser,
   changePassword,
@@ -70,9 +70,13 @@ import SimpleAlertDialog from "@/components/simple_alert_dialog";
 import { NewUserDialog } from "./new_user_dialog";
 import { isThisHour } from "date-fns";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { createPortal } from "react-dom";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface AdminUsersTableProps {
   data: UserOverview[];
+  className?: string;
 }
 
 const rolesDisplay = {
@@ -99,7 +103,7 @@ const handleError = ({ error }: { error?: Error | null }) => {
   }
 };
 
-export function AdminUsersTable({ data }: AdminUsersTableProps) {
+export function AdminUsersTable({ data, className }: AdminUsersTableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
@@ -306,7 +310,15 @@ export function AdminUsersTable({ data }: AdminUsersTableProps) {
       ),
       cell: ({ row }) => {
         const count = row.getValue("depot_count") as number;
-        return <div className="text-center">{count}</div>;
+        const userId = row.getValue("id") as string;
+        return (
+          <Link
+            href={`/admin/depots?user_id=${userId}`}
+            className="text-center"
+          >
+            {count}
+          </Link>
+        );
       },
     },
     {
@@ -452,9 +464,9 @@ export function AdminUsersTable({ data }: AdminUsersTableProps) {
   });
 
   return (
-    <div className="flex flex-col gap-4 h-full w-max max-w-full">
-      <ScrollArea className="w-[800px] rounded-md border p-6 whitespace-nowrap overflow-x-scroll">
-        <Table className="!w-[900px] overflow-visible">
+    <div className="flex flex-col gap-4 h-full w-full max-w-full">
+      <div className={cn("border rounded-lg p-2", className)}>
+        <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -503,7 +515,7 @@ export function AdminUsersTable({ data }: AdminUsersTableProps) {
             )}
           </TableBody>
         </Table>
-      </ScrollArea>
+      </div>
       <div className="flex flex-row items-center justify-between gap-2">
         <NewUserDialog
           onSubmit={(data) => {
@@ -595,8 +607,36 @@ function DotsMenu({
   const [open, setOpen] = React.useState<keyof typeof forms | null>(null);
   const [alertOpen, setAlertOpen] = React.useState(false);
   const router = useRouter();
+
+  const dialogs = (
+    <>
+      <SimpleDialog
+        key={1}
+        open={Boolean(open)}
+        onOpenChange={() => setOpen(null)}
+        title={open && forms[open].title}
+        description={open && forms[open].description}
+      >
+        {open && forms[open].content}
+      </SimpleDialog>
+      <SimpleAlertDialog
+        key={2}
+        open={alertOpen}
+        onOpenChange={(open) => setAlertOpen(open)}
+        title="Benutzer löschen"
+        description="Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?"
+        cancel="Abbrechen"
+        confirm="Löschen"
+        onConfirm={() => {
+          deleteUser(userId).then(handleError);
+          router.refresh();
+        }}
+      />
+    </>
+  );
   return (
     <>
+      {dialogs}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="icon">
@@ -658,26 +698,6 @@ function DotsMenu({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <SimpleDialog
-        open={Boolean(open)}
-        onOpenChange={() => setOpen(null)}
-        title={open && forms[open].title}
-        description={open && forms[open].description}
-      >
-        {open && forms[open].content}
-      </SimpleDialog>
-      <SimpleAlertDialog
-        open={alertOpen}
-        onOpenChange={(open) => setAlertOpen(open)}
-        title="Benutzer löschen"
-        description="Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?"
-        cancel="Abbrechen"
-        confirm="Löschen"
-        onConfirm={() => {
-          deleteUser(userId).then(handleError);
-          router.refresh();
-        }}
-      />
     </>
   );
 }

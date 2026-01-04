@@ -12,7 +12,7 @@ import {
   getCurrentDate,
   getDateCertainDaysAgo,
   toISODateOnly,
-} from "@/lib/date_utils";
+} from "@/lib/util";
 import { IntervallPickerControlled } from "../cards/pick_intervall";
 import AreaChart from "./area";
 import CandleStickChart from "./candle_stick";

@@ -1,3 +1,10 @@
+export const currencyFormat = Intl.NumberFormat("de-DE", {
+  style: "currency",
+  minimumFractionDigits: 0,
+  currency: "EUR",
+  currencyDisplay: "code",
+});
+
 export function to_display_string(
   amount: number | null,
   absolute?: boolean,

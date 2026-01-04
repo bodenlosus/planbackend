@@ -891,22 +891,8 @@ export type Database = {
             foreignKeyName: "positions_depot_pkey"
             columns: ["depot_id"]
             isOneToOne: false
-            referencedRelation: "aggregated_values"
-            referencedColumns: ["depot_id"]
-          },
-          {
-            foreignKeyName: "positions_depot_pkey"
-            columns: ["depot_id"]
-            isOneToOne: false
             referencedRelation: "depots"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "positions_depot_pkey"
-            columns: ["depot_id"]
-            isOneToOne: false
-            referencedRelation: "values"
-            referencedColumns: ["depot_id"]
           },
         ]
       }
@@ -946,22 +932,34 @@ export type Database = {
             foreignKeyName: "savings_depot_fkey"
             columns: ["depot_id"]
             isOneToOne: false
-            referencedRelation: "aggregated_values"
-            referencedColumns: ["depot_id"]
-          },
-          {
-            foreignKeyName: "savings_depot_fkey"
-            columns: ["depot_id"]
-            isOneToOne: false
             referencedRelation: "depots"
             referencedColumns: ["id"]
           },
+        ]
+      }
+      savings_plans_budget: {
+        Row: {
+          budget: number
+          depot_id: number
+          last_changed: string
+        }
+        Insert: {
+          budget: number
+          depot_id: number
+          last_changed?: string
+        }
+        Update: {
+          budget?: number
+          depot_id?: number
+          last_changed?: string
+        }
+        Relationships: [
           {
-            foreignKeyName: "savings_depot_fkey"
+            foreignKeyName: "savings_plans_budget_depot_id_fkey"
             columns: ["depot_id"]
-            isOneToOne: false
-            referencedRelation: "values"
-            referencedColumns: ["depot_id"]
+            isOneToOne: true
+            referencedRelation: "depots"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -1001,22 +999,8 @@ export type Database = {
             foreignKeyName: "transactions_depot_fkey"
             columns: ["depot_id"]
             isOneToOne: false
-            referencedRelation: "aggregated_values"
-            referencedColumns: ["depot_id"]
-          },
-          {
-            foreignKeyName: "transactions_depot_fkey"
-            columns: ["depot_id"]
-            isOneToOne: false
             referencedRelation: "depots"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "transactions_depot_fkey"
-            columns: ["depot_id"]
-            isOneToOne: false
-            referencedRelation: "values"
-            referencedColumns: ["depot_id"]
           },
         ]
       }
@@ -1038,22 +1022,8 @@ export type Database = {
             foreignKeyName: "transactions_depot_fkey"
             columns: ["depot_id"]
             isOneToOne: false
-            referencedRelation: "aggregated_values"
-            referencedColumns: ["depot_id"]
-          },
-          {
-            foreignKeyName: "transactions_depot_fkey"
-            columns: ["depot_id"]
-            isOneToOne: false
             referencedRelation: "depots"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "transactions_depot_fkey"
-            columns: ["depot_id"]
-            isOneToOne: false
-            referencedRelation: "values"
-            referencedColumns: ["depot_id"]
           },
         ]
       }
@@ -1073,6 +1043,28 @@ export type Database = {
           rel_diff_1y: number | null
           total: number | null
           tstamp: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_depot_fkey"
+            columns: ["depot_id"]
+            isOneToOne: false
+            referencedRelation: "depots"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      depot_overview: {
+        Row: {
+          all_ids: string[] | null
+          cash: number | null
+          cash_start: number | null
+          id: number | null
+          monthly_budget: number | null
+          position_count: number | null
+          transaction_count: number | null
+          user_ids: string[] | null
+          user_names: string[] | null
         }
         Relationships: []
       }
@@ -1096,9 +1088,24 @@ export type Database = {
             foreignKeyName: "transactions_depot_fkey"
             columns: ["depot_id"]
             isOneToOne: false
-            referencedRelation: "aggregated_values"
-            referencedColumns: ["depot_id"]
+            referencedRelation: "depots"
+            referencedColumns: ["id"]
           },
+        ]
+      }
+      position_values: {
+        Row: {
+          asset_id: number | null
+          depot_id: number | null
+          market_value: number | null
+          position_profit: number | null
+          price: number | null
+          running_amount: number | null
+          running_commission: number | null
+          running_expenses: number | null
+          tstamp: string | null
+        }
+        Relationships: [
           {
             foreignKeyName: "transactions_depot_fkey"
             columns: ["depot_id"]
@@ -1106,12 +1113,23 @@ export type Database = {
             referencedRelation: "depots"
             referencedColumns: ["id"]
           },
+        ]
+      }
+      savings_plans_budget_overview: {
+        Row: {
+          budget: number | null
+          depot_id: number | null
+          last_changed: string | null
+          monthly_expenses: number | null
+          remaining_budget: number | null
+        }
+        Relationships: [
           {
-            foreignKeyName: "transactions_depot_fkey"
+            foreignKeyName: "savings_plans_budget_depot_id_fkey"
             columns: ["depot_id"]
-            isOneToOne: false
-            referencedRelation: "values"
-            referencedColumns: ["depot_id"]
+            isOneToOne: true
+            referencedRelation: "depots"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -1136,22 +1154,8 @@ export type Database = {
             foreignKeyName: "savings_depot_fkey"
             columns: ["depot_id"]
             isOneToOne: false
-            referencedRelation: "aggregated_values"
-            referencedColumns: ["depot_id"]
-          },
-          {
-            foreignKeyName: "savings_depot_fkey"
-            columns: ["depot_id"]
-            isOneToOne: false
             referencedRelation: "depots"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "savings_depot_fkey"
-            columns: ["depot_id"]
-            isOneToOne: false
-            referencedRelation: "values"
-            referencedColumns: ["depot_id"]
           },
         ]
       }
@@ -1180,22 +1184,8 @@ export type Database = {
             foreignKeyName: "transactions_depot_fkey"
             columns: ["depot_id"]
             isOneToOne: false
-            referencedRelation: "aggregated_values"
-            referencedColumns: ["depot_id"]
-          },
-          {
-            foreignKeyName: "transactions_depot_fkey"
-            columns: ["depot_id"]
-            isOneToOne: false
             referencedRelation: "depots"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "transactions_depot_fkey"
-            columns: ["depot_id"]
-            isOneToOne: false
-            referencedRelation: "values"
-            referencedColumns: ["depot_id"]
           },
         ]
       }
@@ -1208,7 +1198,15 @@ export type Database = {
           tstamp: string | null
           value: number | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "transactions_depot_fkey"
+            columns: ["depot_id"]
+            isOneToOne: false
+            referencedRelation: "depots"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Functions: {
@@ -1216,8 +1214,26 @@ export type Database = {
         Args: { p_asset_id: number; p_depot_id: number; p_worth: number }
         Returns: undefined
       }
+      change_budget: {
+        Args: { p_budget: number; p_depot_id: number }
+        Returns: undefined
+      }
       delete_savings_plan: { Args: { p_ids: number[] }; Returns: undefined }
       get_commission: { Args: never; Returns: number }
+      get_depot_overview: {
+        Args: never
+        Returns: {
+          all_ids: string[]
+          cash: number
+          cash_start: number
+          id: number
+          monthly_budget: number
+          position_count: number
+          transaction_count: number
+          user_ids: string[]
+          user_names: string[]
+        }[]
+      }
       is_depot_member: { Args: { depot_id: number }; Returns: boolean }
       log_transaction: {
         Args: {
@@ -1234,6 +1250,19 @@ export type Database = {
         Args: { p_asset_id: number; p_depot_id: number; p_worth: number }
         Returns: undefined
       }
+      sp_to_per_month:
+        | {
+            Args: { period: Database["public"]["Enums"]["savingsfrequency"] }
+            Returns: {
+              error: true
+            } & "Could not choose the best candidate function between: depots.sp_to_per_month(period => savingsfrequency), depots.sp_to_per_month(period => savingsperiod). Try renaming the parameters or the function itself in the database so function overloading can be resolved"
+          }
+        | {
+            Args: { period: Database["public"]["Enums"]["savingsperiod"] }
+            Returns: {
+              error: true
+            } & "Could not choose the best candidate function between: depots.sp_to_per_month(period => savingsfrequency), depots.sp_to_per_month(period => savingsperiod). Try renaming the parameters or the function itself in the database so function overloading can be resolved"
+          }
       update_depot_positions: { Args: never; Returns: undefined }
       update_savings_plan: {
         Args: {
@@ -1903,6 +1932,7 @@ export type Database = {
     Enums: {
       assettype: "commodity" | "crypto" | "fund" | "stock"
       savingsfrequency: "annually" | "monthly" | "weekly" | "daily"
+      savingsperiod: "annually" | "monthly" | "weekly" | "daily"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -2004,6 +2034,15 @@ export type Database = {
         Returns: undefined
       }
       revoke_teacher: { Args: { p_user_id: string }; Returns: undefined }
+      stats: {
+        Args: never
+        Returns: {
+          admin_count: number
+          student_count: number
+          teacher_count: number
+          user_count: number
+        }[]
+      }
     }
     Enums: {
       special_role: "admin" | "teacher"
@@ -2158,6 +2197,7 @@ export const Constants = {
     Enums: {
       assettype: ["commodity", "crypto", "fund", "stock"],
       savingsfrequency: ["annually", "monthly", "weekly", "daily"],
+      savingsperiod: ["annually", "monthly", "weekly", "daily"],
     },
   },
   users: {

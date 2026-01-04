@@ -14,7 +14,7 @@ import type {
   PositionSummary,
 } from "@/database/custom_types";
 import { processDepotValues } from "@/database/depots";
-import { getDateCertainDaysAgo, toISODateOnly } from "@/lib/date_utils";
+import { getDateCertainDaysAgo, toISODateOnly } from "@/lib/util";
 import { getDepotId } from "@/lib/get_depot_id";
 import { createClient } from "@/utils/supabase/server";
 import type { SearchParams } from "@/database/custom_types";

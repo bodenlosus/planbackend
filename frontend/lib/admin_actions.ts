@@ -211,3 +211,24 @@ export async function revokeTeacher(user_id: string) {
   }
   return {};
 }
+
+export async function changeBudget(depot_id: number, budget: number) {
+  const client = await createServerClient();
+  {
+    const { error, hasPermission } = await hasSpecialRoles(["teacher"], client);
+    if (error || !hasPermission) {
+      return {
+        error: error || new Error("Could not verify permissions"),
+      };
+    }
+  }
+
+  const { error: updateError } = await client
+    .schema("depots")
+    .rpc("change_budget", { p_depot_id: depot_id, p_budget: budget });
+
+  if (updateError) {
+    return { error: updateError };
+  }
+  return {};
+}

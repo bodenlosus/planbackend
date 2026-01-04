@@ -16,7 +16,7 @@ import {
   ChartTooltip,
 } from "@/components/ui/chart";
 import { formatFloatingPointString } from "@/lib/data/formatter";
-import { toAbsoluteTimeString } from "@/lib/date_utils";
+import { toAbsoluteTimeString } from "@/lib/util";
 import { cn } from "@/lib/utils";
 import {
   type TtoRelativeValues,
