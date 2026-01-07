@@ -14,7 +14,7 @@ import {
 	ChartTooltip,
 } from "@/components/ui/chart"
 import type { NullableRow } from "@/database/custom_types"
-import { to_display_string } from "@/lib/cash_display_string"
+import { currencyFormat, to_display_string } from "@/lib/cash_display_string"
 import { relativeDateStringCompact, toAbsoluteTimeString } from "@/lib/util"
 import { cn } from "@/lib/utils"
 import { Separator } from "../ui/separator"
@@ -103,13 +103,7 @@ export default function AreaChart<T extends Record<string, number | string>>({
 						relativeDateStringCompact(new Date(timestamp))
 					}
 				/>
-				<YAxis
-					dataKey={yKey}
-					tickFormatter={value => to_display_string(value)}
-					className="number"
-					padding={{ top: 15, bottom: 15 }}
-					domain={["min", "max"]}
-				/>
+				<YAxis hide dataKey={yKey} domain={["min", "max"]} />
 				<ChartTooltip
 					isAnimationActive={false}
 					filterNull
@@ -148,7 +142,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 	const value = Number.parseFloat(payload[0].value?.toString() ?? "")
 	const valueType = payload[0].payload?.type ?? ""
 
-	const displayString = Number.isNaN(value) ? "No value" : value.toFixed(3)
+	const displayString = Number.isNaN(value) ? "-" : currencyFormat.format(value)
 	const date = new Date(label)
 
 	return (

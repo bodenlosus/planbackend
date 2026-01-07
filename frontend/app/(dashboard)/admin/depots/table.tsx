@@ -15,15 +15,20 @@ import {
 } from "@tanstack/react-table"
 import {
 	ArrowLeft,
+	ArrowLeftRight,
 	ArrowRight,
 	ArrowUpDown,
 	Check,
 	Edit,
+	HandCoins,
 	MoreVertical,
+	PiggyBank,
 	Plus,
 	Trash2,
+	Vault,
 	X,
 } from "lucide-react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import * as React from "react"
 import { toast } from "sonner"
@@ -36,6 +41,7 @@ import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
+	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
@@ -48,9 +54,11 @@ import {
 	TableRow,
 } from "@/components/ui/table"
 import type { DepotOverview } from "@/database/custom_types"
-import { changeBudget } from "@/lib/admin_actions"
+import { changeBudget, deleteDepot, grantReward } from "@/lib/admin_actions"
 import { currencyFormat } from "@/lib/cash_display_string"
 import { cn } from "@/lib/utils"
+import SimpleDialog from "@/components/simple_dialog"
+import { RewardForm } from "./forms"
 
 interface DepotTableProps {
 	data: DepotOverview[]
@@ -67,6 +75,8 @@ const handleError = ({ error }: { error?: Error | null }) => {
 		console.error(error)
 		toast.error(`${error.name && `${error.name}: `}${error.message}`)
 	}
+
+	// toast.success("Erfolgreich ausgeführt.")
 }
 
 export function DepotTable({ data, className }: DepotTableProps) {
@@ -147,7 +157,11 @@ export function DepotTable({ data, className }: DepotTableProps) {
 			),
 			cell: ({ row }) => {
 				const id = row.getValue("id") as number
-				return <div className="font-mono">{id}</div>
+				return (
+					<Link href={`/?inspect_depot=${id}`} className="font-mono">
+						{id}
+					</Link>
+				)
 			},
 		},
 		{
@@ -180,8 +194,16 @@ export function DepotTable({ data, className }: DepotTableProps) {
 				</Button>
 			),
 			cell: ({ row }) => {
+				const depotId = row.original.id
 				const cashStart = row.getValue("cash_start") as number | null
-				return <div className="number">{formatCurrency(cashStart)}</div>
+				return (
+					<Link
+						href={`/transactions?inspect_depot=${depotId}`}
+						className="number"
+					>
+						{formatCurrency(cashStart)}
+					</Link>
+				)
 			},
 		},
 		{
@@ -247,7 +269,14 @@ export function DepotTable({ data, className }: DepotTableProps) {
 			),
 			cell: ({ row }) => {
 				const count = row.getValue("transaction_count") as number | null
-				return <div className="text-center">{count ?? 0}</div>
+				return (
+					<Link
+						href={`/transactions?inspect_depot=${row.original.id}`}
+						className="text-center"
+					>
+						{count ?? 0}
+					</Link>
+				)
 			},
 		},
 		{
@@ -371,7 +400,10 @@ export function DepotTable({ data, className }: DepotTableProps) {
 								<TableRow
 									key={row.id}
 									data-state={row.getIsSelected() && "selected"}
-									className={editingRowId === row.id ? "bg-muted/50" : ""}
+									className={cn(
+										editingRowId === row.id ? "bg-muted/50" : "",
+										"hover:bg-muted/50"
+									)}
 								>
 									{row.getVisibleCells().map(cell => (
 										<TableCell key={cell.id}>
@@ -433,6 +465,7 @@ export function DepotTable({ data, className }: DepotTableProps) {
 function DotsMenu({ depotId }: { depotId: number }) {
 	"use client"
 
+	const [rewardOpen, setRewardOpen] = React.useState(false)
 	const [alertOpen, setAlertOpen] = React.useState(false)
 	const router = useRouter()
 
@@ -447,12 +480,27 @@ function DotsMenu({ depotId }: { depotId: number }) {
 				cancel="Abbrechen"
 				confirm="Löschen"
 				onConfirm={() => {
-					console.log("Deleting depot:", depotId)
-					// TODO: Add API call
-					toast.success("Depot gelöscht (API-Aufruf noch nicht implementiert)")
-					router.refresh()
+					deleteDepot(depotId)
+						.then(handleError)
+						.then(() => router.refresh())
 				}}
 			/>
+			<SimpleDialog
+				title="Belohnung erteilen"
+				description="Bitte gib die Höhe der Belohnung ein."
+				open={rewardOpen}
+				onOpenChange={setRewardOpen}
+			>
+				{rewardOpen && (
+					<RewardForm
+						onSubmit={amount => {
+							grantReward(depotId, amount)
+								.then(handleError)
+								.then(() => router.refresh())
+						}}
+					/>
+				)}
+			</SimpleDialog>
 		</>
 	)
 
@@ -467,6 +515,40 @@ function DotsMenu({ depotId }: { depotId: number }) {
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end">
+					<DropdownMenuItem>
+						<Link
+							className="flex flex-row gap-2 items-center"
+							href={`/?inspect_depot=${depotId}`}
+						>
+							<Vault className="mr-2 size-4" />
+							Depot anzeigen
+						</Link>
+					</DropdownMenuItem>
+					<DropdownMenuItem>
+						<Link
+							className="flex flex-row gap-2 items-center"
+							href={`/transactions?inspect_depot=${depotId}`}
+						>
+							<ArrowLeftRight className="mr-2 size-4" />
+							Transaktionen anzeigen
+						</Link>
+					</DropdownMenuItem>
+					<DropdownMenuItem>
+						<Link
+							className="flex flex-row gap-2 items-center"
+							href={`/savings_plan?inspect_depot=${depotId}`}
+						>
+							<PiggyBank className="mr-2 size-4" />
+							Sparplan anzeigen
+						</Link>
+					</DropdownMenuItem>
+					<DropdownMenuSeparator />
+
+					<DropdownMenuItem onClick={() => setRewardOpen(true)}>
+						<HandCoins className="mr-2 size-4" />
+						Belohnung erteilen
+					</DropdownMenuItem>
+					<DropdownMenuSeparator />
 					<DropdownMenuItem
 						onClick={() => setAlertOpen(true)}
 						className="text-destructive focus:text-destructive"

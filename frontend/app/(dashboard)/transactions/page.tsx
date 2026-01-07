@@ -9,8 +9,12 @@ import {
 	HoverCardContent,
 	HoverCardTrigger,
 } from "@/components/ui/hover-card"
-import type { PositionSummary, Transaction } from "@/database/custom_types"
-import { getDepotId, type SearchParams } from "@/lib/get_depot_id"
+import type {
+	PositionSummary,
+	SearchParams,
+	Transaction,
+} from "@/database/custom_types"
+import { getDepotIdWithInspect } from "@/lib/get_depot_id"
 import { getStockPagePath } from "@/lib/get_stock_path"
 import { getIconURL } from "@/lib/icon_url"
 import {
@@ -28,7 +32,8 @@ export default async function Page(props: {
 	searchParams: Promise<SearchParams>
 }) {
 	const searchParams = await props.searchParams
-	const { depotId, error: depotIdError } = await getDepotId(searchParams)
+	const { depotId, error: depotIdError } =
+		await getDepotIdWithInspect(searchParams)
 	if (depotIdError) {
 		return <ErrorCard error={depotIdError} />
 	}

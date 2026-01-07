@@ -1,10 +1,13 @@
 import type { ComponentPropsWithoutRef } from "react"
-import { to_display_string } from "@/lib/cash_display_string"
+import { currencyFormat } from "@/lib/cash_display_string"
 import { cn } from "@/lib/utils"
 import WinLossDisplay from "./simple_stat"
 
 interface props extends ComponentPropsWithoutRef<"div"> {
-	displays: Record<string, number | null>
+	displays: Record<
+		string,
+		{ value: number | null; formatFunction?: (value: number | null) => string }
+	>
 	signClassName?: string
 	headerClassName?: string
 	subClassName?: string
@@ -23,7 +26,7 @@ export default function HeaderStat({
 				className
 			)}
 		>
-			{Object.entries(displays).map(([name, value]) => (
+			{Object.entries(displays).map(([name, { value, formatFunction }]) => (
 				<div key={name} className="">
 					<Template
 						className={subClassName}
@@ -31,6 +34,7 @@ export default function HeaderStat({
 						signClassName={signClassName}
 						name={name}
 						value={value}
+						formatFunction={formatFunction}
 					/>
 				</div>
 			))}
@@ -43,6 +47,7 @@ interface TemplateProps extends ComponentPropsWithoutRef<"div"> {
 	name: string
 	signClassName?: string
 	headerClassName?: string
+	formatFunction?: (value: number | null) => string
 }
 
 function Template({
@@ -51,22 +56,23 @@ function Template({
 	className,
 	signClassName,
 	headerClassName,
+	formatFunction,
 }: TemplateProps) {
 	return (
 		<>
-			<div
-				className={cn("text-lg font-normal text-muted-foreground", className)}
-			>
+			<div className={cn("font-normal text-muted-foreground", className)}>
 				{name}
 			</div>
 			<WinLossDisplay
-				indicatorClassName="size-5"
-				className="items-baseline gap-2"
-				signClassName={cn("text-3xl font-extrabold", signClassName)}
+				indicatorClassName="size-4"
+				className="items-baseline gap-2 number"
+				signClassName={cn("text-2xl font-extrabold", signClassName)}
 				sign={value ?? 0}
 			>
-				<h1 className={cn("text-3xl font-extrabold", headerClassName)}>
-					{to_display_string(value, true, 2, false)}
+				<h1 className={cn("text-2xl font-semibold", headerClassName)}>
+					{formatFunction
+						? formatFunction(value)
+						: currencyFormat.format(Math.abs(value ?? 0))}
 				</h1>
 			</WinLossDisplay>
 		</>

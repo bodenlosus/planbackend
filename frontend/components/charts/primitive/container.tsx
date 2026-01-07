@@ -46,7 +46,7 @@ export default function ChartContainer({
 
 	return (
 		<Suspense fallback={<PageLoader />}>
-			<Tabs defaultValue={defaultName} className={cn(className)}>
+			<Tabs defaultValue={defaultName} className={cn(className, "px-1")}>
 				{tabsContent}
 				<div className="w-full h-15 p-2 md:px-1 md:py-0 bg-background border-t flex flex-row">
 					<TabsList className="bg-transparent flex flex-row gap-2 h-15 items-center justify-around justify-items-stretch md:justify-start">

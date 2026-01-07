@@ -12,6 +12,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { currencyFormat } from "@/lib/cash_display_string"
 
 interface formProps {
 	onSubmit?: (values: onSubmitValues) => void
@@ -62,12 +63,14 @@ export default function BuyStockForm({
 							<FormControl>
 								<Input placeholder="0" {...field} type="text" />
 							</FormControl>
-							<FormDescription>+{commission} USD Kommission</FormDescription>
+							<FormDescription>
+								+{currencyFormat.format(commission)} Kommission
+							</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}
 				/>
-				<Button type="submit">Proceed</Button>
+				<Button type="submit">Transaktion abschließen</Button>
 			</form>
 		</Form>
 	)

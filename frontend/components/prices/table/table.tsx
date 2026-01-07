@@ -24,7 +24,7 @@ export interface PriceColumnOptions {
 export default function PriceTable({ prices, className }: props) {
 	const columns: Record<string, PriceColumnOptions> = {
 		tstamp: { type: "string", display: "Date" },
-		profit: { type: "float", indicator: true, display: "Profit" },
+		profit: { type: "float", indicator: true, display: "Performance" },
 		open: { type: "float", display: "Open" },
 		close: { type: "float", display: "Close" },
 		high: { type: "float", display: "High" },

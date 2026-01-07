@@ -6,7 +6,6 @@ import type React from "react"
 import { Suspense } from "react"
 import PageLoader from "@/components/loaders/page_loader"
 import { AppSidebar } from "@/components/navbar/desktop/sidebar"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { SidebarProvider } from "@/components/ui/sidebar"
 import { Toaster } from "@/components/ui/sonner"
 export const metadata: Metadata = {
@@ -25,9 +24,9 @@ export default function DashboardLayout({
 				<AppSidebar />
 				<Suspense fallback={<PageLoader />}>
 					{/*<SidebarTrigger />*/}
-					<ScrollArea className="h-full pt-3 px-3 mx-2 mt-2 w-full">
+					<div className="h-full pt-3 px-3 mx-2 mt-2 w-full overflow-hidden">
 						{children}
-					</ScrollArea>
+					</div>
 				</Suspense>
 			</SidebarProvider>
 			<Toaster />

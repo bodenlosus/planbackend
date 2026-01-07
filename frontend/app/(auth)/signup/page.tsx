@@ -13,8 +13,10 @@ export default function Page() {
 		<main className="grow flex justify-center items-center">
 			<Card className="min-w-[350px] w-fit max-w-[33%] shadow-2xl">
 				<CardHeader>
-					<CardTitle className="text-center">Create an Account</CardTitle>
-					<CardDescription>Start by entering your E-Mail below</CardDescription>
+					<CardTitle className="text-center">Erstelle einen Account</CardTitle>
+					<CardDescription>
+						Gib dazu deine Daten in das Formular ein
+					</CardDescription>
 				</CardHeader>
 				<CardContent className="flex flex-col gap-2">
 					<SignUpForm />

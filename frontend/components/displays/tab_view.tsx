@@ -42,7 +42,7 @@ function ToolBar(props: {
 	const orders = [
 		{
 			type: "profit",
-			display: "Profit",
+			display: "Performance",
 			icon: <Euro />,
 		},
 		{
@@ -74,22 +74,25 @@ function ToolBar(props: {
 				value={props.value.order}
 				descending={props.value.descending}
 			/>
-			<Separator orientation="vertical" className="h-[1lh] self-center" />
-			<IntervalSelector
-				intervals={intervals}
-				value={props.value.interval}
-				onValueChange={value => {
-					interval = value
+			{
+				// <Separator orientation="vertical" className="h-[1lh] self-center" />
+				// <IntervalSelector
+				// 	intervals={intervals}
+				// 	value={props.value.interval}
+				// 	onValueChange={value => {
+				// 		interval = value
 
-					if (props.onValueChange) {
-						props.onValueChange({
-							order: order as SortMode,
-							descending,
-							interval,
-						})
-					}
-				}}
-			/>
+				// 		if (props.onValueChange) {
+				// 			props.onValueChange({
+				// 				order: order as SortMode,
+				// 				descending,
+				// 				interval,
+				// 			})
+				// 		}
+				// 	}
+				// }
+				// />
+			}
 		</>
 	)
 }
@@ -127,7 +130,7 @@ function sortByType(positions: PositionSummary[]) {
 		if (!sortedStocks[asset_type]) {
 			sortedStocks[asset_type] = []
 		}
-		;(sortedStocks[asset_type] as PositionSummary[]).push(position)
+		; (sortedStocks[asset_type] as PositionSummary[]).push(position)
 		counts.set(asset_type, (counts.get(asset_type) ?? 0) + 1)
 	}
 
@@ -163,30 +166,6 @@ export default function PositionTabView({
 	)
 
 	const types = Object.keys(sortedStocks)
-
-	if (!positions_raw || positions_raw.length === 0) {
-		return (
-			<Empty>
-				<EmptyHeader>
-					<EmptyMedia variant="icon">
-						<Layers3 />
-					</EmptyMedia>
-					<EmptyTitle>Leeres Depot</EmptyTitle>
-					<EmptyDescription>
-						Invesstiere in dein erstes Wertpapier
-					</EmptyDescription>
-				</EmptyHeader>
-				<EmptyContent>
-					<SearchBarPopOut
-						triggerRender={props => (
-							<Button {...props}>Finde ein Wertpapiere</Button>
-						)}
-						doRedirect
-					/>
-				</EmptyContent>
-			</Empty>
-		)
-	}
 
 	return (
 		<Tabs defaultValue="all">
@@ -225,6 +204,30 @@ export default function PositionTabView({
 				)
 			})}
 		</Tabs>
+	)
+}
+
+export function PositionsEmpty() {
+	return (
+		<Empty>
+			<EmptyHeader>
+				<EmptyMedia variant="icon">
+					<Layers3 />
+				</EmptyMedia>
+				<EmptyTitle>Leeres Depot</EmptyTitle>
+				<EmptyDescription>
+					Investiere in dein erstes Wertpapier
+				</EmptyDescription>
+			</EmptyHeader>
+			<EmptyContent>
+				<SearchBarPopOut
+					triggerRender={props => (
+						<Button {...props}>Finde ein Wertpapier</Button>
+					)}
+					doRedirect
+				/>
+			</EmptyContent>
+		</Empty>
 	)
 }
 

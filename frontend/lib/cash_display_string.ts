@@ -2,7 +2,7 @@ export const currencyFormat = Intl.NumberFormat("de-DE", {
 	style: "currency",
 	minimumFractionDigits: 0,
 	currency: "EUR",
-	currencyDisplay: "code",
+	currencyDisplay: "symbol",
 })
 
 export function to_display_string(
@@ -11,8 +11,13 @@ export function to_display_string(
 	dec_places = 3,
 	abbreviate = true
 ): string {
-	if (!amount) {
-		return "N/A"
+	if (
+		amount === 0 ||
+		amount === null ||
+		amount === undefined ||
+		Number.isNaN(amount)
+	) {
+		return "-"
 	}
 
 	if (!abbreviate) {

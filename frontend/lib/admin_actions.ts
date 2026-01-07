@@ -232,3 +232,47 @@ export async function changeBudget(depot_id: number, budget: number) {
 	}
 	return {}
 }
+
+export async function deleteDepot(depot_id: number) {
+	const client = await createServerClient()
+	{
+		const { error, hasPermission } = await hasSpecialRoles(["teacher"], client)
+		if (error || !hasPermission) {
+			return {
+				error: error || new Error("Could not verify permissions"),
+			}
+		}
+	}
+
+	const { error: deleteError } = await client
+		.schema("depots")
+		.from("depots")
+		.delete()
+		.eq("id", depot_id)
+
+	if (deleteError) {
+		return { error: deleteError }
+	}
+	return {}
+}
+
+export async function grantReward(depot_id: number, amount: number) {
+	const client = await createServerClient()
+	{
+		const { error, hasPermission } = await hasSpecialRoles(["teacher"], client)
+		if (error || !hasPermission) {
+			return {
+				error: error || new Error("Could not verify permissions"),
+			}
+		}
+	}
+
+	const { error: grantError } = await client
+		.schema("depots")
+		.rpc("grant_reward", { p_depot_id: depot_id, p_amount: amount })
+
+	if (grantError) {
+		return { error: grantError }
+	}
+	return {}
+}

@@ -12,9 +12,9 @@ export default function Page() {
 		<main className="grow flex justify-center items-center">
 			<Card className="min-w-[350px] w-fit max-w-[33%] shadow-2xl">
 				<CardHeader>
-					<CardTitle className="text-center">Welcome back</CardTitle>
+					<CardTitle className="text-center">Willkommen</CardTitle>
 					<CardDescription>
-						Log in by entering your E-Mail and password below
+						Logge dich ein, indem du deine E-Mail und Passwort eingibst.
 					</CardDescription>
 				</CardHeader>
 				<CardContent className="flex flex-col gap-2">

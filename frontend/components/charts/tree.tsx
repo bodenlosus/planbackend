@@ -4,7 +4,7 @@ import { type Tooltip, Treemap } from "recharts"
 import type { TreemapNode } from "recharts/types/util/types"
 import { type ChartConfig, ChartContainer } from "@/components/ui/chart"
 import type { PositionSummary } from "@/database/custom_types"
-import { to_display_string } from "@/lib/cash_display_string"
+import { currencyFormat, to_display_string } from "@/lib/cash_display_string"
 import { toAbsoluteTimeString } from "@/lib/util"
 import { cn } from "@/lib/utils"
 import { Separator } from "../ui/separator"
@@ -60,7 +60,8 @@ function CustomContent(props: ContentProps) {
 				<text
 					x={x + width / 2}
 					y={y + height / 2 + 7}
-					fill={`color-mix(in oklch, ${color} ${mix_factor * 100}%, white ${100 - mix_factor * 100}%)`}
+					fill={`color-mix(in oklch, ${color} ${mix_factor * 100}%, hsl(var(--foreground)) ${100 - mix_factor * 100}%)`}
+					className="text-ellipsis"
 					textAnchor="middle"
 					fontSize={14}
 				>
@@ -71,11 +72,11 @@ function CustomContent(props: ContentProps) {
 				<text
 					x={x + 6}
 					y={y + 20}
-					fill={`color-mix(in oklch, ${color} ${mix_factor * 100}%, white ${100 - mix_factor * 100}%)`}
+					fill={`color-mix(in oklch, ${color} ${mix_factor * 100}%, hsl(var(--foreground)) ${100 - mix_factor * 100}%)`}
 					fontSize={16}
 					fillOpacity={0.9}
 				>
-					{to_display_string(value as number)}
+					{currencyFormat.format(value as number)}
 				</text>
 			) : null}
 		</g>

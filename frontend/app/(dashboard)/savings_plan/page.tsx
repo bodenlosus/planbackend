@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/empty"
 import type { SearchParams } from "@/database/custom_types"
 import { currencyFormat } from "@/lib/cash_display_string"
-import { getDepotId } from "@/lib/get_depot_id"
+import { getDepotIdWithInspect } from "@/lib/get_depot_id"
 import { formatDateString } from "@/lib/util"
 import { cn } from "@/lib/utils"
 import { createClient } from "@/utils/supabase/server"
@@ -21,7 +21,11 @@ export default async function Page(props: {
 	searchParams: Promise<SearchParams>
 }) {
 	const searchParams = await props.searchParams
-	const { depotId, error: depotIdError } = await getDepotId(searchParams)
+	const {
+		depotId,
+		error: depotIdError,
+		isInspect,
+	} = await getDepotIdWithInspect(searchParams)
 	if (depotIdError || !depotId) {
 		return (
 			<ErrorCard
@@ -37,7 +41,7 @@ export default async function Page(props: {
 	}
 
 	return (
-		<main className="w-full flex flex-col gap-6 items-start h-full">
+		<main className="w-full flex flex-col gap-6 items-start">
 			{budget && (
 				<div className="grid grid-cols-3 gap-3 grid-rows-1 *:bg-muted/50 *:border *:rounded-lg *:shadow *:px-6 *:py-5">
 					<div className="gap-2 flex flex-col justify-start">
@@ -82,22 +86,29 @@ export default async function Page(props: {
 					</div>
 				</div>
 			)}
-			<div className="flex flex-col gap-4 w-full p-2 border rounded-xl bg-muted/25">
+			<div className="flex flex-col gap-4 w-full p-2 border grow rounded-xl bg-muted/25">
 				{data.length === 0 ? (
 					<Empty>
 						<EmptyHeader>
 							<EmptyMedia variant="icon">
 								<PiggyBank />
 							</EmptyMedia>
-							<EmptyTitle>Dein Sparplan ist leer.</EmptyTitle>
+							<EmptyTitle>
+								{isInspect ? "Der" : "Dein"} Sparplan ist leer.
+							</EmptyTitle>
 							<EmptyDescription>
-								Füge einen neuen Eintrag hinzu, um mit deinem Sparplan
-								loszulegen.
+								{isInspect
+									? "Die Schüler haben noch keine Einträge erstellt."
+									: "Füge einen neuen Eintrag hinzu, um mit deinem Sparplan loszulegen."}
 							</EmptyDescription>
 						</EmptyHeader>
 						<EmptyContent>
 							<EmptyContent>
-								<NewEntryDialog trigger={<Button>Eintrag hinzufügen</Button>} />
+								{!isInspect && (
+									<NewEntryDialog
+										trigger={<Button>Eintrag hinzufügen</Button>}
+									/>
+								)}
 							</EmptyContent>
 						</EmptyContent>
 					</Empty>

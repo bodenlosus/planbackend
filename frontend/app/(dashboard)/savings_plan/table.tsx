@@ -479,10 +479,8 @@ export function SavingsPlanTable({
 	})
 	const selectedRows = table.getFilteredSelectedRowModel().rows
 	return (
-		<div className="flex flex-col gap-4 h-full">
-			<div
-				className={cn("overflow-hidden rounded-md border grow p-2 ", className)}
-			>
+		<div className="flex flex-col gap-4 h-full grow">
+			<div className={cn("rounded-md border grow p-2 ", className)}>
 				<Table>
 					<TableHeader>
 						{table.getHeaderGroups().map(headerGroup => (

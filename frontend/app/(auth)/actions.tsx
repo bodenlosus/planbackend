@@ -6,23 +6,31 @@ import { redirect } from "next/navigation"
 import type { Database } from "@/database/types"
 import { clearActiveDepotId } from "@/lib/store/server"
 import { createClient } from "@/utils/supabase/server"
+import { getDepotDefaultId } from "@/lib/db"
 
 export async function loginRedirect(email: string, password: string) {
-	const { error } = await login(email, password)
+	const client = await createClient()
+	const { error } = await login(email, password, client)
 
 	if (error) {
 		return error
 	}
 
+	const depot = (await getDepotDefaultId(client)).depotId
+
 	revalidatePath("/", "layout")
-	redirect("/")
+
+	const path = depot ? `/?depot=${depot}` : "/"
+
+	redirect(path)
 }
 
-export async function login(email: string, password: string) {
-	const supabase = await createClient()
-
-	// type-casting here for convenience
-	// in practice, you should validate your inputs
+export async function login(
+	email: string,
+	password: string,
+	client?: SupabaseClient
+) {
+	const supabase = client || (await createClient())
 	const data = {
 		email: email as string,
 		password: password as string,

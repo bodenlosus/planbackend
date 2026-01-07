@@ -67,7 +67,7 @@ export default function LoginForm() {
 					name="password"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Password</FormLabel>
+							<FormLabel>Passwort</FormLabel>
 							<FormControl>
 								<Input type="password" placeholder="Passwort" {...field} />
 							</FormControl>

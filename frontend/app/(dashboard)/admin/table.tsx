@@ -20,6 +20,7 @@ import {
 	Ban,
 	Check,
 	Edit,
+	FolderIcon,
 	KeyRound,
 	MoreVertical,
 	Plus,
@@ -637,11 +638,21 @@ function DotsMenu({
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end">
+					<DropdownMenuItem>
+						<Link
+							className="flex flex-row items-center gap-2"
+							href={`/admin/depots?user_id=${userId}`}
+						>
+							<FolderIcon className="mr-2 size-4" />
+							Depots anzeigen
+						</Link>
+					</DropdownMenuItem>
+					<DropdownMenuSeparator />
+
 					<DropdownMenuItem onClick={() => setOpen("changePassword")}>
 						<KeyRound className="mr-2 size-4" />
 						Passwort ändern
 					</DropdownMenuItem>
-					<DropdownMenuSeparator />
 
 					{isTeacher ? (
 						<DropdownMenuItem
@@ -676,7 +687,10 @@ function DotsMenu({
 							Benutzer entsperren
 						</DropdownMenuItem>
 					) : (
-						<DropdownMenuItem onClick={() => setOpen("banUser")}>
+						<DropdownMenuItem
+							className="text-destructive focus:text-destructive"
+							onClick={() => setOpen("banUser")}
+						>
 							<Ban className="mr-2 size-4" />
 							Benutzer sperren
 						</DropdownMenuItem>

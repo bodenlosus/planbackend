@@ -17,7 +17,7 @@ import type {
 } from "@/database/custom_types"
 import { to_display_string } from "@/lib/cash_display_string"
 import { getIconURL } from "@/lib/icon_url"
-import { toAbsoluteTimeString } from "@/lib/util"
+import { numberFormat, toAbsoluteTimeString } from "@/lib/util"
 import { cn } from "@/lib/utils"
 import URLIcon from "../icon"
 import HeaderStat from "../stat/header_stat"
@@ -81,10 +81,14 @@ export function StatCard({
 					className="text-base gap-1 px- text-2xl3"
 					headerClassName="text-2xl font-semibold"
 					displays={{
-						"Aktueller Wert": currentPrice?.close ?? null,
-						"Änderung 24h": stats.change24h,
-						"Änderung Heute": stats.absoluteChange,
-						"Änderung in %": stats.relativeChange,
+						"Aktueller Wert": { value: currentPrice?.close ?? null },
+						"Änderung 24h": { value: stats.change24h },
+						"Änderung Heute": { value: stats.absoluteChange },
+						"Rel. Änderung": {
+							value: stats.relativeChange,
+							formatFunction: value =>
+								value ? `${numberFormat.format(value)} %` : "-",
+						},
 					}}
 				/>
 				<div className="grow" />

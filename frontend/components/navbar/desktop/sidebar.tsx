@@ -71,7 +71,7 @@ export function AppSidebar() {
 								<div className="w-full flex items-center gap-2 justify-center whitespace-nowrap text-ellipsis overflow-hidden rounded-md text-sm font-medium transition-colors border border-input shadow-sm bg-background h-9 px-3 py-1">
 									<SearchIcon className="size-5 shrink-0 stroke-muted-foreground" />
 									<span className="text-muted-foreground shrink truncate hidden lg:inline">
-										Search for a Stock...
+										Wertpapiersuche...
 									</span>
 								</div>
 							</SearchBarPopOut>

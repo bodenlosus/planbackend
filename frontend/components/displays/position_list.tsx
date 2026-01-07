@@ -8,6 +8,7 @@ import type { PositionSummary } from "@/database/custom_types"
 import { getIconURL } from "@/lib/icon_url"
 import { cn } from "@/lib/utils"
 import URLIcon from "../icon"
+import { currencyFormat } from "@/lib/cash_display_string"
 
 export default function PositionList({
 	positions,
@@ -82,20 +83,25 @@ export function PositionRow({
           {description}
         </div>*/}
 			</Link>
-			<div className="border-t row-span-1 row-start-2 self-end px-3 py-3 *:rounded-none col-start-1 h-fit gap-3 justify-evenly w-full flex flex-row overflow-hidden shadow bg-muted/10 backdrop-blur-3xl backdrop-brightness-[40%] ">
-				<StockStats
-					className=""
-					structure={{
-						value: "Wert",
-						profit: "Profit",
-						price: "Preis je Aktie",
-					}}
-					current={{
-						value: market_value ?? 0,
-						profit: total_profit ?? 0,
-						price: current_price ?? 0,
-					}}
-				/>
+			<div className="border-t row-span-1 row-start-2 self-end px-3 py-3 *:rounded-none col-start-1 h-fit gap-3 justify-evenly w-full flex flex-row overflow-hidden shadow bg-muted/10 backdrop-blur-3xl">
+				<div>
+					<div className="text-sm text-muted-foreground">Marktwert</div>
+					<div className="text-lg number">
+						{currencyFormat.format(market_value ?? 0)}
+					</div>
+				</div>
+				<div>
+					<div className="text-sm text-muted-foreground">Performance</div>
+					<div className="text-lg number">
+						{currencyFormat.format(total_profit ?? 0)}
+					</div>
+				</div>
+				<div>
+					<div className="text-sm text-muted-foreground">Aktueller Preis</div>
+					<div className="text-lg number">
+						{currencyFormat.format(current_price ?? 0)}
+					</div>
+				</div>
 			</div>
 		</Card>
 	)

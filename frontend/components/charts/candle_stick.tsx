@@ -16,7 +16,7 @@ import {
 	ChartTooltip,
 } from "@/components/ui/chart"
 import { formatFloatingPointString } from "@/lib/data/formatter"
-import { toAbsoluteTimeString } from "@/lib/util"
+import { numberFormat, toAbsoluteTimeString } from "@/lib/util"
 import { cn } from "@/lib/utils"
 import {
 	type TtoRelativeValues,
@@ -71,12 +71,7 @@ export default function CandleStickChart<T extends BarDataT>({
 					dataKey={xKey}
 					interval={tickInterval || "preserveEnd"}
 				/>
-				<YAxis
-					tickFormatter={value => formatFloatingPointString(value, 2)}
-					className="number"
-					padding={{ top: 20, bottom: 20 }}
-					domain={["min", "max"]}
-				/>
+				<YAxis hide domain={["min", "max"]} />
 				<Bar maxBarSize={20} dataKey={barKey} fill="hsl(var(--win))">
 					{chartData.map(entry => {
 						const win = entry[winKey]
@@ -128,10 +123,10 @@ const CustomTooltip = ({ active, payload, label }: CustomToolTipProps) => {
 	}
 	const row = toAbsoluteValues(dataPayload)
 	const displayValues = [
-		{ name: "Open", string: formatFloatingPointString(row.open, 2) },
-		{ name: "Close", string: formatFloatingPointString(row.close, 2) },
-		{ name: "High", string: formatFloatingPointString(row.high, 2) },
-		{ name: "Low", string: formatFloatingPointString(row.low, 2) },
+		{ name: "Open", string: numberFormat.format(row.open) },
+		{ name: "Close", string: numberFormat.format(row.close) },
+		{ name: "High", string: numberFormat.format(row.high) },
+		{ name: "Low", string: numberFormat.format(row.low) },
 	]
 	const profit = row.close - row.open
 	const date = new Date(label)
@@ -139,7 +134,7 @@ const CustomTooltip = ({ active, payload, label }: CustomToolTipProps) => {
 		<div className="bg-background p-2 rounded shadow border">
 			<h1 className="font-semibold text-sm">{toAbsoluteTimeString(date)}</h1>
 			<Separator orientation="horizontal" className="my-2" />
-			<div className="grid grid-cols-4 gap-2">
+			<div className="grid grid-cols-2 gap-2">
 				{displayValues.map(value => (
 					<>
 						<span key={value.name} className="font-semibold">

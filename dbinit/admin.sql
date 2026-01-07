@@ -239,8 +239,11 @@ $$;
 CREATE OR REPLACE FUNCTION depots.grant_default_budget_trigger()
 RETURNS TRIGGER
 LANGUAGE plpgsql AS $$
+DECLARE
+    budget INT;
 BEGIN
-    PERFORM depots.change_budget(NEW.id, 0); -- Set default budget, adjust as needed
+    budget := COALESCE(current_setting('config.monthly_budget_start')::INT, 0);
+    PERFORM depots.change_budget(NEW.id, budget); -- Set default budget, adjust as needed
     RETURN NEW;
 END;
 $$ SECURITY DEFINER;
@@ -410,3 +413,18 @@ END;
 $$ LANGUAGE plpgsql SECURITY DEFINER STABLE;
 
 GRANT EXECUTE ON FUNCTION users."stats"() TO authenticated;
+
+CREATE OR REPLACE FUNCTION depots.grant_reward(p_depot_id BIGINT, p_amount INT) 
+RETURNS VOID AS $$
+    BEGIN
+        IF NOT (users.has_any_role('teacher') OR current_user = 'postgres') THEN
+            RAISE EXCEPTION 'Unauthorized: Admin or Teacher role required'
+                USING ERRCODE = '42501';
+        END IF;
+        UPDATE depots.depots AS d
+        SET cash = d.cash + p_amount
+        WHERE d.id = p_depot_id;
+    END;
+$$ LANGUAGE plpgsql;
+
+GRANT EXECUTE ON FUNCTION depots.grant_reward(bigint, int) TO authenticated;

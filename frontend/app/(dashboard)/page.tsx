@@ -5,7 +5,7 @@ import { ErrorCard } from "@/components/cards/cards"
 import AreaChart from "@/components/charts/area"
 import ChartContainer from "@/components/charts/primitive/container"
 import TreeChart from "@/components/charts/tree"
-import PositionTabView from "@/components/displays/tab_view"
+import PositionTabView, { PositionsEmpty } from "@/components/displays/tab_view"
 import HeaderStat from "@/components/stat/header_stat"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import type {
@@ -15,7 +15,7 @@ import type {
 	SearchParams,
 } from "@/database/custom_types"
 import { processDepotValues } from "@/database/depots"
-import { getDepotId } from "@/lib/get_depot_id"
+import { getDepotIdWithInspect } from "@/lib/get_depot_id"
 import { getDateCertainDaysAgo, toISODateOnly } from "@/lib/util"
 import { createClient } from "@/utils/supabase/server"
 
@@ -26,7 +26,11 @@ export default async function Page({
 }) {
 	const params = await searchParams
 
-	const { depotId, error: depotIdError, noDepot } = await getDepotId(params)
+	const {
+		depotId,
+		error: depotIdError,
+		noDepot,
+	} = await getDepotIdWithInspect(params)
 
 	if (noDepot) {
 		redirect("/new_depot")
@@ -59,11 +63,11 @@ export default async function Page({
 						<HeaderStat
 							className="justify-start"
 							displays={{
-								Depotwert: d?.total ?? 0,
-								"Heutiger Profit": d?.diff_1d ?? 0,
-								"Monatlicher Profit": d?.diff_1m ?? 0,
-								"Jährlicher Profit": d?.diff_1y ?? 0,
-								"Liquides Geld": d?.cash ?? 0,
+								Depotwert: { value: d?.total ?? 0 },
+								Heute: { value: d?.diff_1d ?? 0 },
+								Monat: { value: d?.diff_1m ?? 0 },
+								Jahr: { value: d?.diff_1y ?? 0 },
+								Cash: { value: d?.cash ?? 0 },
 							}}
 						/>
 					</CardTitle>
@@ -107,7 +111,12 @@ export default async function Page({
 					/>{" "}
 				</CardContent>
 			</Card>
-			<PositionTabView positions_raw={fres.positions as PositionSummary[]} />
+
+			{!fres.positions || fres.positions?.length === 0 ? (
+				fres.ownedByUser && <PositionsEmpty />
+			) : (
+				<PositionTabView positions_raw={fres.positions as PositionSummary[]} />
+			)}
 		</main>
 	)
 }
@@ -126,9 +135,10 @@ const dataFetcher = async (depotId: number) => {
 		.from("depots")
 		.select()
 		.eq("id", depotId)
-		.contains("users", [user.id])
 		.limit(1)
 		.maybeSingle()
+
+	const ownedByUser = response.data?.users.some(id => id === user.id)
 
 	console.log(response.data)
 
@@ -169,5 +179,6 @@ const dataFetcher = async (depotId: number) => {
 		positions: positionResponse.data,
 		depotValues: valueResponse.data,
 		depotAggValues: valueAggResponse.data,
+		ownedByUser,
 	}
 }
