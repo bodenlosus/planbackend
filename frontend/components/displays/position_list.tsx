@@ -1,14 +1,13 @@
 import Link from "next/link"
 import type React from "react"
 import { getStockPagePath } from "@/lib/get_stock_path"
-import StockStats from "../stat/stats"
 import { Card } from "../ui/card"
 import "./style.css"
 import type { PositionSummary } from "@/database/custom_types"
+import { currencyFormat } from "@/lib/cash_display_string"
 import { getIconURL } from "@/lib/icon_url"
 import { cn } from "@/lib/utils"
 import URLIcon from "../icon"
-import { currencyFormat } from "@/lib/cash_display_string"
 
 export default function PositionList({
 	positions,

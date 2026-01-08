@@ -3,7 +3,6 @@ import type { SearchParams } from "@/database/custom_types"
 import { createClient } from "@/utils/supabase/server"
 import { getDepotDefaultId } from "./db"
 import { getActiveDepotIdNumber } from "./store/server"
-import { isInstrumentationHookFile } from "next/dist/build/utils"
 
 export async function getDepotIdWithInspect(params: SearchParams) {
 	if (params.inspect_depot) {

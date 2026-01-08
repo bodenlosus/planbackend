@@ -20,7 +20,6 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "../ui/select"
-import { Separator } from "../ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group"
 import PositionList from "./position_list"
@@ -34,11 +33,11 @@ function ToolBar(props: {
 	value: returnT
 	onValueChange?: (value: returnT) => void
 }) {
-	const intervals = {
-		1: "1d",
-		5: "1w",
-		30: "1m",
-	}
+	// const intervals = {
+	// 	1: "1d",
+	// 	5: "1w",
+	// 	30: "1m",
+	// }
 	const orders = [
 		{
 			type: "profit",
@@ -52,7 +51,7 @@ function ToolBar(props: {
 		},
 	]
 
-	let interval = props.value.interval
+	const interval = props.value.interval
 	let order: string = props.value.order
 	let descending = props.value.descending
 
@@ -81,7 +80,6 @@ function ToolBar(props: {
 				// 	value={props.value.interval}
 				// 	onValueChange={value => {
 				// 		interval = value
-
 				// 		if (props.onValueChange) {
 				// 			props.onValueChange({
 				// 				order: order as SortMode,
@@ -130,7 +128,7 @@ function sortByType(positions: PositionSummary[]) {
 		if (!sortedStocks[asset_type]) {
 			sortedStocks[asset_type] = []
 		}
-		; (sortedStocks[asset_type] as PositionSummary[]).push(position)
+		;(sortedStocks[asset_type] as PositionSummary[]).push(position)
 		counts.set(asset_type, (counts.get(asset_type) ?? 0) + 1)
 	}
 
@@ -294,40 +292,40 @@ function SortSelector(props: {
 	)
 }
 
-function IntervalSelector<T extends Record<number, string>>(props: {
-	intervals: T
-	default?: keyof T
-	value?: keyof T
-	onValueChange?: (days: keyof T, display: string) => void
-}) {
-	const items: React.ReactNode[] = []
+// function IntervalSelector<T extends Record<number, string>>(props: {
+// 	intervals: T
+// 	default?: keyof T
+// 	value?: keyof T
+// 	onValueChange?: (days: keyof T, display: string) => void
+// }) {
+// 	const items: React.ReactNode[] = []
 
-	for (const [days, display] of Object.entries(props.intervals)) {
-		items.push(
-			<ToggleGroupItem
-				className="h-full px-3"
-				key={days}
-				value={days.toString()}
-			>
-				{display}
-			</ToggleGroupItem>
-		)
-	}
-	return (
-		<ToggleGroup
-			value={props.value?.toString()}
-			type="single"
-			defaultValue="1d"
-			className=""
-			onValueChange={k => {
-				const key = Number.parseInt(k, 10)
-				const value = props.intervals[key]
-				if (props.onValueChange) {
-					props.onValueChange(key, value)
-				}
-			}}
-		>
-			{items}
-		</ToggleGroup>
-	)
-}
+// 	for (const [days, display] of Object.entries(props.intervals)) {
+// 		items.push(
+// 			<ToggleGroupItem
+// 				className="h-full px-3"
+// 				key={days}
+// 				value={days.toString()}
+// 			>
+// 				{display}
+// 			</ToggleGroupItem>
+// 		)
+// 	}
+// 	return (
+// 		<ToggleGroup
+// 			value={props.value?.toString()}
+// 			type="single"
+// 			defaultValue="1d"
+// 			className=""
+// 			onValueChange={k => {
+// 				const key = Number.parseInt(k, 10)
+// 				const value = props.intervals[key]
+// 				if (props.onValueChange) {
+// 					props.onValueChange(key, value)
+// 				}
+// 			}}
+// 		>
+// 			{items}
+// 		</ToggleGroup>
+// 	)
+// }

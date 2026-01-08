@@ -14,7 +14,7 @@ import {
 	ChartTooltip,
 } from "@/components/ui/chart"
 import type { NullableRow } from "@/database/custom_types"
-import { currencyFormat, to_display_string } from "@/lib/cash_display_string"
+import { currencyFormat } from "@/lib/cash_display_string"
 import { relativeDateStringCompact, toAbsoluteTimeString } from "@/lib/util"
 import { cn } from "@/lib/utils"
 import { Separator } from "../ui/separator"

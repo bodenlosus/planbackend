@@ -4,9 +4,9 @@ import type { SupabaseClient } from "@supabase/supabase-js"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import type { Database } from "@/database/types"
+import { getDepotDefaultId } from "@/lib/db"
 import { clearActiveDepotId } from "@/lib/store/server"
 import { createClient } from "@/utils/supabase/server"
-import { getDepotDefaultId } from "@/lib/db"
 
 export async function loginRedirect(email: string, password: string) {
 	const client = await createClient()
