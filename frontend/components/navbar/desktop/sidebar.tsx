@@ -8,7 +8,7 @@ import {
 	PiggyBank,
 	SearchIcon,
 } from "lucide-react"
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import DepotPicker from "@/components/navbar/desktop/depot_picker"
 import { SearchBarPopOut } from "@/components/search_bar"
 import {
@@ -97,8 +97,10 @@ export function AppSidebar() {
 				))}
 			</SidebarContent>
 			<SidebarFooter className="flex flex-col gap-0 *:bg-background/50">
-				<User />
-				<DepotPicker />
+				<Suspense fallback={<div>Loading...</div>}>
+					<User />
+					<DepotPicker />
+				</Suspense>
 			</SidebarFooter>
 		</Sidebar>
 	)
